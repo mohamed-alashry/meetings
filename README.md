@@ -8,7 +8,7 @@ Please check the official laravel installation guide for server requirements bef
 
 Clone the repository
 
-    git clone https://github.com//ahmed127/visa-hajj.git
+    git clone https://github.com/mohamed-alashry/meetings.git
 
 Install all the dependencies using composer
 
