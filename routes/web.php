@@ -17,5 +17,3 @@ use App\Http\Controllers\RoomController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::post('rooms', [RoomController::class, 'store']);

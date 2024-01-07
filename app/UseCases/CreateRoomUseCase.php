@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Room;
-use App\DTOs\CreateRoomDTO;
+use App\DTOs\Room\CreateDTO;
 use App\Services\RoomService;
 
 class CreateRoomUseCase
@@ -12,7 +12,7 @@ class CreateRoomUseCase
     {
     }
 
-    public function create(CreateRoomDTO $data): Room
+    public function create(CreateDTO $data): Room
     {
         return $this->roomService->create($data);
     }

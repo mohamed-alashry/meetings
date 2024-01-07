@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Room;
 
-use App\DTOs\CreateRoomDTO;
+use App\DTOs\Room\FilterDTO;
 use Spatie\LaravelData\WithData;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateRoomRequest extends FormRequest
+class FilterRequest extends FormRequest
 {
     use WithData;
 
-    protected string $dataClass = CreateRoomDTO::class;
+    protected string $dataClass = FilterDTO::class;
 
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,8 +28,11 @@ class CreateRoomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required',
-            'location' => 'required',
+            'name'              => 'nullable|string|max:191',
+            'location'          => 'nullable|string|max:191',
+            'google_location'   => 'nullable|string|max:191',
+            'capacity'          => 'nullable|numeric|gte:1',
+            'status'            => 'nullable|in:1,2,3',
         ];
     }
 }

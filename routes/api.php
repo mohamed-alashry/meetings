@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::controller(App\Http\Controllers\RoomController::class)->group(function () {
+    Route::get('/rooms', 'index');
+    Route::get('/rooms/{room}', 'show');
+    Route::post('/rooms/store', 'store');
+    Route::put('/rooms/{room}/update', 'update');
+    Route::delete('/rooms/{room}/destroy', 'destroy');
+});

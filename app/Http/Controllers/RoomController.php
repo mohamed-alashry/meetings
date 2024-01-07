@@ -2,22 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Services\CreateRoomUseCase;
-use App\Http\Requests\CreateRoomRequest;
+use App\Services\RoomService;
+use App\Http\Requests\Room\CreateRequest;
+use App\Http\Requests\Room\FilterRequest;
+use App\Http\Requests\Room\UpdateRequest;
 
 class RoomController extends Controller
 {
-    public function __construct(private readonly CreateRoomUseCase $createRoomUseCase)
+    public function __construct(private readonly RoomService $roomService)
     {
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(FilterRequest $request)
     {
-        //
+        $data['room'] = $this->roomService->list($request->getData());
+        return response()->json($data);
     }
 
     /**
@@ -31,9 +33,10 @@ class RoomController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateRoomRequest $request)
+    public function store(CreateRequest $request)
     {
-        $room = $this->createRoomUseCase->create($request->getData());
+        $data['room'] = $this->roomService->create($request->getData());
+        return response()->json($data);
     }
 
     /**
@@ -41,7 +44,8 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $data['room'] = $this->roomService->show($id);
+        return response()->json($data);
     }
 
     /**
@@ -55,9 +59,10 @@ class RoomController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
-        //
+        $data['room'] = $this->roomService->update($request->getData(), $id);
+        return response()->json($data);
     }
 
     /**
@@ -65,6 +70,12 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $result = $this->roomService->delete($id);
+        if ($result) {
+            $data['message'] = 'deleted successfully';
+        } else {
+            $data['message'] = 'deleted unSuccessfully';
+        }
+        return response()->json($data);
     }
 }
