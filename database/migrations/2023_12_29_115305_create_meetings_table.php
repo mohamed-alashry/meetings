@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('brief')->nullable();
             $table->string('description')->nullable();
-            $table->date('start_date')->nullable();
+            $table->datetime('start_date')->nullable();
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
-            $table->date('end_date')->nullable();
-            $table->date('alert_date')->nullable();
+            $table->datetime('end_date')->nullable();
+            $table->datetime('alert_date')->nullable();
             $table->unsignedInteger('status')->default(1)->comment('1 => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished');
             $table->timestamps();
             $table->softDeletes();
