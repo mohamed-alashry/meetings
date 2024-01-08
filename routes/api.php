@@ -18,6 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::apiResource('meetings', App\Http\Controllers\MeetingController::class);
+
 Route::controller(App\Http\Controllers\RoomController::class)->group(function () {
     Route::get('/rooms', 'index');
     Route::get('/rooms/{room}', 'show');

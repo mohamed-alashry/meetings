@@ -58,7 +58,7 @@ class Meeting extends Model
     {
         return $this->belongsTo(Room::class);
     }
-    
+
 
     /**
      * Get all of the invitations for the Meeting
