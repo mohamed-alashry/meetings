@@ -22,7 +22,6 @@ class RoomFeature extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'room_id',
         'icon',
         'name',
         'value',
@@ -35,7 +34,6 @@ class RoomFeature extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'room_id'         => 'integer',
         'icon'            => 'integer',
         'name'            => 'string',
         'value'           => 'string',
