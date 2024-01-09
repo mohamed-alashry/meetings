@@ -19,6 +19,16 @@ class RoomService
         $rooms = $query->get();
         return $rooms;
     }
+    
+    public function list_with_features(FilterDTO $data)
+    {
+        $query = Room::query();
+        foreach ($data->toArray() as $key => $value) {
+            if ($value) $query->where($key, $value);
+        }
+        $rooms = $query->with('features')->get();
+        return $rooms;
+    }
 
     public function show(int $id): Room
     {
