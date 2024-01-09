@@ -18,7 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('meetings', App\Http\Controllers\MeetingController::class);
 
 Route::controller(App\Http\Controllers\RoomController::class)->group(function () {
     Route::get('/rooms', 'index');
@@ -26,6 +25,15 @@ Route::controller(App\Http\Controllers\RoomController::class)->group(function ()
     Route::post('/rooms/store', 'store');
     Route::put('/rooms/{room}/update', 'update');
     Route::delete('/rooms/{room}/destroy', 'destroy');
+});
+
+Route::controller(App\Http\Controllers\MeetingController::class)->group(function () {
+    Route::get('/meetings', 'index');
+    Route::get('/meetings/{meeting}', 'show');
+    Route::post('/meetings', 'store');
+    Route::put('/meetings/{meeting}', 'update');
+    Route::delete('/meetings/{meeting}', 'destroy');
+    Route::post('/meetings/invite', 'invite');
 });
 
 Route::controller(App\Http\Controllers\UserController::class)->group(function () {
