@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+.input-form-login i {
+			position: absolute;
+		}
+
+		.input-form-login {
+			width: 100%;
+			margin-bottom: 10px;
+		}
+
+		.icon {
+			padding: 19px 17px;
+			min-width: 40px;
+		}
+
+		.input-field {
+			width: 100%;
+			padding: 10px;
+			/* text-align: center; */
+		}
