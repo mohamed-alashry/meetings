@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Meeting;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\FilterDTO;
+use App\DTOs\Meeting\InviteDTO;
 use App\DTOs\Meeting\UpdateDTO;
 
 class MeetingService
@@ -43,6 +44,18 @@ class MeetingService
             $meeting->delete();
             return true;
         } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    public function invite(InviteDTO $data): bool
+    {
+        try {
+            $meeting = Meeting::find($data->meeting_id);
+            $meeting->invitations()->create($data->toArray());
+            return true;
+        } catch (\Exception $e) {
+            dd($e);
             return false;
         }
     }

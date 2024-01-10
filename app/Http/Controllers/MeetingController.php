@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Services\MeetingService;
 use App\Http\Requests\Meeting\CreateRequest;
 use App\Http\Requests\Meeting\FilterRequest;
+use App\Http\Requests\Meeting\InviteRequest;
 use App\Http\Requests\Meeting\UpdateRequest;
+use App\Models\Meeting;
 
 class MeetingController extends Controller
 {
@@ -76,6 +78,12 @@ class MeetingController extends Controller
         } else {
             $data['message'] = 'deleted unSuccessfully';
         }
+        return response()->json($data);
+    }
+
+    public function invite(InviteRequest $request)
+    {
+        $data['meeting'] = $this->meetingService->invite($request->getData());
         return response()->json($data);
     }
 }
