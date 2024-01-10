@@ -22,7 +22,7 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
 });
 
-Route::group(['middleware' => ['auth:web']], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
