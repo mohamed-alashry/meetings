@@ -18,10 +18,38 @@ class MeetingController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function monitor(FilterRequest $request)
+    {
+        $data['meetings'] = $this->meetingService->list($request->getData());
+        if (request()->wantsJson()) {
+            return response()->json($data);
+        }
+
+        return view('monitor', $data);
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function calendar(FilterRequest $request)
+    {
+        $data['meetings'] = $this->meetingService->list($request->getData());
+        if (request()->wantsJson()) {
+            return response()->json($data);
+        }
+
+        return view('calendar', $data);
+    }
+    /**
+     * Display a listing of the resource.
+     */
     public function index(FilterRequest $request)
     {
-        $data['meeting'] = $this->meetingService->list($request->getData());
-        return response()->json($data);
+        $data['meetings'] = $this->meetingService->list($request->getData());
+        if (request()->wantsJson()) {
+            return response()->json($data);
+        }
+
+        return view('meetings', $data);
     }
 
     /**

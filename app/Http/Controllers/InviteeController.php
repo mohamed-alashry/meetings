@@ -18,8 +18,12 @@ class InviteeController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        $data['Invitee'] = $this->InviteeService->list($request->getData());
-        return response()->json($data);
+        $data['invitees'] = $this->InviteeService->list($request->getData());
+        if (request()->wantsJson()) {
+            return response()->json($data);
+        }
+
+        return view('invitees', $data);
     }
 
     /**

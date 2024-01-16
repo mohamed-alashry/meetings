@@ -1,102 +1,352 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('assets') }}/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
-
-    <title>{{ config('settings.name') }} :: Home</title>
-
-</head>
-
-<body>
-    <div data-component="navbar">
-
-        <nav class="navbar p-0 fixed-top justify-content-start">
-            <button class="navbar-toggler position-relative rounded-0 px-4" type="button"
-                style="background: #022537; left: 0%;" data-toggle="collapse" data-target="#megamenu-dropdown"
-                aria-controls="megamenu-dropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="{{ asset('assets') }}/img/menu.png" alt="" srcset="">
-            </button>
-            <div class="shadow-sm d-flex justify-content-between" style="width: 96%">
-                <a class="navbar-brand px-1" href="#">
-                    <img src="{{ asset(config('settings.logo.thumbnail')) }}" class="d-inline-block mt-1" alt="AgentFire Logo" height="40"></a>
-
-                <div class="right-links float-right mr-4">
-                    <!-- /.dropdown -->
-
-                    <div class="d-inline dropdown">
-                        <a class="dropdown-toggle" id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <img src="http://1.gravatar.com/avatar/47db31bd2e0b161008607d84c74305b5?s=96&d=mm&r=g">
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Edit my profile</a>
-                            <a class="dropdown-item" href="#">Log Out</a>
-                        </div> <!-- /.dropdown-menu -->
-                    </div> <!-- /.dropdown -->
-
-                </div> <!-- /.right-links -->
-
+@section('title', 'Home')
+@section('content')
+<section class="section-contct-body">
+    <div class="container-fluid">
+        <div class="card mb-3 background-primary border-0">
+            <div class="card-body background-primary text-light shadow-lg rounded-4">
+                <h5 class="card-title">Find a Meeting Room</h5>
+                <p class="card-text">Find and Book Now</p>
+                <div class="row g-3">
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+                        <div class="dropdown">
+                            <button class="btn bg-secondary dropdown-toggle w-100 bg-opacity-50 text-light px-0"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-calendar-days"></i>
+                                Meeting Date
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+                        <div class="dropdown">
+                            <button class="btn bg-secondary dropdown-toggle w-100 bg-opacity-50 text-light px-0"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-clock"></i>
+                                Meeting Time
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+                        <div class="dropdown">
+                            <button class="btn bg-secondary dropdown-toggle w-100 bg-opacity-50 text-light px-0"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                                Choose Duration
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-12">
+                        <div class="dropdown">
+                            <button class="btn bg-secondary dropdown-toggle w-100 bg-opacity-50 text-light px-0"
+                                type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-users "></i>
+                                How Many Persons
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-12 col-md-8 col-sm-12">
+                        <button type="button" class="btn btn-light w-100">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Find Now
+                        </button>
+                    </div>
+                </div>
             </div>
-        </nav>
-    </div> <!-- END TOP NAVBAR -->
-
-    <div data-component="sidebar">
-        <div class="sidebar">
-            <ul class="list-group flex-column d-inline-block first-menu">
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#">
-                        <i class="fa-solid fa-house fa-lg d-flex" aria-hidden="true">
-                            <span class="ml-2 pt-2 align-middle">Reporting</span>
-                        </i>
-                    </a>
-                </li> <!-- /.list-group-item -->
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#">
-                        <i class="fa-solid fa-calendar-days d-flex" aria-hidden="true">
-                            <span class="ml-2 pt-2 align-middle">Reporting</span>
-                        </i>
-                    </a>
-                </li> <!-- /.list-group-item -->
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#">
-                        <i class="fa-solid fa-desktop d-flex" aria-hidden="true">
-                            <span class="ml-2 pt-2 align-middle">Reporting</span>
-                        </i>
-                    </a>
-                </li> <!-- /.list-group-item -->
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#">
-                        <i class="fa-solid fa-users fa-lg d-flex" aria-hidden="true">
-                            <span class="ml-2 pt-2 align-middle">Reporting</span>
-                        </i>
-                    </a>
-                </li> <!-- /.list-group-item -->
-                <li class="list-group-item pl-3 py-2">
-                    <a href="#">
-                        <i class="fa-solid fa-gear d-flex" aria-hidden="true">
-                            <span class="ml-2 pt-2 align-middle">Reporting</span>
-                        </i>
-                    </a>
-                </li> <!-- /.list-group-item -->
-
-            </ul> <!-- /.first-menu -->
-        </div> <!-- /.sidebar -->
+        </div>
     </div>
 
-    <!-- <div class="container-fluid">
+    <div class="container-fluid">
+        <h5 class="card-title">Available Meeting Rooms</h5>
+        <p class="card-text">Find Available Rooms Now</p>
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <a class="text-white" href="#">
+                    <div class="image-hover-text-container">
+                        <div class="card-hover-image">
+                            <div class="card mb-3 shadow border-0 rounded-4 w-100">
+                                <div class="row g-0">
+                                    <div class="col-md-5 col-sm-12">
+                                        <img src="assets/img/room.png" style="width: -webkit-fill-available;"
+                                            class="img-fluid border-img h-100" alt="...">
+                                    </div>
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Meeting Room 01</h5>
+                                            <p class="card-text">The right one on floor one</p>
+                                            <hr>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    Today, 04:00 PM
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-hourglass-half"></i>
+                                                    Free for 60 min
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-solid fa-users"></i>
+                                                    Up to 20 Person
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-hover-text" style="height: 93%;">
+                            <div class="card-hover-text-bubble rounded-4">
+                                <span
+                                    class="card-hover-text-title d-flex justify-content-center align-items-center h-100">
+                                    <i class="fa-regular fa-calendar-check fa-lg px-2"></i>
+                                    Book Room Now
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <a class="text-white" href="#">
+                    <div class="image-hover-text-container">
+                        <div class="card-hover-image">
+                            <div class="card mb-3 shadow border-0 rounded-4 w-100">
+                                <div class="row g-0">
+                                    <div class="col-md-5 col-sm-12">
+                                        <img src="assets/img/room.png" style="width: -webkit-fill-available;"
+                                            class="img-fluid border-img h-100" alt="...">
+                                    </div>
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Meeting Room 01</h5>
+                                            <p class="card-text">The right one on floor one</p>
+                                            <hr>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    Today, 04:00 PM
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-hourglass-half"></i>
+                                                    Free for 60 min
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-solid fa-users"></i>
+                                                    Up to 20 Person
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-hover-text" style="height: 93%;">
+                            <div class="card-hover-text-bubble rounded-4">
+                                <span
+                                    class="card-hover-text-title d-flex justify-content-center align-items-center h-100">
+                                    <i class="fa-regular fa-calendar-check fa-lg px-2"></i>
+                                    Book Room Now
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12">
+                <a class="text-white" href="#">
+                    <div class="image-hover-text-container">
+                        <div class="card-hover-image">
+                            <div class="card mb-3 shadow border-0 rounded-4 w-100">
+                                <div class="row g-0">
+                                    <div class="col-md-5 col-sm-12">
+                                        <img src="assets/img/room.png" style="width: -webkit-fill-available;"
+                                            class="img-fluid border-img h-100" alt="...">
+                                    </div>
+                                    <div class="col-md-7 col-sm-12">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Meeting Room 01</h5>
+                                            <p class="card-text">The right one on floor one</p>
+                                            <hr>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-calendar-days"></i>
+                                                    Today, 04:00 PM
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-regular fa-hourglass-half"></i>
+                                                    Free for 60 min
+                                                </small>
+                                            </p>
+                                            <p class="card-text m-1">
+                                                <small class="text-body-secondary">
+                                                    <i class="fa-solid fa-users"></i>
+                                                    Up to 20 Person
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-hover-text" style="height: 93%;">
+                            <div class="card-hover-text-bubble rounded-4">
+                                <span
+                                    class="card-hover-text-title d-flex justify-content-center align-items-center h-100">
+                                    <i class="fa-regular fa-calendar-check fa-lg px-2"></i>
+                                    Book Room Now
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-lg-9 col-md-12">
+                <div class="line-bookings row mt-3">
+                    <span class="col-lg-8 col-md-6 col-sm-12">
+                        <h5 class="card-title">Upcomming Bookings</h5>
+                        <p class="card-text">Don’t miss your appointments</p>
+                    </span>
+                    <span class="col-lg-4 col-md-6 col-sm-12">
+                        <button type="button" class="btn text-light w-100 h-100 rounded-4"
+                            style="background-color: #C2203D;">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            View All
+                        </button>
+                    </span>
+                </div>
+                <div class="line-cards mt-4">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card rounded-4 shadow border-0 mb-3">
+                                <div class="card-header bg-body rounded-top-4">
+                                    <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                    <p class="card-text color-primary">Meeting Room 02</p>
+                                </div>
+                                <div class="card-body color-primary">
+                                    <!-- <h5 class="card-title">Light card title</h5> -->
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            Today, 04:00 PM
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-hourglass-half"></i>
+                                            Free for 60 min
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-solid fa-users"></i>
+                                            Up to 20 Person
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card rounded-4 shadow border-0 mb-3">
+                                <div class="card-header bg-body rounded-top-4">
+                                    <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                    <p class="card-text color-primary">Meeting Room 02</p>
+                                </div>
+                                <div class="card-body color-primary">
+                                    <!-- <h5 class="card-title">Light card title</h5> -->
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            Today, 04:00 PM
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-hourglass-half"></i>
+                                            Free for 60 min
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-solid fa-users"></i>
+                                            Up to 20 Person
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="card rounded-4 shadow border-0 mb-3">
+                                <div class="card-header bg-body rounded-top-4">
+                                    <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                    <p class="card-text color-primary">Meeting Room 02</p>
+                                </div>
+                                <div class="card-body color-primary">
+                                    <!-- <h5 class="card-title">Light card title</h5> -->
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-calendar-days"></i>
+                                            Today, 04:00 PM
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-regular fa-hourglass-half"></i>
+                                            Free for 60 min
+                                        </small>
+                                    </p>
+                                    <p class="card-text m-1">
+                                        <small class="text-body-secondary">
+                                            <i class="fa-solid fa-users"></i>
+                                            Up to 20 Person
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-   </div> -->
-</body>
+                </div>
+            </div>
+            <div class="pe-0 d-none d-lg-flex">
+                <img src="assets/img/Frame-end-footer.png" class="img-fluid position-fixed bottom-0 end-0 z-n1"
+                    alt="Frame-end-footer">
+            </div>
+        </div>
+    </div>
 
-</html>
+</section>
+@endsection

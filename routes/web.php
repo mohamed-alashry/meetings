@@ -29,36 +29,38 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/home', [HomeController::class, 'home'])->name('home');
 
-    Route::controller(App\Http\Controllers\RoomController::class)->group(function () {
-        Route::get('/rooms', 'index');
-        Route::get('/rooms/{room}', 'show');
-        Route::post('/rooms/store', 'store');
-        Route::put('/rooms/{room}/update', 'update');
-        Route::delete('/rooms/{room}/destroy', 'destroy');
+    Route::controller(App\Http\Controllers\RoomController::class)->prefix('rooms')->as('rooms.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{room}', 'show')->name('show');
+        Route::post('/store', 'store')->name('store');
+        Route::put('/{room}/update', 'update')->name('update');
+        Route::delete('/{room}/destroy', 'destroy')->name('destroy');
     });
 
-    Route::controller(App\Http\Controllers\MeetingController::class)->group(function () {
-        Route::get('/meetings', 'index');
-        Route::get('/meetings/{meeting}', 'show');
-        Route::post('/meetings', 'store');
-        Route::put('/meetings/{meeting}', 'update');
-        Route::delete('/meetings/{meeting}', 'destroy');
-        Route::post('/meetings/invite', 'invite');
+    Route::controller(App\Http\Controllers\MeetingController::class)->prefix('meetings')->as('meetings.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/monitor', 'monitor')->name('monitor');
+        Route::get('/calendar', 'calendar')->name('calendar');
+        Route::get('/{meeting}', 'show')->name('show');
+        Route::post('', 'store')->name('store');
+        Route::put('/{meeting}', 'update')->name('update');
+        Route::delete('/{meeting}', 'destroy')->name('destroy');
+        Route::post('/invite', 'invite')->name('invite');
     });
 
-    Route::controller(App\Http\Controllers\UserController::class)->group(function () {
-        Route::get('/users', 'index');
-        Route::get('/users/{user}', 'show');
-        Route::post('/users/store', 'store');
-        Route::put('/users/{user}/update', 'update');
-        Route::delete('/users/{user}/destroy', 'destroy');
+    Route::controller(App\Http\Controllers\UserController::class)->prefix('users')->as('users.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{user}', 'show')->name('show');
+        Route::post('/store', 'store')->name('store');
+        Route::put('/{user}/update', 'update')->name('update');
+        Route::delete('/{user}/destroy', 'destroy')->name('destroy');
     });
 
-    Route::controller(App\Http\Controllers\InviteeController::class)->group(function () {
-        Route::get('/invitees', 'index');
-        Route::get('/invitees/{invitee}', 'show');
-        Route::post('/invitees/store', 'store');
-        Route::put('/invitees/{invitee}/update', 'update');
-        Route::delete('/invitees/{invitee}/destroy', 'destroy');
+    Route::controller(App\Http\Controllers\InviteeController::class)->prefix('invitees')->as('invitees.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/{invitee}', 'show')->name('show');
+        Route::post('/store', 'store')->name('store');
+        Route::put('/{invitee}/update', 'update')->name('update');
+        Route::delete('/{invitee}/destroy', 'destroy')->name('destroy');
     });
 });

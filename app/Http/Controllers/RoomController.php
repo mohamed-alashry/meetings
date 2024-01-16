@@ -18,8 +18,12 @@ class RoomController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        $data['room'] = $this->roomService->list($request->getData());
-        return response()->json($data);
+        $data['rooms'] = $this->roomService->list($request->getData());
+        if (request()->wantsJson()) {
+            return response()->json($data);
+        }
+
+        return view('rooms', $data);
     }
 
     /**
