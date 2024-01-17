@@ -30,7 +30,6 @@ class CreateRequest extends FormRequest
         return [
             'name'              => 'required|string|max:191',
             'email'             => 'required|email|unique:invitees',
-            'password'          => 'required|confirmed|min:6',
         ];
     }
 }

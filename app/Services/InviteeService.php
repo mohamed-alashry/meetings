@@ -10,6 +10,16 @@ use Google\Service\ShoppingContent\Resource\Collections;
 
 class InviteeService
 {
+    public function list_with_pagination(FilterDTO $data, int $perPage = 10)
+    {
+        $query = Invitee::query();
+        foreach ($data->toArray() as $key => $value) {
+            if ($value) $query->where($key, $value);
+        }
+        $invitees = $query->paginate($perPage);
+        return $invitees;
+    }
+
     public function list(FilterDTO $data)
     {
         $query = Invitee::query();

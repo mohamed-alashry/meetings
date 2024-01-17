@@ -10,6 +10,16 @@ use Google\Service\ShoppingContent\Resource\Collections;
 
 class RoomService
 {
+    public function list_with_pagination(FilterDTO $data, int $perPage = 10)
+    {
+        $query = Room::query();
+        foreach ($data->toArray() as $key => $value) {
+            if ($value) $query->where($key, $value);
+        }
+        $rooms = $query->paginate($perPage);
+        return $rooms;
+    }
+
     public function list(FilterDTO $data)
     {
         $query = Room::query();
@@ -19,7 +29,7 @@ class RoomService
         $rooms = $query->get();
         return $rooms;
     }
-    
+
     public function list_with_features(FilterDTO $data)
     {
         $query = Room::query();
@@ -37,16 +47,25 @@ class RoomService
 
     public function create(CreateDTO $data): Room
     {
-        return Room::create($data->toArray());
+        // dd($data->except('photos')->toArray());
+        $room = Room::create($data->except('photos')->toArray());
+        foreach ($data->photos ?? [] as $photo) {
+            $room->media()->create([
+                'type'      => $photo->extension(),
+                'file_name' => $photo->getClientOriginalName(),
+            ]);
+        }
+
+        return $room;
     }
 
     public function update(UpdateDTO $data, int $id): bool
     {
         // try {
-            $room = Room::find($id);
-            // dd($data->toArray(), $room);
-            $room->update($data->toArray());
-            return true;
+        $room = Room::find($id);
+        // dd($data->toArray(), $room);
+        $room->update($data->toArray());
+        return true;
         // } catch (\Exception $e) {
         //     return false;
         // }

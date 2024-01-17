@@ -32,7 +32,9 @@ class CreateRequest extends FormRequest
             'location'          => 'required|string|max:191',
             'google_location'   => 'required|string|max:191',
             'capacity'          => 'required|numeric|gte:1',
-            'status'            => 'required|in:1,2,3',
+            'photos'            => 'nullable|array',
+            'photos.*'          => 'image',
+            // 'status'            => 'required|in:1,2,3',
         ];
     }
 }

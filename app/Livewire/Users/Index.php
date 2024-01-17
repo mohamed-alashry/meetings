@@ -4,17 +4,15 @@ namespace App\Livewire\Users;
 
 use App\Models\User;
 use Livewire\Component;
-use Livewire\Attributes\On;
+use App\DTOs\User\FilterDTO;
 use App\Services\UserService;
-use App\Livewire\Forms\UserForm;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Index extends Component
 {
     use LivewireAlert;
-    public UserForm $form;
     public $user;
-    public $users;
+    public int $perPage = 10;
     public bool $createModal = false;
     public bool $updateModal = false;
     private UserService $userService;
@@ -26,17 +24,10 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.users.index', [
-            'users' => $this->form->list_with_pagination(10)
-        ]);
-    }
 
-    public function addUser()
-    {
-        $this->form->store();
-        $this->createModal = false;
-        $this->render();
-        $this->alert('success', 'User Added Successfully');
+        return view('livewire.users.index', [
+            'users' => $this->userService->list_with_pagination(FilterDTO::from([]), $this->perPage)
+        ]);
     }
 
     public function toggleUpdateModal()
@@ -49,7 +40,7 @@ class Index extends Component
         $this->user = $user;
         $this->toggleUpdateModal();
     }
-    
+
     public function deleteUser($user_id)
     {
         $this->userService->delete($user_id);

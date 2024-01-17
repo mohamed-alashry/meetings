@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
@@ -58,10 +57,10 @@ class Room extends Model
     /**
      * Get all of the media for the Room
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function media(): MorphMany
+    public function media(): HasMany
     {
-        return $this->morphMany(Media::class, 'forable');
+        return $this->hasMany(RoomMedia::class);
     }
 }
