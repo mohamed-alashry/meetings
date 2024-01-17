@@ -53,15 +53,14 @@
                                 @enderror
                             </div>
                             <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
-                                <button type="button" class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold"
-                                    wire:click="toggleCreateModal" style="color: #5E1042">
+                                <button type="button" class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold btn-color-2"
+                                    wire:click="toggleCreateModal">
                                     Cancel
                                 </button>
                             </div>
                             <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
                                 <button type="button" wire:click="addUser"
-                                    class="btn my-3 w-100 shadow text-white fs-5 rounded-4  fw-bold"
-                                    style="background: #5E1042; padding-top: 0.8rem; padding-bottom: 0.8rem;">
+                                    class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
                                     <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                     Add Now
                                 </button>
