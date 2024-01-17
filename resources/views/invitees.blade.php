@@ -8,7 +8,7 @@
             <div class="col-lg-12 col-md-12">
                 <div class="line-bookings row mb-3 px-1 g-3">
                     <span class="col-xl-10 col-lg-8 col-md-12 col-sm-12">
-                        <h5 class="card-title">User Managment</h5>
+                        <h5 class="card-title">Invitee Managment</h5>
                         <p class="card-text">Add or Edit Users</p>
                     </span>
                     <span class="col-xl-2 col-lg-4 col-md-12 col-sm-12">
@@ -16,7 +16,7 @@
                         <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
                             data-bs-toggle="modal" data-bs-target="#exampleModal" style="background-color: #C2203D;">
                             <i class="fa-solid fa-user-plus"></i>
-                            New User
+                            New Invitee
                         </button>
 
                         <!-- Modal -->
@@ -27,9 +27,9 @@
                                     <div class="modal-header rounded-top-4 flex-column align-items-start justify-content-center background-primary text-white"
                                         style="height: 10rem;">
                                         <h3 class="modal-title fs-5" id="staticBackdropLabel">
-                                            Add a New User
+                                            Add a New Invitee
                                         </h3>
-                                        <p class="mb-1 fw-light text-white-50">New User </p>
+                                        <p class="mb-1 fw-light text-white-50">New Invitee </p>
                                     </div>
                                     <div class="modal-body">
                                         <form action="" method="post" class="w-100 px-2">
@@ -82,127 +82,38 @@
                             </div>
                         </div>
                     </span>
-
                 </div>
             </div>
             <div class="col-12 table-responsive-lg">
                 <table class="table rounded-4 shadow">
                     <thead class="table-dark rounded-top-4">
                         <tr class="border-white border-opacity-10 text-center">
-                            <th class="rounded-top-4 border-1 border-start-0  rounded-end-0 py-3" scope="row">Room ID
+                            <th class="rounded-top-4 border-1 border-start-0  rounded-end-0 py-3" scope="row">
+                                Invitee ID
                             </th>
-                            <th class="py-3 border-1" scope="col">Room Name</th>
-                            <th class="py-3 border-1" scope="col">Room Capacity</th>
+                            <th class="py-3 border-1" scope="col">Invitee Name</th>
+                            <th class="py-3 border-1" scope="col">Invitee Emaill</th>
                             <th class="py-3 border-1" scope="col">Date Added</th>
-                            <th class="py-3 border-1" scope="col">Actions</th>
-                            <th class="rounded-top-4 rounded-start-0 py-3" scope="col">Handle</th>
+                            <th class="rounded-top-4 rounded-start-0 py-3" scope="col">Actions</th>
                         </tr>
                     </thead>
-                    <tbody class="text-center ">
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="align-middle border-1 border-start-0 " scope="row">Room ID</td>
-                            <td class="align-middle border-1" scope="col">Room One</td>
-                            <td class="align-middle border-1" scope="col">10 Persons</td>
-                            <td class="align-middle border-1" scope="col">Floor 01</td>
-                            <td class="align-middle border-1" scope="col">25/12/2023</td>
-                            <td class="align-middle border-1 border-end-0" scope="col">
-                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
-                                    style="color: #5E1042;">Delete</button>
-                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
-                                    style="background: #5E1042;">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                        <!-- end-line-tebal <..important..> -->
+                    <tbody class="text-center">
+                        @foreach ($invitees as $invitee)
+                        @if ($loop->last)
                         <tr class="end-line-tebal">
                             <td class="align-middle border-1 border-bottom-0 border-start-0 rounded-bottom-4 rounded-end-0"
-                                scope="col">Room ID</td>
-                            <td class="align-middle border-1 border-bottom-0" scope="col">Room One</td>
-                            <td class="align-middle border-1 border-bottom-0" scope="col">10 Persons</td>
-                            <td class="align-middle border-1 border-bottom-0" scope="col">Floor 01</td>
-                            <td class="align-middle border-1 border-bottom-0" scope="col">25/12/2023</td>
+                                scope="col">
+                                {{ $invitee->id }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $invitee->name }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $invitee->email }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $invitee->created_at->format('d M Y') }}
+                            </td>
                             <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                                 scope="col">
                                 <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
@@ -214,6 +125,32 @@
                                 </button>
                             </td>
                         </tr>
+                        @else
+                        <tr>
+                            <td class="align-middle border-1 border-start-0 " scope="row">
+                                {{ $invitee->id }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $invitee->name }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $invitee->email }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $invitee->created_at->format('d M Y') }}
+                            </td>
+                            <td class="align-middle border-1 border-end-0" scope="col">
+                                <button type="button" class="btn fw-bold bg-white m-1 shadow-sm"
+                                    style="color: #5E1042;">Delete</button>
+                                <button type="button" class="btn text-white fw-bold m-1 shadow-sm"
+                                    style="background: #5E1042;">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                        @endif
+                        @endforeach
                     </tbody>
                 </table>
             </div>

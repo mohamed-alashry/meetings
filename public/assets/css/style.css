@@ -493,6 +493,23 @@ body {
     text-align: center;
     word-wrap: break-word;
 }
+
 .active_nav{
     color: #C2203D !important;
+}
+
+.btn-color-2{
+    color: #5E1042 !important;
+}
+
+.btn-color-1{
+    color: #C2203D !important;
+}
+
+.btn-bg-color-2{
+    background-color: #5E1042 !important;
+}
+
+.btn-bg-color-1{
+    background-color: #C2203D !important;
 }

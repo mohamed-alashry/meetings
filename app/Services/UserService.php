@@ -16,8 +16,8 @@ class UserService
         foreach ($data->toArray() as $key => $value) {
             if ($value) $query->where($key, $value);
         }
-        $Users = $query->get();
-        return $Users;
+        $users = $query->get();
+        return $users;
     }
 
     public function show(int $id): User

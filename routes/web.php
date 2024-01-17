@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::get('/', [HomeController::class, 'home'])->name('home');
 
     Route::controller(App\Http\Controllers\RoomController::class)->prefix('rooms')->as('rooms.')->group(function () {
         Route::get('/', 'index')->name('index');
