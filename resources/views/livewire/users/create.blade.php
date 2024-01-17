@@ -22,24 +22,24 @@
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
                                 <i class="fa-solid fa-circle-user icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="Full Name." type="text" wire:model="form.name">
-                                @error('form.name')
+                                    placeholder="Full Name." type="text" wire:model="name">
+                                @error('name')
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
                                 <i class="fa-solid fa-envelope icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="Type here email" type="email" wire:model="form.email">
-                                @error('form.email')
+                                    placeholder="Type here email" type="email" wire:model="email">
+                                @error('email')
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
                                 <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="Type here password" type="password" wire:model="form.password">
-                                @error('form.password')
+                                    placeholder="Type here password" type="password" wire:model="password">
+                                @error('password')
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
@@ -47,14 +47,14 @@
                                 <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     placeholder="password confirmation" type="password"
-                                    wire:model="form.password_confirmation">
-                                @error('form.password_confirmation')
+                                    wire:model="password_confirmation">
+                                @error('password_confirmation')
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
                             <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
                                 <button type="button" class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold btn-color-2"
-                                    wire:click="toggleCreateModal">
+                                    wire:click="cancel">
                                     Cancel
                                 </button>
                             </div>

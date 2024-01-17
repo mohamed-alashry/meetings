@@ -25,11 +25,15 @@ class UpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules($user_id = null): array
     {
+        if (!$user_id) {
+            $user_id = $this->user;
+        }
+        
         return [
             'name'              => 'nullable|string|max:191',
-            'email'             => 'nullable|email|unique:users,email,'.$this->user,
+            'email'             => 'nullable|email|unique:users,email,' . $user_id,
             'password'          => 'nullable|confirmed|min:6',
         ];
     }
