@@ -61,6 +61,16 @@ class Room extends Model
      */
     public function media(): HasMany
     {
-        return $this->hasMany(RoomMedia::class);
+        return $this->hasMany(RoomMedia::class, 'room_id', 'id');
+    }
+
+    /**
+     * Get all of the features for the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features(): HasMany
+    {
+        return $this->hasMany(RoomFeature::class);
     }
 }

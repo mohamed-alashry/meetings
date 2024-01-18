@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Helpers\ImageUploaderTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoomMedia extends Model
@@ -41,38 +39,23 @@ class RoomMedia extends Model
         'file_name'    => 'string'
     ];
 
-
-    /**
-     * Get the forable of the Media.
-     */
-    public function forable(): MorphTo
-    {
-        return $this->morphTo();
-    }
-
     public function setFileNameAttribute($file)
     {
-        try {
-            if ($file) {
+        // try {
+        if ($file) {
 
-                $fileName = $this->createFileName($file);
-                if ($this->attributes['file_type'] == 1) {
-                    $this->originalImage($file, $fileName);
-                    $this->thumbImage($file, $fileName, 200, 200);
-                }
-
-                $this->attributes['file_name'] = $fileName;
+            $fileName = $this->createFileName($file);
+            if ($this->attributes['type'] == 1) {
+                $this->originalImage($file, $fileName);
+                $this->thumbImage($file, $fileName, 200, 200);
             }
-        } catch (\Throwable $th) {
-            $this->attributes['file_name'] = $file;
-        }
-    }
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
+            $this->attributes['file_name'] = $fileName;
+        }
+        // } catch (\Throwable $th) {
+        //     $this->attributes['file_name'] = $file;
+        // }
+    }
     protected $appends = ['file_path'];
 
     public function getFilePathAttribute()
@@ -84,15 +67,5 @@ class RoomMedia extends Model
             ];
         }
         return $this->file_name ? asset('uploads/file/' . $this->file_name) : null;
-    }
-
-    /**
-     * Get all of the media for the Room
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
-     */
-    public function media(): MorphMany
-    {
-        return $this->morphMany(Media::class, 'forable');
     }
 }

@@ -56,9 +56,9 @@
                                 <label for="finput1" class="w-100">
                                     <i class="fa-solid fa-file-export icon fa-lg">
                                     </i>
-                                    <samp class="text-input px-5 py-3 position-absolute text-body-secondary">Upload
-                                        Photos
-                                        here...</samp>
+                                    <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
+                                        Upload Photos here...
+                                    </samp>
                                     <input class="form-control py-3 opacity-0" type="file" multiple="true"
                                         accept="image/*" id="finput1" wire:model="photos">
                                 </label>
@@ -66,10 +66,10 @@
                             </div>
                             <div class="col-12">
                                 <div class="row m-2 g-2">
-                                    @if ($photos)
-                                    @foreach ($photos as $photo)
+                                    @if (count($photos) > 0)
+                                    @foreach ($photos as $index => $photo)
                                     <div class="col-lg-2 col-md-4 col-sm-12">
-                                        <a class="text-white" href="#">
+                                        <div class="text-white m-auto">
                                             <div class="image-hover-text-container">
                                                 <div class="image-hover-image">
                                                     <img class="img-fluid rounded-5" src="{{ $photo->temporaryUrl() }}"
@@ -77,14 +77,15 @@
                                                 </div>
                                                 <div class="image-hover-text">
                                                     <div class="image-hover-text-bubble rounded-5">
-                                                        <span
-                                                            class="image-hover-text-title d-flex justify-content-center align-items-center h-100">
+                                                        <span wire:click="deleteTempPhoto({{ $index }})"
+                                                            class="image-hover-text-title d-flex justify-content-center align-items-center h-100 "
+                                                            role="button">
                                                             <i class="fa-regular fa-trash-can fa-lg "></i>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </a>
+                                        </div>
                                     </div>
                                     @endforeach
                                     @endif
@@ -92,43 +93,17 @@
                             </div>
                             <div class="col-12">
                                 <div class="row mx-4 my-2 ">
+                                    @foreach ($features as $name => $value)
                                     <div class="form-check col-auto d-flex align-items-center">
                                         <input class="form-check-input shadow-sm" style="padding: 0.7rem;"
-                                            type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label mx-1" for="flexCheckDefault">
-                                            Wifi
+                                            wire:model="features.{{ $name }}" {{ $value ? 'checked' :'' }}
+                                            type="checkbox" id="{{ $name }}">
+                                        <label class="form-check-label mx-1" for="{{ $name }}">
+                                            @lang('rooms.'.$name)
                                         </label>
                                     </div>
-                                    <div class="form-check col-auto d-flex align-items-center">
-                                        <input class="form-check-input shadow-sm" style="padding: 0.7rem;"
-                                            type="checkbox" value="" id="flexCheckDefault2">
-                                        <label class="form-check-label mx-1" for="flexCheckDefault2">
-                                            Online Meetings
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-auto d-flex align-items-center">
-                                        <input class="form-check-input shadow-sm" style="padding: 0.7rem;"
-                                            type="checkbox" value="" id="flexCheckDefault3">
-                                        <label class="form-check-label mx-1" for="flexCheckDefault3">
-                                            Tv
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-auto d-flex align-items-center">
-                                        <input class="form-check-input shadow-sm" style="padding: 0.7rem;"
-                                            type="checkbox" value="" id="flexCheckDefault4">
-                                        <label class="form-check-label mx-1" for="flexCheckDefault4">
-                                            Projector
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-auto d-flex align-items-center">
-                                        <input class="form-check-input shadow-sm" style="padding: 0.7rem;"
-                                            type="checkbox" value="" id="flexCheckDefault5">
-                                        <label class="form-check-label mx-1" for="flexCheckDefault5">
-                                            Sound System
-                                        </label>
-                                    </div>
+                                    @endforeach
                                 </div>
-
                             </div>
                             <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
                                 <button type="button"

@@ -8,7 +8,6 @@ use App\Services\RoomService;
 use App\Http\Requests\Room\CreateRequest;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\WithFileUploads;
-use Livewire\Attributes\Validate;
 
 class Create extends Component
 {
@@ -18,6 +17,7 @@ class Create extends Component
     public $location;
     public $google_location;
     public $capacity;
+    public $features;
 
     // #[Validate(['photos.*' => 'image|max:1024'])]
     public $photos = [];
@@ -29,6 +29,11 @@ class Create extends Component
         $this->roomService = $roomService;
     }
 
+    public function mount(){
+
+        $this->features = config('features');
+    }
+    
     protected function rules(): array
     {
         return (new CreateRequest())->rules();
@@ -38,7 +43,6 @@ class Create extends Component
     {
         $this->createModal = !$this->createModal;
     }
-
     public function render()
     {
         return view('livewire.rooms.create');
@@ -56,5 +60,11 @@ class Create extends Component
     public function cancel()
     {
         return $this->redirect('/rooms', navigate: true);
+    }
+
+    public function deleteTempPhoto($index)
+    {
+        unset($this->photos[$index]);
+        $this->alert('success', 'Photo deleted successfully');
     }
 }

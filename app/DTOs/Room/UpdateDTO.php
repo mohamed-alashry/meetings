@@ -12,4 +12,5 @@ class UpdateDTO extends Data
     public string|Optional $google_location;
     public int|Optional $capacity;
     public ?array $photos;
+    public ?array $features;
 }

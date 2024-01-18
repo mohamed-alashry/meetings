@@ -26,7 +26,7 @@
                         Room ID
                     </th>
                     <th class="py-3 border-1" scope="col">Room Name</th>
-                    <th class="py-3 border-1" scope="col">Room Emaill</th>
+                    <th class="py-3 border-1" scope="col">Room Capacity</th>
                     <th class="py-3 border-1" scope="col">Date Added</th>
                     <th class="rounded-top-4 rounded-start-0 py-3" scope="col">Actions</th>
                 </tr>
@@ -43,7 +43,7 @@
                         {{ $room->name }}
                     </td>
                     <td class="align-middle border-1 border-bottom-0" scope="col">
-                        {{ $room->email }}
+                        {{ $room->capacity }} Person
                     </td>
                     <td class="align-middle border-1 border-bottom-0" scope="col">
                         {{ $room->created_at->format('d M Y') }}
@@ -71,7 +71,7 @@
                         {{ $room->name }}
                     </td>
                     <td class="align-middle border-1" scope="col">
-                        {{ $room->email }}
+                       {{ $room->capacity }} Person
                     </td>
                     <td class="align-middle border-1" scope="col">
                         {{ $room->created_at->format('d M Y') }}

@@ -3,10 +3,11 @@
 namespace App\Services;
 
 use App\Models\Room;
+use App\Models\RoomMedia;
 use App\DTOs\Room\CreateDTO;
 use App\DTOs\Room\FilterDTO;
 use App\DTOs\Room\UpdateDTO;
-use Google\Service\ShoppingContent\Resource\Collections;
+use App\Models\RoomFeature;
 
 class RoomService
 {
@@ -16,7 +17,7 @@ class RoomService
         foreach ($data->toArray() as $key => $value) {
             if ($value) $query->where($key, $value);
         }
-        $rooms = $query->paginate($perPage);
+        $rooms = $query->latest()->paginate($perPage);
         return $rooms;
     }
 
@@ -26,7 +27,7 @@ class RoomService
         foreach ($data->toArray() as $key => $value) {
             if ($value) $query->where($key, $value);
         }
-        $rooms = $query->get();
+        $rooms = $query->latest()->get();
         return $rooms;
     }
 
@@ -47,12 +48,24 @@ class RoomService
 
     public function create(CreateDTO $data): Room
     {
-        // dd($data->except('photos')->toArray());
-        $room = Room::create($data->except('photos')->toArray());
-        foreach ($data->photos ?? [] as $photo) {
-            $room->media()->create([
+        $room = Room::create($data->except('photos', 'features')->toArray());
+        foreach ($data->photos as $photo) {
+            $file_name = $photo->store('uploads/images/original', 'public');
+            RoomMedia::create([
+                'room_id'   => $room->id,
                 'type'      => $photo->extension(),
-                'file_name' => $photo->getClientOriginalName(),
+                'file_name' => $file_name,
+            ]);
+        }
+
+        foreach ($data->features as $name => $value) {
+            RoomFeature::updateOrCreate([
+                'room_id'   => $room->id,
+                'name'      => $name,
+            ], [
+                'room_id'   => $room->id,
+                'name'      => $name,
+                'value'     => $value,
             ]);
         }
 
@@ -61,14 +74,33 @@ class RoomService
 
     public function update(UpdateDTO $data, int $id): bool
     {
-        // try {
-        $room = Room::find($id);
-        // dd($data->toArray(), $room);
-        $room->update($data->toArray());
-        return true;
-        // } catch (\Exception $e) {
-        //     return false;
-        // }
+        try {
+            $room = Room::find($id);
+            $room->update($data->except('photos', 'features')->toArray());
+
+            foreach ($data->photos ?? [] as $photo) {
+                $file_name = $photo->store('uploads/images/original', 'public');
+                RoomMedia::create([
+                    'room_id'   => $room->id,
+                    'type'      => $photo->extension(),
+                    'file_name' => $file_name,
+                ]);
+            }
+            foreach ($data->features ?? [] as $name => $value) {
+                RoomFeature::updateOrCreate([
+                    'room_id'   => $room->id,
+                    'name'      => $name,
+                ], [
+                    'room_id'   => $room->id,
+                    'name'      => $name,
+                    'value'     => $value,
+                ]);
+            }
+
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function delete(int $id): bool

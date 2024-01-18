@@ -11,4 +11,5 @@ class CreateDTO extends Data
     public string $google_location;
     public int $capacity;
     public ?array $photos;
+    public ?array $features;
 }

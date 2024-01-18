@@ -25,6 +25,8 @@ class AppServiceProvider extends ServiceProvider
             'invitee' => 'App\Models\Invitee',
             'user'    => 'App\Models\User',
             'guest'   => 'App\Models\Guest',
+            'room'    => 'App\Models\Room',
+            'media'   => 'App\Models\RoomMedia',
         ]);
 
     }

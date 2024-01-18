@@ -34,6 +34,7 @@ class CreateRequest extends FormRequest
             'capacity'          => 'required|numeric|gte:1',
             'photos'            => 'nullable|array',
             'photos.*'          => 'image',
+            'features'          => 'nullable|array',
             // 'status'            => 'required|in:1,2,3',
         ];
     }
