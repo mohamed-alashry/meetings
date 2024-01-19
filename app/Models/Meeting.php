@@ -26,28 +26,33 @@ class Meeting extends Model
      */
     protected $fillable = [
         'room_id',
+        'user_id',
         'title',
         'brief',
         'description',
+        'minutes',
         'start_date',
+        'start_time',
+        'repeatable',
         'duration',
+        'person_capacity',
         'end_date',
         'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'title'        => 'string',
-        'brief'        => 'string',
-        'description'  => 'string',
-        'start_date'   => 'datetime',
-        'end_date'     => 'datetime',
-        'duration'     => 'integer',
-    ];
+    // /**
+    //  * The attributes that should be cast.
+    //  *
+    //  * @var array<string, string>
+    //  */
+    // protected $casts = [
+    //     'title'        => 'string',
+    //     'brief'        => 'string',
+    //     'description'  => 'string',
+    //     'start_date'   => 'datetime',
+    //     'end_date'     => 'datetime',
+    //     'duration'     => 'integer',
+    // ];
 
     /**
      * Get the room that owns the Meeting

@@ -457,7 +457,7 @@ body {
 }
 
 /* Make the card round */
-.card-hover-image img {
+.card-hover-image img{
     border-radius: 0%;
     width: 400px;
 }
@@ -473,7 +473,8 @@ body {
     transition: opacity 0.2s linear;
 }
 
-.card-hover-text:hover {
+.card-hover-text:hover,
+.btn-check:checked + .image-hover-text-container .card-hover-text {
     opacity: 1;
 }
 
@@ -494,22 +495,22 @@ body {
     word-wrap: break-word;
 }
 
-.active_nav{
+.active_nav {
     color: #C2203D !important;
 }
 
-.btn-color-2{
+.btn-color-2 {
     color: #5E1042 !important;
 }
 
-.btn-color-1{
+.btn-color-1 {
     color: #C2203D !important;
 }
 
-.btn-bg-color-2{
+.btn-bg-color-2 {
     background-color: #5E1042 !important;
 }
 
-.btn-bg-color-1{
+.btn-bg-color-1 {
     background-color: #C2203D !important;
 }
