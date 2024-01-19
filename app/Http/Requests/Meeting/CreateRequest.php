@@ -28,14 +28,17 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_id'           => 'required|exists:rooms,id',
+            'room_id'           => 'required',
             'title'             => 'required|string|max:191',
             'brief'             => 'required|string|max:191',
-            'description'       => 'required|string|max:191',
+            'description'       => 'nullable|string|max:191',
             'start_date'        => 'required|date',
+            'start_time'        => 'required|date_format:H:i',
+            'repeatable'        => 'required',
+            'person_capacity'   => 'required|numeric|gte:1',
             'duration'          => 'required|numeric|gte:1',
-            'end_date'          => 'required|date|after:start_date',
-            'status'            => 'required|in:1,2,3',
+            'end_date'          => 'nullable|date|after:start_date',
+            'status'            => 'nullable|in:1,2,3',
         ];
     }
 }

@@ -14,11 +14,17 @@ return new class extends Migration
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('room_id')->constrained('rooms')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained();
             $table->string('title')->nullable();
             $table->string('brief')->nullable();
             $table->string('description')->nullable();
-            $table->datetime('start_date')->nullable();
+            $table->text('minutes')->nullable();
+            $table->date('start_date')->nullable();
+            $table->time('start_time')->nullable();
+            $table->unsignedTinyInteger('repeatable')->default(1)->comment('1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly, 5 => Yearly');
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
+            $table->unsignedInteger('person_capacity')->nullable();
+
             $table->datetime('end_date')->nullable();
             $table->datetime('alert_date')->nullable();
             $table->unsignedInteger('status')->default(1)->comment('1 => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished');

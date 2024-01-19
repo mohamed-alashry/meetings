@@ -2,11 +2,13 @@
 
 namespace App\Services;
 
+use App\Models\Room;
 use App\Models\Meeting;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\FilterDTO;
 use App\DTOs\Meeting\InviteDTO;
 use App\DTOs\Meeting\UpdateDTO;
+use Illuminate\Support\Collection;
 
 class MeetingService
 {
@@ -58,5 +60,10 @@ class MeetingService
             dd($e);
             return false;
         }
+    }
+
+    function getRooms()
+    {
+        return Room::get();
     }
 }
