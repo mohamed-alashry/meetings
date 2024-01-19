@@ -25,12 +25,14 @@ class UpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules($invitee_id = null): array
     {
+        if (!$invitee_id) {
+            $invitee_id = $this->invitee;
+        }
         return [
             'name'              => 'nullable|string|max:191',
-            'email'             => 'nullable|email|unique:invitees,email,' . $this->invitee,
-            'password'          => 'nullable|confirmed|min:6',
+            'email'             => 'nullable|email|unique:invitees,email,' . $invitee_id,
         ];
     }
 }

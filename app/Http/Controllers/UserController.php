@@ -18,8 +18,11 @@ class UserController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        $data['users'] = $this->UserService->list($request->getData());
-        return view('users', $data);
+        if (request()->wantsJson()) {
+            $data['users'] = $this->UserService->list($request->getData());
+            return response()->json($data);
+        }
+        return view('users');
     }
 
     /**

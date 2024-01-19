@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Room extends Model
@@ -29,6 +28,7 @@ class Room extends Model
         'location',
         'google_location',
         'capacity',
+        'attachment',
         'status', // default(1) => Available, 2 => Under maintenance, 3 => Closed
     ];
 
@@ -41,9 +41,28 @@ class Room extends Model
         'name'              => 'string',
         'location'          => 'string',
         'google_location'   => 'string',
+        'attachment'        => 'string',
         'capacity'          => 'integer',
         'status'            => 'integer',
     ];
+
+    public function setAttachmentAttribute($file)
+    {
+        try {
+            if ($file) {
+                $fileName = $file->store('uploads/files', 'public');
+                $this->attributes['attachment'] = $fileName;
+            }
+        } catch (\Throwable $th) {
+            $this->attributes['attachment'] = $file;
+        }
+    }
+    protected $appends = ['attachment_path'];
+
+    public function getAttachmentPathAttribute()
+    {
+        return $this->attachment ? asset('uploads/file/' . $this->attachment) : null;
+    }
 
     /**
      * Get all of the meetings for the Room
@@ -58,10 +77,20 @@ class Room extends Model
     /**
      * Get all of the media for the Room
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function media(): MorphMany
+    public function media(): HasMany
     {
-        return $this->morphMany(Media::class, 'forable');
+        return $this->hasMany(RoomMedia::class, 'room_id', 'id');
+    }
+
+    /**
+     * Get all of the features for the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features(): HasMany
+    {
+        return $this->hasMany(RoomFeature::class);
     }
 }

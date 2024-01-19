@@ -22,6 +22,7 @@ class RoomFeature extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'room_id',
         'icon',
         'name',
         'value',

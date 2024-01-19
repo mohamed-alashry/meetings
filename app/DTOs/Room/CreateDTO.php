@@ -2,6 +2,7 @@
 
 namespace App\DTOs\Room;
 
+use Illuminate\Http\File;
 use Spatie\LaravelData\Data;
 
 class CreateDTO extends Data
@@ -10,5 +11,7 @@ class CreateDTO extends Data
     public string $location;
     public string $google_location;
     public int $capacity;
-    public int $status;
+    public ?array $photos;
+    public ?array $features;
+    public $attachment;
 }

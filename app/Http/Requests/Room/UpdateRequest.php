@@ -32,7 +32,11 @@ class UpdateRequest extends FormRequest
             'location'          => 'nullable|string|max:191',
             'google_location'   => 'nullable|string|max:191',
             'capacity'          => 'nullable|numeric|gte:1',
-            'status'            => 'nullable|in:1,2,3',
+            'photos'            => 'nullable|array',
+            'photos.*'          => 'image',
+            'features'          => 'nullable|array',
+            'attachment'        => 'nullable|file',
+            // 'status'            => 'nullable|in:1,2,3',
         ];
     }
 }

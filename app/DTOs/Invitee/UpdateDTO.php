@@ -8,5 +8,4 @@ class UpdateDTO extends Data
 {
     public string|Optional $name;
     public string|Optional $email;
-    public string|Optional $password;
 }

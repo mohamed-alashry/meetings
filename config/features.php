@@ -1,8 +1,8 @@
 <?php
 return [
-    'Wifi',
-    'Online Meeting',
-    'Projector',
-    'TV',
-    'Sound System',
+    'wifi'              => false,
+    'online_meeting'    => false,
+    'projector'         => false,
+    'tv'                => false,
+    'sound_system'      => false,
 ];

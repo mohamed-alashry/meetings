@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('google_location')->nullable();
             $table->unsignedInteger('capacity')->nullable();
             $table->unsignedInteger('status')->default(1)->comment('1 => Available, 2 => Under maintenance, 3 => Closed');
+            $table->string('attachment')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

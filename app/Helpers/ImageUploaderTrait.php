@@ -3,8 +3,8 @@
 namespace App\Helpers;
 
 use File;
-use Image;
 use Throwable;
+use Image;
 
 trait ImageUploaderTrait
 {
@@ -35,14 +35,17 @@ trait ImageUploaderTrait
      */
     public function originalImage($file, $current_name)
     {
-        try {
+        // try {
+            dd($file);
+            $file->storeAs('uploads/images/original/', 'public');
 
-            $accountOriginalDestination = 'uploads/images/original/';
+            // $accountOriginalDestination = 'uploads/images/original/';
 
-            Image::make($file)
-                ->save($accountOriginalDestination . $current_name);
-        } catch (Throwable $e) {
-        }
+            // Image::make($file)
+            //     ->save($accountOriginalDestination . $current_name);
+
+        // } catch (Throwable $e) {
+        // }
     }
 
     public function mediumImage($file, $current_name, $width = 600, $height = 300)

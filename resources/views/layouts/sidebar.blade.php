@@ -40,18 +40,18 @@
             </a>
             <a href="{{ route('rooms.index') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
-                    <i class="fa-solid fa-door-closed fa-lg d-flex {{ Route::is('rooms.index') ? 'active_nav' : '' }}" aria-hidden="true">
+                    <i class="fa-solid fa-gear fa-lg d-flex {{ Route::is('rooms.index') ? 'active_nav' : '' }}" aria-hidden="true">
                         <span class="mx-2 align-middle">Rooms</span>
                     </i>
                 </li>
             </a>
-            <a href="{{ route('meetings.index') }}" class="text-decoration-none color-primary">
+            {{-- <a href="{{ route('meetings.index') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
                     <i class="fa-solid fa-gear fa-lg d-flex {{ Route::is('meetings.index') ? 'active_nav' : '' }}" aria-hidden="true">
                         <span class="mx-2 align-middle">Meetings</span>
                     </i>
                 </li>
-            </a>
+            </a> --}}
         </ul> <!-- /.first-menu -->
     </div>
 </div>

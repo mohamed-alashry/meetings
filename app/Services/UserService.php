@@ -10,6 +10,16 @@ use Google\Service\ShoppingContent\Resource\Collections;
 
 class UserService
 {
+    public function list_with_pagination(FilterDTO $data, int $perPage = 10)
+    {
+        $query = User::query();
+        foreach ($data->toArray() as $key => $value) {
+            if ($value) $query->where($key, $value);
+        }
+        $users = $query->paginate($perPage);
+        return $users;
+    }
+    
     public function list(FilterDTO $data)
     {
         $query = User::query();

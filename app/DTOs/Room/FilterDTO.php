@@ -10,6 +10,4 @@ class FilterDTO extends Data
     public ?string $location;
     public ?string $google_location;
     public ?int $capacity;
-    public ?int $status;
-
 }
