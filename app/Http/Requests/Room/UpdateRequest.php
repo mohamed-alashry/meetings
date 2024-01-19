@@ -35,6 +35,7 @@ class UpdateRequest extends FormRequest
             'photos'            => 'nullable|array',
             'photos.*'          => 'image',
             'features'          => 'nullable|array',
+            'attachment'        => 'nullable|file',
             // 'status'            => 'nullable|in:1,2,3',
         ];
     }

@@ -23,7 +23,7 @@ class RoomController extends Controller
             return response()->json($data);
         }
 
-        return view('rooms', $data);
+        return view('rooms');
     }
 
     /**

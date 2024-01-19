@@ -53,6 +53,23 @@
                                 @enderror
                             </div>
                             <div class="input-form-login border shadow rounded-4 mx-0 border p-0 col-12">
+                                <label for="finput2" class="w-100">
+                                    <i class="fa-solid fa-file-export icon fa-lg">
+                                    </i>
+                                    <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
+                                        @if($attachment)
+                                        {{ $attachment->getClientOriginalName() }}
+                                        @else
+                                        Upload Attachment here...
+                                        @endif
+                                    </samp>
+                                    <input class="form-control py-3 opacity-0" type="file"
+                                        accept="pdf, doc, docx, xls, xlsx, ppt, pptx" id="finput2"
+                                        wire:model="attachment">
+                                </label>
+                                @error('attachment') <b class="text-danger">{{ $message }}</b> @enderror
+                            </div>
+                            <div class="input-form-login border shadow rounded-4 mx-0 border p-0 col-12">
                                 <label for="finput1" class="w-100">
                                     <i class="fa-solid fa-file-export icon fa-lg">
                                     </i>

@@ -53,7 +53,7 @@
                                     Cancel
                                 </button>
                             </div>
-                            <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
+                            <div class="col-xl-4 col-sm-12 px-lg-2 p-0 " wire:dirty>
                                 <button type="button" wire:click="updateUser"
                                     class="btn my-3 w-100 shadow text-white fs-5 rounded-4  fw-bold"
                                     style="background: #5E1042; padding-top: 0.8rem; padding-bottom: 0.8rem;">

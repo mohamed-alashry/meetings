@@ -23,6 +23,7 @@ class Edit extends Component
     public bool $updateModal = false;
     private RoomService $roomService;
     public $features;
+    public $attachment;
 
     public function boot(RoomService $roomService)
     {
@@ -36,6 +37,7 @@ class Edit extends Component
         $this->location = $room->location;
         $this->google_location = $room->google_location;
         $this->capacity = $room->capacity;
+        // $this->attachment = $room->attachment;
         $this->features = $room->features->pluck('value', 'name')->toArray();
     }
 

@@ -28,6 +28,7 @@ class Room extends Model
         'location',
         'google_location',
         'capacity',
+        'attachment',
         'status', // default(1) => Available, 2 => Under maintenance, 3 => Closed
     ];
 
@@ -40,9 +41,28 @@ class Room extends Model
         'name'              => 'string',
         'location'          => 'string',
         'google_location'   => 'string',
+        'attachment'        => 'string',
         'capacity'          => 'integer',
         'status'            => 'integer',
     ];
+
+    public function setAttachmentAttribute($file)
+    {
+        try {
+            if ($file) {
+                $fileName = $file->store('uploads/files', 'public');
+                $this->attributes['attachment'] = $fileName;
+            }
+        } catch (\Throwable $th) {
+            $this->attributes['attachment'] = $file;
+        }
+    }
+    protected $appends = ['attachment_path'];
+
+    public function getAttachmentPathAttribute()
+    {
+        return $this->attachment ? asset('uploads/file/' . $this->attachment) : null;
+    }
 
     /**
      * Get all of the meetings for the Room

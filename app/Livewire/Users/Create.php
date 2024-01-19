@@ -14,6 +14,8 @@ class Create extends Component
     public bool $createModal = false;
     public $name;
     public $email;
+    public $password;
+    public $password_confirmation;
     private UserService $userService;
 
     public function boot(UserService $userService)

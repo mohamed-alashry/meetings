@@ -2,6 +2,7 @@
 
 namespace App\DTOs\Room;
 
+use Illuminate\Http\File;
 use Spatie\LaravelData\Data;
 
 class CreateDTO extends Data
@@ -12,4 +13,5 @@ class CreateDTO extends Data
     public int $capacity;
     public ?array $photos;
     public ?array $features;
+    public $attachment;
 }

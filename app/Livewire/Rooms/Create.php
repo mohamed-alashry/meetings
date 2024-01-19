@@ -17,9 +17,8 @@ class Create extends Component
     public $location;
     public $google_location;
     public $capacity;
+    public $attachment;
     public $features;
-
-    // #[Validate(['photos.*' => 'image|max:1024'])]
     public $photos = [];
 
     private RoomService $roomService;
@@ -29,11 +28,12 @@ class Create extends Component
         $this->roomService = $roomService;
     }
 
-    public function mount(){
+    public function mount()
+    {
 
         $this->features = config('features');
     }
-    
+
     protected function rules(): array
     {
         return (new CreateRequest())->rules();
