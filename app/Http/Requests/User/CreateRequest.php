@@ -29,8 +29,10 @@ class CreateRequest extends FormRequest
     {
         return [
             'name'              => 'required|string|max:191',
+            'role_name'         => 'required|string|max:191',
             'email'             => 'required|email|unique:users',
             'password'          => 'required|confirmed|min:6',
+            'permissions'       => 'nullable|array',
         ];
     }
 }
