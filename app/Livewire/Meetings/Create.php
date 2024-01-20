@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Meetings;
 
-use App\DTOs\Meeting\CreateDTO;
+use App\Models\Room;
 use Livewire\Component;
+use App\DTOs\Meeting\CreateDTO;
 use App\Services\MeetingService;
+use Illuminate\Support\Collection;
 use App\Http\Requests\Meeting\CreateRequest;
 
 class Create extends Component
@@ -23,6 +25,9 @@ class Create extends Component
     public string $end_date;
     public int $status;
     public bool $openCreateModal = false;
+    public Collection $rooms;
+    public Collection $roomFeatures;
+    public array $selectedRoom;
 
 
 
@@ -38,23 +43,23 @@ class Create extends Component
 
     function mount()
     {
-
-        $this->room_id = 1;
-
         $this->status = 1;
+        $this->room_id = 1;
+        $this->rooms = $this->meetingService->getRooms();
+        $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
+    }
+
+    public function updatedRoomId()
+    {
+        $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
     }
 
 
     public function store()
     {
-        // dd($this->validate());
-        // try {
-        //     $inputs = $this->validate();
-        // } catch (\Throwable $th) {
-        //     dd($th);
-        // }
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
+
         $this->meetingService->create(CreateDTO::from($validated));
 
         session()->flash('success', 'Meeting booked successfully');
@@ -70,8 +75,6 @@ class Create extends Component
     public function render()
     {
 
-        return view('livewire.meetings.create', [
-            'rooms' => $this->meetingService->getRooms(),
-        ]);
+        return view('livewire.meetings.create');
     }
 }

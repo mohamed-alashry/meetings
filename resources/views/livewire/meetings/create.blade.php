@@ -22,27 +22,11 @@
                             Find Available Rooms Now
                         </p>
                         <div class="row w-100 d-flex justify-content-center">
-                            {{-- <span class="col-lg-2 col-md-12 col-sm-12">
-                        <a class="bg-body shadow-sm text-decoration-none d-flex p-3 rounded-4 align-items-center justify-content-between"
-                            id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <span class="px-2 color-primary d-flex align-items-center">
-                                <i class="fa fa-calendar-days fa-lg" aria-hidden="true"></i>
-                                <p class="m-0 px-2 fw-semibold">24 Nov 2023</p>
-                            </span>
-                            <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu rounded-0 rounded-bottom-4 shadow border-0 mx-4"
-                            aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </span> --}}
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="date" wire:model="start_date">
+                                    type="date" wire:model="start_date" min="{{ date('Y-m-d') }}">
                                 @error('start_date')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
@@ -51,7 +35,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="time" wire:model="start_time">
+                                    type="time" wire:model="start_time" min="{{ date('H:i') }}">
                                 @error('start_time')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
@@ -165,17 +149,17 @@
 
                         <div class="row px-3">
                             @forelse ($rooms as $room)
-                            @dd($room)
+                                {{-- @dd($room->features) --}}
                                 <div class="col-lg-3" wire:key='room-{{ $room->id }}'>
                                     <label class="text-white">
                                         <input type="radio" class="btn-check" value="{{ $room->id }}"
-                                            wire:model='room_id'>
+                                            wire:model.live='room_id'>
                                         <div class="image-hover-text-container">
                                             <div class="card-hover-image">
                                                 <div class="card mb-3 shadow border-0 rounded-4 w-100">
                                                     <div class="row g-0">
                                                         <div class="col-md-4 col-sm-12">
-                                                            <img src="assets/img/room.png"
+                                                            <img src="{{ asset($room->media->first()->file_name) }}"
                                                                 style="width: -webkit-fill-available;"
                                                                 class="img-fluid border-img h-100" alt="...">
                                                         </div>
@@ -223,21 +207,64 @@
                         <hr>
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
-                                <p class="card-title fw-light my-1">
+                                @forelse ($roomFeatures as $feature)
+                                    @if ($feature->name == 'wifi' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-wifi"></i>
+                                            <span class="text-secondary px-2">
+                                                Guest Wifi
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'online_meeting' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-earth-africa"></i>
+                                            <span class="text-secondary px-2">
+                                                Online meeting
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'projector' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-video"></i>
+                                            <span class="text-secondary px-2">
+                                                Projector
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'tv' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-tv"></i>
+                                            <span class="text-secondary px-2">
+                                                TV
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'sound_system' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-volume-high"></i>
+                                            <span class="text-secondary px-2">
+                                                Sound System
+                                            </span>
+                                        </p>
+                                    @endif
+                                @empty
+                                @endforelse
+                                {{-- <p class="card-title fw-light my-1">
                                     <i class="fa-solid fa-wifi"></i>
                                     <span class="text-secondary">
                                         Guest Wifi
                                     </span>
-                                </p>
-                                <small class="d-block px-4">
+                                </p> --}}
+                                {{-- <small class="d-block px-4">
                                     Network SSID:
                                     <span class="fw-bold">OC</span>
                                 </small>
                                 <small class="d-block px-4">
                                     Password:
                                     <span class="fw-bold">Guest 2024</span>
-                                </small>
-                                <p class="my-1">
+                                </small> --}}
+                                {{-- <p class="my-1">
                                     <i class="fa-solid fa-desktop"></i>
                                     <span class="text-secondary">
                                         Have a TV with HDMI or Wifi connection
@@ -248,7 +275,7 @@
                                     <span class="text-secondary">
                                         Online Meeting setup (360 Camera & Mics)
                                     </span>
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                         <hr>

@@ -27,6 +27,8 @@ class AppServiceProvider extends ServiceProvider
             'guest'   => 'App\Models\Guest',
             'room'    => 'App\Models\Room',
             'media'   => 'App\Models\RoomMedia',
+            'meeting' => 'App\Models\Meeting',
+            'room_feature' => 'App\Models\RoomFeature',
         ]);
 
     }
