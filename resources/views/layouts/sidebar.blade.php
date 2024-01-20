@@ -10,9 +10,9 @@
                     </i>
                 </li> <!-- /.list-group-item -->
             </a>
-            <a href="{{ route('meetings.calendar') }}" class="text-decoration-none color-primary">
+            <a href="{{ route('meetings.calendar_view') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
-                    <i class="fa-solid fa-calendar-days fa-lg d-flex {{ Route::is('meetings.calendar') ? 'active_nav' : '' }}" aria-hidden="true">
+                    <i class="fa-solid fa-calendar-days fa-lg d-flex {{ Route::is('meetings.calendar_view') ? 'active_nav' : '' }}" aria-hidden="true">
                         <span class="mx-2 align-middle">Calendar</span>
                     </i>
                 </li>

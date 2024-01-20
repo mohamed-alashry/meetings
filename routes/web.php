@@ -16,6 +16,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
+Route::get('events','MeetingController@events')->name('events');
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -40,7 +41,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::controller(App\Http\Controllers\MeetingController::class)->prefix('meetings')->as('meetings.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/monitor', 'monitor')->name('monitor');
-        Route::get('/calendar', 'calendar')->name('calendar');
+        Route::get('/calendar-view', 'calendar_view')->name('calendar_view');
+        Route::get('/card-view', 'card_view')->name('card_view');
         Route::get('/{meeting}', 'show')->name('show');
         Route::post('', 'store')->name('store');
         Route::put('/{meeting}', 'update')->name('update');
