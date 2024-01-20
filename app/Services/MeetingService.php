@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Meeting;
+use Carbon\CarbonPeriod;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\FilterDTO;
 use App\DTOs\Meeting\InviteDTO;
@@ -27,9 +29,35 @@ class MeetingService
         return Meeting::find($id);
     }
 
-    public function create(CreateDTO $data): Meeting
+    public function create(CreateDTO $data): bool
     {
-        return Meeting::create($data->toArray());
+        // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly, 5 => Yearly
+        switch ($data->repeatable) {
+            case 1:
+                Meeting::create($data->toArray());
+                break;
+            case 2:
+                $startPeriod = Carbon::parse($data->start_date)->format('Y-m-d');
+                $endPeriod   = Carbon::parse($data->start_date)->addYear()->format('Y-m-d');
+
+                $period = CarbonPeriod::create($startPeriod, '1 days', $endPeriod);
+                $days    = [];
+
+                foreach ($period as $date) {
+                    if ($date->isSaturday() || $date->isFriday()) continue;
+                    $days[] = $date->format('Y-m-d');
+                }
+
+                foreach ($days as $day) {
+                    $meeting = new Meeting($data->toArray());
+                    $meeting->start_date = $day;
+                    $meeting->end_date   = $day;
+                    $meeting->save();
+                }
+        }
+
+        // dd($data->repeatable);
+        return true;
     }
 
     public function update(UpdateDTO $data, int $id): Meeting
@@ -65,5 +93,10 @@ class MeetingService
     function getRooms()
     {
         return Room::get();
+    }
+
+    function getRoomFeatures(int $id)
+    {
+        return Room::find($id)->features;
     }
 }

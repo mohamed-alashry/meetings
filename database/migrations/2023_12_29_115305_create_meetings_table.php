@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('minutes')->nullable();
             $table->date('start_date')->nullable();
             $table->time('start_time')->nullable();
-            $table->unsignedTinyInteger('repeatable')->default(1)->comment('1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly, 5 => Yearly');
+            $table->unsignedTinyInteger('repeatable')->default(1)->comment('1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly');
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
             $table->unsignedInteger('person_capacity')->nullable();
 
