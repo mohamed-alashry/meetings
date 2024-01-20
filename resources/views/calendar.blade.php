@@ -10,6 +10,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12 col-md-12">
+                @livewire('meetings.create')
+            </div>
+            <div class="col-lg-12 col-md-12">
+
                 <div id="kt_docs_fullcalendar_populated"></div>
             </div>
         </div>

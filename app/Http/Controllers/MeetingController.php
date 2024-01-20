@@ -27,18 +27,26 @@ class MeetingController extends Controller
 
         return view('monitor', $data);
     }
+
     /**
      * Display a listing of the resource.
      */
-    public function calendar(FilterRequest $request)
+    public function calendar_view(FilterRequest $request)
     {
-        $data['meetings'] = $this->meetingService->list($request->getData());
-        if (request()->wantsJson()) {
-            return response()->json($data);
-        }
-
-        return view('calendar', $data);
+        $meetings = Meeting::get()->pluck('event_json');
+        return view('calendar_view', compact('meetings'));
     }
+    /**
+     * Display a listing of the resource.
+     */
+    public function card_view(FilterRequest $request)
+    {
+        $meetings = Meeting::get()->pluck('event_json');
+        return view('card_view', compact('meetings'));
+    }
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -72,7 +80,7 @@ class MeetingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
         $data['meeting'] = $this->meetingService->show($id);
         return response()->json($data);
