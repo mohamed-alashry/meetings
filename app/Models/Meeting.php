@@ -33,7 +33,7 @@ class Meeting extends Model
         'minutes',
         'start_date',
         'start_time',
-        'repeatable' , // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly, 5 => Yearly
+        'repeatable' , // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         'duration',
         'person_capacity',
         'end_date',

@@ -50,7 +50,6 @@
                                     <option value="2">Daily</option>
                                     <option value="3">Weekly</option>
                                     <option value="4">Monthly</option>
-                                    <option value="5">Yearly</option>
                                 </select>
                                 @error('repeatable')
                                     <b class="text-danger">{{ $message }}</b>
