@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{ asset('assets') }}/css/style.css">
+    @stack('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,7 +24,7 @@
     @include('layouts.sidebar')
     @yield('content')
 
-
+    @stack('scripts')
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
@@ -33,7 +34,7 @@
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
-    @yield('scripts')
+
 </body>
 
 </html>

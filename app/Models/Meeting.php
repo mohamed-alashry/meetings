@@ -54,6 +54,26 @@ class Meeting extends Model
     //     'duration'     => 'integer',
     // ];
 
+
+    public $appends = ['event_json'];
+
+    public function getEventJsonAttribute()
+    {
+        $from = \Carbon\Carbon::parse($this->attributes['date'])->format('Ymd His');
+        $to = \Carbon\Carbon::parse($this->attributes['date'])->addHour()->format('Ymd His');
+
+        $data = (object)[
+            'title' => $this->title,
+            'link' => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
+            'start' => $this->date,
+            'description' => $this->description,
+            'open_calendar' => $this->open_calendar,
+            'className' => 'fc-event-danger fc-event-solid-warning'
+        ];
+
+        return $data;
+    }
+    
     /**
      * Get the room that owns the Meeting
      *

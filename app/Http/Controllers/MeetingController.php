@@ -36,7 +36,7 @@ class MeetingController extends Controller
         if (request()->wantsJson()) {
             return response()->json($data);
         }
-
+        $data['meetings'] = Meeting::get()->pluck('event_json');
         return view('calendar', $data);
     }
     /**
