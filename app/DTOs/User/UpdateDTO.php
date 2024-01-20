@@ -10,6 +10,7 @@ class UpdateDTO extends Data
 {
     public string|Optional $name;
     public string|Optional $email;
+    public ?string $role_name;
     public ?string $password;
-
+    public ?array $permissions;
 }

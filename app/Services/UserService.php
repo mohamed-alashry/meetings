@@ -6,7 +6,9 @@ use App\Models\User;
 use App\DTOs\User\CreateDTO;
 use App\DTOs\User\FilterDTO;
 use App\DTOs\User\UpdateDTO;
+use App\Models\UserPermission;
 use Google\Service\ShoppingContent\Resource\Collections;
+use Illuminate\Support\Facades\DB;
 
 class UserService
 {
@@ -19,7 +21,7 @@ class UserService
         $users = $query->paginate($perPage);
         return $users;
     }
-    
+
     public function list(FilterDTO $data)
     {
         $query = User::query();
@@ -37,14 +39,29 @@ class UserService
 
     public function create(CreateDTO $data): User
     {
-        return User::create($data->toArray());
+        DB::beginTransaction();
+        $user = User::create($data->except('permissions')->toArray());
+        $permissions = array_keys(array_filter($data->permissions));
+        foreach ($permissions as $permission) {
+            $user->permissions()->create(['name' => $permission]);
+        }
+        DB::commit();
+        return $user;
     }
 
     public function update(UpdateDTO $data, int $id): bool
     {
         try {
-            $User = User::find($id);
-            $User->update($data->toArray());
+            DB::beginTransaction();
+            $user = User::find($id);
+            $user->update($data->toArray());
+            $permissions = array_keys(array_filter($data->permissions));
+            UserPermission::where('user_id', $user->id)->whereNotIn('name', $permissions)->delete();
+            foreach ($permissions as $permission) {
+                $user->permissions()->create(['name' => $permission]);
+            }
+            DB::commit();
+
             return true;
         } catch (\Exception $e) {
             return false;

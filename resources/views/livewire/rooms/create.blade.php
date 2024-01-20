@@ -21,7 +21,7 @@
 
                         <div class="row justify-content-center">
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-circle-user icon fa-lg mt-3"></i>
+                                <i class="fa-solid fa-briefcase icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     placeholder="Room Name." type="text" wire:model="name">
                                 @error('name')
@@ -29,7 +29,7 @@
                                 @enderror
                             </div>
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-envelope icon fa-lg mt-3"></i>
+                                <i class="fa-solid fa-briefcase icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     placeholder="Room Location" type="text" wire:model="location">
                                 @error('location')
@@ -37,7 +37,7 @@
                                 @enderror
                             </div>
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-circle-user icon fa-lg mt-3"></i>
+                                <i class="fa-solid fa-users icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     placeholder="Room Capacity." type="number" wire:model="capacity">
                                 @error('capacity')
@@ -45,7 +45,7 @@
                                 @enderror
                             </div>
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-envelope icon fa-lg mt-3"></i>
+                                <i class="fa-solid fa-location-dot icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     placeholder="Room Location" type="text" wire:model="google_location">
                                 @error('google_location')
@@ -54,7 +54,7 @@
                             </div>
                             <div class="input-form-login border shadow rounded-4 mx-0 border p-0 col-12">
                                 <label for="finput2" class="w-100">
-                                    <i class="fa-solid fa-file-export icon fa-lg">
+                                    <i class="fa-solid fa-file-arrow-up icon fa-lg">
                                     </i>
                                     <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
                                         @if($attachment)
@@ -71,7 +71,7 @@
                             </div>
                             <div class="input-form-login border shadow rounded-4 mx-0 border p-0 col-12">
                                 <label for="finput1" class="w-100">
-                                    <i class="fa-solid fa-file-export icon fa-lg">
+                                    <i class="fa-solid fa-file-arrow-up icon fa-lg">
                                     </i>
                                     <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
                                         Upload Photos here...

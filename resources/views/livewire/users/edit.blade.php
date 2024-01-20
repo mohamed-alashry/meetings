@@ -47,6 +47,38 @@
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
+                            <div class="input-form-login px-lg-2 p-0 col-xl-12 col-sm-12">
+                                <i class="fa-solid fa-circle-user icon fa-lg mt-3"></i>
+                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                    placeholder="Role Name." type="text" wire:model="role_name">
+                                @error('role_name')
+                                <b class="text-danger">{{ $message }}</b>
+                                @enderror
+                            </div>
+                            <div class="col-12 row">
+                                <h3>@lang('permissions.plural')</h3>
+                                @foreach (config('user_permissions') as $key => $list)
+                                <div class="col-12">
+
+                                    <div class="row border border-2 my-2 py-2">
+                                        <div class="col-12">
+                                            <h5>@lang('permissions.' . $key)</h5>
+                                        </div>
+                                        @foreach ($list as $index => $item)
+                                        <div class="col-3 my-1">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox"
+                                                    wire:model="permissions.{{ $item }}" id="{{ $item }}">
+                                                <label class="form-check-label" for="{{ $item }}">
+                                                    @lang('permissions.' . $item)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
                             <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
                                 <button type="button" class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold"
                                     wire:click="cancel" style="color: #5E1042">

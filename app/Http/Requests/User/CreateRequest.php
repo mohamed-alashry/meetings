@@ -17,7 +17,10 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (in_array('create_user', auth()->user()->permissions->pluck('name')->toArray())) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -29,8 +32,10 @@ class CreateRequest extends FormRequest
     {
         return [
             'name'              => 'required|string|max:191',
+            'role_name'         => 'required|string|max:191',
             'email'             => 'required|email|unique:users',
             'password'          => 'required|confirmed|min:6',
+            'permissions'       => 'nullable|array',
         ];
     }
 }

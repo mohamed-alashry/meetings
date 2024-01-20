@@ -17,7 +17,10 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (in_array('update_user', auth()->user()->permissions->pluck('name')->toArray())) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -30,11 +33,13 @@ class UpdateRequest extends FormRequest
         if (!$user_id) {
             $user_id = $this->user;
         }
-        
+
         return [
             'name'              => 'nullable|string|max:191',
+            'role_name'         => 'required|string|max:191',
             'email'             => 'nullable|email|unique:users,email,' . $user_id,
             'password'          => 'nullable|confirmed|min:6',
+            'permissions'       => 'nullable|array',
         ];
     }
 }

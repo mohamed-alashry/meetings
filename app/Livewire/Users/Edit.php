@@ -16,10 +16,13 @@ class Edit extends Component
     public $name;
     public $email;
     public $password;
+    public $role_name;
     public $password_confirmation;
     public User $user;
     public bool $updateModal = false;
     private UserService $userService;
+    public $permissions = [];
+    public $user_permissions = [];
 
     public function boot(UserService $userService)
     {
@@ -31,6 +34,10 @@ class Edit extends Component
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->role_name = $user->role_name;
+        foreach ($user->permissions->pluck('name')->toArray() as $permission_name) {
+            $this->permissions[$permission_name] = true;
+        }
     }
 
     protected function rules(): array

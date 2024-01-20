@@ -17,7 +17,10 @@ class InviteRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (in_array('invite_to_meeting', auth()->user()->permissions->pluck('name')->toArray())) {
+            return true;
+        }
+        return false;
     }
 
     /**

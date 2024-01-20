@@ -12,8 +12,10 @@
                 <h5 class="card-title">Room Managment</h5>
                 <p class="card-text">Add or Edit Rooms</p>
             </span>
+            @if (in_array('create_room', $permissions))
             <livewire-rooms.create :createModal key='create' />
-            @if ($updateModal)
+            @endif
+            @if ($updateModal && in_array('update_room', $permissions))
             <livewire-rooms.edit :room="$room" key='{{ $room->id }}' />
             @endif
         </div>
@@ -50,16 +52,20 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
+                        @if (in_array('delete_room', $permissions))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
+                        @endif
+                        @if (in_array('update_room', $permissions))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editRoom({{ $room->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
                             Edit
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @else
@@ -71,22 +77,26 @@
                         {{ $room->name }}
                     </td>
                     <td class="align-middle border-1" scope="col">
-                       {{ $room->capacity }} Person
+                        {{ $room->capacity }} Person
                     </td>
                     <td class="align-middle border-1" scope="col">
                         {{ $room->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
+                        @if (in_array('delete_room', $permissions))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
+                        @endif
+                        @if (in_array('update_room', $permissions))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editRoom({{ $room->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
                             Edit
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @endif

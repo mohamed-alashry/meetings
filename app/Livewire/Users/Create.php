@@ -13,9 +13,11 @@ class Create extends Component
     use LivewireAlert;
     public bool $createModal = false;
     public $name;
+    public $role_name;
     public $email;
     public $password;
     public $password_confirmation;
+    public $permissions = [];
     private UserService $userService;
 
     public function boot(UserService $userService)
