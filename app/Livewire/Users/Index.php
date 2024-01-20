@@ -26,7 +26,8 @@ class Index extends Component
     {
 
         return view('livewire.users.index', [
-            'users' => $this->userService->list_with_pagination(FilterDTO::from([]), $this->perPage)
+            'users' => $this->userService->list_with_pagination(FilterDTO::from([]), $this->perPage),
+            'permissions' => auth()->user()->permissions->pluck('name')->toArray()
         ]);
     }
 

@@ -25,7 +25,8 @@ class Index extends Component
     public function render()
     {
         return view('livewire.rooms.index', [
-            'rooms' => $this->roomService->list_with_pagination(FilterDTO::from($this->all()), $this->perPage)
+            'rooms' => $this->roomService->list_with_pagination(FilterDTO::from($this->all()), $this->perPage),
+            'permissions' => auth()->user()->permissions->pluck('name')->toArray(),
         ]);
     }
 

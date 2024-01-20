@@ -17,7 +17,10 @@ class CreateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (in_array('create_invitee', auth()->user()->permissions->pluck('name')->toArray())) {
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -17,7 +17,10 @@ class FilterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        if (in_array('read_user', auth()->user()->permissions->pluck('name')->toArray())) {
+            return true;
+        }
+        return false;
     }
 
     /**

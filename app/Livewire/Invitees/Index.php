@@ -25,7 +25,8 @@ class Index extends Component
     public function render()
     {
         return view('livewire.invitees.index', [
-            'invitees' => $this->inviteeService->list_with_pagination(FilterDTO::from($this->all()), $this->perPage)
+            'invitees' => $this->inviteeService->list_with_pagination(FilterDTO::from($this->all()), $this->perPage),
+            'permissions' => auth()->user()->permissions->pluck('name')->toArray(),
         ]);
     }
 
