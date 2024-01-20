@@ -33,7 +33,7 @@ class Meeting extends Model
         'minutes',
         'start_date',
         'start_time',
-        'repeatable' , // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
+        'repeatable', // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         'duration',
         'person_capacity',
         'end_date',
@@ -59,13 +59,23 @@ class Meeting extends Model
 
     public function getEventJsonAttribute()
     {
-        $from = \Carbon\Carbon::parse($this->attributes['date'])->format('Ymd His');
-        $to = \Carbon\Carbon::parse($this->attributes['date'])->addHour()->format('Ymd His');
-
+        $from = \Carbon\Carbon::parse($this->attributes['start_date'])->format('Ymd His');
+        $to = \Carbon\Carbon::parse($this->attributes['end_date'])->addHour()->format('Ymd His');
+        //   {
+        //    id:A(),
+        //     title:"All Day Event",
+        //     start:I+"-01",
+        //     end:I+"-02",
+        //     description:"Toto lorem ipsum dolor sit incid idunt ut",
+        //     className:"border-success bg-success text-inverse-success",
+        //     location:"Federation Square"
+        // }
         $data = (object)[
+            'id' => $this->id,
             'title' => $this->title,
-            'link' => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
-            'start' => $this->date,
+            // 'link' => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
+            'start' => $this->start_date,
+            'end' => $this->end_date,
             'description' => $this->description,
             'open_calendar' => $this->open_calendar,
             'className' => 'fc-event-danger fc-event-solid-warning'
@@ -73,7 +83,7 @@ class Meeting extends Model
 
         return $data;
     }
-    
+
     /**
      * Get the room that owns the Meeting
      *
