@@ -44,29 +44,13 @@ class MeetingService
 
     public function create(CreateDTO $data): bool
     {
-        // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly, 5 => Yearly
+        // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         switch ($data->repeatable) {
             case 1:
                 Meeting::create($data->toArray());
                 break;
             case 2:
-                $startPeriod = Carbon::parse($data->start_date)->format('Y-m-d');
-                $endPeriod   = Carbon::parse($data->start_date)->addYear()->format('Y-m-d');
-
-                $period = CarbonPeriod::create($startPeriod, '1 days', $endPeriod);
-                $days    = [];
-
-                foreach ($period as $date) {
-                    if ($date->isSaturday() || $date->isFriday()) continue;
-                    $days[] = $date->format('Y-m-d');
-                }
-
-                foreach ($days as $day) {
-                    $meeting = new Meeting($data->toArray());
-                    $meeting->start_date = $day;
-                    $meeting->end_date   = $day;
-                    $meeting->save();
-                }
+                $this->handleRepeatable($data, '1 days');
         }
 
         // dd($data->repeatable);
@@ -111,5 +95,28 @@ class MeetingService
     function getRoomFeatures(int $id)
     {
         return Room::find($id)->features;
+    }
+
+
+
+
+    private function handleRepeatable($data, $repeatablePeriod)
+    {
+        $startPeriod = Carbon::parse($data->start_date)->format('Y-m-d');
+        $endPeriod   = Carbon::parse($data->start_date)->addYear()->format('Y-m-d');
+
+        $period = CarbonPeriod::create($startPeriod, $repeatablePeriod, $endPeriod);
+        $days    = [];
+
+        foreach ($period as $date) {
+            if ($date->isSaturday() || $date->isFriday()) continue;
+            $days[] = $date->format('Y-m-d');
+        }
+
+        foreach ($days as $day) {
+            $meeting = new Meeting($data->toArray());
+            $meeting->start_date = $day;
+            $meeting->save();
+        }
     }
 }

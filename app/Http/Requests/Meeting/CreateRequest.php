@@ -31,7 +31,7 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_id'           => 'required',
+            'room_id'           => 'required|exists:rooms,id',
             'title'             => 'required|string|max:191',
             'brief'             => 'required|string|max:191',
             'description'       => 'nullable|string|max:191',
