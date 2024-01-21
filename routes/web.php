@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(App\Http\Controllers\RoomController::class)->prefix('rooms')->as('rooms.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/monitor', 'monitor')->name('monitor');
         Route::get('/{room}', 'show')->name('show');
         Route::post('/store', 'store')->name('store');
         Route::put('/{room}/update', 'update')->name('update');
@@ -40,7 +41,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(App\Http\Controllers\MeetingController::class)->prefix('meetings')->as('meetings.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/monitor', 'monitor')->name('monitor');
         Route::get('/calendar-view', 'calendar_view')->name('calendar_view');
         Route::get('/card-view', 'card_view')->name('card_view');
         Route::get('/{meeting}', 'show')->name('show');

@@ -2,30 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Room;
+use App\Models\Meeting;
 use App\Services\MeetingService;
+use Illuminate\Database\Eloquent\Builder;
 use App\Http\Requests\Meeting\CreateRequest;
 use App\Http\Requests\Meeting\FilterRequest;
 use App\Http\Requests\Meeting\InviteRequest;
 use App\Http\Requests\Meeting\UpdateRequest;
-use App\Models\Meeting;
 
 class MeetingController extends Controller
 {
     public function __construct(private readonly MeetingService $meetingService)
     {
-    }
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function monitor(FilterRequest $request)
-    {
-        $data['meetings'] = $this->meetingService->list($request->getData());
-        if (request()->wantsJson()) {
-            return response()->json($data);
-        }
-
-        return view('monitor', $data);
     }
 
     /**
@@ -41,7 +30,7 @@ class MeetingController extends Controller
      */
     public function card_view(FilterRequest $request)
     {
-        $meetings = Meeting::get()->pluck('event_json');
+        $meetings = Meeting::upcoming()->limit(30)->get()->groupBy('type_date');
         return view('card_view', compact('meetings'));
     }
 

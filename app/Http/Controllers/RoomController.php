@@ -16,6 +16,18 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function monitor(FilterRequest $request)
+    {
+        if (request()->wantsJson()) {
+            $data['rooms'] = $this->roomService->monitor($request->getData());
+            return response()->json($data);
+        }
+        return view('monitor');
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
     public function index(FilterRequest $request)
     {
         $data['rooms'] = $this->roomService->list($request->getData());

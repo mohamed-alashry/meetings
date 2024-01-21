@@ -40,22 +40,17 @@ class Meeting extends Model
         'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
     ];
 
-    // /**
-    //  * The attributes that should be cast.
-    //  *
-    //  * @var array<string, string>
-    //  */
-    // protected $casts = [
-    //     'title'        => 'string',
-    //     'brief'        => 'string',
-    //     'description'  => 'string',
-    //     'start_date'   => 'datetime',
-    //     'end_date'     => 'datetime',
-    //     'duration'     => 'integer',
-    // ];
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        // 'start_date'   => 'format:H:i/a',
+    ];
 
 
-    public $appends = ['event_json'];
+    public $appends = ['event_json', 'type_date'];
 
     public function getEventJsonAttribute()
     {
@@ -71,17 +66,46 @@ class Meeting extends Model
         //     location:"Federation Square"
         // }
         $data = (object)[
-            'id' => $this->id,
-            'title' => $this->title,
-            // 'link' => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
-            'start' => $this->start_date,
-            'end' => $this->end_date,
-            'description' => $this->description,
+            'id'            => $this->id,
+            'title'         => $this->title,
+            // 'link'       => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
+            'start'         => $this->start_date . ' ' . $this->start_time,
+            'end'           => $this->end_date,
+            'description'   => $this->description,
             'open_calendar' => $this->open_calendar,
-            'className' => 'fc-event-danger fc-event-solid-warning'
+            'className'     => 'fc-event-danger fc-event-solid-warning'
         ];
 
         return $data;
+    }
+
+    public function getTypeDateAttribute()
+    {
+        $tomorrow = strtotime(\Carbon\Carbon::tomorrow());
+        $start = strtotime(\Carbon\Carbon::parse($this->start_date));
+
+        if ($start > $tomorrow) {
+            return 'upcoming';
+        } elseif ($start < $tomorrow && $this->start_time < now()->format('H:i:s')) {
+            return 'due';
+        } elseif ($start < $tomorrow) {
+            return 'today';
+        } else {
+            return 'tomorrow';
+        }
+    }
+
+    /**
+     * Scope a query to only include upcoming meetings.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeUpcoming($query)
+    {
+        return$query->whereDate('start_date', '>=', now()->format('Y-m-d'))
+        ->orderBy('start_date')
+        ->orderBy('start_time');
     }
 
     /**

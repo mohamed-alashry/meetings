@@ -17,9 +17,9 @@
                     </i>
                 </li>
             </a>
-            <a href="{{ route('meetings.monitor') }}" class="text-decoration-none color-primary">
+            <a href="{{ route('rooms.monitor') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
-                    <i class="fa-solid fa-desktop fa-lg d-flex {{ Route::is('meetings.monitor') ? 'active_nav' : '' }}" aria-hidden="true">
+                    <i class="fa-solid fa-desktop fa-lg d-flex {{ Route::is('rooms.monitor') ? 'active_nav' : '' }}" aria-hidden="true">
                         <span class="mx-2 align-middle">Monitor</span>
                     </i>
                 </li>
