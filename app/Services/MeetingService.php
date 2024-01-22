@@ -15,6 +15,19 @@ use Illuminate\Support\Collection;
 
 class MeetingService
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function monitor(FilterDTO $data)
+    {
+        $query = Meeting::query();
+        foreach ($data->toArray() as $key => $value) {
+            if ($value) $query->where($key, $value);
+        }
+        $rooms = $query->upcoming()->get()->groupBy('room_id');
+        return $rooms;
+    }
+
     public function list(FilterDTO $data)
     {
         $query = Meeting::query();

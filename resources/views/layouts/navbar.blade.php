@@ -17,20 +17,19 @@
                     <a class="dropdown-toggle text-decoration-none d-flex p-1 mx-2 align-items-center" id="messages"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                         <div class="avatar m-auto img-fluid">
-                            <img src="http://1.gravatar.com/avatar/47db31bd2e0b161008607d84c74305b5?s=96&d=mm&r=g">
+                            <span class="avatar_icon">{{ Str::ucfirst(substr(auth()->user()->name,-1,1)) }}</span>
                         </div>
                         <span class="px-2 d-none d-md-block">
                             <p class="m-0 fw-lighter text-secondary" style="font-size: 80%;">Welcome,</p>
-                            <p class="m-0 fw-bolder color-primary">Remon Nabil</p>
+                            <p class="m-0 fw-bolder color-primary">{{ auth()->user()->name }}</p>
                         </span>
                         <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="messages">
-                        <a class="dropdown-item" href="#">Edit my profile</a>
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div> <!-- /.dropdown-menu -->
-                </div> <!-- /.dropdown -->
-            </div> <!-- /.right-links -->
+                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </nav>

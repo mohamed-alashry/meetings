@@ -514,3 +514,19 @@ body {
 .btn-bg-color-1 {
     background-color: #C2203D !important;
 }
+
+.bg-2 {
+    background-color: #5E1042 !important;
+}
+
+.bg-1 {
+    background-color: #C2203D !important;
+}
+.avatar_icon{
+    padding: 11px 13px !important;
+    background: #5e1042 !important;
+    color: white !important;
+    border-radius: 50% !important;
+    margin: 0.2rem !important;
+}
+

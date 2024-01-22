@@ -75,6 +75,18 @@ class Room extends Model
     }
 
     /**
+     * Get all of the meetings for the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function upcoming_meetings(): HasMany
+    {
+        return $this->hasMany(Meeting::class)->whereDate('start_date', '>=', now()->format('Y-m-d'))
+        ->orderBy('start_date')
+        ->orderBy('start_time');
+    }
+
+    /**
      * Get all of the media for the Room
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

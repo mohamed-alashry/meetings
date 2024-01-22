@@ -31,10 +31,11 @@ class FilterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'              => 'nullable|string|max:191',
-            'location'          => 'nullable|string|max:191',
-            'google_location'   => 'nullable|string|max:191',
-            'capacity'          => 'nullable|numeric|gte:1',
+            'name'                  => 'nullable|string|max:191',
+            'location'              => 'nullable|string|max:191',
+            'google_location'       => 'nullable|string|max:191',
+            'capacity'              => 'nullable|numeric|gte:1',
+            'meetings_start_date'   => 'nullable|date',
             // 'status'            => 'nullable|in:1,2,3',
         ];
     }

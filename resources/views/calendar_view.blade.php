@@ -28,11 +28,12 @@
             <div class="col-lg-12 col-md-12 mb-20">
                 <div class="line-bookings row mb-3 px-1 g-3">
                     <span class="col-lg-6 col-md-12 col-sm-12">
-                        <h5 class="card-title">My Today Meetings</h5>
-                        <p class="card-text">Don’t miss your appointments</p>
+                        {{-- <h5 class="card-title">My Today Meetings</h5>
+                        <p class="card-text">Don’t miss your appointments</p> --}}
                     </span>
                     <span class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
-                        <a href="{{ route('meetings.card_view') }}" class="btn bg-body shadow-sm color-primary fw-bold w-100 h-100 rounded-4">
+                        <a href="{{ route('meetings.card_view') }}"
+                            class="btn bg-body shadow-sm color-primary fw-bold w-100 h-100 rounded-4">
                             <i class="fa-solid fa-table-cells"></i>
                             Card View
                         </a>
