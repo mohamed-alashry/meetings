@@ -27,6 +27,7 @@ class Meeting extends Model
     protected $fillable = [
         'room_id',
         'user_id',
+        'parent_id',
         'title',
         'brief',
         'description',
@@ -39,20 +40,6 @@ class Meeting extends Model
         'end_date',
         'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
     ];
-
-    // /**
-    //  * The attributes that should be cast.
-    //  *
-    //  * @var array<string, string>
-    //  */
-    // protected $casts = [
-    //     'title'        => 'string',
-    //     'brief'        => 'string',
-    //     'description'  => 'string',
-    //     'start_date'   => 'datetime',
-    //     'end_date'     => 'datetime',
-    //     'duration'     => 'integer',
-    // ];
 
 
     public $appends = ['event_json'];
@@ -104,4 +91,7 @@ class Meeting extends Model
     {
         return $this->hasMany(MeetingInvitation::class);
     }
+
+    // invitations
+    
 }

@@ -26,7 +26,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="date" wire:model="start_date" min="{{ date('Y-m-d') }}">
+                                    type="date" wire:model.live="start_date" min="{{ date('Y-m-d') }}">
                                 @error('start_date')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
@@ -35,7 +35,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="time" wire:model="start_time" min="{{ date('H:i') }}">
+                                    type="time" wire:model.live="start_time" min="{{ date('H:i') }}">
                                 @error('start_time')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
@@ -43,7 +43,6 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-repeat fa-lg icon mt-3 text-dark"></i>
-                                {{-- <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="time" wire:model="form.name"> --}}
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     wire:model="repeatable">
                                     <option value="1">No Repeat</option>
@@ -68,76 +67,12 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model="person_capacity" placeholder="Person Capacity">
+                                    type="number" wire:model="person_capacity" placeholder="Person Capacity"
+                                    min="1">
                                 @error('person_capacity')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
-
-                            {{-- <span class="col-lg-2 col-md-12 col-sm-12">
-                        <a class="bg-body shadow-sm text-decoration-none d-flex p-3 rounded-4 align-items-center justify-content-between"
-                            id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <span class="px-2 color-primary d-flex align-items-center">
-                                <i class="fa fa-clock fa-lg" aria-hidden="true"></i>
-                                <p class="m-0 px-2 fw-semibold">12:00 pm</p>
-                            </span>
-                            <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu rounded-0 rounded-bottom-4 shadow border-0 mx-4"
-                            aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </span> --}}
-                            {{-- <span class="col-lg-2 col-md-12 col-sm-12">
-                        <a class="bg-body shadow-sm text-decoration-none d-flex p-3 rounded-4 align-items-center justify-content-between"
-                            id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <span class="px-2 color-primary d-flex align-items-center">
-                                <i class="fa fa-repeat fa-lg" aria-hidden="true"></i>
-                                <p class="m-0 px-2 fw-semibold">No Repeat</p>
-                            </span>
-                            <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu rounded-0 rounded-bottom-4 shadow border-0 mx-4"
-                            aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </span> --}}
-                            {{-- <span class="col-lg-2 col-md-12 col-sm-12">
-                        <a class="bg-body shadow-sm text-decoration-none d-flex p-3 rounded-4 align-items-center justify-content-between"
-                            id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <span class="px-2 color-primary d-flex align-items-center">
-                                <i class="fa fa-hourglass-half fa-lg" aria-hidden="true"></i>
-                                <p class="m-0 px-2 fw-semibold">60 min</p>
-                            </span>
-                            <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu rounded-0 rounded-bottom-4 shadow border-0 mx-4"
-                            aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </span>
-                    <span class="col-lg-2 col-md-12 col-sm-12">
-                        <a class="bg-body shadow-sm text-decoration-none d-flex p-3 rounded-4 align-items-center justify-content-between"
-                            id="messages" data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <span class="px-2 color-primary d-flex align-items-center">
-                                <i class="fa fa-users fa-lg" aria-hidden="true"></i>
-                                <p class="m-0 px-2 fw-semibold">10</p>
-                            </span>
-                            <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu rounded-0 rounded-bottom-4 shadow border-0 mx-4"
-                            aria-labelledby="messages">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Action</a>
-                        </div>
-                    </span> --}}
                         </div>
                     </div>
                     <div class="modal-body p-0">
@@ -148,7 +83,6 @@
 
                         <div class="row px-3">
                             @forelse ($rooms as $room)
-                                {{-- @dd($room->features) --}}
                                 <div class="col-lg-3" wire:key='room-{{ $room->id }}'>
                                     <label class="text-white">
                                         <input type="radio" class="btn-check" value="{{ $room->id }}"
@@ -249,32 +183,7 @@
                                     @endif
                                 @empty
                                 @endforelse
-                                {{-- <p class="card-title fw-light my-1">
-                                    <i class="fa-solid fa-wifi"></i>
-                                    <span class="text-secondary">
-                                        Guest Wifi
-                                    </span>
-                                </p> --}}
-                                {{-- <small class="d-block px-4">
-                                    Network SSID:
-                                    <span class="fw-bold">OC</span>
-                                </small>
-                                <small class="d-block px-4">
-                                    Password:
-                                    <span class="fw-bold">Guest 2024</span>
-                                </small> --}}
-                                {{-- <p class="my-1">
-                                    <i class="fa-solid fa-desktop"></i>
-                                    <span class="text-secondary">
-                                        Have a TV with HDMI or Wifi connection
-                                    </span>
-                                </p>
-                                <p class="my-1">
-                                    <i class="fa-solid fa-laptop-medical"></i>
-                                    <span class="text-secondary">
-                                        Online Meeting setup (360 Camera & Mics)
-                                    </span>
-                                </p> --}}
+
                             </div>
                         </div>
                         <hr>
@@ -293,42 +202,57 @@
                         <div class="input-form-login px-3 col-12 ">
                             <i class="fa-solid fa-envelope icon fa-lg"></i>
                             <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
-                                placeholder="Type here email" type="email">
+                                placeholder="Type here email" type="email" wire:model.live="inviteeEmail">
                         </div>
+                        @if ($invitedUsers->count() < $person_capacity)
+                            <div class="card rounded-4 m-3 shadow border-0">
+                                <div class="card-body color-primary">
+                                    @foreach ($invitees as $invitee)
+                                        <p class="card-title fw-semibold my-1" role="button"
+                                            wire:click="addInvitee({{ $invitee->id }})">
+                                            {{ $invitee->name }}
+                                            <span class="text-secondary fw-light">
+                                                ({{ $invitee->email }})
+                                            </span>
+                                        </p>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @else
+                            {{-- show error --}}
+                            <div class="card rounded-4 m-3 shadow border-0">
+                                <p class="card-title fw-semibold my-1 m-3 text-danger">
+                                    You can not invite more than {{ $person_capacity ?? 0 }} persons
+                                </p>
+                            </div>
+                        @endif
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
-                                <p class="card-title fw-semibold my-1">
-                                    Remon Nabil
-                                    <span class="text-secondary fw-light">
-                                        (Senior UX Designer)
-                                    </span>
-                                </p>
-                                <p class="card-title fw-semibold my-1">
-                                    apple.remo95@one.com.sa
-                                    <span class="text-secondary fw-light">
-                                        (External Guest)
-                                    </span>
-                                </p>
-                                <p class="card-title fw-semibold my-1">
-                                    Obada Alseddig
-                                    <span class="text-secondary fw-light">
-                                        (IT Manger)
-                                    </span>
-                                </p>
+                                <h5 class="card-title fw-bold">Invited</h5>
+                                @forelse ($invitedUsers as $invited)
+                                    <p class="card-title fw-semibold my-1" role="button">
+                                        {{ $invited->name }}
+                                        <span class="text-secondary fw-light">
+                                            ({{ $invited->email }})
+                                        </span>
+
+                                        {{-- remove button --}}
+                                        <i class="fa-solid fa-xmark text-danger ms-2" wire:confirm='Are you sure?'
+                                            wire:click="removeInvitee({{ $invited->id }})"></i>
+                                    </p>
+                                @empty
+                                @endforelse
+
                                 <div class="card-title fw-semibold my-1 d-flex justify-content-between">
                                     <p class="m-0">
-                                        mohamed@one.com.sa
-                                        <span class="text-secondary fw-light">
-                                            (External Guest)
-                                        </span>
-                                    </p>
-                                    <p class="m-0">
-                                        4 out 10 Persons
+                                        {{ $invitedUsers->count() }} out of {{ $person_capacity ?? 0 }} Persons
                                         <i class="fa-solid fa-users"></i>
                                     </p>
                                 </div>
                             </div>
                         </div>
+
+
                         <hr>
                         <div class="m-3 color-primary">
                             <p class="h6 fw-bold">Meeting Information</p>

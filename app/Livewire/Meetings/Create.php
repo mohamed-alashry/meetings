@@ -8,6 +8,9 @@ use App\DTOs\Meeting\CreateDTO;
 use App\Services\MeetingService;
 use Illuminate\Support\Collection;
 use App\Http\Requests\Meeting\CreateRequest;
+use App\Models\Invitee;
+
+use function Laravel\Prompts\alert;
 
 class Create extends Component
 {
@@ -28,6 +31,9 @@ class Create extends Component
     public Collection $rooms;
     public Collection $roomFeatures;
     public array $selectedRoom;
+    public Collection $invitees;
+    public Collection $invitedUsers;
+    public string $inviteeEmail;
 
 
 
@@ -45,13 +51,22 @@ class Create extends Component
     {
         $this->status = 1;
         $this->room_id = 1;
-        $this->rooms = $this->meetingService->getRooms();
+        $this->start_date = '';
+        $this->start_time = '';
+        $this->inviteeEmail = '';
+        $this->person_capacity = 1;
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->invitees = Invitee::all();
+        $this->invitedUsers = collect();
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
     }
 
-    public function updatedRoomId()
+    public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
 
@@ -60,16 +75,29 @@ class Create extends Component
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
 
-        $this->meetingService->create(CreateDTO::from($validated));
+        $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
 
         session()->flash('success', 'Meeting booked successfully');
 
-        $this->redirect(route('meetings.calendar'), true);
+        $this->redirect(route('meetings.card_view'), true);
     }
 
     public function toggleCreateModal()
     {
         $this->openCreateModal = !$this->openCreateModal;
+    }
+
+    public function addInvitee(Invitee $invitee)
+    {
+        $this->invitedUsers->push($invitee);
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+    }
+
+    public function removeInvitee(Invitee $invitee)
+    {
+        // remove the invitee from the collection
+        $this->invitedUsers->forget($this->invitedUsers->search($invitee));
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
     public function render()
