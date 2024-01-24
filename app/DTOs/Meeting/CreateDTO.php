@@ -20,5 +20,6 @@ class CreateDTO extends Data
     public int $duration;
     public int $room_id;
     public int $user_id;
+    public ?int $parent_id;
     public ?int $status;
 }

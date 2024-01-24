@@ -27,6 +27,7 @@ class Meeting extends Model
     protected $fillable = [
         'room_id',
         'user_id',
+        'parent_id',
         'title',
         'brief',
         'description',
@@ -137,4 +138,7 @@ class Meeting extends Model
     {
         return $this->hasMany(MeetingInvitation::class);
     }
+
+    // invitations
+
 }

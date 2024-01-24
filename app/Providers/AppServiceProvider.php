@@ -22,13 +22,14 @@ class AppServiceProvider extends ServiceProvider
     {
         // morph mapping
         Relation::enforceMorphMap([
-            'invitee' => 'App\Models\Invitee',
-            'user'    => 'App\Models\User',
-            'guest'   => 'App\Models\Guest',
-            'room'    => 'App\Models\Room',
-            'media'   => 'App\Models\RoomMedia',
-            'meeting' => 'App\Models\Meeting',
-            'room_feature' => 'App\Models\RoomFeature',
+            'invitee'            => 'App\Models\Invitee',
+            'user'               => 'App\Models\User',
+            'guest'              => 'App\Models\Guest',
+            'room'               => 'App\Models\Room',
+            'media'              => 'App\Models\RoomMedia',
+            'meeting'            => 'App\Models\Meeting',
+            'room_feature'       => 'App\Models\RoomFeature',
+            'meeting_invitation' => 'App\Models\MeetingInvitation',
         ]);
 
     }

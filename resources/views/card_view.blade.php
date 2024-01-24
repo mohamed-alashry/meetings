@@ -20,6 +20,7 @@
                     </span>
                     <span class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         @livewire('meetings.create')
+                        @livewire('meetings.edit', ['meeting' => \App\Models\Meeting::first()])
                     </span>
                 </div>
             </div>
@@ -138,6 +139,7 @@
                         @endforelse
                     </div>
 
+                    </div>
                 </div>
             </div>
         </div>
@@ -242,18 +244,138 @@
 
                         @endforelse
                     </div>
+                    <div class="line-cards ">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="card rounded-4 shadow border-0 mb-3">
+                                    <div class="card-header bg-body rounded-top-4">
+                                        <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                        <p class="card-text color-primary">Meeting Room 02</p>
+                                    </div>
+                                    <div class="card-body color-primary">
+                                        <!-- <h5 class="card-title">Light card title</h5> -->
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-calendar-days"></i>
+                                                Today, 04:00 PM
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-hourglass-half"></i>
+                                                Free for 60 min
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-solid fa-users"></i>
+                                                Up to 20 Person
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="card rounded-4 shadow border-0 mb-3">
+                                    <div class="card-header bg-body rounded-top-4">
+                                        <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                        <p class="card-text color-primary">Meeting Room 02</p>
+                                    </div>
+                                    <div class="card-body color-primary">
+                                        <!-- <h5 class="card-title">Light card title</h5> -->
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-calendar-days"></i>
+                                                Today, 04:00 PM
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-hourglass-half"></i>
+                                                Free for 60 min
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-solid fa-users"></i>
+                                                Up to 20 Person
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="card rounded-4 shadow border-0 mb-3">
+                                    <div class="card-header bg-body rounded-top-4">
+                                        <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                        <p class="card-text color-primary">Meeting Room 02</p>
+                                    </div>
+                                    <div class="card-body color-primary">
+                                        <!-- <h5 class="card-title">Light card title</h5> -->
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-calendar-days"></i>
+                                                Today, 04:00 PM
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-hourglass-half"></i>
+                                                Free for 60 min
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-solid fa-users"></i>
+                                                Up to 20 Person
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="card rounded-4 shadow border-0 mb-3">
+                                    <div class="card-header bg-body rounded-top-4">
+                                        <h5 class="card-title color-primary fw-bold">Design Meeting Sprint 01</h5>
+                                        <p class="card-text color-primary">Meeting Room 02</p>
+                                    </div>
+                                    <div class="card-body color-primary">
+                                        <!-- <h5 class="card-title">Light card title</h5> -->
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-calendar-days"></i>
+                                                Today, 04:00 PM
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-regular fa-hourglass-half"></i>
+                                                Free for 60 min
+                                            </small>
+                                        </p>
+                                        <p class="card-text m-1">
+                                            <small class="text-body-secondary">
+                                                <i class="fa-solid fa-users"></i>
+                                                Up to 20 Person
+                                            </small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
-            <div class="pe-0 d-none d-lg-flex">
-                <img src="assets/img/Frame-end-footer.png" class="img-fluid position-fixed bottom-0 end-0 z-n1"
-                    alt="Frame-end-footer">
+                <div class="pe-0 d-none d-lg-flex">
+                    <img src="assets/img/Frame-end-footer.png" class="img-fluid position-fixed bottom-0 end-0 z-n1"
+                        alt="Frame-end-footer">
+                </div>
             </div>
         </div>
     </div>
     @endisset --}}
 
-</section>
+    </section>
 @endsection
 
 @push('scripts')
