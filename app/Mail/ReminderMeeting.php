@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 class ReminderMeeting extends Mailable
 {
     use Queueable, SerializesModels;
-    
+
     public $meeting = [];
 
     /**
@@ -39,7 +39,7 @@ class ReminderMeeting extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.reminder',
         );
     }
 

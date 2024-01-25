@@ -31,6 +31,7 @@ class Monitor extends Component
             $this->inputs['id'] = $value;
         }
         $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
+        $this->render();
     }
 
     public function updatedStartDate($value)
@@ -40,6 +41,7 @@ class Monitor extends Component
             $this->inputs['meetings_start_date'] = $value;
         }
         $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
+        $this->render();
     }
 
     public function mount()
@@ -57,6 +59,6 @@ class Monitor extends Component
 
     public function render()
     {
-        return view('livewire.rooms.monitor', []);
+        return view('livewire.rooms.monitor');
     }
 }

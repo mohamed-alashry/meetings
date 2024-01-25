@@ -51,7 +51,7 @@ class Meeting extends Model
     ];
 
 
-    public $appends = ['event_json', 'type_date'];
+    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format'];
 
     public function getEventJsonAttribute()
     {
@@ -96,6 +96,15 @@ class Meeting extends Model
         }
     }
 
+    public function getStartDateFormatAttribute(){
+
+        return \Carbon\Carbon::parse($this->start_date)->format('d M Y');
+    }
+
+    public function getStartTimeFormatAttribute(){
+
+        return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
+    }
     /**
      * Scope a query to only include upcoming meetings.
      *
