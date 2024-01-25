@@ -42,13 +42,15 @@
 
                 </div>
                 <div class="line-cards">
-                    <div class="row">
+                    @livewire('slider.meeting-cards', ['meetings' => $room->meetings], key($room->id))
+                    {{-- <div class="row owl-carousel">
                         @forelse ($room->meetings as $meeting)
+
                         @include('meeting_card', ['meeting' => $meeting, 'room' => $room])
                         @empty
 
                         @endforelse
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

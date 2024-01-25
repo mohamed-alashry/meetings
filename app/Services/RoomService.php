@@ -24,7 +24,7 @@ class RoomService
                     'meetings' => function ($q) use ($value) {
                         if ($value) {
 
-                            $q->whereDate('start_date', '>', $value)->orderBy('start_date')->orderBy('start_time');
+                            $q->whereDate('start_date', '>=', $value)->orderBy('start_date')->orderBy('start_time');
                         }
                     }
                 ]);

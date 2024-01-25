@@ -1,6 +1,6 @@
 @switch($meeting->type_date)
 @case('today')
-<div class="col-lg-3 col-md-6 col-sm-12 ">
+<div class="col-lg-3 col-md-6 col-sm-12">
     <div class="card rounded-4 shadow border-0 mb-3 text-white" style="background-color: #5E1042;">
         <div class="card-header rounded-top-4">
             <h5 class="card-title fw-bold">{{ $meeting->title??'' }}</h5>
@@ -31,7 +31,6 @@
 </div>
 @break
 @case('tomorrow')
-
 <div class="col-lg-3 col-md-6 col-sm-12">
     <div class="card rounded-4 shadow border-0 mb-3 bg-warning bg-gradient text-white">
         <div class="card-header rounded-top-4">
@@ -61,10 +60,8 @@
         </div>
     </div>
 </div>
-
 @break
 @case('upcoming')
-
 <div class="col-lg-3 col-md-6 col-sm-12">
     <div class="card rounded-4 shadow border-0 mb-3">
         <div class="card-header bg-body rounded-top-4">
@@ -125,7 +122,6 @@
         </div>
     </div>
 </div>
-
 @break
 @default
 

@@ -2,6 +2,13 @@
 
 @section('title', 'Calender')
 @push('styles')
+<link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.carousel.min.css">
+<link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.theme.default.min.css">
+<style>
+    .owl-nav {
+        display: none;
+    }
+</style>
 @endpush
 @section('content')
 <section class="section-contct-body">
@@ -40,12 +47,13 @@
 
                 </div>
                 <div class="line-cards">
+                    @livewire('slider.meeting-cards', ['meetings' => $meeting_list], key($name))
                     <div class="row">
-                        @forelse ($meeting_list as $meeting)
-                            @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room])
+                        {{-- @forelse ($meeting_list as $meeting)
+                        @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room])
                         @empty
 
-                        @endforelse
+                        @endforelse --}}
                     </div>
                 </div>
             </div>
@@ -53,6 +61,7 @@
     </div>
     @empty
     @endforelse
+    
     {{-- @isset($meetings['today'])
     <div class="container-fluid">
         <div class="row">
@@ -139,10 +148,10 @@
                         @endforelse
                     </div>
 
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @endisset
     @isset($meetings['tomorrow'])
@@ -375,8 +384,45 @@
     </div>
     @endisset --}}
 
-    </section>
+</section>
 @endsection
 
 @push('scripts')
+<script src="{{ asset('owlcarousel') }}/js/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function() {
+                var owl = $('.owl-carousel');
+                owl.owlCarousel({
+                    // rtl:true,
+                    // loop: true,
+                    // mouseDrag: true,
+                    stagePadding: 0,
+                    nav:false,
+                    rewind: true,
+                    margin: 8,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        600: {
+                            items: 1
+                        },
+                        960: {
+                            items: 2
+                        },
+                        1200: {
+                            items: 4
+                        }
+                    }
+                });
+                // owl.on('mousewheel', '.owl-stage', function(e) {
+                //     if (e.deltaY > 0) {
+                //         owl.trigger('next.owl');
+                //     } else {
+                //         owl.trigger('prev.owl');
+                //     }
+                //     e.preventDefault();
+                // });
+            });
+    </script>
 @endpush
