@@ -11,7 +11,7 @@ class MeetingCards extends Component
     public $start_date;
     public $room_id;
 
-    public function mount($meetings)
+    public function mount($meetings = [])
     {
         $this->meetings = $meetings;
         // $this->getMeetings();
