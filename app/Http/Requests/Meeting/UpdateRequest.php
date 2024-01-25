@@ -36,7 +36,7 @@ class UpdateRequest extends FormRequest
             'brief'             => 'required|string|max:191',
             'description'       => 'nullable|string|max:191',
             'start_date'        => 'required|date|after:yesterday',
-            'start_time'        => 'required|date_format:H:i:s', //add pm and am to time format
+            'start_time'        => 'required|date_format:H:i:s',
             'repeatable'        => 'required',
             'person_capacity'   => 'required|numeric|gte:1',
             'duration'          => 'required|numeric|gte:1',

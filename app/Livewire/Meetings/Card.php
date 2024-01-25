@@ -6,14 +6,15 @@ use App\Models\Room;
 use App\Models\Invitee;
 use App\Models\Meeting;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use App\DTOs\Meeting\CreateDTO;
-use App\DTOs\Meeting\UpdateDTO;
 use App\Services\MeetingService;
 use Illuminate\Support\Collection;
-use App\Http\Requests\Meeting\CreateRequest;
-use App\Http\Requests\Meeting\UpdateRequest;
 
-class Edit extends Component
+use function Laravel\Prompts\alert;
+use App\Http\Requests\Meeting\CreateRequest;
+
+class Card extends Component
 {
     private MeetingService $meetingService;
 
@@ -27,15 +28,16 @@ class Edit extends Component
     public int $repeatable;
     public int $person_capacity;
     public int $duration;
-    public string $end_date;
+    public string $end_time;
     public int $status;
-    public bool $openEditModal = false;
+    public bool $openViewModal = false;
     public Collection $rooms;
     public Collection $roomFeatures;
     public array $selectedRoom;
     public Collection $invitees;
     public Collection $invitedUsers;
     public string $inviteeEmail;
+
 
 
 
@@ -46,30 +48,22 @@ class Edit extends Component
 
     protected function rules(): array
     {
-        return (new UpdateRequest())->rules();
+        return (new CreateRequest())->rules();
     }
 
     function mount(Meeting $meeting)
     {
         $this->meeting = $meeting;
-        $this->status = $this->meeting->status;
-        $this->start_date = $this->meeting->start_date;
-        $this->start_time = $this->meeting->start_time;
-        $this->person_capacity = $this->meeting->person_capacity;
-        $this->room_id = $this->meeting->room_id;
-        $this->title = $this->meeting->title;
-        $this->brief = $this->meeting->brief;
-        // $this->description = $this->meeting->description;
-        $this->repeatable = $this->meeting->repeatable;
-        $this->duration = $this->meeting->duration;
-        // $this->end_date = $this->meeting->end_date;
 
+        $this->status = 1;
+        $this->room_id = 1;
+        $this->start_date = '';
+        $this->start_time = '';
         $this->inviteeEmail = '';
+        $this->person_capacity = 1;
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        // append current room to rooms
-        $this->rooms->prepend($this->meeting->room);
-        $this->invitedUsers = $this->meeting->invitations->pluck('userable');
-        $this->invitees = Invitee::whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::all();
+        $this->invitedUsers = collect();
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
     }
 
@@ -77,27 +71,27 @@ class Edit extends Component
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        $this->rooms->prepend($this->meeting->room);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
 
-    public function update($meetingId)
+    public function store()
     {
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
 
-        $this->meetingService->update(UpdateDTO::from($validated), $meetingId, $this->invitedUsers);
+        $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
 
-        session()->flash('success', 'Meeting updated successfully');
+        session()->flash('success', 'Meeting booked successfully');
 
         $this->redirect(route('meetings.card_view'), true);
     }
 
-    public function toggleEditModal()
+    public function toggleViewModal()
     {
-        $this->openEditModal = !$this->openEditModal;
+        // dd($this->openViewModal);
+        $this->openViewModal = !$this->openViewModal;
     }
 
     public function addInvitee(Invitee $invitee)
@@ -113,9 +107,25 @@ class Edit extends Component
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
+
+
+
+
+
+
+
+    // view meeting
+    #[On('open-meeting.{meeting.id}')]
+    public function viewMeeting(Meeting $meeting)
+    {
+
+        $this->meeting = $meeting;
+        $this->openViewModal = true;
+    }
+
     public function render()
     {
 
-        return view('livewire.meetings.edit');
+        return view('meeting_card');
     }
 }

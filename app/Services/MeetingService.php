@@ -77,11 +77,11 @@ class MeetingService
     public function update(UpdateDTO $data, int $id, $invited_users)
     {
         $meeting = Meeting::find($id);
-        $meeting_repeats = Meeting::where('parent_id', $id)->get();
-
+        $meeting_repeats = Meeting::where('parent_id', $meeting->parent_id)->get();
         // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         if ($data->repeatable == 1) { // No repeat
             $meeting->update($data->toArray());
+            // dd($meeting);
             // update invitations
             $meeting->invitations()->delete();
             // dd($invited_users);
@@ -169,6 +169,10 @@ class MeetingService
 
 
 
+
+
+
+    // Helpers
     private function handleRepeatable($data, $repeatablePeriod, $invited_users, $update = false)
     {
         $startPeriod = Carbon::parse($data->start_date)->format('Y-m-d');
@@ -178,7 +182,10 @@ class MeetingService
         $days    = [];
 
         foreach ($period as $date) {
-            if ($date->isSaturday() || $date->isFriday()) continue;
+            if ($date->isSaturday() || $date->isFriday()) {
+                $date = $date->next('sunday');
+            }
+
             $days[] = $date->format('Y-m-d');
         }
 
@@ -189,10 +196,12 @@ class MeetingService
         foreach ($days as $day) {
             $meeting = new Meeting($data->toArray());
             $meeting->start_date = $day;
+            $meeting->start_time = $data->start_time;
             $meeting->parent_id = $nextMeetingId;
             $meeting->save();
 
             if ($update) {
+                $meeting->update($data->toArray());
                 $meeting->invitations()->delete();
             }
             foreach ($invited_users as $user) {

@@ -20,7 +20,7 @@
                     </span>
                     <span class="col-xl-3 col-lg-4 col-md-12 col-sm-12">
                         @livewire('meetings.create')
-                        @livewire('meetings.edit', ['meeting' => \App\Models\Meeting::first()])
+                        {{-- @livewire('meetings.edit', ['meeting' => \App\Models\Meeting::first()]) --}}
                     </span>
                 </div>
             </div>
@@ -40,9 +40,10 @@
 
                 </div>
                 <div class="line-cards">
-                    <div class="row">
+                    <div class="row d-flex">
                         @forelse ($meeting_list as $meeting)
-                            @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room])
+                        @livewire('meetings.card', ['meeting' => $meeting, 'room' => $meeting->room])
+                            {{-- @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room]) --}}
                         @empty
 
                         @endforelse

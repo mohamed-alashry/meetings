@@ -9,12 +9,13 @@
     @if ($openCreateModal)
         <!-- Modal -->
         <div class="modal fade show bg-dark bg-opacity-50" id="createModal" tabindex="-1"
-            aria-labelledby="exampleModalLabel" style="display: block;" aria-modal="true" role="dialog"
-            wire:clickAway="toggleCreateModal">
+            aria-labelledby="exampleModalLabel" style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog ps-2 d-flex justify-content-end" style="max-width: 75%;">
                 <div class="modal-content rounded-4" style="height: fit-content;">
                     <div
                         class="modal-header rounded-top-4 flex-column align-items-start justify-content-center background-primary text-white">
+                        <i class="fa-solid fa-xmark text-light position-absolute top-0 end-0 m-3 fs-3"
+                            wire:click="toggleCreateModal" role="button"></i>
                         <h3 class="modal-title fs-5" id="staticBackdropLabel">
                             Find a Meeting Room
                         </h3>
@@ -58,7 +59,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model="duration" placeholder="Duration">
+                                    type="number" wire:model.live="duration" placeholder="Duration">
                                 @error('duration')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
@@ -107,7 +108,7 @@
                                                                     <small class="text-body-secondary"
                                                                         style="font-size: 0.8rem;">
                                                                         <i class="fa-regular fa-hourglass-half"></i>
-                                                                        Free for 60 min
+                                                                        Free for {{ $duration }} min
                                                                     </small>
                                                                 </p>
                                                                 <p class="card-text m-0">
