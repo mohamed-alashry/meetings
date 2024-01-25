@@ -45,6 +45,9 @@ class MeetingService
 
     public function create(CreateDTO $data, $invited_users): bool
     {
+        // set end time (start time + duration in minutes)
+        $data->end_time = Carbon::parse($data->start_time)->addMinutes($data->duration);
+        // $data->end_time = $data->start_time;
         // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         switch ($data->repeatable) {
             case 1: // No repeat
@@ -81,7 +84,7 @@ class MeetingService
         // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         if ($data->repeatable == 1) { // No repeat
             $meeting->update($data->toArray());
-            // dd($meeting);
+            $meeting->minutes_attach->store('uploads/files', 'public');
             // update invitations
             $meeting->invitations()->delete();
             // dd($invited_users);
@@ -183,7 +186,8 @@ class MeetingService
 
         foreach ($period as $date) {
             if ($date->isSaturday() || $date->isFriday()) {
-                $date = $date->next('sunday');
+                // $date = $date->next('sunday');
+                continue;
             }
 
             $days[] = $date->format('Y-m-d');

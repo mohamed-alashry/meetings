@@ -12,9 +12,12 @@ use App\Services\MeetingService;
 use Illuminate\Support\Collection;
 use App\Http\Requests\Meeting\CreateRequest;
 use App\Http\Requests\Meeting\UpdateRequest;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
+    use WithFileUploads;
+
     private MeetingService $meetingService;
 
     public Meeting $meeting;
@@ -22,8 +25,11 @@ class Edit extends Component
     public string $title;
     public string $brief;
     public string $description;
+    public string $minutes;
+    public string $minutes_attach;
     public string $start_date;
     public string $start_time;
+    public string $end_time;
     public int $repeatable;
     public int $person_capacity;
     public int $duration;
@@ -55,13 +61,16 @@ class Edit extends Component
         $this->status = $this->meeting->status;
         $this->start_date = $this->meeting->start_date;
         $this->start_time = $this->meeting->start_time;
+        $this->end_time = $this->meeting->end_time;
         $this->person_capacity = $this->meeting->person_capacity;
         $this->room_id = $this->meeting->room_id;
         $this->title = $this->meeting->title;
         $this->brief = $this->meeting->brief;
-        // $this->description = $this->meeting->description;
         $this->repeatable = $this->meeting->repeatable;
         $this->duration = $this->meeting->duration;
+        $this->minutes = $this->meeting->minutes ?? '';
+        $this->minutes_attach = $this->meeting->minutes_attach ?? '';
+        // $this->description = $this->meeting->description;
         // $this->end_date = $this->meeting->end_date;
 
         $this->inviteeEmail = '';

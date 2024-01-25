@@ -21,15 +21,17 @@ return new class extends Migration
             $table->string('brief')->nullable();
             $table->string('description')->nullable();
             $table->text('minutes')->nullable();
+            $table->string('minutes_attach')->nullable();
             $table->date('start_date')->nullable();
             $table->time('start_time')->nullable();
+            $table->time('end_time')->nullable();
             $table->unsignedTinyInteger('repeatable')->default(1)->comment('1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly');
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
             $table->unsignedInteger('person_capacity')->nullable();
 
             $table->datetime('end_date')->nullable();
             $table->datetime('alert_date')->nullable();
-            $table->unsignedInteger('status')->default(1)->comment('1 => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished');
+            $table->unsignedInteger('status')->default(1)->comment('1 => Active, 2 => Cancelled');
             $table->timestamps();
             $table->softDeletes();
         });

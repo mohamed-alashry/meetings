@@ -107,20 +107,6 @@ class View extends Component
     }
 
 
-
-
-
-
-
-
-    // view meeting
-    #[On('open-meeting.{meeting.id}')]
-    public function viewMeeting(Meeting $meeting)
-    {
-
-        $this->openViewModal = true;
-    }
-
     public function render()
     {
 

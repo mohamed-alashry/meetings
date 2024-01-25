@@ -7,6 +7,7 @@ use Livewire\Component;
 class MeetingCards extends Component
 {
     public $meetings = [];
+    public bool $openViewModal = false;
     public function mount()
     {
         if (count($this->meetings) == 0) {
@@ -15,6 +16,13 @@ class MeetingCards extends Component
                 ->orderBy('start_time')->get();
         }
     }
+
+    public function toggleViewModal()
+    {
+        $this->openViewModal = !$this->openViewModal;
+        // dd($this->openViewModal);
+    }
+
     public function render()
     {
         return view('livewire.slider.meeting-cards');

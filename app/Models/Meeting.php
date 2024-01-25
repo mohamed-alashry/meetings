@@ -32,8 +32,10 @@ class Meeting extends Model
         'brief',
         'description',
         'minutes',
+        'minutes_attach',
         'start_date',
         'start_time',
+        'end_time',
         'repeatable', // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         'duration',
         'person_capacity',

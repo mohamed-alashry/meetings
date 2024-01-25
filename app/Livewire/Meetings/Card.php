@@ -90,7 +90,6 @@ class Card extends Component
 
     public function toggleViewModal()
     {
-        // dd($this->openViewModal);
         $this->openViewModal = !$this->openViewModal;
     }
 
@@ -109,19 +108,6 @@ class Card extends Component
 
 
 
-
-
-
-
-
-    // view meeting
-    #[On('open-meeting.{meeting.id}')]
-    public function viewMeeting(Meeting $meeting)
-    {
-
-        $this->meeting = $meeting;
-        $this->openViewModal = true;
-    }
 
     public function render()
     {
