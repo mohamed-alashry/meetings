@@ -36,21 +36,20 @@
             <div class="col-lg-12 col-md-12">
                 <div class="line-bookings row my-3 px-1">
                     <span class="col-lg-6 col-md-6 col-sm-12">
-                        <h5 class="card-title">{{ $room->name??'' }}</h5>
+                        <h5 class="card-title">{{ $room->name??'' }} ({{ $room->meetings->count() }})</h5>
                         <p class="card-text">Don’t miss your appointments</p>
                     </span>
-
                 </div>
                 <div class="line-cards">
-                    @livewire('slider.meeting-cards', ['meetings' => $room->meetings], key($room->id))
+                    @livewire('slider.meeting-cards', ['meetings' => $room->meetings, 'room_id' => $room->room_id], key($room->id))
+
                     {{-- <div class="row owl-carousel">
                         @forelse ($room->meetings as $meeting)
-
                         @include('meeting_card', ['meeting' => $meeting, 'room' => $room])
                         @empty
-
                         @endforelse
                     </div> --}}
+
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <div class="owl-carousel">
     @forelse ($meetings as $meeting)
+
     @switch($meeting->type_date)
     @case('today')
     <div class="col-12">
@@ -131,15 +132,7 @@
 
     @default
     @endswitch
+    
     @empty
     @endforelse
-    <div class="owl-nav">
-        <div class="owl-prev">prev</div>
-        <div class="owl-next">next</div>
-    </div>
-    <div class="owl-dots">
-        <div class="owl-dot active"><span></span></div>
-        <div class="owl-dot"><span></span></div>
-        <div class="owl-dot"><span></span></div>
-    </div>
 </div>
