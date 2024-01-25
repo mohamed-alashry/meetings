@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Rooms;
 
+use App\Models\Room;
 use Livewire\Component;
 use App\DTOs\Room\FilterDTO;
-use App\Models\Room;
 use App\Services\RoomService;
+use App\Livewire\Slider\MeetingCards;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class Monitor extends Component
@@ -24,24 +25,17 @@ class Monitor extends Component
         $this->roomService = $roomService;
     }
 
-    public function updatedRoomId($value)
+    public function updated($propertyName, $value)
     {
-        $this->inputs['id'] = null;
-        if ($value != 'all') {
-            $this->inputs['id'] = $value;
+        if (in_array($propertyName, ['room_id', 'start_date'])) {
+            // $this->dispatch('meetings-filtered', ['start_date' => $this->start_date, 'room_id' => $this->room_id])->to(MeetingCards::class);
+            $this->inputs = [
+                'meetings_start_date' => $this->start_date,
+                'id' => $this->room_id == 'all' ? null : $this->room_id,
+            ];
+            $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
+            $this->render();
         }
-        $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
-        $this->render();
-    }
-
-    public function updatedStartDate($value)
-    {
-        $this->inputs['meetings_start_date'] = null;
-        if ($value) {
-            $this->inputs['meetings_start_date'] = $value;
-        }
-        $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
-        $this->render();
     }
 
     public function mount()

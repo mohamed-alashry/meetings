@@ -4,6 +4,11 @@
 @push('styles')
     <link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.theme.default.min.css">
+    <style>
+        .owl-nav {
+            display: none;
+        }
+    </style>
 @endpush
 @section('content')
     @livewire('rooms.monitor')
@@ -36,14 +41,14 @@
                     }
                 }
             });
-            owl.on('mousewheel', '.owl-stage', function(e) {
-                if (e.deltaY > 0) {
-                    owl.trigger('next.owl');
-                } else {
-                    owl.trigger('prev.owl');
-                }
-                e.preventDefault();
-            });
+            // owl.on('mousewheel', '.owl-stage', function(e) {
+            //     if (e.deltaY > 0) {
+            //         owl.trigger('next.owl');
+            //     } else {
+            //         owl.trigger('prev.owl');
+            //     }
+            //     e.preventDefault();
+            // });
         });
     </script>
 @endpush
