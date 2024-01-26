@@ -8,8 +8,8 @@
         <div class="col-lg-6 col-sm-12 row d-flex gap-3">
             <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
                 style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;">
-                <i class="fa-regular fa-file-lines fa-fw fa-lg"></i>
-                Go to Meeting Meniutes
+                <i class="fa fa-xmark fa-fw fa-lg" wire:click="cancleMeeting"></i>
+                Cancle meeting
             </button>
             <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
                 style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"

@@ -69,7 +69,7 @@ class Edit extends Component
         $this->repeatable = $this->meeting->repeatable;
         $this->duration = $this->meeting->duration;
         $this->minutes = $this->meeting->minutes ?? '';
-        // $this->minutes_attach = $this->meeting->minutes_attach;
+        $this->minutes_attach = $this->meeting->minutes_attach ?? '';
         // $this->description = $this->meeting->description;
         // $this->end_date = $this->meeting->end_date;
 
@@ -120,6 +120,11 @@ class Edit extends Component
         // remove the invitee from the collection
         $this->invitedUsers->forget($this->invitedUsers->search($invitee));
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+    }
+
+    public function cancleMeeting()
+    {
+        dd('cancle');
     }
 
     public function render()
