@@ -7,7 +7,7 @@
                     data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
                     <img src="{{ asset('assets') }}/img/menu.png" alt="" srcset="">
                 </button>
-                <a class="navbar-brand w-100 px-2" href="#">
+                <a class="navbar-brand w-100 px-2" href="{{ route('home') }}">
                     <img src="{{ asset('assets') }}/img/Logo.png" class="d-inline-block img-fluid" alt="AgentFire Logo">
                 </a>
             </div>

@@ -68,11 +68,11 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('fire_invite_mail',function () {
-    \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\InviteMeeting(\App\Models\Meeting::first()));
+    \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\InviteMeeting(\App\Models\Meeting::latest()->first()));
     return 'send invite mail successfully';
 });
 
 Route::get('fire_reminder_mail',function () {
-    \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\ReminderMeeting(\App\Models\Meeting::first()));
+    \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\ReminderMeeting(\App\Models\Meeting::latest()->first()));
     return 'send reminder mail successfully';
 });
