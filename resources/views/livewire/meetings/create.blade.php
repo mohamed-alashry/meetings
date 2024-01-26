@@ -253,50 +253,66 @@
                             </div>
                         </div>
 
-                    <hr>
-                    <div class="m-3 color-primary">
-                        <p class="h6 fw-bold">Meeting Information</p>
-                        <p class="fs-6 m-0">Type here the meeting info</p>
-                    </div>
-                    <div class="input-form-login px-3 col-12 ">
-                        <i class="fa-solid fa-briefcase icon fa-lg"></i>
-                        <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
-                            placeholder="Type here your meeting name" type="text" wire:model="title">
+                        <hr>
+                        <div class="m-3 color-primary">
+                            <p class="h6 fw-bold">Meeting Information</p>
+                            <p class="fs-6 m-0">Type here the meeting info</p>
+                        </div>
+                        <div class="input-form-login px-3 col-12 ">
+                            <i class="fa-solid fa-briefcase icon fa-lg"></i>
+                            <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
+                                placeholder="Type here your meeting name" type="text" wire:model="title">
 
-                        @error('title')
-                            <b class="text-danger">{{ $message }}</b>
-                        @enderror
-                    </div>
-                    <div class="input-form-login px-3 col-12">
-                        <i class="fa-solid fa-circle-info icon fa-lg z-1"></i>
-                        <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4"
-                            placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
+                            @error('title')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div>
+                        <div class="input-form-login px-3 col-12">
+                            <i class="fa-solid fa-circle-info icon fa-lg z-1"></i>
+                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4"
+                                placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
 
-                        @error('brief')
-                            <b class="text-danger">{{ $message }}</b>
-                        @enderror
+                            @error('brief')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div>
                     </div>
-                </div>
 
-                <div class="actions d-flex justify-content-center">
-                    <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
-                        <button type="button"
-                            class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold btn-color-2"
-                            wire:click="toggleCreateModal">
-                            Cancel
-                        </button>
-                    </div>
-                    <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
-                        <button type="button" wire:click="store"
-                            class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
-                            <i class="fa-solid fa-check fa-fw fa-lg"></i>
-                            Add Now
-                        </button>
+                    <div class="actions d-flex justify-content-center">
+                        <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
+                            <button type="button"
+                                class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold btn-color-2"
+                                wire:click="toggleCreateModal">
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
+                            <button type="button" wire:click="store"
+                                class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2"
+                                wire:loading.remove>
+                                <i class="fa-solid fa-check fa-fw fa-lg"></i>
+                                Add Now
+                            </button>
+
+                            <button type="button" disabled wire:loading
+                                class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
+
+                                <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
+                                        <animateTransform attributeName="transform" dur="0.75s"
+                                            repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+                                    </path>
+                                </svg>
+
+                                Creating...
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-</div>
-@endif
+    @endif
 
 </div>

@@ -4,14 +4,16 @@ namespace App\Services;
 
 use Carbon\Carbon;
 use App\Models\Room;
+use App\Models\Invitee;
 use App\Models\Meeting;
 use Carbon\CarbonPeriod;
+use App\Mail\InviteMeeting;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\FilterDTO;
 use App\DTOs\Meeting\InviteDTO;
 use App\DTOs\Meeting\UpdateDTO;
-use App\Models\Invitee;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Mail;
 
 class MeetingService
 {
@@ -62,6 +64,12 @@ class MeetingService
                     ]));
                 }
 
+                $emails = $invited_users->pluck('email')->toArray();
+                foreach ($emails as $email) {
+                    Mail::to($email)->send(new InviteMeeting($meeting));
+                }
+                // Mail::to($emails)->send(new InviteMeeting($meeting));
+
                 break;
             case 2: // Daily
                 $this->handleRepeatable($data, '1 days', $invited_users);
@@ -95,6 +103,13 @@ class MeetingService
                     'type'          => 1,
                     'status'        => 1,
                 ]));
+            }
+
+            $emails = $meeting->invitations->pluck('userable.email')->toArray();
+            // $emails = $meeting->invitations;
+            // dd($emails);
+            foreach ($emails as $email) {
+                Mail::to($email)->send(new InviteMeeting($meeting));
             }
         } elseif ($data->repeatable == $meeting->repeatable) { // same repeatable
             foreach ($meeting_repeats as $meeting_repeat) {
@@ -223,6 +238,11 @@ class MeetingService
                     'status' => 1,
                 ]));
             }
+        }
+
+        $emails = $invited_users->pluck('email')->toArray();
+        foreach ($emails as $email) {
+            Mail::to($email)->send(new InviteMeeting($meeting));
         }
     }
 
