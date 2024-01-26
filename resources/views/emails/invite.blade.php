@@ -6,7 +6,7 @@
 </head>
 
 <div>
-    <div style="padding: 10% 20%;font-family: sans-serif;background: #F6F6F6;">
+    <div style="padding: 10% 20%; font-family: sans-serif;background: #F6F6F6;">
         <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff;">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
@@ -19,11 +19,13 @@
                             {{ $meeting->start_time_format}}
                         </p>
                         <p>
-                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/Group.png" alt="" srcset="">
+                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/Group.png" alt=""
+                                srcset="">
                             {{ $meeting->room->name}}
                         </p>
                         <p>
-                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass 1.png" alt="" srcset="">
+                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass 1.png"
+                                alt="" srcset="">
                             Duration: {{ $meeting->duration}} min
                         </p>
                     </th>
@@ -65,37 +67,28 @@
                     <p style="font-weight: 700; margin: 0;">Invited Persons</p>
                     <p style="margin-top: 3px;">Invited persons by email or Name</p>
                     <div style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;"">
-                      <p style=" font-weight: 700;">
-                        Remon Nabil
-                        <span style="font-weight: 500;">
-                            (Senior UX Designer)
-                        </span>
-                        </p>
-                        <p style="font-weight: 700;">
-                            apple.remo95@one.com.sa
+
+                        @foreach ($meeting->invitations as $invitee)
+                        <p style="font-weight: 700; margin: 0.3rem;">
+                            {{ $invitee->userable->name }}
                             <span style="font-weight: 500;">
-                                (External Guest)
+                                ({{ $invitee->userable->email }})
                             </span>
                         </p>
-                        <p style="font-weight: 700;">
-                            Obada Alseddig
-                            <span style="font-weight: 500;">
-                                (IT Manger)
-                            </span>
-                        </p>
+                        @endforeach
                         <table style="font-weight: 700; width: 100%; padding: 0;">
                             <tr>
                                 <th style="width: 50%;text-align: start;">
-                                    <p style="margin-top: 0;">
+                                    {{-- <p style="margin-top: 0;">
                                         mohamed@one.com.sa
                                         <span style="font-weight: 500;">
                                             (External Guest)
                                         </span>
-                                    </p>
+                                    </p> --}}
                                 </th>
                                 <th style="width: 50%; text-align: end;">
                                     <p style="margin-top: 0;">
-                                        04 Persons
+                                        {{ count($meeting->invitations) }} Persons
                                         <img src="https://safavisa.sirv.com/Images/group 1.png" alt="" srcset="">
                                     </p>
                                 </th>
@@ -111,18 +104,15 @@
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
                         <table style="font-weight: 700; width: 100%; padding: 0;">
                             <tr>
-                                <th style="text-align: start; vertical-align: baseline;">
+                                <th style="text-align: start; vertical-align: baseline;width: 9px;">
                                     <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt="" srcset="">
                                 </th>
                                 <th style=" text-align: start;">
                                     <p style="font-weight: 500; margin-top: 0%;">
-                                        Morbi ut massa in mauris semper euismod a ut mi.
-                                        Duis mattis massa sit amet ante vestibulum, quis laoreet augue auctor.
-                                        Vivamus non odio eget eros accumsan ultrices.
+                                        {{ str_replace(' ','',$meeting->title) }}
                                     </p>
                                     <p style="font-weight: 500;">
-                                        Vivamus sed eros ultricies, commodo dolor quis, vulputate mi.
-                                        Nunc quis lacus rhoncus, fermentum orci vel, venenatis magna.
+                                        {{ str_replace(' ','',$meeting->brief) }}
                                     </p>
                                 </th>
                             </tr>
@@ -140,38 +130,56 @@
                     <p style="margin-top: 3px;">Type here the meeting info</p>
                     <table style="font-weight: 700; width: 100%; padding: 0;">
                         <tr>
-                            <th style="text-align: start; vertical-align: baseline; float: inline-start;">
+                            <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%;">
+
                                 <div
-                                    style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; width: 63%;height: fit-content; background-color: #fff; float: inline-end;">
-                                    <div>
-                                        <img src="https://safavisa.sirv.com/Images/wi-fi 1.png" alt="" srcset="">
-                                        <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
-                                            Guest Wifi
-                                        </span>
-                                        <p style="font-weight: 500; margin: 0.2rem 1.6rem;">
-                                            Network SSID: <span style="font-weight: 700;">OC</span>
-                                        </p>
-                                        <p style="font-weight: 500; margin: 0.2rem 1.6rem;">
-                                            Password: <span style="font-weight: 700;">Guest 2024</span>
-                                        </p>
-                                    </div>
-                                    <div style="margin-top: 1rem">
-                                        <img src="https://safavisa.sirv.com/Images/television 1.png" alt="" srcset="">
-                                        <a
-                                            style="font-weight: 500;margin: 0.2rem; color: rgb(126, 126, 126); vertical-align: super;">
-                                            Have a TV with HDMI or Wifi connection
-                                        </a>
-                                    </div>
-                                    <div style="margin-top: 1rem">
-                                        <img src="https://safavisa.sirv.com/Images/online-meeting 1.png" alt="" srcset="">
-                                        <a
-                                            style="font-weight: 500;margin: 0.2rem; color: rgb(126, 126, 126); vertical-align: super;">
-                                            Online Meeting setup (360 Camera & Mics)
-                                        </a>
-                                    </div>
+                                style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; width: 63%;height: fit-content; background-color: #fff; float: inline-end;">
+                                @forelse ($meeting->room->features as $feature)
+                                @if ($feature->name == 'wifi' && $feature->value)
+                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                    <img src="https://safavisa.sirv.com/Images/wi-fi 1.png" alt="" srcset="">
+                                    <span style="font-weight: 700;">
+                                        Guest Wifi
+                                    </span>
+                                </p>
+                                @endif
+                                @if ($feature->name == 'online_meeting' && $feature->value)
+                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                    <img src="https://safavisa.sirv.com/Images/online-meeting 1.png" alt="" srcset="">
+                                    <span style="font-weight: 700;">
+                                        Online meeting
+                                    </span>
+                                </p>
+                                @endif
+                                @if ($feature->name == 'projector' && $feature->value)
+                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                    <i class="fa-solid fa-video"></i>
+                                    <span style="font-weight: 700;">
+                                        Projector
+                                    </span>
+                                </p>
+                                @endif
+                                @if ($feature->name == 'tv' && $feature->value)
+                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                    <img src="https://safavisa.sirv.com/Images/television 1.png" alt="" srcset="">
+                                    <span style="font-weight: 700;">
+                                        TV
+                                    </span>
+                                </p>
+                                @endif
+                                @if ($feature->name == 'sound_system' && $feature->value)
+                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                    <i class="fa-solid fa-volume-high"></i>
+                                    <span style="font-weight: 700;">
+                                        Sound System
+                                    </span>
+                                </p>
+                                @endif
+                                @empty
+                                @endforelse
                                 </div>
                             </th>
-                            <th style="text-align: start; vertical-align: baseline;">
+                            <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%;">
                                 <div
                                     style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem 1rem 0; color: #022537; width: 75%;height: fit-content; background-color: #fff; float: inline-start; margin: 0 1rem 1.5rem;">
                                     <div>
@@ -183,24 +191,26 @@
                                     </div>
                                     <div style="margin-top: 1rem ">
                                         <img src="https://safavisa.sirv.com/Images/notes 1.png" alt="" srcset="">
-                                        <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
+                                        <span style="font-weight: 500; margin: 0.1rem; color: rgb(126, 126, 126);">
                                             Location on Maps:
                                             <p style="margin: 0;">
-                                                <a href="#"
-                                                    style="font-weight: 700;color: #5E1042; margin-left: 1.6rem">Click
-                                                    here</a>
+                                                <a href="{{ $meeting->room->google_location }}" target="_blank"
+                                                    style="font-weight: 700;color: #5E1042; margin-left: 1.6rem">
+                                                    Click here
+                                                </a>
                                             </p>
                                         </span>
                                     </div>
                                     <div>
-                                        <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt="" srcset="">
+                                        <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt=""
+                                            srcset="">
                                         <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
                                             Guide PDF:
                                             <p style="margin: 0;">
-                                                <a href="#"
-                                                    style="font-weight: 700;color: #5E1042; margin-left: 1.6rem">Click
-                                                    here
-                                                    to download</a>
+                                                <a href="{{ $meeting->room->attachment_path }}" download="guide_room"
+                                                    style="font-weight: 700;color: #5E1042; margin-left: 1.6rem">
+                                                    Click here to download
+                                                </a>
                                             </p>
                                         </span>
                                     </div>

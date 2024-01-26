@@ -61,7 +61,7 @@ class Room extends Model
 
     public function getAttachmentPathAttribute()
     {
-        return $this->attachment ? asset('uploads/file/' . $this->attachment) : null;
+        return $this->attachment ? asset($this->attachment) : null;
     }
 
     /**
@@ -82,8 +82,8 @@ class Room extends Model
     public function upcoming_meetings(): HasMany
     {
         return $this->hasMany(Meeting::class)->whereDate('start_date', '>=', now()->format('Y-m-d'))
-        ->orderBy('start_date')
-        ->orderBy('start_time');
+            ->orderBy('start_date')
+            ->orderBy('start_time');
     }
 
     /**
