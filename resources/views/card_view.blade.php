@@ -47,13 +47,14 @@
 
                 </div>
                 <div class="line-cards">
-                    @livewire('slider.meeting-cards', ['meetings' => $meeting_list], key($name))
+                    {{-- @livewire('slider.meeting-cards', ['meetings' => $meeting_list], key($name)) --}}
                     <div class="row">
-                        {{-- @forelse ($meeting_list as $meeting)
-                        @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room])
+                        @forelse ($meeting_list as $meeting)
+                        {{-- @include('meeting_card', ['meeting' => $meeting, 'room' => $meeting->room]) --}}
+                        @livewire('meetings.card', ['meeting' => $meeting, 'room' => $meeting->room])
                         @empty
 
-                        @endforelse --}}
+                        @endforelse
 
                         {{-- <div class="row d-flex">
                             @forelse ($meeting_list as $meeting)

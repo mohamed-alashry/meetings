@@ -69,7 +69,7 @@ class Edit extends Component
         $this->repeatable = $this->meeting->repeatable;
         $this->duration = $this->meeting->duration;
         $this->minutes = $this->meeting->minutes ?? '';
-        $this->minutes_attach = $this->meeting->minutes_attach ?? '';
+        // $this->minutes_attach = $this->meeting->minutes_attach;
         // $this->description = $this->meeting->description;
         // $this->end_date = $this->meeting->end_date;
 

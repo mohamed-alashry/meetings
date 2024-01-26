@@ -293,11 +293,9 @@
                                 <b class="text-danger">{{ $message }}</b>
                             @enderror
                         </div>
-                    </div>
+                        {{-- minutes section --}}
 
-
-                    {{-- minutes section --}}
-                    <div>
+                        <hr>
                         <div class="m-3 color-primary">
                             <p class="h6 fw-bold">Minutes</p>
                             <p class="fs-6 m-0">Type here the minutes</p>
@@ -312,8 +310,8 @@
                             @enderror
                         </div>
 
-                        <div class="input-form-login border shadow rounded-4 mx-0 border p-0 col-12">
-                            <label for="finput2" class="w-100">
+                        <div class="input-form-login px-3 col-12 ">
+                            <label for="finput2" class="input-field form-control border-0 shadow rounded-4">
                                 <i class="fa-solid fa-file-arrow-up icon fa-lg">
                                 </i>
                                 <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
@@ -332,6 +330,9 @@
                             @enderror
                         </div>
                     </div>
+
+
+
 
 
 
