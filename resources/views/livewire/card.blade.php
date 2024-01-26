@@ -6,6 +6,9 @@
                     <div class="card-header rounded-top-4">
                         <h5 class="card-title fw-bold">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text">{{ $meeting->room->name ?? '' }}</p>
+                        {{-- status span --}}
+                        <span
+                            class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
                     </div>
                     <div class="card-body text-white">
                         <p class="card-text m-1">
@@ -37,6 +40,9 @@
                     <div class="card-header rounded-top-4">
                         <h5 class="card-title fw-bold">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text">{{ $room->name ?? '' }}</p>
+                        {{-- status span --}}
+                        <span
+                            class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
                     </div>
                     <div class="card-body">
                         <!-- <h5 class="card-title">Light card title</h5> -->
@@ -102,6 +108,9 @@
                     <div class="card-header rounded-top-4 ">
                         <h5 class="card-title fw-bold ">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text ">{{ $room->name ?? '' }}</p>
+                        {{-- status span --}}
+                        <span
+                            class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
                     </div>
                     <div class="card-body ">
                         <!-- <h5 class="card-title">Light card title</h5> -->
