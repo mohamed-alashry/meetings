@@ -44,8 +44,16 @@
                     {{-- @livewire('slider.meeting-cards', ['meetings' => $room->meetings, 'room_id' => $room->room_id], key($room->id)) --}}
                     <div class="row">
                         @forelse ($room->meetings->take(15) as $meeting)
-                        @include('meeting_card', ['meeting' => $meeting, 'room' => $room])
+                        @include('meeting_card', ['meeting' => $meeting, 'room' => $room] )
                         @empty
+                        <div class="card m-2 rounded-3">
+                          <div class="card-body p-5 m-4 m-auto">
+                            <h4 class="card-title">Not Found Upcoming Meetings in this room</h4>
+                            <div class="col-6 m-auto mt-4">
+                                @livewire('meetings.create', ['room_id' => $room->id], key($room->id))
+                            </div>
+                          </div>
+                        </div>
                         @endforelse
                     </div>
                 </div>

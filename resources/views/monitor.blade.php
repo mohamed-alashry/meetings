@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Monitor')
-@push('styles')
+
+{{-- @push('styles')
     <link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.theme.default.min.css">
     <style>
@@ -9,12 +10,13 @@
             display: none;
         }
     </style>
-@endpush
+@endpush --}}
+
 @section('content')
     @livewire('rooms.monitor')
 @endsection
 
-@push('scripts')
+{{-- @push('scripts')
     <script src="{{ asset('owlcarousel') }}/js/owl.carousel.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -51,4 +53,4 @@
             // });
         });
     </script>
-@endpush
+@endpush --}}
