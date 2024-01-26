@@ -166,7 +166,7 @@
 
     @default
     @endswitch
-    
+
     @if ($openViewModal)
     <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
         style="display: block;" aria-modal="true" role="dialog">
@@ -303,6 +303,7 @@
     </div>
     @endif
 </div>
+
 {{-- @break
 
 @case('upcoming')
