@@ -40,6 +40,7 @@ class Meeting extends Model
         'duration',
         'person_capacity',
         'end_date',
+        'alert_date',
         'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
     ];
 

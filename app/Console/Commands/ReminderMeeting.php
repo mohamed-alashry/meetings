@@ -27,7 +27,7 @@ class ReminderMeeting extends Command
     public function handle()
     {
         try {
-            $meetings = Meeting::whereDate('start_date', now())->whereTime('start_time', '>=', now()->subHour(4))->get();
+            $meetings = Meeting::whereDate('start_date', now())->whereTime('start_time', '>=', now()->subHour(4))->whereNull('alert_date')->get();
             if (count($meetings) > 0) {
 
                 foreach ($meetings as $meeting) {
