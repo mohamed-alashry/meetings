@@ -73,7 +73,7 @@ class Meeting extends Model
             'title'         => $this->title,
             // 'link'       => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
             'start'         => $this->start_date . ' ' . $this->start_time,
-            'end'           => $this->end_date,
+            'end'           => $this->end_date . ' ' . $this->end_time,
             'description'   => $this->description,
             'open_calendar' => $this->open_calendar,
             'className'     => 'fc-event-danger fc-event-solid-warning'
@@ -98,12 +98,14 @@ class Meeting extends Model
         }
     }
 
-    public function getStartDateFormatAttribute(){
+    public function getStartDateFormatAttribute()
+    {
 
         return \Carbon\Carbon::parse($this->start_date)->format('d M Y');
     }
 
-    public function getStartTimeFormatAttribute(){
+    public function getStartTimeFormatAttribute()
+    {
 
         return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
     }
@@ -115,9 +117,10 @@ class Meeting extends Model
      */
     public function scopeUpcoming($query)
     {
-        return$query->whereDate('start_date', '>=', now()->format('Y-m-d'))
-        ->orderBy('start_date')
-        ->orderBy('start_time');
+        return $query->whereDate('start_date', '>=', now()
+            ->format('Y-m-d'))
+            ->orderBy('start_date')
+            ->orderBy('start_time');
     }
 
     /**
