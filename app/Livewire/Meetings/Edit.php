@@ -26,7 +26,7 @@ class Edit extends Component
     public string $brief;
     public string $description;
     public string $minutes;
-    public string $minutes_attach;
+    public $minutes_attach;
     public string $start_date;
     public string $start_time;
     public string $end_time;
@@ -42,6 +42,7 @@ class Edit extends Component
     public Collection $invitees;
     public Collection $invitedUsers;
     public string $inviteeEmail;
+    public bool $update_all = false;
 
 
 
@@ -69,7 +70,7 @@ class Edit extends Component
         $this->repeatable = $this->meeting->repeatable;
         $this->duration = $this->meeting->duration;
         $this->minutes = $this->meeting->minutes ?? '';
-        $this->minutes_attach = $this->meeting->minutes_attach ?? '';
+        // $this->minutes_attach = $this->meeting->minutes_attach ?? '';
         // $this->description = $this->meeting->description;
         // $this->end_date = $this->meeting->end_date;
 
@@ -96,6 +97,8 @@ class Edit extends Component
     {
         $validated = $this->validate();
         $validated['user_id'] = auth()->id();
+        $validated['update_all'] = $this->update_all;
+        // dd($validated);
 
         $this->meetingService->update(UpdateDTO::from($validated), $meetingId, $this->invitedUsers);
 
@@ -122,9 +125,11 @@ class Edit extends Component
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
-    public function cancleMeeting()
+    public function cancelMeeting()
     {
-        dd('cancle');
+        $this->meetingService->cancelMeeting($this->meeting);
+        session()->flash('success', 'Meeting cancelled successfully');
+        $this->redirect(route('meetings.card_view'), true);
     }
 
     public function render()

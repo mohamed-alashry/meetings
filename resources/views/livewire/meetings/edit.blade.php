@@ -6,17 +6,20 @@
         </div>
         <!-- Button trigger modal -->
         <div class="col-lg-6 col-sm-12 row d-flex gap-3">
-            <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
-                style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;">
-                <i class="fa fa-xmark fa-fw fa-lg" wire:click="cancleMeeting"></i>
-                Cancle meeting
-            </button>
-            <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
-                style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
-                wire:click="toggleEditModal">
-                <i class="fa-regular fa-edit"></i>
-                Edit meeting
-            </button>
+            @if ($meeting->status == 1)
+                <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
+                    style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:click="cancelMeeting"
+                    wire:confirm="Are you sure?">
+                    <i class="fa fa-xmark fa-fw fa-lg"></i>
+                    Cancel meeting
+                </button>
+                <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
+                    style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
+                    wire:click="toggleEditModal">
+                    <i class="fa-regular fa-edit"></i>
+                    Edit meeting
+                </button>
+            @endif
         </div>
     </div>
 
@@ -333,9 +336,16 @@
 
 
 
-
-
-
+                    {{-- edit all checkbox --}}
+                    @if ($repeatable != 1)
+                        <div class="form-check form-check-inline m-3 w-100 text-center">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" wire:model='update_all'
+                                    value="true">
+                                Update All
+                            </label>
+                        </div>
+                    @endif
 
                     <div class="actions d-flex justify-content-center">
                         <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
@@ -351,6 +361,7 @@
                                 <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                 Update
                             </button>
+
                         </div>
                     </div>
                 </div>

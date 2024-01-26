@@ -82,9 +82,8 @@ class MeetingService
         $meeting = Meeting::find($id);
         $meeting_repeats = Meeting::where('parent_id', $meeting->parent_id)->get();
         // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
-        if ($data->repeatable == 1) { // No repeat
+        if ($data->repeatable == 1 || !$data->update_all) { // No repeat
             $meeting->update($data->toArray());
-            $meeting->minutes_attach->store('uploads/files', 'public');
             // update invitations
             $meeting->invitations()->delete();
             // dd($invited_users);
@@ -167,6 +166,13 @@ class MeetingService
     public function getInvitedUsers(Meeting $meeting)
     {
         return $meeting->invitations;
+    }
+
+    public function cancelMeeting(Meeting $meeting)
+    {
+        $meeting->update([
+            'status' => 2
+        ]);
     }
 
 
