@@ -53,7 +53,7 @@ class Meeting extends Model
     ];
 
 
-    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format'];
+    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'minutes_attach_path'];
 
     public function getEventJsonAttribute()
     {
@@ -109,6 +109,34 @@ class Meeting extends Model
 
         return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
     }
+
+
+    public function setMinutesAttachAttribute($file)
+    {
+        try {
+            if ($file) {
+                $fileName = $file->store('uploads/files', 'public');
+                $this->attributes['minutes_attach'] = $fileName;
+            }
+        } catch (\Throwable $th) {
+            $this->attributes['minutes_attach'] = $file;
+        }
+    }
+
+    public function getMinutesAttachPathAttribute()
+    {
+        return $this->minutes_attach ? asset($this->minutes_attach) : null;
+    }
+
+    public function getStatusTextAttribute()
+    {
+
+        if ($this->status == 1) {
+            return "Active";
+        } else if ($this->status == 2) {
+            return "Cancelled";
+        }
+    }
     /**
      * Scope a query to only include upcoming meetings.
      *
@@ -117,8 +145,7 @@ class Meeting extends Model
      */
     public function scopeUpcoming($query)
     {
-        return $query->whereDate('start_date', '>=', now()
-            ->format('Y-m-d'))
+        return $query->whereDate('start_date', '>=', now()->format('Y-m-d'))
             ->orderBy('start_date')
             ->orderBy('start_time');
     }

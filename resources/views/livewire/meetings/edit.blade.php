@@ -6,17 +6,20 @@
         </div>
         <!-- Button trigger modal -->
         <div class="col-lg-6 col-sm-12 row d-flex gap-3">
-            <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
-                style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;">
-                <i class="fa fa-xmark fa-fw fa-lg" wire:click="cancleMeeting"></i>
-                Cancle meeting
-            </button>
-            <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
-                style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
-                wire:click="toggleEditModal">
-                <i class="fa-regular fa-edit"></i>
-                Edit meeting
-            </button>
+            @if ($meeting->status == 1)
+                <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
+                    style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:click="cancelMeeting"
+                    wire:confirm="Are you sure?">
+                    <i class="fa fa-xmark fa-fw fa-lg"></i>
+                    Cancel meeting
+                </button>
+                <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
+                    style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
+                    wire:click="toggleEditModal">
+                    <i class="fa-regular fa-edit"></i>
+                    Edit meeting
+                </button>
+            @endif
         </div>
     </div>
 
@@ -333,9 +336,16 @@
 
 
 
-
-
-
+                    {{-- edit all checkbox --}}
+                    @if ($repeatable != 1)
+                        <div class="form-check form-check-inline m-3 w-100 text-center">
+                            <label class="form-check-label">
+                                <input class="form-check-input" type="checkbox" wire:model='update_all'
+                                    value="true">
+                                Update All
+                            </label>
+                        </div>
+                    @endif
 
                     <div class="actions d-flex justify-content-center">
                         <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
@@ -346,11 +356,26 @@
                             </button>
                         </div>
                         <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
-                            <button type="button" wire:click="update({{ $meeting->id }})"
+                            <button type="button" wire:click="update({{ $meeting->id }})" wire:loading.remove
                                 class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
                                 <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                 Update
                             </button>
+                            <button type="button" disabled wire:loading
+                                class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
+
+                                <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
+                                        <animateTransform attributeName="transform" dur="0.75s"
+                                            repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+                                    </path>
+                                </svg>
+
+                                Updating...
+                            </button>
+
                         </div>
                     </div>
                 </div>
