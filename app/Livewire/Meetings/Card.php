@@ -111,7 +111,6 @@ class Card extends Component
 
     public function render()
     {
-
         return view('meeting_card');
     }
 }

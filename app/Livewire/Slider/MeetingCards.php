@@ -10,6 +10,7 @@ class MeetingCards extends Component
     public $meetings = [];
     public $start_date  = null;
     public $room_id  = null;
+    public $openViewModal  = false;
 
     public function mount()
     {
