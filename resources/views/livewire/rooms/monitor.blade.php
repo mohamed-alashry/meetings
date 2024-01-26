@@ -44,7 +44,7 @@
                     {{-- @livewire('slider.meeting-cards', ['meetings' => $room->meetings, 'room_id' => $room->room_id], key($room->id)) --}}
                     <div class="row">
                         @forelse ($room->meetings->take(15) as $meeting)
-                        @include('meeting_card', ['meeting' => $meeting, 'room' => $room] )
+                        @livewire('meetings.card', ['meeting' => $meeting, 'room' => $room], key($meeting->id))
                         @empty
                         <div class="card m-2 rounded-3">
                           <div class="card-body p-5 m-4 m-auto">
