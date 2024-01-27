@@ -7,6 +7,7 @@ use App\Models\Room;
 use App\Models\Invitee;
 use App\Models\Meeting;
 use Carbon\CarbonPeriod;
+use App\Mail\CancelMeeting;
 use App\Mail\InviteMeeting;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\FilterDTO;
@@ -188,6 +189,13 @@ class MeetingService
         $meeting->update([
             'status' => 2
         ]);
+
+        if ($meeting->invitations->count() > 0) {
+            $emails = $meeting->invitations->pluck('userable.email')->toArray();
+            if (count($emails) > 0) {
+                Mail::to($emails)->send(new CancelMeeting($meeting));
+            }
+        }
     }
 
 
