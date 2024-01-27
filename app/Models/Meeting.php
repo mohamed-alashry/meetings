@@ -40,6 +40,7 @@ class Meeting extends Model
         'duration',
         'person_capacity',
         'end_date',
+        'alert_date',
         'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
     ];
 
@@ -73,7 +74,7 @@ class Meeting extends Model
             'title'         => $this->title,
             // 'link'       => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
             'start'         => $this->start_date . ' ' . $this->start_time,
-            'end'           => $this->end_date,
+            'end'           => $this->end_date . ' ' . $this->end_time,
             'description'   => $this->description,
             'open_calendar' => $this->open_calendar,
             'className'     => 'fc-event-danger fc-event-solid-warning'
