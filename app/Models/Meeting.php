@@ -115,8 +115,8 @@ class Meeting extends Model
 
     public function getAddToCalendarAttribute(){
 
-        $from = $this->start_date . ' ' . $this->start_time;
-        $to = $this->end_date . ' ' . $this->end_time;
+        $from = \Carbon\Carbon::parse($this->start_date)->format('d/m/Y') . ' ' . $this->start_time;
+        $to = \Carbon\Carbon::parse($this->end_date)->format('d/m/Y') . ' ' . $this->end_time;
         $title = $this->title;
         return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
