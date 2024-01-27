@@ -27,6 +27,7 @@ class Home extends Component
         $this->start_time = '';
         $this->person_capacity = 1;
         $this->duration = 0;
+        $this->repeatable = 1;
 
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
     }
@@ -34,7 +35,7 @@ class Home extends Component
     {
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
         $this->dispatch('updateRooms', $this->rooms);
-        $this->dispatch('updateFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration);
+        $this->dispatch('updateFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration, $this->repeatable);
 
     }
 

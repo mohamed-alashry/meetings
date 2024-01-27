@@ -115,12 +115,13 @@ class Create extends Component
     }
 
     #[On('passFilters')]
-    public function passFilters($start_date, $start_time, $person_capacity, $duration)
+    public function passFilters($start_date, $start_time, $person_capacity, $duration, $repeatable)
     {
         $this->start_date = $start_date;
         $this->start_time = $start_time;
         $this->person_capacity = $person_capacity;
         $this->duration = $duration;
+        $this->repeatable = $repeatable;
     }
 
     public function render()
