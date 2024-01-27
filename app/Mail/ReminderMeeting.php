@@ -40,7 +40,7 @@ class ReminderMeeting extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.reminder',
+            view: 'emails.invite',
         );
     }
 
