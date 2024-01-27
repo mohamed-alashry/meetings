@@ -4,6 +4,7 @@
             <div class="card-body background-primary text-light shadow-lg rounded-4">
                 <h5 class="card-title">Find a Meeting Room</h5>
                 <p class="card-text">Find and Book Now</p>
+                {{-- filters --}}
                 <div class="row w-100 d-flex justify-content-center">
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
@@ -11,7 +12,7 @@
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="date"
                             wire:model.live="start_date" min="{{ date('Y-m-d') }}">
                         @error('start_date')
-                        <b class="text-danger">{{ $message }}</b>
+                            <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
 
@@ -20,7 +21,7 @@
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="time"
                             wire:model.live="start_time" min="{{ date('H:i') }}">
                         @error('start_time')
-                        <b class="text-danger">{{ $message }}</b>
+                            <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
 
@@ -34,28 +35,29 @@
                             <option value="4">Monthly</option>
                         </select>
                         @error('repeatable')
-                        <b class="text-danger">{{ $message }}</b>
+                            <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="number"
-                            wire:model="duration" placeholder="Duration">
+                            wire:model.live="duration" placeholder="Duration">
                         @error('duration')
-                        <b class="text-danger">{{ $message }}</b>
+                            <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="number"
-                            wire:model="person_capacity" placeholder="Person Capacity" min="1">
+                            wire:model.live="person_capacity" placeholder="Person Capacity" min="1">
                         @error('person_capacity')
-                        <b class="text-danger">{{ $message }}</b>
+                            <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
                 </div>
+                {{-- end filters --}}
             </div>
         </div>
     </div>
@@ -64,7 +66,8 @@
         <h5 class="card-title">Available Meeting Rooms</h5>
         <p class="card-text">Find Available Rooms Now</p>
         <div>
-            @livewire('slider.room-cards', [], key('room-cards'))
+            @livewire('slider.room-cards')
+            {{-- <livewire:slider.room-cards :rooms="$rooms" wire:updateRooms="$refresh"> --}}
         </div>
     </div>
 </div>

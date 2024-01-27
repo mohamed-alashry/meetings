@@ -28,6 +28,8 @@ return new class extends Migration
             $table->unsignedTinyInteger('repeatable')->default(1)->comment('1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly');
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
             $table->unsignedInteger('person_capacity')->nullable();
+            $table->boolean('send_user_location')->default(0);
+            $table->string('google_meet_link')->nullable();
 
             $table->datetime('end_date')->nullable();
             $table->datetime('alert_date')->nullable();

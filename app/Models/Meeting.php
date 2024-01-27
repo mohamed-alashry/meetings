@@ -41,7 +41,9 @@ class Meeting extends Model
         'person_capacity',
         'end_date',
         'alert_date',
-        'status', // default(1) => Draft, 2 => Scheduled, 3 => Active, 4 => Cancelled, 5 => Finished
+        'status', // default(1) => Active, 2 => Cancelled
+        'send_user_location',
+        'google_meet_link',
     ];
 
     /**

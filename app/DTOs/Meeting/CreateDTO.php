@@ -25,4 +25,6 @@ class CreateDTO extends Data
     public int $user_id;
     public ?int $parent_id;
     public ?int $status;
+    public bool $send_user_location;
+    public ?string $google_meet_link;
 }

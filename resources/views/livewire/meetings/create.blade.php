@@ -1,10 +1,12 @@
 <div>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
-        style="background-color: #C2203D;" wire:click="toggleCreateModal">
-        <i class="fa-regular fa-calendar-days"></i>
-        Book a New Meeting
-    </button>
+    @if (!$in_home)
+        <!-- Button trigger modal -->
+        <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
+            style="background-color: #C2203D;" wire:click="toggleCreateModal">
+            <i class="fa-regular fa-calendar-days"></i>
+            Book a New Meeting
+        </button>
+    @endif
 
     @if ($openCreateModal)
         <!-- Modal -->
@@ -22,6 +24,7 @@
                         <p class="mb-1 fw-light text-white-50">
                             Find Available Rooms Now
                         </p>
+                        {{-- filters --}}
                         <div class="row w-100 d-flex justify-content-center">
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
@@ -75,6 +78,7 @@
                                 @enderror
                             </div>
                         </div>
+                        {{-- end filters --}}
                     </div>
                     <div class="modal-body p-0">
                         <div class="m-3 color-primary">
@@ -82,6 +86,7 @@
                             <p class="fs-6 m-0">Type here the meeting info</p>
                         </div>
 
+                        {{-- rooms --}}
                         <div class="row px-3">
                             @forelse ($rooms as $room)
                                 <div class="col-lg-3" wire:key='room-{{ $room->id }}'>
@@ -138,6 +143,7 @@
                                 <p class="h6 fw-bold">No rooms found</p>
                             @endforelse
                         </div>
+                        {{-- end rooms --}}
                         <hr>
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
@@ -273,6 +279,33 @@
                                 placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
 
                             @error('brief')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div>
+
+                        <div class="input-form-login px-3 col-12 ">
+                            {{-- <i class="fa-solid fa-video icon fa-lg"></i>
+                            <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
+                                placeholder="Type here your google meet link" type="text" wire:model="google_meet_link"> --}}
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input" value="1"
+                                        wire:model="send_user_location">
+                                    Send user location
+                                </label>
+                            </div>
+                            @error('google_meet_link')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div>
+
+                        <div class="input-form-login px-3 col-12 ">
+                            <i class="fa-solid fa-video icon fa-lg"></i>
+                            <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
+                                placeholder="Type here your google meet link" type="text"
+                                wire:model="google_meet_link">
+
+                            @error('google_meet_link')
                                 <b class="text-danger">{{ $message }}</b>
                             @enderror
                         </div>

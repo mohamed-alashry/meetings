@@ -3,14 +3,15 @@
 namespace App\Livewire\Meetings;
 
 use App\Models\Room;
+use App\Models\Invitee;
 use Livewire\Component;
+use Livewire\Attributes\On;
 use App\DTOs\Meeting\CreateDTO;
 use App\Services\MeetingService;
 use Illuminate\Support\Collection;
-use App\Http\Requests\Meeting\CreateRequest;
-use App\Models\Invitee;
 
 use function Laravel\Prompts\alert;
+use App\Http\Requests\Meeting\CreateRequest;
 
 class Create extends Component
 {
@@ -34,6 +35,10 @@ class Create extends Component
     public Collection $invitees;
     public Collection $invitedUsers;
     public string $inviteeEmail;
+    public $in_home = false;
+    public $send_user_location = false;
+    public string $google_meet_link;
+
 
 
 
@@ -83,11 +88,18 @@ class Create extends Component
 
         $this->redirect(route('meetings.card_view'), true);
     }
-
+    #[On('toggleCreateModal')]
     public function toggleCreateModal()
     {
         $this->openCreateModal = !$this->openCreateModal;
     }
+    #[On('changeRoom')]
+    public function changeRoom($room_id)
+    {
+        $this->room_id = $room_id;
+    }
+
+
 
     public function addInvitee(Invitee $invitee)
     {
@@ -100,6 +112,15 @@ class Create extends Component
         // remove the invitee from the collection
         $this->invitedUsers->forget($this->invitedUsers->search($invitee));
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+    }
+
+    #[On('passFilters')]
+    public function passFilters($start_date, $start_time, $person_capacity, $duration)
+    {
+        $this->start_date = $start_date;
+        $this->start_time = $start_time;
+        $this->person_capacity = $person_capacity;
+        $this->duration = $duration;
     }
 
     public function render()
