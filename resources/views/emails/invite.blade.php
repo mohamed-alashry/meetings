@@ -6,7 +6,7 @@
 </head>
 
 <div>
-    <div style="padding: 10% 20%; font-family: sans-serif;background: #F6F6F6;">
+    <div style="padding: 3% 21%; font-family: sans-serif;background: #F6F6F6;">
         <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff;">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
