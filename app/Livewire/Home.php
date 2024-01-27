@@ -12,6 +12,8 @@ class Home extends Component
     private MeetingService $meetingService;
     public string $start_date;
     public string $start_time;
+    public int $duration;
+    public int $repeatable;
     public int $person_capacity;
     public Collection $rooms;
 
@@ -24,6 +26,7 @@ class Home extends Component
         $this->start_date = '';
         $this->start_time = '';
         $this->person_capacity = 1;
+        $this->duration = 0;
 
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
     }
@@ -31,6 +34,8 @@ class Home extends Component
     {
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
         $this->dispatch('updateRooms', $this->rooms);
+        $this->dispatch('updateFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration);
+
     }
 
     public function render()

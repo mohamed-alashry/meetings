@@ -15,6 +15,8 @@ class RoomCards extends Component
     public string $start_time;
     public int $person_capacity;
     public int $duration;
+    public int $repeatable;
+
 
 
     public bool $openCreateModal = false;
@@ -40,6 +42,16 @@ class RoomCards extends Component
     {
         $this->rooms = Room::find(collect($rooms)->pluck('id')->toArray());
 
+    }
+
+    #[On('updateFilters')]
+    public function updatedFilters($start_date, $start_time, $person_capacity, $duration)
+    {
+        $this->start_date = $start_date;
+        $this->start_time = $start_time;
+        $this->person_capacity = $person_capacity;
+        $this->duration = $duration;
+        $this->dispatch('passFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration);
     }
 
     public function render()
