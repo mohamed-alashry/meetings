@@ -17,21 +17,27 @@ class RoomService
      */
     public function monitor(FilterDTO $data)
     {
-        $query = Room::query();
-        foreach ($data->toArray() as $key => $value) {
-            if ($key == 'meetings_start_date' && $value) {
-                $query->with([
-                    'meetings' => function ($q) use ($value) {
-                        if ($value) {
-
-                            $q->whereDate('start_date', '>=', $value)->orderBy('start_date')->orderBy('start_time');
+        return Room::query()
+            ->when($data->id, function ($query, $value) {
+                $query->where('id', $value);
+            })
+            ->when(
+                $data->meetings_start_date,
+                function ($query, $value) {
+                    $query->with([
+                        'meetings' => function ($q) use ($value) {
+                            $q->whereDate('start_date', '=', $value)->orderBy('start_date')->orderBy('start_time');
                         }
-                    }
-                ]);
-            } elseif ($value) $query->where($key, $value);
-        }
-        $rooms = $query->get();
-        return $rooms;
+                    ]);
+                },
+                function ($query) {
+                    $query->with([
+                        'meetings' => function ($q) {
+                            $q->whereDate('start_date', '>=', now())->orderBy('start_date')->orderBy('start_time');
+                        }
+                    ]);
+                }
+            )->get();
     }
 
     public function list_with_pagination(FilterDTO $data, int $perPage = 10)

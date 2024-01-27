@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Mail\Mailables\Attachment;
 
 class ReminderMeeting extends Mailable
 {
@@ -39,7 +40,7 @@ class ReminderMeeting extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.reminder',
+            view: 'emails.invite',
         );
     }
 
@@ -50,6 +51,9 @@ class ReminderMeeting extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return [
+            Attachment::fromPath(storage_path('app/public/' . $this->meeting->room->attachment))
+                ->as('guide_room.'.explode('.', $this->meeting->room->attachment)[1]),
+        ];
     }
 }

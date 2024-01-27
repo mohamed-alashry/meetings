@@ -31,7 +31,7 @@
                 </div>
                 <div class="line-cards mt-4">
                     <div>
-                        @livewire('slider.meeting-cards', [], key('meeting-cards'))
+                        {{-- @livewire('card', [], key('meeting-cards')) --}}
                     </div>
                 </div>
             </div>

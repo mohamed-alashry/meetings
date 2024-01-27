@@ -35,7 +35,7 @@ class CreateRequest extends FormRequest
             'location'          => 'required|string|max:191',
             'google_location'   => 'required|string|max:191',
             'capacity'          => 'required|numeric|gte:1',
-            'photos'            => 'nullable|array',
+            'photos'            => 'required|array',
             'photos.*'          => 'image',
             'features'          => 'nullable|array',
             'attachment'        => 'required|file',

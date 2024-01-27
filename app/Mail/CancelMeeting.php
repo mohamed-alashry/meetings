@@ -39,7 +39,7 @@ class CancelMeeting extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.cancel',
+            view: 'emails.invite',
         );
     }
 
@@ -51,9 +51,8 @@ class CancelMeeting extends Mailable
     public function attachments(): array
     {
         return [
-            Attachment::fromPath(storage_path('app/public/'.$this->meeting->room->attachment))
-                ->as('guide_room')
-            // 'guide_room' => storage_path($this->meeting->room->attachment)
+            Attachment::fromPath(storage_path('app/public/' . $this->meeting->room->attachment))
+                ->as('guide_room.' . explode('.', $this->meeting->room->attachment)[1]),
         ];
     }
 }
