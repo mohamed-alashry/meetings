@@ -56,7 +56,7 @@ class Meeting extends Model
     ];
 
 
-    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'minutes_attach_path'];
+    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'minutes_attach_path', 'add_to_calendar'];
 
     public function getEventJsonAttribute()
     {
@@ -111,6 +111,14 @@ class Meeting extends Model
     {
 
         return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
+    }
+
+    public function getAddToCalendarAttribute(){
+
+        $from = $this->start_date . ' ' . $this->start_time;
+        $to = $this->end_date . ' ' . $this->end_time;
+        $title = $this->title;
+        return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
 
 

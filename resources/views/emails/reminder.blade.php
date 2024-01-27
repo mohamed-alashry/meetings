@@ -39,7 +39,7 @@
                 <table style="padding: 2rem 0;background-color: #fff;  width: 100%;">
                     <tr style="width: 100%;">
                         <th style="text-align: end; padding-top: 0.5rem;">
-                            <a type="button"
+                            <a href="{{ $meeting->google_meet_link }}"
                                 style=" padding: 1.3rem 3rem 0.8rem; border-radius: 1rem; font-weight: 600;font-size: 0.9rem; background-color: #fff; border: solid 1px #cccc;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/meet 1.png" alt="" srcset="">
@@ -50,7 +50,7 @@
                             </a>
                         </th>
                         <th style="text-align: start;">
-                            <a type="button"
+                            <a href="{{ $meeting->add_to_calendar }}"
                                 style=" padding:1.3rem 3rem 0.8rem; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600;font-size: 0.9rem;  color: #fff;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/appointment 1.png" alt="" srcset="">
@@ -190,6 +190,7 @@
                                             <span style="font-weight: 700;color: #022537;">20213</span>
                                         </span>
                                     </div>
+                                    @if ($meeting->send_user_location)
                                     <div style="margin-top: 1rem ">
                                         <img src="https://safavisa.sirv.com/Images/notes 1.png" alt="" srcset="">
                                         <span style="font-weight: 500; margin: 0.1rem; color: rgb(126, 126, 126);">
@@ -202,6 +203,7 @@
                                             </p>
                                         </span>
                                     </div>
+                                    @endif
                                     <div>
                                         <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt=""
                                             srcset="">
