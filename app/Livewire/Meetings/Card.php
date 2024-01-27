@@ -53,6 +53,7 @@ class Card extends Component
     function mount(Meeting $meeting)
     {
         $this->meeting = $meeting;
+        $this->minutes = '';
     }
 
 
