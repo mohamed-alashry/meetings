@@ -129,6 +129,43 @@
                             </div>
                         </div>
                     </div>
+
+                    {{-- minutes section --}}
+                    <hr>
+                    <div class="m-3 color-primary">
+                        <p class="h6 fw-bold">Minutes</p>
+                        <p class="fs-6 m-0">Type here the minutes</p>
+                    </div>
+                    <div class="input-form-login px-3 col-12 ">
+                        <i class="fa-solid fa-file-lines icon fa-lg"></i>
+                        <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
+                            type="text" wire:model="minutes"></textarea>
+
+                        @error('minutes')
+                            <b class="text-danger">{{ $message }}</b>
+                        @enderror
+                    </div>
+
+                    <div class="input-form-login px-3 col-12 ">
+                        <label for="finput2" class="input-field form-control border-0 shadow rounded-4">
+                            <i class="fa-solid fa-file-arrow-up icon fa-lg">
+                            </i>
+                            <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
+                                @if ($minutes_attach)
+                                    {{ $minutes_attach->getClientOriginalName() }}
+                                @else
+                                    Upload Minutes attach here...
+                                @endif
+                            </samp>
+                            <input class="form-control py-3 opacity-0" type="file"
+                                accept="pdf, doc, docx, xls, xlsx, ppt, pptx" id="finput2"
+                                wire:model="minutes_attach">
+                        </label>
+                        @error('minutes_attach')
+                            <b class="text-danger">{{ $message }}</b>
+                        @enderror
+                    </div>
+                    {{-- end minutes section --}}
                 </div>
             </div>
         </div>

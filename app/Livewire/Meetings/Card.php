@@ -7,15 +7,15 @@ use App\Models\Invitee;
 use App\Models\Meeting;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use App\DTOs\Meeting\CreateDTO;
 use App\Services\MeetingService;
-use Illuminate\Support\Collection;
 
-use function Laravel\Prompts\alert;
-use App\Http\Requests\Meeting\CreateRequest;
+use Illuminate\Support\Collection;
 
 class Card extends Component
 {
+    use WithFileUploads;
     private MeetingService $meetingService;
 
     public Meeting $meeting;
@@ -38,6 +38,10 @@ class Card extends Component
     public Collection $invitedUsers;
     public string $inviteeEmail;
 
+    public bool $edit_minutes = false;
+    public string $minutes;
+    public $minutes_attach;
+
 
 
 
@@ -57,18 +61,32 @@ class Card extends Component
         $this->openViewModal = !$this->openViewModal;
     }
 
-    public function addInvitee(Invitee $invitee)
+    public function editMinutes()
     {
-        $this->invitedUsers->push($invitee);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->edit_minutes = !$this->edit_minutes;
     }
 
-    public function removeInvitee(Invitee $invitee)
+    public function closeEditMinutes()
     {
-        // remove the invitee from the collection
-        $this->invitedUsers->forget($this->invitedUsers->search($invitee));
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->edit_minutes = !$this->edit_minutes;
+        $this->meeting->update([
+            'minutes' => $this->minutes,
+            'minutes_attach' => $this->minutes_attach
+        ]);
     }
+
+    // public function addInvitee(Invitee $invitee)
+    // {
+    //     $this->invitedUsers->push($invitee);
+    //     $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+    // }
+
+    // public function removeInvitee(Invitee $invitee)
+    // {
+    //     // remove the invitee from the collection
+    //     $this->invitedUsers->forget($this->invitedUsers->search($invitee));
+    //     $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+    // }
 
 
 

@@ -275,20 +275,100 @@
 
                         {{-- minutes section --}}
                         <hr>
-                        <div class="w-100 px-4">
-                            <p class="h5">Meeting Minutes </p>
-                            <p class="">here the meeting Minutes info</p>
-                            <div class="card rounded-4 m-3 shadow border-0">
-                                <div class="card-body color-primary">
-                                    {{ $meeting->minutes ?? '' }}
+
+                        @if ($edit_minutes)
+                            <div class="w-100 px-4">
+                                <span class="float-end btn btn-primary" role="button" wire:click="closeEditMinutes">
+                                    Update
+                                </span>
+                                <p class="h5">Meeting Minutes </p>
+                                <p class="">here the meeting Minutes info</p>
+                                <div class="input-form-login px-3 col-12 ">
+                                    <i class="fa-solid fa-file-lines icon fa-lg"></i>
+                                    <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
+                                        type="text" wire:model="minutes"></textarea>
+
+                                    @error('minutes')
+                                        <b class="text-danger">{{ $message }}</b>
+                                    @enderror
+                                </div>
+                                <div class="input-form-login px-3 col-12 ">
+                                    <label for="finput2" class="input-field form-control border-0 shadow rounded-4">
+                                        <i class="fa-solid fa-file-arrow-up icon fa-lg">
+                                        </i>
+                                        <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
+                                            @if ($minutes_attach)
+                                                {{ $minutes_attach->getClientOriginalName() }}
+                                            @else
+                                                Upload Minutes attach here...
+                                            @endif
+                                        </samp>
+                                        <input class="form-control py-3 opacity-0" type="file"
+                                            accept="pdf, doc, docx, xls, xlsx, ppt, pptx" id="finput2"
+                                            wire:model="minutes_attach">
+                                    </label>
+                                    @error('minutes_attach')
+                                        <b class="text-danger">{{ $message }}</b>
+                                    @enderror
                                 </div>
                             </div>
-                            @if ($meeting->minutes_attach_path)
-                                <a class="btn btn-primary my-3 w-100"
-                                    href="{{ $meeting->minutes_attach_path ?? '' }}" target="_blank"
-                                    rel="noopener noreferrer">Open minutes Attach</a>
-                            @endif
+                        @else
+                            <div class="w-100 px-4">
+                                <span class="float-end text-primary" role="button" wire:click="editMinutes">
+                                    <i class="fa-solid fa-edit icon fa-lg"></i>
+                                </span>
+                                <p class="h5">Meeting Minutes </p>
+                                <p class="">here the meeting Minutes info</p>
+                                <div class="card rounded-4 m-3 shadow border-0">
+                                    <div class="card-body color-primary">
+                                        {{ $meeting->minutes ?? '' }}
+                                    </div>
+                                </div>
+                                @if ($meeting->minutes_attach_path)
+                                    <a class="btn btn-primary my-3 w-100"
+                                        href="{{ $meeting->minutes_attach_path ?? '' }}" target="_blank"
+                                        rel="noopener noreferrer">Open minutes Attach</a>
+                                @endif
+                            </div>
+                        @endif
+
+                        {{-- minutes section --}}
+                        {{-- <hr>
+                        <div class="m-3 color-primary">
+                            <p class="h6 fw-bold">Minutes</p>
+                            <p class="fs-6 m-0">Type here the minutes</p>
                         </div>
+                        <div class="input-form-login px-3 col-12 ">
+                            <i class="fa-solid fa-file-lines icon fa-lg"></i>
+                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
+                                type="text" wire:model="minutes"></textarea>
+
+                            @error('minutes')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div>
+
+                        <div class="input-form-login px-3 col-12 ">
+                            <label for="finput2" class="input-field form-control border-0 shadow rounded-4">
+                                <i class="fa-solid fa-file-arrow-up icon fa-lg">
+                                </i>
+                                <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
+                                    @if ($minutes_attach)
+                                        {{ $minutes_attach->getClientOriginalName() }}
+                                    @else
+                                        Upload Minutes attach here...
+                                    @endif
+                                </samp>
+                                <input class="form-control py-3 opacity-0" type="file"
+                                    accept="pdf, doc, docx, xls, xlsx, ppt, pptx" id="finput2"
+                                    wire:model="minutes_attach">
+                            </label>
+                            @error('minutes_attach')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+                        </div> --}}
+                        {{-- end minutes section --}}
+
                     </div>
                 </div>
             </div>
