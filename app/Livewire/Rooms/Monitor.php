@@ -34,7 +34,6 @@ class Monitor extends Component
                 'id' => $this->room_id == 'all' ? null : $this->room_id,
             ];
             $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
-            $this->render();
         }
     }
 
