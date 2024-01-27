@@ -17,7 +17,6 @@ class RoomService
      */
     public function monitor(FilterDTO $data)
     {
-        dd($data->id);
         return Room::query()
             ->when($data->id, function ($query, $value) {
                 $query->where('id', $value);

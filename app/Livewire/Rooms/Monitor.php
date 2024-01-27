@@ -29,7 +29,6 @@ class Monitor extends Component
     {
         if (in_array($propertyName, ['room_id', 'start_date'])) {
             // $this->dispatch('meetings-filtered', ['start_date' => $this->start_date, 'room_id' => $this->room_id])->to(MeetingCards::class);
-            dd($this->room_id);
             $this->inputs = [
                 'meetings_start_date' => $this->start_date,
                 'id' => $this->room_id == 'all' ? null : $this->room_id,
