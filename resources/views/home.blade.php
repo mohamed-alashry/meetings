@@ -1,27 +1,19 @@
 @extends('layouts.app')
 
 @section('title', 'Home')
-@push('styles')
-<link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.carousel.min.css">
-<link rel="stylesheet" href="{{ asset('owlcarousel') }}/css/owl.theme.default.min.css">
-<style>
-    .owl-nav {
-        display: none;
-    }
-</style>
-@endpush
+
 @section('content')
 <section class="section-contct-body">
     @livewire('home', key('home'))
     <div class="container-fluid mt-4">
         <div class="row">
-            <div class="col-lg-9 col-md-12">
+            <div class="col-lg-12 col-md-12">
                 <div class="line-bookings row mt-3">
-                    <span class="col-lg-8 col-md-6 col-sm-12">
+                    <span class="col-lg-9 col-md-6 col-sm-12">
                         <h5 class="card-title">Upcomming Bookings</h5>
                         <p class="card-text">Don’t miss your appointments</p>
                     </span>
-                    <span class="col-lg-4 col-md-6 col-sm-12">
+                    <span class="col-lg-3 col-md-6 col-sm-12">
                         <a href="{{ route('meetings.calendar_view') }}" class="btn text-light w-100 h-100 rounded-4"
                             style="background-color: #C2203D;">
                             <i class="fa-regular fa-calendar-days"></i>
@@ -30,8 +22,21 @@
                     </span>
                 </div>
                 <div class="line-cards mt-4">
-                    <div>
-                        {{-- @livewire('card', [], key('meeting-cards')) --}}
+                    <div class="row">
+                        @forelse ($meetings->take(5) as $meeting)
+                        @livewire('meetings.card', ['meeting' => $meeting, 'room' => $meeting->room],
+                        key('card-'.$meeting->id))
+                        @empty
+                        <div class="card m-2 rounded-3">
+                            <div class="card-body p-5 m-4 m-auto">
+                                <h4 class="card-title">Not Found Upcoming Meetings in this room</h4>
+                                <div class="col-6 m-auto mt-4">
+                                    @livewire('meetings.create', ['room_id' => $meeting->room->id],
+                                    key('create-'.$meeting->room->id))
+                                </div>
+                            </div>
+                        </div>
+                        @endforelse
                     </div>
                 </div>
             </div>
@@ -43,42 +48,3 @@
     </div>
 </section>
 @endsection
-@push('scripts')
-<script src="{{ asset('owlcarousel') }}/js/owl.carousel.min.js"></script>
-<script>
-    $(document).ready(function() {
-            var owl = $('.owl-carousel');
-            owl.owlCarousel({
-                // rtl:true,
-                // loop: true,
-                // mouseDrag: true,
-                stagePadding: 0,
-                nav: false,
-                rewind: true,
-                margin: 8,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 1
-                    },
-                    960: {
-                        items: 2
-                    },
-                    1200: {
-                        items: 4
-                    }
-                }
-            });
-            // owl.on('mousewheel', '.owl-stage', function(e) {
-            //     if (e.deltaY > 0) {
-            //         owl.trigger('next.owl');
-            //     } else {
-            //         owl.trigger('prev.owl');
-            //     }
-            //     e.preventDefault();
-            // });
-        });
-</script>
-@endpush
