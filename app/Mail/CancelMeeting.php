@@ -39,7 +39,7 @@ class CancelMeeting extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.cancel',
+            view: 'emails.invite',
         );
     }
 

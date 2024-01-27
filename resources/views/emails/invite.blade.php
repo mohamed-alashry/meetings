@@ -12,7 +12,12 @@
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
                 <tr style="width: 100%;">
                     <th style="width: 50%; text-align: start;font-size: 14px;">
-                        <h3>{{ $meeting->title }}</h3>
+                        <h3>
+                            {{ $meeting->title }}
+                            @if ($meeting->status == 2)
+                                - (Cancelled)
+                            @endif
+                        </h3>
                         <p>
                             <img src="https://safavisa.sirv.com/Images/calendar 1.png" alt="" srcset="">
                             {{ $meeting->start_date_format}},
