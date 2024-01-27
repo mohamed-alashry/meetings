@@ -68,7 +68,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model="person_capacity" placeholder="Person Capacity"
+                                    type="number" wire:model.live="person_capacity" placeholder="Person Capacity"
                                     min="1">
                                 @error('person_capacity')
                                     <b class="text-danger">{{ $message }}</b>

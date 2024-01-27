@@ -283,8 +283,11 @@
                                     {{ $meeting->minutes ?? '' }}
                                 </div>
                             </div>
-                            <a class="btn btn-primary my-3 w-100" href="{{ $meeting->minutes_attach_path ?? '' }}"
-                                target="_blank" rel="noopener noreferrer">Open Attach</a>
+                            @if ($meeting->minutes_attach_path)
+                                <a class="btn btn-primary my-3 w-100"
+                                    href="{{ $meeting->minutes_attach_path ?? '' }}" target="_blank"
+                                    rel="noopener noreferrer">Open minutes Attach</a>
+                            @endif
                         </div>
                     </div>
                 </div>

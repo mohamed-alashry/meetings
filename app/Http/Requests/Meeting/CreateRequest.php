@@ -37,7 +37,7 @@ class CreateRequest extends FormRequest
             'description'       => 'nullable|string|max:191',
             'start_date'        => 'required|date|after:yesterday',
             'start_time'        => 'required|date_format:H:i',
-            'repeatable'        => 'required',
+            'repeatable'        => 'nullable',
             'person_capacity'   => 'required|numeric|gte:1',
             'duration'          => 'required|numeric|gte:1',
             'end_date'          => 'nullable|date|after:start_date',

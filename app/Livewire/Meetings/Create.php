@@ -55,7 +55,9 @@ class Create extends Component
         $this->start_time = '';
         $this->inviteeEmail = '';
         $this->person_capacity = 1;
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->repeatable = 1;
+        $this->duration = 0;
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
         $this->invitees = Invitee::all();
         $this->invitedUsers = collect();
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
@@ -64,7 +66,7 @@ class Create extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }

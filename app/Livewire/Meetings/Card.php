@@ -46,47 +46,11 @@ class Card extends Component
         $this->meetingService = $meetingService;
     }
 
-    protected function rules(): array
-    {
-        return (new CreateRequest())->rules();
-    }
-
     function mount(Meeting $meeting)
     {
         $this->meeting = $meeting;
-
-        $this->status = 1;
-        $this->room_id = 1;
-        $this->start_date = '';
-        $this->start_time = '';
-        $this->inviteeEmail = '';
-        $this->person_capacity = 1;
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        $this->invitees = Invitee::all();
-        $this->invitedUsers = collect();
-        $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
     }
 
-    public function updated()
-    {
-        $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
-        $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
-    }
-
-
-    public function store()
-    {
-        $validated = $this->validate();
-        $validated['user_id'] = auth()->id();
-
-        $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
-
-        session()->flash('success', 'Meeting booked successfully');
-
-        $this->redirect(route('meetings.card_view'), true);
-    }
 
     public function toggleViewModal()
     {

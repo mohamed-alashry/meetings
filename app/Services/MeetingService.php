@@ -65,10 +65,10 @@ class MeetingService
                 }
 
                 $emails = $invited_users->pluck('email')->toArray();
-                foreach ($emails as $email) {
-                    Mail::to($email)->send(new InviteMeeting($meeting));
+                if (count($emails) > 0) {
+                    Mail::to($emails)->send(new InviteMeeting($meeting));
                 }
-                // Mail::to($emails)->send(new InviteMeeting($meeting));
+
 
                 break;
             case 2: // Daily
@@ -106,10 +106,8 @@ class MeetingService
             }
 
             $emails = $meeting->invitations->pluck('userable.email')->toArray();
-            // $emails = $meeting->invitations;
-            // dd($emails);
-            foreach ($emails as $email) {
-                Mail::to($email)->send(new InviteMeeting($meeting));
+            if (count($emails) > 0) {
+                Mail::to($emails)->send(new InviteMeeting($meeting));
             }
         } elseif ($data->repeatable == $meeting->repeatable) { // same repeatable
             foreach ($meeting_repeats as $meeting_repeat) {
@@ -153,15 +151,17 @@ class MeetingService
         }
     }
 
-    public function getRooms($start_date = null, $start_time = null)
+    public function getRooms($start_date = null, $start_time = null, $capacity = null)
     {
         if ($start_date && $start_time) {
-            $reservedRooms = Room::whereHas('meetings', function ($query) use ($start_date, $start_time) {
-                $query->where('start_date', $start_date)->where('start_time', $start_time);
-            })->get();
 
-            // return all rooms without reserved rooms
-            $rooms = Room::whereNotIn('id', $reservedRooms->pluck('id'))->get();
+            // query to get rooms where not has meeting in same start_date and between start_time and end_time and capacity greater than person_capacity
+            $rooms = Room::whereDoesntHave('meetings', function ($query) use ($start_date, $start_time) {
+                $query->where('start_date', $start_date)
+                    ->where('start_time', '<=', $start_time)
+                    ->where('end_time', '>=', $start_time);
+            })->where('capacity', '>=', $capacity)->get();
+
             return $rooms;
         }
 
@@ -241,8 +241,8 @@ class MeetingService
         }
 
         $emails = $invited_users->pluck('email')->toArray();
-        foreach ($emails as $email) {
-            Mail::to($email)->send(new InviteMeeting($meeting));
+        if (count($emails) > 0) {
+            Mail::to($emails)->send(new InviteMeeting($meeting));
         }
     }
 

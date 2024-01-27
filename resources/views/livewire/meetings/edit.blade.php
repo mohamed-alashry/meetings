@@ -2,11 +2,10 @@
     <div class="row p-3 align-items-center">
         <div class="col-lg-6 col-sm-12 color-primary">
             <p class="h6 fw-bold">Meeting Information</p>
-            <p class="fs-6 m-0">Type here the meeting info</p>
         </div>
         <!-- Button trigger modal -->
         <div class="col-lg-6 col-sm-12 row d-flex gap-3">
-            @if ($meeting->status == 1)
+            @if ($meeting->status == 1 && $meeting->start_date .' '. $meeting->start_time >= date('Y-m-d H:i:s'))
                 <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold d-inline col"
                     style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:click="cancelMeeting"
                     wire:confirm="Are you sure?">
@@ -87,7 +86,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model="person_capacity" placeholder="Person Capacity"
+                                    type="number" wire:model.live="person_capacity" placeholder="Person Capacity"
                                     min="1">
                                 @error('person_capacity')
                                     <b class="text-danger">{{ $message }}</b>
