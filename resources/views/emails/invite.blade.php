@@ -6,12 +6,12 @@
 </head>
 
 <div>
-    <div style="padding: 3% 21%; font-family: sans-serif;background: #F6F6F6;">
-        <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff;">
+    <div style="font-family: sans-serif;background: #F6F6F6;padding: 5% 20%;">
+        <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff; ">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
                 <tr style="width: 100%;">
-                    <th style="width: 50%; text-align: start;font-size: 14px;">
+                    <th style="width: 50%; text-align: start;font-size: 75%;">
                         <h3>
                             {{ $meeting->title }}
                             @if ($meeting->status == 2)
@@ -43,9 +43,9 @@
             <div>
                 <table style="padding: 2rem 0;background-color: #fff;  width: 100%;">
                     <tr style="width: 100%;">
-                        <th style="text-align: end; padding-top: 0.5rem;">
+                        <th style="text-align: end; padding-top: 0.5%;">
                             <a href="{{ $meeting->google_meet_link }}"
-                                style=" padding: 1.3rem 3rem 0.8rem; border-radius: 1rem; font-weight: 600;font-size: 0.9rem; background-color: #fff; border: solid 1px #cccc;">
+                                style="text-decoration: none; padding: 5% 15%; border-radius: 1rem; font-weight: 600;font-size: 75%; background-color: #fff; border: solid 1px #cccc;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/meet 1.png" alt="" srcset="">
                                 </span>
@@ -56,7 +56,7 @@
                         </th>
                         <th style="text-align: start;">
                             <a href="{{ $meeting->add_to_calendar }}"
-                                style=" padding:1.3rem 3rem 0.8rem; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600;font-size: 0.9rem;  color: #fff;">
+                                style="text-decoration: none; padding: 5% 15%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600;font-size: 75%; color: #fff;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/appointment 1.png" alt="" srcset="">
                                 </span>
@@ -68,10 +68,10 @@
                     </tr>
 
                 </table>
-                <div style="padding: 0 1rem 1rem; font-size: 14px;">
+                <div style="padding: 0% 5%; font-size: 75%;">
                     <p style="font-weight: 700; margin: 0;">Invited Persons</p>
                     <p style="margin-top: 3px;">Invited persons by email or Name</p>
-                    <div style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;"">
+                    <div style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
 
                         @foreach ($meeting->invitations as $invitee)
                         <p style=" font-weight: 700; margin: 0.3rem;">
