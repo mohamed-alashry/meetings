@@ -39,14 +39,14 @@
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="card-hover-text" style="height: 91%;">
+                        <div class="card-hover-text" style="height: 91%;" role="button">
                             <div class="card-hover-text-bubble rounded-4">
                                 <span
                                     class="card-hover-text-title d-flex justify-content-center align-items-center h-100">
-                                    <i class="fa-regular fa-calendar-check fa-xl px-2"></i>
+                                    <i class="fa-regular fa-calendar-check fa-xl px-2"></i> Book room now
                                 </span>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </label>
             </div>
