@@ -34,6 +34,7 @@ class RoomCards extends Component
         $this->start_time = '';
         $this->person_capacity = 1;
         $this->duration = 0;
+        $this->repeatable = 1;
 
         $this->rooms = Room::get();
     }
