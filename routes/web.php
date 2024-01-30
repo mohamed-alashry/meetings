@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 Route::get('fire_invite_mail', function () {
-    \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\InviteMeeting(\App\Models\Meeting::latest()->first()));
+    \Illuminate\Support\Facades\Mail::to(['mohamedalashry12@gmail.com'])->send(new \App\Mail\InviteMeeting(\App\Models\Meeting::latest()->first()));
     return 'send invite mail successfully';
 });
 
