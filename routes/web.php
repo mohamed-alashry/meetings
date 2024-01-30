@@ -16,7 +16,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('events','MeetingController@events')->name('events');
+Route::get('events', 'MeetingController@events')->name('events');
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
@@ -67,12 +67,12 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
-Route::get('fire_invite_mail',function () {
+Route::get('fire_invite_mail', function () {
     \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\InviteMeeting(\App\Models\Meeting::latest()->first()));
     return 'send invite mail successfully';
 });
 
-Route::get('fire_reminder_mail',function () {
+Route::get('fire_reminder_mail', function () {
     \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\ReminderMeeting(\App\Models\Meeting::latest()->first()));
     return 'send reminder mail successfully';
 });
