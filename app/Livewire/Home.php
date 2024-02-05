@@ -35,7 +35,7 @@ class Home extends Component
     {
         $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0);
         $this->dispatch('updateRooms', $this->rooms);
-        $this->dispatch('updateFilters', $this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0, $this->duration, $this->repeatable ?? null);
+        $this->dispatch('updateFilters', $this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0, $this->duration ?? null, $this->repeatable ?? null);
     }
 
     public function render()
