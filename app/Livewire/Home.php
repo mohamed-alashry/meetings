@@ -29,14 +29,13 @@ class Home extends Component
         $this->duration = 0;
         $this->repeatable = 1;
 
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
+        $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0);
     }
     public function updated()
     {
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
+        $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0);
         $this->dispatch('updateRooms', $this->rooms);
-        $this->dispatch('updateFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration, $this->repeatable);
-
+        $this->dispatch('updateFilters', $this->start_date ?? null, $this->start_time ?? null, $this->person_capacity ?? 0, $this->duration, $this->repeatable ?? null);
     }
 
     public function render()
