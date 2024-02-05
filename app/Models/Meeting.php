@@ -113,7 +113,8 @@ class Meeting extends Model
         return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
     }
 
-    public function getAddToCalendarAttribute(){
+    public function getAddToCalendarAttribute()
+    {
 
         $from = \Carbon\Carbon::parse($this->start_date)->format('d/m/Y') . ' ' . $this->start_time;
         $to = \Carbon\Carbon::parse($this->end_date)->format('d/m/Y') . ' ' . $this->end_time;
@@ -157,6 +158,7 @@ class Meeting extends Model
     public function scopeUpcoming($query)
     {
         return $query->whereDate('start_date', '>=', now()->format('Y-m-d'))
+            ->whereDate('start_date', '<=', now()->addWeek()->format('Y-m-d'))
             ->orderBy('start_date')
             ->orderBy('start_time');
     }
