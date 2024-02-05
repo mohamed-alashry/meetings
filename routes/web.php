@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\HomeController;
+use Spatie\GoogleCalendar\Event;
 
 /*
 |--------------------------------------------------------------------------
@@ -75,4 +76,46 @@ Route::get('fire_invite_mail', function () {
 Route::get('fire_reminder_mail', function () {
     \Illuminate\Support\Facades\Mail::to(['test@email.com'])->send(new \App\Mail\ReminderMeeting(\App\Models\Meeting::latest()->first()));
     return 'send reminder mail successfully';
+});
+Route::get('fire_calendar', function () {
+
+
+    //create a new event
+    $event = new Event;
+
+    $event->name = 'A new event';
+    $event->description = 'Event description';
+    $event->startDateTime = Carbon\Carbon::now();
+    $event->endDateTime = Carbon\Carbon::now()->addHour();
+    $event->addAttendee([
+        'email' => 'john@example.com',
+        'name' => 'John Doe',
+        'comment' => 'Lorum ipsum',
+        'responseStatus' => 'needsAction',
+    ]);
+    $event->addAttendee(['email' => 'anotherEmail@gmail.com']);
+    $event->addMeetLink(); // optionally add a google meet link to the event
+
+    $event->save();
+    return $event;
+    
+    // get all future events on a calendar
+    $events = Event::get();
+
+    // update existing event
+    $firstEvent = $events->first();
+    $firstEvent->name = 'updated name';
+    $firstEvent->save();
+
+    $firstEvent->update(['name' => 'updated again']);
+
+    // create a new event
+    Event::create([
+        'name' => 'A new event',
+        'startDateTime' => Carbon\Carbon::now(),
+        'endDateTime' => Carbon\Carbon::now()->addHour(),
+    ]);
+
+    // delete an event
+    $event->delete();
 });
