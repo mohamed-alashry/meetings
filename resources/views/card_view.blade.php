@@ -40,7 +40,7 @@
                 <div class="line-bookings row my-3 px-1">
                     <span class="col-lg-6 col-md-6 col-sm-12">
                         <h5 class="card-title">
-                            My {{ Str::ucfirst($name??'')}} Meetings
+                            My {{ Str::ucfirst($name??'') }} Meetings
                         </h5>
                         <p class="card-text">Don’t miss your appointments</p>
                     </span>
