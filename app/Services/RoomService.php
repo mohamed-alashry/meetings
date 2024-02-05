@@ -33,7 +33,7 @@ class RoomService
                 function ($query) {
                     $query->with([
                         'meetings' => function ($q) {
-                            $q->whereDate('start_date', '>=', now())->orderBy('start_date')->orderBy('start_time');
+                            $q->whereDate('start_date', '=', now())->orderBy('start_date')->orderBy('start_time');
                         }
                     ]);
                 }
