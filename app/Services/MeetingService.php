@@ -158,7 +158,7 @@ class MeetingService
         if ($start_date && $start_time) {
 
             // query to get rooms where not has meeting in same start_date and between start_time and end_time and capacity greater than person_capacity
-            $rooms = $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time) {
+            $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time) {
                 $query->where('start_date', $start_date)
                     ->where('start_time', '<=', $start_time)
                     ->where('end_time', '>=', $start_time);
