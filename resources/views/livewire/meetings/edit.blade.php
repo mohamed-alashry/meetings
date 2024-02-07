@@ -94,7 +94,7 @@
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="duration" placeholder="Duration">
+                                    type="number" wire:model.live="duration" placeholder="Duration" min="1">
                                 @error('duration')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror

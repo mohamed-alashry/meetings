@@ -16,7 +16,7 @@ class UpdateDTO extends Data
     public string|Optional $start_time;
     public string|Optional $end_time;
     public ?string $end_date;
-    public int|Optional $duration;
+    public ?int $duration;
     public int|Optional $room_id;
     public int|Optional $status;
     public int|Optional $person_capacity;

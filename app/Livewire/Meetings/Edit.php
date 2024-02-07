@@ -86,7 +86,7 @@ class Edit extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity ?? 0);
         $this->rooms->prepend($this->meeting->room);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();

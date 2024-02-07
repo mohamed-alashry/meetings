@@ -20,7 +20,7 @@ class CreateDTO extends Data
     public ?int $repeatable;
     public int $person_capacity;
     public ?string $end_date;
-    public int $duration;
+    public ?int $duration;
     public int $room_id;
     public int $user_id;
     public ?int $parent_id;

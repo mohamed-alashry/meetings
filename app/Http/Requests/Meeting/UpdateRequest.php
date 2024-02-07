@@ -42,7 +42,7 @@ class UpdateRequest extends FormRequest
             'end_time'          => 'required|date_format:H:i:s',
             'repeatable'        => 'required',
             'person_capacity'   => 'required|numeric|gte:1',
-            'duration'          => 'required|numeric|gte:1',
+            'duration'          => 'nullable|numeric|gte:1',
             'end_date'          => 'nullable',
             'status'            => 'nullable|in:1,2,3',
         ];

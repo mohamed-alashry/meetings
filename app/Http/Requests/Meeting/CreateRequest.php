@@ -39,7 +39,7 @@ class CreateRequest extends FormRequest
             'start_time'         => 'required|date_format:H:i',
             'repeatable'         => 'nullable',
             'person_capacity'    => 'required|numeric|gte:1',
-            'duration'           => 'required|numeric|gte:1',
+            'duration'           => 'nullable|numeric|gte:1',
             'end_date'           => 'nullable|date|after:start_date',
             'status'             => 'nullable|in:1,2',
             'send_user_location' => 'nullable',
