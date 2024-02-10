@@ -193,7 +193,7 @@
                                     </div>
                                     <div>
                                         <p class="card-text w-75">
-                                            {{ $meeting->brief ?? '' }}
+                                            {!! $meeting->brief ?? '' !!}
                                         </p>
                                     </div>
                                 </div>
@@ -285,8 +285,9 @@
                                 <p class="">here the meeting Minutes info</p>
                                 <div class="input-form-login px-3 col-12 ">
                                     <i class="fa-solid fa-file-lines icon fa-lg"></i>
-                                    <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
-                                        type="text" wire:model="minutes"></textarea>
+                                    {{-- <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
+                                        type="text" wire:model="minutes"></textarea> --}}
+                                    <x-input.tinymce wire:model="minutes" placeholder="Type anything you want..." />
 
                                     @error('minutes')
                                         <b class="text-danger">{{ $message }}</b>
@@ -339,7 +340,8 @@
                                         Share with
                                     </span>
 
-                                    <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" multiple>
+                                    <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                        multiple>
                                         @foreach ($meeting->invitations as $invitee)
                                             <option>{{ $invitee->userable->name }}</option>
                                             {{-- <p class="card-title fw-semibold my-1" role="button"
