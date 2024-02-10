@@ -14,6 +14,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.tiny.cloud/1/cv3pz31tc14936cud70wtdncog4fgn2e6fincwa77zep2a7r/tinymce/6/tinymce.min.js"
+        referrerpolicy="origin"></script>
+
     <style>
         .bg-warning {
             background-color: #F15A3E !important;

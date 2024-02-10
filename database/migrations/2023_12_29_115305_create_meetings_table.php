@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreignId('parent_id')->nullable()->constrained('meetings')->onDelete('cascade');
 
             $table->string('title')->nullable();
-            $table->string('brief')->nullable();
-            $table->string('description')->nullable();
+            $table->text('brief')->nullable();
+            $table->text('description')->nullable();
             $table->text('minutes')->nullable();
             $table->string('minutes_attach')->nullable();
             $table->date('start_date')->nullable();

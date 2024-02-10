@@ -297,8 +297,7 @@
                         </div>
                         <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-circle-info icon fa-lg z-1"></i>
-                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4"
-                                placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
+                            <x-input.tinymce wire:model="brief" placeholder="Type anything you want..." />
 
                             @error('brief')
                                 <b class="text-danger">{{ $message }}</b>

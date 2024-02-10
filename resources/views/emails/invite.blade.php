@@ -122,7 +122,7 @@
                                         {{ str_replace(' ', '', $meeting->title) }}
                                     </p>
                                     <p style="font-weight: 500;">
-                                        {{ str_replace(' ', '', $meeting->brief) }}
+                                        {!! str_replace(' ', '', $meeting->brief) !!}
                                     </p>
                                 </th>
                             </tr>

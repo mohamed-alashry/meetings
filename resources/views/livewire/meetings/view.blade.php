@@ -138,8 +138,7 @@
                     </div>
                     <div class="input-form-login px-3 col-12 ">
                         <i class="fa-solid fa-file-lines icon fa-lg"></i>
-                        <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
-                            type="text" wire:model="minutes"></textarea>
+                        <x-input.tinymce wire:model="minutes" placeholder="Type anything you want..." />
 
                         @error('minutes')
                             <b class="text-danger">{{ $message }}</b>
