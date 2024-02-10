@@ -114,10 +114,10 @@
                                 </th>
                                 <th style=" text-align: start;">
                                     <p style="font-weight: 500; margin-top: 0%;">
-                                        {{ str_replace(' ', '', $meeting->title) }}
+                                        {{ $meeting->title }}
                                     </p>
                                     <p style="font-weight: 500;">
-                                        {!! str_replace(' ', '', $meeting->brief) !!}
+                                        {!! $meeting->brief !!}
                                     </p>
                                 </th>
                             </tr>

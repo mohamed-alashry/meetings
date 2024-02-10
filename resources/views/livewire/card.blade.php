@@ -207,9 +207,8 @@
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
                                 @foreach ($meeting->invitations as $invitee)
-                                    <p class="card-title fw-semibold my-1" role="button"
-                                        wire:key='invitee-{{ $invitee->userable->id }}'
-                                        wire:click="addInvitee({{ $invitee->userable->id }})">
+                                    <p class="card-title fw-semibold my-1"
+                                        wire:key='invitee-{{ $invitee->userable->id }}'>
                                         {{ $invitee->userable->name }}
                                         <span class="text-secondary fw-light">
                                             ({{ $invitee->userable->email }})
@@ -320,7 +319,7 @@
                                 <p class="">here the meeting Minutes info</p>
                                 <div class="card rounded-4 m-3 shadow border-0">
                                     <div class="card-body color-primary">
-                                        {{ $meeting->minutes ?? '' }}
+                                        {!! $meeting->minutes ?? '' !!}
                                     </div>
                                 </div>
                                 @if ($meeting->minutes_attach_path)
@@ -342,7 +341,7 @@
                                         multiple wire:model='selectedInvitees'>
                                         @foreach ($meeting->invitations as $invitee)
                                             <option value="{{ $invitee->userable->id }}">
-                                                {{ $invitee->userable->name }}</option>
+                                                {{ $invitee->userable->email }}</option>
                                         @endforeach
                                     </select>
                                     {{-- <button type="button" class="btn btn-primary btn-sm mx-2"

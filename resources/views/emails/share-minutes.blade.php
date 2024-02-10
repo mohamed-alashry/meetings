@@ -113,7 +113,7 @@
                                 </th>
                                 <th style=" text-align: start;">
                                     <p style="font-weight: 500;">
-                                        {{ str_replace(' ', '', $meeting->minutes) }}
+                                        {!! $meeting->minutes !!}
                                     </p>
                                 </th>
                             </tr>
