@@ -29,4 +29,5 @@ return [
     'read_meeting'    => 'View Meeting',
     'update_meeting'  => 'Update Meeting',
     'delete_meeting'  => 'Delete Meeting',
+    'cancel_meeting'  => 'Cancel Meeting',
 ];

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="line-bookings row mt-3">
-                    <span class="col-lg-9 col-md-6 col-sm-12">
+                    <span class="col-lg-6 col-md-6 col-sm-12">
                         <h5 class="card-title">Upcomming Bookings</h5>
                         <p class="card-text">Don’t miss your appointments</p>
                     </span>

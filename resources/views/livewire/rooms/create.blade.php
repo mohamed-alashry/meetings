@@ -47,7 +47,7 @@
                             <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
                                 <i class="fa-solid fa-location-dot icon fa-lg mt-3"></i>
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="Room Location" type="text" wire:model="google_location">
+                                    placeholder="Google Map Location" type="text" wire:model="google_location">
                                 @error('google_location')
                                 <b class="text-danger">{{ $message }}</b>
                                 @enderror

@@ -22,8 +22,15 @@ class MeetingController extends Controller
      */
     public function calendar_view(FilterRequest $request)
     {
-        $meetings = Meeting::get()->pluck('event_json');
-        return view('calendar_view', compact('meetings'));
+        $view_days = false;
+        $query = Meeting::query();
+        if (request()->filled('room_id')) {
+            $view_days = true;
+            $query->where('room_id', request()->room_id);
+        }
+        $meetings = $query->get()->pluck('event_json');
+
+        return view('calendar_view', compact('meetings', 'view_days'));
     }
     /**
      * Display a listing of the resource.
