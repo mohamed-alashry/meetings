@@ -184,12 +184,22 @@
                                                 Guest Wifi
                                             </span>
                                         </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Network SSID: <span class="fw-bold">OC</span>
+                                            </span>
+                                        </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Password: <span class="fw-bold">Guest2024</span>
+                                            </span>
+                                        </p>
                                     @endif
                                     @if ($feature->name == 'online_meeting' && $feature->value)
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-earth-africa"></i>
                                             <span class="text-secondary px-2">
-                                                Online meeting
+                                                Meeting System
                                             </span>
                                         </p>
                                     @endif
@@ -205,7 +215,7 @@
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-tv"></i>
                                             <span class="text-secondary px-2">
-                                                TV
+                                                Smart Tv
                                             </span>
                                         </p>
                                     @endif
@@ -214,6 +224,14 @@
                                             <i class="fa-solid fa-volume-high"></i>
                                             <span class="text-secondary px-2">
                                                 Sound System
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'interactive_smart_board' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-video"></i>
+                                            <span class="text-secondary px-2">
+                                                Interactive Smart Board
                                             </span>
                                         </p>
                                     @endif

@@ -39,7 +39,7 @@ class Create extends Component
     public bool $send_room_attach = false;
     public bool $send_room_properties = false;
     public string $google_meet_link;
-    public int $reminder_time;
+    public ?int $reminder_time;
 
     public array $times = [];
 
@@ -65,7 +65,7 @@ class Create extends Component
         $this->end_time = '';
         $this->inviteeEmail = '';
         $this->repeatable = 1;
-        $this->reminder_time = 0;
+        $this->reminder_time = null;
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
         $this->invitees = collect();
         $this->invitedUsers = collect();

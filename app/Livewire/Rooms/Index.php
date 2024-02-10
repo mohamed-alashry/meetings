@@ -43,9 +43,14 @@ class Index extends Component
 
     public function deleteRoom($room_id)
     {
-        $this->roomService->delete($room_id);
-        $this->alert('success', 'Room deleted successfully');
-        session()->flash('success', 'Room deleted successfully');
+        if ($this->roomService->delete($room_id)) {
+            $this->alert('success', 'Room deleted successfully');
+            session()->flash('success', 'Room deleted successfully');
+        } else {
+            $this->alert('success', 'Room can not delete because it has meetings');
+            session()->flash('success', 'Room can not delete because it has meetings');
+        }
+
         return $this->redirect('/rooms', navigate: true);
     }
 }

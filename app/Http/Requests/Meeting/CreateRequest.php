@@ -37,7 +37,7 @@ class CreateRequest extends FormRequest
             'description'          => 'nullable|string|max:191',
             'start_date'           => 'required|date|after:yesterday',
             'start_time'           => 'required|date_format:H:i',
-            'end_time'             => 'required|date_format:H:i',
+            'end_time'             => 'required|date_format:H:i|after:start_time',
             'repeatable'           => 'nullable',
             'end_date'             => 'nullable|date|after:start_date',
             'status'               => 'nullable|in:1,2',
@@ -45,7 +45,7 @@ class CreateRequest extends FormRequest
             'send_room_attach'     => 'nullable',
             'send_room_properties' => 'nullable',
             'google_meet_link'     => 'nullable',
-            'reminder_time'        => 'nullable',
+            'reminder_time'        => 'required|filled',
         ];
     }
 }
