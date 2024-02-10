@@ -31,13 +31,13 @@
                     </i>
                 </li>
             </a>
-            <a href="{{ route('invitees.index') }}" class="text-decoration-none color-primary">
+            {{-- <a href="{{ route('invitees.index') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
                     <i class="fa-solid fa-users fa-lg fa-lg d-flex {{ Route::is('invitees.index') ? 'active_nav' : '' }}" aria-hidden="true">
                         <span class="mx-2 align-middle">Invitees</span>
                     </i>
                 </li>
-            </a>
+            </a> --}}
             <a href="{{ route('rooms.index') }}" class="text-decoration-none color-primary">
                 <li class="list-group-item p-4 border-top">
                     <i class="fa-solid fa-gear fa-lg d-flex {{ Route::is('rooms.index') ? 'active_nav' : '' }}" aria-hidden="true">
