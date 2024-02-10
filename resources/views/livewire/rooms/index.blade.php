@@ -52,6 +52,14 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
+                        @if (in_array('read_meeting', $permissions))
+                        <a href="{{ route('meetings.calendar_view').'?room_id='.$room->id }}"
+                            wire:confirm="Are you sure you want to delete this rooms?"
+                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Calendar
+                        </a>
+                        @endif
                         @if (in_array('delete_room', $permissions))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
@@ -83,6 +91,14 @@
                         {{ $room->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
+                        @if (in_array('view_meetings', $permissions))
+                        <a href="{{ route('meetings.calendar_view', $room->id).'?room_id='.$room->id }}"
+                            wire:confirm="Are you sure you want to delete this rooms?"
+                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            Calendar
+                        </a>
+                        @endif
                         @if (in_array('delete_room', $permissions))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
