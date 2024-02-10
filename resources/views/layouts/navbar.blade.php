@@ -8,7 +8,7 @@
                     <img src="{{ asset('assets') }}/img/menu.png" alt="" srcset="">
                 </button>
                 <a class="navbar-brand w-100 px-2" href="{{ route('home') }}">
-                    <img src="{{ asset('assets') }}/img/Logo.png" class="d-inline-block img-fluid" alt="AgentFire Logo">
+                    <img src="{{ asset('assets') }}/img/Logo.svg" class="d-inline-block img-fluid" alt="AgentFire Logo">
                 </a>
             </div>
 
@@ -17,7 +17,7 @@
                     <a class="dropdown-toggle text-decoration-none d-flex p-1 mx-2 align-items-center" id="messages"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                         <div class="avatar m-auto img-fluid">
-                            <span class="avatar_icon">{{ Str::ucfirst(substr(auth()->user()->name,-1,1)) }}</span>
+                            <span class="avatar_icon">{{ Str::ucfirst(substr(auth()->user()->name, -1, 1)) }}</span>
                         </div>
                         <span class="px-2 d-none d-md-block">
                             <p class="m-0 fw-lighter text-secondary" style="font-size: 80%;">Welcome,</p>

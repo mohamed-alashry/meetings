@@ -57,7 +57,7 @@ class Meeting extends Model
     ];
 
 
-    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'minutes_attach_path', 'add_to_calendar'];
+    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'end_time_format', 'minutes_attach_path', 'add_to_calendar'];
 
     public function getEventJsonAttribute()
     {
@@ -112,6 +112,12 @@ class Meeting extends Model
     {
 
         return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
+    }
+
+    public function getEndTimeFormatAttribute()
+    {
+
+        return \Carbon\Carbon::parse($this->end_time)->format('h:i a');
     }
 
     public function getAddToCalendarAttribute()

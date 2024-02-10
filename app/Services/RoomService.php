@@ -136,6 +136,9 @@ class RoomService
     {
         try {
             $room = Room::find($id);
+            if ($room->meetings->count()) {
+                return false;
+            }
             $room->delete();
             return true;
         } catch (\Exception $e) {
