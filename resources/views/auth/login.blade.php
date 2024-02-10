@@ -32,7 +32,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here email" type="email"
                             name="email" value="{{ old('email') }}">
                         @error('email')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="input-form-login">
@@ -40,7 +40,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here password"
                             type="password" name="password">
                         @error('password')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-danger my-3 w-100" style="background: #C2203D">
@@ -48,6 +48,14 @@
                         Login Now
                     </button>
                 </form>
+
+                <div class="w-100 px-5">
+
+                    <a href="{{ route('google_login') }}" class="btn btn-danger my-3 w-100" style="background: #C2203D">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Login With Google
+                    </a>
+                </div>
                 <div class="d-flex align-items-end" style="height: -webkit-fill-available;">
                     <img class="img-fluid mt-5" src="{{ asset('assets') }}/img/Frame.png"
                         alt="Modern building architecture">
