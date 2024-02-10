@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Invitee;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -45,6 +46,11 @@ class AuthController extends Controller
                 'email' => $googleUser->email,
                 'google_token' => $googleUser->token,
                 'google_refresh_token' => $googleUser->refreshToken,
+            ]);
+
+            Invitee::create([
+                'email' => $user->email,
+                'name' => $user->name
             ]);
 
             Auth::login($user);
