@@ -78,7 +78,11 @@ class Create extends Component
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+        ->where(function ($query) {
+            $query->where('user_id', auth()->id())
+                ->orWhere('user_id', null);
+        })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
@@ -110,7 +114,24 @@ class Create extends Component
     public function addInvitee(Invitee $invitee)
     {
         $this->invitedUsers->push($invitee);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
+    }
+
+    public function addNewInvitee()
+    {
+        $this->validate(['inviteeEmail' => 'required|email']);
+        $newInvitee = Invitee::create(['email' => $this->inviteeEmail, 'user_id' => auth()->id()]);
+        $this->invitedUsers->push($newInvitee);
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+        ->where(function ($query) {
+            $query->where('user_id', auth()->id())
+                ->orWhere('user_id', null);
+        })->get();
+        $this->inviteeEmail = '';
     }
 
     public function removeInvitee(Invitee $invitee)

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Users;
 
+use App\Models\Invitee;
 use Livewire\Component;
 use App\DTOs\User\CreateDTO;
 use App\Services\UserService;
@@ -45,6 +46,10 @@ class Create extends Component
     {
         $inputs = CreateDTO::from($this->validate());
         $this->userService->create($inputs);
+        Invitee::create([
+            'email' => $inputs->email,
+            'name' => $inputs->name
+        ]);
         $this->alert('success', 'User created successfully');
         session()->flash('success', 'User created successfully');
         return $this->redirect('/users', navigate: true);

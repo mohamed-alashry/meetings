@@ -331,7 +331,31 @@
                                 @endif
                             </div>
                         @endif
+                        @if ($meeting->invitations->count() > 0)
+                            <div class="w-100 px-4 my-3">
+                                <span class="col-xl-4 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center "
+                                    style="font-size: 0.9rem;">
+                                    <span class="col-auto fw-bold color-primary mx-2">
+                                        Share with
+                                    </span>
 
+                                    <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" multiple>
+                                        @foreach ($meeting->invitations as $invitee)
+                                            <option>{{ $invitee->userable->name }}</option>
+                                            {{-- <p class="card-title fw-semibold my-1" role="button"
+                                        wire:key='invitee-{{ $invitee->userable->id }}'
+                                        wire:click="addInvitee({{ $invitee->userable->id }})">
+                                        {{ $invitee->userable->name }}
+                                        <span class="text-secondary fw-light">
+                                            ({{ $invitee->userable->email }})
+                                        </span>
+                                    </p> --}}
+                                        @endforeach
+                                        {{-- <a class="dropdown-item" href="#">Action</a> --}}
+                                    </select>
+                                </span>
+                            </div>
+                        @endif
                         {{-- minutes section --}}
                         {{-- <hr>
                         <div class="m-3 color-primary">

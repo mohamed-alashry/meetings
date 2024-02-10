@@ -225,24 +225,35 @@
                                     by Email”</p>
                             </span>
                         </div>
-                        <div class="input-form-login px-3 col-12 ">
+                        <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-envelope icon fa-lg"></i>
                             <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
                                 placeholder="Type here email" type="email" wire:model.live="inviteeEmail">
+
+                            @error('inviteeEmail')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+
                         </div>
-                        <div class="card rounded-4 m-3 shadow border-0">
-                            <div class="card-body color-primary">
-                                @foreach ($invitees as $invitee)
-                                    <p class="card-title fw-semibold my-1" role="button"
-                                        wire:click="addInvitee({{ $invitee->id }})">
-                                        {{ $invitee->name }}
-                                        <span class="text-secondary fw-light">
-                                            ({{ $invitee->email }})
-                                        </span>
-                                    </p>
-                                @endforeach
+
+                        @if ($invitees->count() > 0 || $inviteeEmail == null)
+                            <div class="card rounded-4 m-3 shadow border-0">
+                                <div class="card-body color-primary">
+                                    @foreach ($invitees as $invitee)
+                                        <p class="card-title fw-semibold my-1" role="button"
+                                            wire:click="addInvitee({{ $invitee->id }})">
+                                            {{ $invitee->name }}
+                                            <span class="text-secondary fw-light">
+                                                ({{ $invitee->email }})
+                                            </span>
+                                        </p>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <button type="button" class="btn btn-success rounded-4 shadow btn-sm mx-5"
+                                wire:click="addNewInvitee"><i class="fa-solid fa-plus fa-lg"></i> Add New</button>
+                        @endif
 
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
@@ -312,9 +323,10 @@
                                 wire:model="reminder_time">
                                 <option value="">Reminder time before</option>
                                 <option value="10">10 minutes</option>
+                                <option value="20">20 minutes</option>
                                 <option value="30">30 minutes</option>
                                 <option value="60">1 hour</option>
-                                <option value="240">4 hours</option>
+                                <option value="120">2 hours</option>
                             </select>
                             @error('reminder_time')
                                 <b class="text-danger">{{ $message }}</b>
