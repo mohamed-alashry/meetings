@@ -31,8 +31,6 @@ class Edit extends Component
     public string $start_time;
     public string $end_time;
     public int $repeatable;
-    public int $person_capacity;
-    public int $duration;
     public string $end_date;
     public int $status;
     public bool $openEditModal = false;
@@ -43,6 +41,7 @@ class Edit extends Component
     public Collection $invitedUsers;
     public string $inviteeEmail;
     public bool $update_all = false;
+    public array $times;
 
 
 
@@ -63,31 +62,30 @@ class Edit extends Component
         $this->start_date = $this->meeting->start_date;
         $this->start_time = $this->meeting->start_time;
         $this->end_time = $this->meeting->end_time;
-        $this->person_capacity = $this->meeting->person_capacity;
         $this->room_id = $this->meeting->room_id;
         $this->title = $this->meeting->title;
         $this->brief = $this->meeting->brief;
         $this->repeatable = $this->meeting->repeatable;
-        $this->duration = $this->meeting->duration;
         $this->minutes = $this->meeting->minutes ?? '';
         // $this->minutes_attach = $this->meeting->minutes_attach ?? '';
         // $this->description = $this->meeting->description;
         // $this->end_date = $this->meeting->end_date;
 
         $this->inviteeEmail = '';
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
         // append current room to rooms
-        $this->rooms->prepend($this->meeting->room);
+        // $this->rooms->prepend($this->meeting->room);
         $this->invitedUsers = $this->meeting->invitations->pluck('userable');
-        $this->invitees = Invitee::whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = collect();
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
+        $this->times = $this->meetingService->getTimesArray();
     }
 
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity ?? 0);
-        $this->rooms->prepend($this->meeting->room);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
+        // $this->rooms->prepend($this->meeting->room);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }

@@ -26,8 +26,6 @@ class Card extends Component
     public string $start_date;
     public string $start_time;
     public int $repeatable;
-    public int $person_capacity;
-    public int $duration;
     public string $end_time;
     public int $status;
     public bool $openViewModal = false;

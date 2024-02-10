@@ -26,8 +26,6 @@ class View extends Component
     public string $start_date;
     public string $start_time;
     public int $repeatable;
-    public int $person_capacity;
-    public int $duration;
     public string $end_time;
     public int $status;
     public bool $openViewModal = false;
@@ -60,7 +58,6 @@ class View extends Component
         $this->start_date = '';
         $this->start_time = '';
         $this->inviteeEmail = '';
-        $this->person_capacity = 1;
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
         $this->invitees = Invitee::all();
         $this->invitedUsers = collect();

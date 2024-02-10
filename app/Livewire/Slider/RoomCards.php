@@ -13,8 +13,8 @@ class RoomCards extends Component
     public $room_id = 1;
     public ?string $start_date;
     public ?string $start_time;
-    public ?int $person_capacity;
-    public ?int $duration;
+    public ?string $end_time;
+
     public ?int $repeatable;
 
 
@@ -25,15 +25,14 @@ class RoomCards extends Component
     {
         $this->dispatch('toggleCreateModal');
         $this->dispatch('changeRoom', $room_id);
-        $this->dispatch('passFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration, $this->repeatable);
+        $this->dispatch('passFilters', $this->start_date, $this->start_time,$this->end_time, $this->repeatable);
     }
 
     public function mount()
     {
         $this->start_date = '';
         $this->start_time = '';
-        $this->person_capacity = 1;
-        $this->duration = 0;
+        $this->end_time = '';
         $this->repeatable = 1;
 
         $this->rooms = Room::get();
@@ -45,14 +44,14 @@ class RoomCards extends Component
     }
 
     #[On('updateFilters')]
-    public function updatedFilters($start_date, $start_time, $person_capacity, $duration, $repeatable)
+    public function updatedFilters($start_date, $start_time, $end_time, $repeatable)
     {
         $this->start_date = $start_date;
         $this->start_time = $start_time;
-        $this->person_capacity = $person_capacity;
-        $this->duration = $duration;
+        $this->end_time = $end_time;
+
         $this->repeatable = $repeatable;
-        $this->dispatch('passFilters', $this->start_date, $this->start_time, $this->person_capacity, $this->duration, $this->repeatable);
+        $this->dispatch('passFilters', $this->start_date, $this->start_time, $this->end_time,  $this->repeatable);
     }
 
     public function render()

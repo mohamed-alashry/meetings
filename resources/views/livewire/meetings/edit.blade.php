@@ -60,7 +60,7 @@
                         <div class="row w-100 d-flex justify-content-center">
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i>
+                                {{-- <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i> --}}
                                 <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     type="date" wire:model.live="start_date" min="{{ date('Y-m-d') }}">
                                 @error('start_date')
@@ -69,16 +69,35 @@
                             </div>
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="time" wire:model.live="start_time" min="{{ date('H:i') }}">
+                                <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                    wire:model="start_time">
+                                    <option value="">Start time</option>
+                                    @foreach ($times as $key => $time)
+                                        <option value="{{ $key }}">{{ $time }}</option>
+                                    @endforeach
+
+                                </select>
                                 @error('start_time')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-repeat fa-lg icon mt-3 text-dark"></i>
+                                <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                    wire:model="end_time">
+                                    <option value="">End time</option>
+                                    @foreach ($times as $key => $time)
+                                        <option value="{{ $key }}">{{ $time }}</option>
+                                    @endforeach
+
+                                </select>
+                                @error('end_time')
+                                    <b class="text-danger">{{ $message }}</b>
+                                @enderror
+                            </div>
+
+                            <div class="input-form-login col-lg col-md-12 col-sm-12">
+                                {{-- <i class="fa fa-repeat fa-lg icon mt-3 text-dark"></i> --}}
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                     wire:model="repeatable">
                                     <option value="1">No Repeat</option>
@@ -87,25 +106,6 @@
                                     <option value="4">Monthly</option>
                                 </select>
                                 @error('repeatable')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div>
-
-                            <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="duration" placeholder="Duration" min="1">
-                                @error('duration')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div>
-
-                            <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="person_capacity" placeholder="Person Capacity"
-                                    min="1">
-                                @error('person_capacity')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror
                             </div>
@@ -143,16 +143,16 @@
                                                                     <small class="text-body-secondary"
                                                                         style="font-size: 0.8rem;">
                                                                         <i class="fa-regular fa-hourglass-half"></i>
-                                                                        Free for {{ $duration }} min
+                                                                        End at: {{ $meeting->end_at }}
                                                                     </small>
                                                                 </p>
-                                                                <p class="card-text m-0">
+                                                                {{-- <p class="card-text m-0">
                                                                     <small class="text-body-secondary"
                                                                         style="font-size: 0.7rem;">
                                                                         <i class="fa-solid fa-users"></i>
                                                                         Up to {{ $room->capacity }} Person
                                                                     </small>
-                                                                </p>
+                                                                </p> --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -240,28 +240,20 @@
                             <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
                                 placeholder="Type here email" type="email" wire:model.live="inviteeEmail">
                         </div>
-                        @if ($invitedUsers->count() < $person_capacity)
-                            <div class="card rounded-4 m-3 shadow border-0">
-                                <div class="card-body color-primary">
-                                    @foreach ($invitees as $invitee)
-                                        <p class="card-title fw-semibold my-1" role="button"
-                                            wire:click="addInvitee({{ $invitee->id }})">
-                                            {{ $invitee->name }}
-                                            <span class="text-secondary fw-light">
-                                                ({{ $invitee->email }})
-                                            </span>
-                                        </p>
-                                    @endforeach
-                                </div>
+                        <div class="card rounded-4 m-3 shadow border-0">
+                            <div class="card-body color-primary">
+                                @foreach ($invitees as $invitee)
+                                    <p class="card-title fw-semibold my-1" role="button"
+                                        wire:click="addInvitee({{ $invitee->id }})">
+                                        {{ $invitee->name }}
+                                        <span class="text-secondary fw-light">
+                                            ({{ $invitee->email }})
+                                        </span>
+                                    </p>
+                                @endforeach
                             </div>
-                        @else
-                            {{-- show error --}}
-                            <div class="card rounded-4 m-3 shadow border-0">
-                                <p class="card-title fw-semibold my-1 m-3 text-danger">
-                                    You can not invite more than {{ $person_capacity ?? 0 }} persons
-                                </p>
-                            </div>
-                        @endif
+                        </div>
+
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
                                 <h5 class="card-title fw-bold">Invited</h5>
@@ -279,12 +271,12 @@
                                 @empty
                                 @endforelse
 
-                                <div class="card-title fw-semibold my-1 d-flex justify-content-between">
+                                {{-- <div class="card-title fw-semibold my-1 d-flex justify-content-between">
                                     <p class="m-0">
                                         {{ $invitedUsers->count() }} out of {{ $person_capacity ?? 0 }} Persons
                                         <i class="fa-solid fa-users"></i>
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
 

@@ -37,13 +37,14 @@ class Meeting extends Model
         'start_time',
         'end_time',
         'repeatable', // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
-        'duration',
-        'person_capacity',
         'end_date',
         'alert_date',
         'status', // default(1) => Active, 2 => Cancelled
         'send_user_location',
+        'send_room_attach',
+        'send_room_properties',
         'google_meet_link',
+        'reminder_time',
     ];
 
     /**

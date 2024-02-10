@@ -61,8 +61,6 @@
         'in_home' => true,
         'openCreateModal' => $openCreateModal,
         'room_id' => $room_id,
-        'duration' => $duration,
-        'person_capacity' => $person_capacity,
     ])
     {{-- end Create Meeting --}}
 </div>

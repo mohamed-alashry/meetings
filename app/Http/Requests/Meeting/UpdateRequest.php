@@ -33,7 +33,7 @@ class UpdateRequest extends FormRequest
         return [
             'room_id'           => 'required|exists:rooms,id',
             'title'             => 'required|string|max:191',
-            'brief'             => 'required|string|max:191',
+            'brief'             => 'nullable|string|max:191',
             'description'       => 'nullable|string|max:191',
             'minutes'           => 'nullable|string|max:191',
             'minutes_attach'    => 'nullable|file|max:5120',
@@ -41,8 +41,6 @@ class UpdateRequest extends FormRequest
             'start_time'        => 'required|date_format:H:i:s',
             'end_time'          => 'required|date_format:H:i:s',
             'repeatable'        => 'required',
-            'person_capacity'   => 'required|numeric|gte:1',
-            'duration'          => 'nullable|numeric|gte:1',
             'end_date'          => 'nullable',
             'status'            => 'nullable|in:1,2,3',
         ];

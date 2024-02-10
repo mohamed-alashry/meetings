@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use DateTime;
+use DateInterval;
 use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Invitee;
@@ -49,7 +51,7 @@ class MeetingService
     public function create(CreateDTO $data, $invited_users): bool
     {
         // set end time (start time + duration in minutes)
-        $data->end_time = Carbon::parse($data->start_time)->addMinutes($data->duration);
+        // $data->end_time = Carbon::parse($data->start_time)->addMinutes($data->duration);
         // $data->end_time = $data->start_time;
         // 1 => No repeat, 2 => Daily, 3 => Weekly, 4 => Monthly
         switch ($data->repeatable) {
@@ -152,7 +154,7 @@ class MeetingService
         }
     }
 
-    public function getRooms($start_date = null, $start_time = null, $capacity = null)
+    public function getRooms($start_date = null, $start_time = null, int $current_room_id = null)
     {
         $rooms = Room::query();
         if ($start_date && $start_time) {
@@ -162,11 +164,11 @@ class MeetingService
                 $query->where('start_date', $start_date)
                     ->where('start_time', '<=', $start_time)
                     ->where('end_time', '>=', $start_time);
-            });
+            })->orWhere('id', $current_room_id);
         }
-        if ($capacity) {
-            $rooms->where('capacity', '>=', $capacity);
-        }
+        // if ($capacity) {
+        //     $rooms->where('capacity', '>=', $capacity);
+        // }
 
         return $rooms->get();
     }
@@ -198,6 +200,29 @@ class MeetingService
                 Mail::to($emails)->send(new CancelMeeting($meeting));
             }
         }
+    }
+
+    public function getTimesArray()
+    {
+        $timeOptions = [];
+        $start = new DateTime('00:00');
+        $end = new DateTime('23:59');
+
+        // Set the interval for 15 minutes
+        $interval = new DateInterval('PT15M');
+
+        // Generate the time options over 15 minutes apart
+        $current = clone $start;
+        while ($current <= $end) {
+            $timeValue = $current->format('H:i');
+            $timeOptions[$timeValue] = $current->format('h:i A'); // Format time as desired
+            $current->add($interval);
+        }
+
+        // Output the time options
+        // dd($timeOptions);
+
+        return $timeOptions;
     }
 
 
@@ -232,6 +257,7 @@ class MeetingService
             $meeting = new Meeting($data->toArray());
             $meeting->start_date = $day;
             $meeting->start_time = $data->start_time;
+            $meeting->end_time = $data->end_time;
             $meeting->parent_id = $nextMeetingId;
             $meeting->save();
 

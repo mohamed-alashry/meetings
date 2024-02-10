@@ -23,9 +23,8 @@ class Create extends Component
     public string $description;
     public ?string $start_date;
     public ?string $start_time;
+    public ?string $end_time;
     public ?int $repeatable;
-    public ?int $person_capacity;
-    public ?int $duration;
     public ?string $end_date;
     public int $status;
     public bool $openCreateModal = false;
@@ -37,7 +36,12 @@ class Create extends Component
     public string $inviteeEmail;
     public $in_home = false;
     public $send_user_location = false;
+    public bool $send_room_attach = false;
+    public bool $send_room_properties = false;
     public string $google_meet_link;
+    public int $reminder_time;
+
+    public array $times = [];
 
 
 
@@ -58,20 +62,22 @@ class Create extends Component
         $this->room_id = 1;
         $this->start_date = '';
         $this->start_time = '';
+        $this->end_time = '';
         $this->inviteeEmail = '';
-        $this->person_capacity = 1;
         $this->repeatable = 1;
-        $this->duration = 0;
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity ?? 0);
-        $this->invitees = Invitee::all();
+        $this->reminder_time = 0;
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->invitees = collect();
         $this->invitedUsers = collect();
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
+
+        $this->times = $this->meetingService->getTimesArray();
     }
 
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->person_capacity ?? 0);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
@@ -115,12 +121,11 @@ class Create extends Component
     }
 
     #[On('passFilters')]
-    public function passFilters($start_date, $start_time, $person_capacity, $duration, $repeatable)
+    public function passFilters($start_date, $start_time, $end_time, $repeatable)
     {
         $this->start_date = $start_date;
         $this->start_time = $start_time;
-        $this->person_capacity = $person_capacity;
-        $this->duration = $duration;
+        $this->end_time   = $end_time;
         $this->repeatable = $repeatable;
     }
 

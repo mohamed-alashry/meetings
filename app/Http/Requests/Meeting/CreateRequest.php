@@ -31,19 +31,21 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'room_id'            => 'required|exists:rooms,id',
-            'title'              => 'required|string|max:191',
-            'brief'              => 'required|string|max:191',
-            'description'        => 'nullable|string|max:191',
-            'start_date'         => 'required|date|after:yesterday',
-            'start_time'         => 'required|date_format:H:i',
-            'repeatable'         => 'nullable',
-            'person_capacity'    => 'required|numeric|gte:1',
-            'duration'           => 'nullable|numeric|gte:1',
-            'end_date'           => 'nullable|date|after:start_date',
-            'status'             => 'nullable|in:1,2',
-            'send_user_location' => 'nullable',
-            'google_meet_link'   => 'nullable',
+            'room_id'              => 'required|exists:rooms,id',
+            'title'                => 'required|string|max:191',
+            'brief'                => 'nullable|string|max:191',
+            'description'          => 'nullable|string|max:191',
+            'start_date'           => 'required|date|after:yesterday',
+            'start_time'           => 'required|date_format:H:i',
+            'end_time'             => 'required|date_format:H:i',
+            'repeatable'           => 'nullable',
+            'end_date'             => 'nullable|date|after:start_date',
+            'status'               => 'nullable|in:1,2',
+            'send_user_location'   => 'nullable',
+            'send_room_attach'     => 'nullable',
+            'send_room_properties' => 'nullable',
+            'google_meet_link'     => 'nullable',
+            'reminder_time'        => 'nullable',
         ];
     }
 }

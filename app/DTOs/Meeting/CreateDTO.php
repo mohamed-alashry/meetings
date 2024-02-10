@@ -18,13 +18,14 @@ class CreateDTO extends Data
     public string $start_time;
     public string $end_time;
     public ?int $repeatable;
-    public int $person_capacity;
     public ?string $end_date;
-    public ?int $duration;
     public int $room_id;
     public int $user_id;
     public ?int $parent_id;
     public ?int $status;
     public bool $send_user_location;
+    public bool $send_room_attach;
+    public bool $send_room_properties;
     public ?string $google_meet_link;
+    public ?int $reminder_time;
 }
