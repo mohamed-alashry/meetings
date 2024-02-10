@@ -300,5 +300,12 @@
 <script>
     var meetings = {!! $meetings !!};
 </script>
+@if ($view_days)
+<script>
+    $(document).ready(function() {
+        $('.fc-timeGridDay-button').click();
+    })
+</script>
+@endif
 <script src="{{ asset('assets') }}/js/custom/apps/calendar/calendar.js"></script>
 @endpush

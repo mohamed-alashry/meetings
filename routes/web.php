@@ -59,13 +59,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/{user}/destroy', 'destroy')->name('destroy');
     });
 
-    Route::controller(App\Http\Controllers\InviteeController::class)->prefix('invitees')->as('invitees.')->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/{invitee}', 'show')->name('show');
-        Route::post('/store', 'store')->name('store');
-        Route::put('/{invitee}/update', 'update')->name('update');
-        Route::delete('/{invitee}/destroy', 'destroy')->name('destroy');
-    });
+    // Route::controller(App\Http\Controllers\InviteeController::class)->prefix('invitees')->as('invitees.')->group(function () {
+    //     Route::get('/', 'index')->name('index');
+    //     Route::get('/{invitee}', 'show')->name('show');
+    //     Route::post('/store', 'store')->name('store');
+    //     Route::put('/{invitee}/update', 'update')->name('update');
+    //     Route::delete('/{invitee}/destroy', 'destroy')->name('destroy');
+    // });
 });
 
 Route::get('fire_invite_mail', function () {
@@ -98,7 +98,7 @@ Route::get('fire_calendar', function () {
 
     $event->save();
     return $event;
-    
+
     // get all future events on a calendar
     $events = Event::get();
 

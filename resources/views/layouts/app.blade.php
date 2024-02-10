@@ -19,6 +19,7 @@
             background-color: #F15A3E !important;
         }
     </style>
+    <link rel="shortcut icon" href="{{ asset('assets') }}/img/fav_icon.svg">
     @livewireStyles
     @stack('styles')
 </head>

@@ -378,7 +378,7 @@ var KTAppCalendar = (function () {
             //     (u = new bootstrap.Modal(C));
             const H = document.getElementById("kt_modal_view_event");
             var F, O, I, R, V, P;
-            // (w = new bootstrap.Modal(H)),
+            (w = new bootstrap.Modal(H)),
                 (b = H.querySelector('[data-kt-calendar="event_name"]')),
                 (g = H.querySelector('[data-kt-calendar="all_day"]')),
                 (S = H.querySelector('[data-kt-calendar="event_description"]')),
