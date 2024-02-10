@@ -331,67 +331,47 @@
                                 @endif
                             </div>
                         @endif
-                        @if ($meeting->invitations->count() > 0)
-                            <div class="w-100 px-4 my-3">
-                                <span class="col-xl-4 col-lg-12 col-md-12 col-sm-12 d-flex align-items-center "
+                        @if ($meeting->invitations->count() > 0 && $meeting->minutes)
+                            <div class="w-100 px-4 my-3 col-12">
+                                <span class="col-lg-12 col-md-12 col-sm-12 d-flex align-items-center "
                                     style="font-size: 0.9rem;">
                                     <span class="col-auto fw-bold color-primary mx-2">
                                         Share with
                                     </span>
 
-                                    <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" multiple>
+                                    <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                        multiple wire:model='selectedInvitees'>
                                         @foreach ($meeting->invitations as $invitee)
-                                            <option>{{ $invitee->userable->name }}</option>
-                                            {{-- <p class="card-title fw-semibold my-1" role="button"
-                                        wire:key='invitee-{{ $invitee->userable->id }}'
-                                        wire:click="addInvitee({{ $invitee->userable->id }})">
-                                        {{ $invitee->userable->name }}
-                                        <span class="text-secondary fw-light">
-                                            ({{ $invitee->userable->email }})
-                                        </span>
-                                    </p> --}}
+                                            <option value="{{ $invitee->userable->id }}">
+                                                {{ $invitee->userable->name }}</option>
                                         @endforeach
-                                        {{-- <a class="dropdown-item" href="#">Action</a> --}}
                                     </select>
+                                    {{-- <button type="button" class="btn btn-primary btn-sm mx-2"
+                                        wire:click="shareMinutes">Share</button> --}}
+
+                                    <button type="button" wire:loading.remove wire:click="shareMinutes"
+                                        class="btn m-3 shadow text-white fs-6 rounded-4 py-2 px-4 fw-bold btn-bg-color-2">
+                                        Share
+                                    </button>
+
+                                    <button type="button" disabled wire:loading
+                                        class="btn m-3 shadow text-white fs-6 rounded-4 py-2 px-4 fw-bold btn-bg-color-2">
+
+                                        <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em"
+                                            height="1em" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
+                                                <animateTransform attributeName="transform" dur="0.75s"
+                                                    repeatCount="indefinite" type="rotate"
+                                                    values="0 12 12;360 12 12" />
+                                            </path>
+                                        </svg>
+
+                                        Sharing...
+                                    </button>
                                 </span>
                             </div>
                         @endif
-                        {{-- minutes section --}}
-                        {{-- <hr>
-                        <div class="m-3 color-primary">
-                            <p class="h6 fw-bold">Minutes</p>
-                            <p class="fs-6 m-0">Type here the minutes</p>
-                        </div>
-                        <div class="input-form-login px-3 col-12 ">
-                            <i class="fa-solid fa-file-lines icon fa-lg"></i>
-                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
-                                type="text" wire:model="minutes"></textarea>
-
-                            @error('minutes')
-                                <b class="text-danger">{{ $message }}</b>
-                            @enderror
-                        </div>
-
-                        <div class="input-form-login px-3 col-12 ">
-                            <label for="finput2" class="input-field form-control border-0 shadow rounded-4">
-                                <i class="fa-solid fa-file-arrow-up icon fa-lg">
-                                </i>
-                                <samp class="text-input px-5 py-3 position-absolute text-body-secondary">
-                                    @if ($minutes_attach)
-                                        {{ $minutes_attach->getClientOriginalName() }}
-                                    @else
-                                        Upload Minutes attach here...
-                                    @endif
-                                </samp>
-                                <input class="form-control py-3 opacity-0" type="file"
-                                    accept="pdf, doc, docx, xls, xlsx, ppt, pptx" id="finput2"
-                                    wire:model="minutes_attach">
-                            </label>
-                            @error('minutes_attach')
-                                <b class="text-danger">{{ $message }}</b>
-                            @enderror
-                        </div> --}}
-                        {{-- end minutes section --}}
 
                     </div>
                 </div>

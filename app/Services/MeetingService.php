@@ -9,6 +9,7 @@ use App\Models\Room;
 use App\Models\Invitee;
 use App\Models\Meeting;
 use Carbon\CarbonPeriod;
+use App\Mail\ShareMinutes;
 use App\Mail\CancelMeeting;
 use App\Mail\InviteMeeting;
 use App\DTOs\Meeting\CreateDTO;
@@ -225,6 +226,12 @@ class MeetingService
         return $timeOptions;
     }
 
+
+    public function shareMinutes($invitees, $meeting)
+    {
+        $emails = $invitees->pluck('email')->toArray();
+        Mail::to($emails)->send(new ShareMinutes($meeting));
+    }
 
 
 
