@@ -10,7 +10,8 @@
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i>
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="date"
-                            wire:model.live.debounce.150ms="start_date" min="{{ date('m-d-Y') }}" wire:change="$refresh">
+                            wire:model.live.debounce.150ms="start_date" min="{{ date('m-d-Y') }}"
+                            wire:change="$refresh">
                     </div>
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <i class="fa-brands fa-buromobelexperte a-lg icon mt-3 text-dark"></i>
@@ -30,6 +31,7 @@
             </div>
         </div>
     </div>
+    @if (hasPermissionUser('read_room'))
     @forelse ($rooms as $room)
     <div class="container-fluid" wire:key='room-list-{{ $room->id }}'>
         <div class="row">
@@ -45,14 +47,16 @@
                         @forelse ($room->meetings->take(15) as $meeting)
                         @livewire('meetings.card', ['meeting' => $meeting, 'room' => $room], key('card-'.$meeting->id))
                         @empty
+                        @if (hasPermissionUser('create_meeting'))
                         <div class="card m-2 rounded-3">
-                          <div class="card-body p-5 m-4 m-auto">
-                            <h4 class="card-title">Not Found Upcoming Meetings in this room</h4>
-                            <div class="col-6 m-auto mt-4">
-                                @livewire('meetings.create', ['room_id' => $room->id], key('create-'.$room->id))
+                            <div class="card-body p-5 m-4 m-auto">
+                                <h4 class="card-title">Not Found Upcoming Meetings in this room</h4>
+                                <div class="col-6 m-auto mt-4">
+                                    @livewire('meetings.create', ['room_id' => $room->id], key('create-'.$room->id))
+                                </div>
                             </div>
-                          </div>
                         </div>
+                        @endif
                         @endforelse
                     </div>
                 </div>
@@ -60,6 +64,6 @@
         </div>
     </div>
     @empty
-
     @endforelse
+    @endif
 </section>

@@ -1,4 +1,5 @@
 <div>
+    @if (hasPermissionUser('update_user'))
     <div class="modal fade show bg-dark bg-opacity-50" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"
         style="display: block;" aria-modal="true" role="dialog">
         <div class="modal-dialog ps-2 d-flex justify-content-end" style="max-width: 55%;">
@@ -99,4 +100,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>

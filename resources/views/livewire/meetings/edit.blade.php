@@ -6,6 +6,7 @@
         <!-- Button trigger modal -->
         <div class="col-lg-6 col-sm-12 row d-flex gap-3">
             @if ($meeting->status == 1 && $meeting->start_date . ' ' . $meeting->start_time >= date('Y-m-d H:i:s'))
+                @if (hasPermissionUser('cancel_meeting'))
                 <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
                     style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:loading
                     wire:click="cancelMeeting" wire:confirm="Are you sure?" disabled>
@@ -19,27 +20,29 @@
                     </svg>
                     Canceling...
                 </button>
-
                 <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
                     style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:click="cancelMeeting"
                     wire:confirm="Are you sure?" wire:loading.remove>
                     <i class="fa fa-xmark fa-fw fa-lg"></i>
                     Cancel meeting
                 </button>
+                @endif
 
 
 
+                @if (hasPermissionUser('update_meeting'))
                 <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
                     style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
                     wire:click="toggleEditModal">
                     <i class="fa-regular fa-edit"></i>
                     Edit meeting
                 </button>
+                @endif
             @endif
         </div>
     </div>
 
-    @if ($openEditModal)
+    @if ($openEditModal && hasPermissionUser('update_meeting'))
         <!-- Modal -->
         <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
             style="display: block;" aria-modal="true" role="dialog">

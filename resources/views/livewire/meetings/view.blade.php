@@ -1,5 +1,4 @@
-{{-- View Popup --}}
-@if ($openViewModal)
+@if ($openViewModal && hasPermissionUser('read_room'))
     <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
         style="display: block;" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable ps-2 d-flex justify-content-end" style="max-width: 75%;">

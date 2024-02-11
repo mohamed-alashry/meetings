@@ -1,5 +1,6 @@
 <div>
-    @if (!$in_home)
+    @if (!$in_home && hasPermissionUser('create_meeting'))
+
         <!-- Button trigger modal -->
         <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
             style="background-color: #C2203D;" wire:click="toggleCreateModal">

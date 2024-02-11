@@ -5,11 +5,13 @@
                 <h5 class="card-title">User Managment</h5>
                 <p class="card-text">Add or Edit Users</p>
             </span>
-            <livewire-users.create :createModal key='create'>
+            @if (hasPermissionUser('create_user'))
+            <livewire-users.create :createModal key='create' />
+            @endif
             <span >
 
 
-                    @if ($updateModal)
+                    @if ($updateModal && hasPermissionUser('update_user'))
                     <div class="modal fade show bg-dark bg-opacity-50" id="updateModal" tabindex="-1"
                         aria-labelledby="updateModalLabel" style="display: block;" aria-modal="true" role="dialog">
                         <div class="modal-dialog ps-2 d-flex justify-content-end" style="max-width: 55%;">
@@ -119,14 +121,18 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
+                        @if (hasPermissionUser('delete_user'))
                         <button type="button" class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
+                        @endif
+                        @if (hasPermissionUser('update_user'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editUser({{ $user->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
                             Edit
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @else
@@ -144,14 +150,18 @@
                         {{ $user->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
+                        @if (hasPermissionUser('delete_user'))
                         <button type="button" class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
+                        @endif
+                        @if (hasPermissionUser('update_user'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editUser({{ $user->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
                             Edit
                         </button>
+                        @endif
                     </td>
                 </tr>
                 @endif

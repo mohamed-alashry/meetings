@@ -12,10 +12,10 @@
                 <h5 class="card-title">User Managment</h5>
                 <p class="card-text">Add or Edit Users</p>
             </span>
-            @if (in_array('create_user', $permissions))
+            @if (hasPermissionUser('create_user'))
             <livewire-users.create :createModal key='create' />
             @endif
-            @if ($updateModal && in_array('update_user', $permissions))
+            @if ($updateModal && hasPermissionUser('update_user'))
             <livewire-users.edit :user="$user" key='{{ $user->id }}' />
             @endif
         </div>
@@ -52,14 +52,14 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
-                        @if ($user->id != 1 && in_array('delete_user', $permissions))
+                        @if ($user->id != 1 && hasPermissionUser('delete_user'))
                         <button type="button" wire:click="deleteUser({{ $user->id }})"
                             wire:confirm="Are you sure you want to delete this user?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
                         @endif
-                        @if (in_array('update_user', $permissions))
+                        @if (hasPermissionUser('update_user'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editUser({{ $user->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
@@ -83,14 +83,14 @@
                         {{ $user->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
-                        @if ($user->id != 1 && in_array('delete_user', $permissions))
+                        @if ($user->id != 1 && hasPermissionUser('delete_user'))
                         <button type="button" wire:click="deleteUser({{ $user->id }})"
                             wire:confirm="Are you sure you want to delete this user?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
                         @endif
-                        @if (in_array('update_user', $permissions))
+                        @if (hasPermissionUser('update_user'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editUser({{ $user->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>

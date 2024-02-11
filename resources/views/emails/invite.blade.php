@@ -35,7 +35,7 @@
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">
-                        <img src="https://safavisa.sirv.com/Images/logoModel.png" alt="" srcset="">
+                        <img src="https://safavisa.sirv.com/Images/white-logo.svg" alt="" srcset="">
                     </th>
                 </tr>
 

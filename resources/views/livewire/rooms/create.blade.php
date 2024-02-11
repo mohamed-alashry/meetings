@@ -1,4 +1,5 @@
 <div class="col-xl-2 col-lg-4 col-md-12 col-sm-12">
+    @if (hasPermissionUser('create_room'))
     <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4 btn-bg-color-1"
         wire:click="toggleCreateModal">
         <i class="fa-solid fa-user-plus"></i>
@@ -197,5 +198,6 @@
             </div>
         </div>
     </div>
+    @endif
     @endif
 </div>

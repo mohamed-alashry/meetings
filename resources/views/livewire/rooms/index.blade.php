@@ -12,10 +12,10 @@
                 <h5 class="card-title">Room Managment</h5>
                 <p class="card-text">Add or Edit Rooms</p>
             </span>
-            @if (in_array('create_room', $permissions))
+            @if (hasPermissionUser('create_room'))
             <livewire-rooms.create :createModal key='create' />
             @endif
-            @if ($updateModal && in_array('update_room', $permissions))
+            @if ($updateModal && hasPermissionUser('update_room'))
             <livewire-rooms.edit :room="$room" key='{{ $room->id }}' />
             @endif
         </div>
@@ -52,7 +52,7 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
-                        @if (in_array('read_meeting', $permissions))
+                        @if (hasPermissionUser('read_meeting'))
                         <a href="{{ route('meetings.calendar_view').'?room_id='.$room->id }}"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
@@ -60,14 +60,14 @@
                             Calendar
                         </a>
                         @endif
-                        @if (in_array('delete_room', $permissions))
+                        @if (hasPermissionUser('delete_room'))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
                         @endif
-                        @if (in_array('update_room', $permissions))
+                        @if (hasPermissionUser('update_room'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editRoom({{ $room->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
@@ -91,7 +91,7 @@
                         {{ $room->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
-                        @if (in_array('read_meeting', $permissions))
+                        @if (hasPermissionUser('read_meeting'))
                         <a href="{{ route('meetings.calendar_view').'?room_id='.$room->id }}"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
@@ -99,14 +99,14 @@
                             Calendar
                         </a>
                         @endif
-                        @if (in_array('delete_room', $permissions))
+                        @if (hasPermissionUser('delete_room'))
                         <button type="button" wire:click="deleteRoom({{ $room->id }})"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
                             Delete
                         </button>
                         @endif
-                        @if (in_array('update_room', $permissions))
+                        @if (hasPermissionUser('update_room'))
                         <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
                             wire:click="editRoom({{ $room->id }})">
                             <i class="fa-solid fa-pen-to-square"></i>
