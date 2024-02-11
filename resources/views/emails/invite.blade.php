@@ -120,25 +120,6 @@
                                 </span>
                             </p>
                         @endforeach
-                        <table style="font-weight: 700; width: 100%; padding: 0;">
-                            <tr>
-                                <th style="width: 50%;text-align: start;">
-                                    {{-- <p style="margin-top: 0;">
-                                        mohamed@one.com.sa
-                                        <span style="font-weight: 500;">
-                                            (External Guest)
-                                        </span>
-                                    </p> --}}
-                                </th>
-                                <th style="width: 50%; text-align: end;">
-                                    <p style="margin-top: 0;">
-                                        {{ count($meeting->invitations) }} Persons
-                                        <img src="https://safavisa.sirv.com/Images/group 1.png" alt=""
-                                            srcset="">
-                                    </p>
-                                </th>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 @endif
