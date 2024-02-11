@@ -106,7 +106,6 @@ class View extends Component
 
     public function render()
     {
-
         return view('livewire.meetings.view');
     }
 }

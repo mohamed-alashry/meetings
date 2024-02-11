@@ -77,10 +77,11 @@ class Meeting extends Model
             'title'         => $this->title,
             // 'link'       => "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$this->title",
             'start'         => $this->start_date . ' ' . $this->start_time,
-            'end'           => $this->end_date . ' ' . $this->end_time,
-            'description'   => $this->description,
+            'end'           => $this->start_date . ' ' . $this->end_time,
+            // 'description'   => $this->brief,
             'open_calendar' => $this->open_calendar,
-            'className'     => 'fc-event-danger fc-event-solid-warning'
+            'bg_color'     => 'fc-event-danger fc-event-solid-warning',
+            'background' => 'red'
         ];
 
         return $data;
