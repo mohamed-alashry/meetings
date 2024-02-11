@@ -105,6 +105,43 @@
                         </table>
                     </div>
                 </div>
+                @if ($meeting->send_room_properties)
+                <hr style="border-color: #fff;">
+                <div style="padding: 0% 5%; font-size: 75%;">
+                    <p style="font-weight: 700; margin: 0;">Meeting Room Properties</p>
+                    <p style="margin-top: 3px;">Here the meeting room properties</p>
+                    <div
+                        style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
+                        @foreach ($meeting->room->properties as $item)
+                            <p style=" font-weight: 700; margin: 0.3rem;">
+                                {{ $item->key }}:
+                                <span style="font-weight: 500;">
+                                    {{ $item->value }}
+                                </span>
+                            </p>
+                        @endforeach
+                        <table style="font-weight: 700; width: 100%; padding: 0;">
+                            <tr>
+                                <th style="width: 50%;text-align: start;">
+                                    {{-- <p style="margin-top: 0;">
+                                        mohamed@one.com.sa
+                                        <span style="font-weight: 500;">
+                                            (External Guest)
+                                        </span>
+                                    </p> --}}
+                                </th>
+                                <th style="width: 50%; text-align: end;">
+                                    <p style="margin-top: 0;">
+                                        {{ count($meeting->invitations) }} Persons
+                                        <img src="https://safavisa.sirv.com/Images/group 1.png" alt=""
+                                            srcset="">
+                                    </p>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                @endif
                 <hr style="border-color: #fff;">
                 <div style="padding: 1rem; font-size: 14px;">
                     <p style="font-weight: 700; margin: 0;">Meeting Information</p>

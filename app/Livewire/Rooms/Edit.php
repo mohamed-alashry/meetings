@@ -23,6 +23,7 @@ class Edit extends Component
     public bool $updateModal = false;
     private RoomService $roomService;
     public $features;
+    public $more_features;
     public $attachment;
 
     public function boot(RoomService $roomService)
@@ -39,6 +40,12 @@ class Edit extends Component
         $this->capacity = $room->capacity;
         // $this->attachment = $room->attachment;
         $this->features = $room->features->pluck('value', 'name')->toArray();
+        foreach ($room->properties as $item) {
+            $this->more_features[] = [
+                'key' => $item->key,
+                'value' => $item->value
+            ];
+        }
     }
 
     protected function rules(): array
@@ -82,5 +89,15 @@ class Edit extends Component
     public function cancel()
     {
         return $this->redirect('/rooms', navigate: true);
+    }
+
+    public function deleteFeatures($id)
+    {
+        unset($this->more_features[$id]);
+    }
+
+    public function addMoreFeatures()
+    {
+        $this->more_features[] = [];
     }
 }

@@ -122,6 +122,61 @@
                                     @endforeach
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div class="row mx-1 my-2 ">
+                                    <div class="col-9 my-auto">
+                                        <h6> Meeting Room Properties:</h6>
+                                    </div>
+                                    <div class="col-3">
+                                        <button type="button"
+                                            class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2"
+                                            wire:click='addMoreFeatures'>
+                                            <i class="fa fa-plus "></i>
+                                            Add Properties
+                                        </button>
+                                    </div>
+                                    @foreach ($more_features as $name => $value)
+                                    <div class="row">
+                                        <div class="col-5">
+                                            <label class="form-check-label mx-1">
+                                                Property : 0{{ $name +1 }}
+                                            </label>
+
+                                            <div class="input-form-login px-lg-2 p-0">
+                                                <i class="fa-solid fa-gear icon fa-lg"></i>
+                                                <input
+                                                    class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                                    placeholder="Property Name..." type="text"
+                                                    wire:model="more_features.{{ $name }}.key">
+                                                @error("more_features.".$name.".key")
+                                                <b class="text-danger">{{ $message }}</b>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="form-check-label mx-1">
+                                            </label>
+                                            <div class="input-form-login px-lg-2 p-0">
+                                                <i class="fa-solid fa-gear icon fa-lg"></i>
+                                                <input
+                                                    class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                                    placeholder="Property Desc..." type="text"
+                                                    wire:model="more_features.{{ $name }}.value">
+                                                @error("more_features.".$name.".value")
+                                                <b class="text-danger">{{ $message }}</b>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                        <div class="col-2 m-auto">
+                                            <sapn wire:click='deleteFeatures({{ $name }})' class="btn btn-danger mt-4">
+                                                Delete
+                                            </sapn>
+                                        </div>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
                             <div class="col-xl-3 col-sm-12 px-lg-2 p-0">
                                 <button type="button"
                                     class="btn bg-white py-3 rounded-4 my-3 w-100 shadow fw-bold btn-color-2"

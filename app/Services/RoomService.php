@@ -8,6 +8,7 @@ use App\DTOs\Room\CreateDTO;
 use App\DTOs\Room\FilterDTO;
 use App\DTOs\Room\UpdateDTO;
 use App\Models\RoomFeature;
+use App\Models\RoomProperty;
 
 class RoomService
 {
@@ -97,6 +98,18 @@ class RoomService
                 'value'     => $value,
             ]);
         }
+        foreach ($data->more_features as $item) {
+            if ($item['key']) {
+                RoomProperty::updateOrCreate([
+                    'room_id'   => $room->id,
+                    'key'       => $item['key'],
+                ], [
+                    'room_id'   => $room->id,
+                    'key'       => $item['key'],
+                    'value'     => $item['value'] ?? null,
+                ]);
+            }
+        }
 
         return $room;
     }
@@ -125,7 +138,20 @@ class RoomService
                     'value'     => $value,
                 ]);
             }
-
+            $room->properties()->delete();
+            // RoomProperty::where('room_id', $room->id)->delete();
+            foreach ($data->more_features as $item) {
+                if ($item['key']) {
+                    RoomProperty::updateOrCreate([
+                        'room_id'   => $room->id,
+                        'key'       => $item['key'],
+                    ], [
+                        'room_id'   => $room->id,
+                        'key'       => $item['key'],
+                        'value'     => $item['value'] ?? null,
+                    ]);
+                }
+            }
             return true;
         } catch (\Exception $e) {
             return false;
