@@ -10,7 +10,7 @@ use Spatie\LaravelData\Data;
 class CreateDTO extends Data
 {
     public string $title;
-    public string $brief;
+    public ?string $brief;
     public ?string $description;
     public ?string $minutes;
     public ?string $minutes_attach;

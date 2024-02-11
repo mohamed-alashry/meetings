@@ -23,7 +23,7 @@ class Edit extends Component
     public Meeting $meeting;
     public int $room_id;
     public string $title;
-    public string $brief;
+    public ?string $brief;
     public string $description;
     public string $minutes;
     public $minutes_attach;
@@ -87,10 +87,10 @@ class Edit extends Component
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
         // $this->rooms->prepend($this->meeting->room);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
-        ->where(function ($query) {
-            $query->where('user_id', auth()->id())
-                ->orWhere('user_id', null);
-        })->get();
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
@@ -117,10 +117,10 @@ class Edit extends Component
     {
         $this->invitedUsers->push($invitee);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
-        ->where(function ($query) {
-            $query->where('user_id', auth()->id())
-                ->orWhere('user_id', null);
-        })->get();
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
     }
 
     public function removeInvitee(Invitee $invitee)
@@ -128,10 +128,10 @@ class Edit extends Component
         // remove the invitee from the collection
         $this->invitedUsers->forget($this->invitedUsers->search($invitee));
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
-        ->where(function ($query) {
-            $query->where('user_id', auth()->id())
-                ->orWhere('user_id', null);
-        })->get();
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
     }
 
     public function cancelMeeting()

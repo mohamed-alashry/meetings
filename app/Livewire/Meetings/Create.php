@@ -19,7 +19,7 @@ class Create extends Component
 
     public int $room_id;
     public string $title;
-    public string $brief;
+    public ?string $brief;
     public string $description;
     public ?string $start_date;
     public ?string $start_time;
@@ -74,7 +74,7 @@ class Create extends Component
         $this->times = $this->meetingService->getTimesArray();
     }
 
-    public function updated($name, $value)
+    public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
