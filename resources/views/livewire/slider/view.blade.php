@@ -122,7 +122,7 @@
                                     <p class="card-title fw-light my-1">
                                         <i class="fa-solid fa-tv"></i>
                                         <span class="text-secondary px-2">
-                                            Smart Tv
+                                            Smart TV
                                         </span>
                                     </p>
                                 @endif

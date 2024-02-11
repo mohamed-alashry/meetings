@@ -1,6 +1,5 @@
 <div>
     @if (!$in_home && hasPermissionUser('create_meeting'))
-
         <!-- Button trigger modal -->
         <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
             style="background-color: #C2203D;" wire:click="toggleCreateModal">
@@ -206,7 +205,7 @@
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-tv"></i>
                                             <span class="text-secondary px-2">
-                                                Smart Tv
+                                                Smart TV
                                             </span>
                                         </p>
                                     @endif
