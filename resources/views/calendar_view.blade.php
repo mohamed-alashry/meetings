@@ -34,6 +34,21 @@
         display: none !important;
     }
 </style>
+
+@if ($view_days)
+<style>
+    .sidebarshadow{
+        display: none !important;
+    }
+    .navbar{
+        display: none !important;
+    }
+    .line-bookings{
+        display: none !important;
+    }
+</style>
+@endif
+
 @endpush
 @section('content')
 <section class="section-contct-body">

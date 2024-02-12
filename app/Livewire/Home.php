@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Slider\RoomCards;
 use Livewire\Component;
 use App\Services\MeetingService;
 use Illuminate\Support\Collection;
@@ -28,12 +27,11 @@ class Home extends Component
         $this->end_time = '';
         $this->repeatable = 1;
         $this->times = $this->meetingService->getTimesArray();
-
         $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null);
     }
     public function updated()
     {
-        $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null);
+        $this->rooms = $this->meetingService->getRooms($this->start_date ?? null, $this->start_time ?? null,$this->end_time);
         $this->dispatch('updateRooms', $this->rooms);
         $this->dispatch('updateFilters', $this->start_date ?? null, $this->start_time ?? null, $this->end_time ?? null, $this->repeatable ?? null);
     }

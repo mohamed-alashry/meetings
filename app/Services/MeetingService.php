@@ -155,21 +155,16 @@ class MeetingService
         }
     }
 
-    public function getRooms($start_date = null, $start_time = null, int $current_room_id = null)
+    public function getRooms($start_date = null, $start_time = null, $end_time = null, int $current_room_id = null)
     {
         $rooms = Room::query();
         if ($start_date && $start_time) {
-
-            // query to get rooms where not has meeting in same start_date and between start_time and end_time and capacity greater than person_capacity
-            $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time) {
+            $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time, $end_time) {
                 $query->where('start_date', $start_date)
                     ->where('start_time', '<=', $start_time)
-                    ->where('end_time', '>=', $start_time);
+                    ->where('end_time', '>=', $end_time);
             })->orWhere('id', $current_room_id);
         }
-        // if ($capacity) {
-        //     $rooms->where('capacity', '>=', $capacity);
-        // }
 
         return $rooms->get();
     }
@@ -194,7 +189,22 @@ class MeetingService
         $meeting->update([
             'status' => 2
         ]);
+        if ($meeting->invitations->count() > 0) {
+            $emails = $meeting->invitations->pluck('userable.email')->toArray();
+            if (count($emails) > 0) {
+                Mail::to($emails)->send(new CancelMeeting($meeting));
+            }
+        }
+    }
 
+    public function cancelAllMeetings(Meeting $meeting)
+    {
+        $meeting_repeats = Meeting::where('parent_id', $meeting->parent_id)->get();
+        foreach ($meeting_repeats as $meeting_repeat) {
+            $meeting_repeat->update([
+                'status' => 2
+            ]);
+        }
         if ($meeting->invitations->count() > 0) {
             $emails = $meeting->invitations->pluck('userable.email')->toArray();
             if (count($emails) > 0) {
@@ -219,9 +229,6 @@ class MeetingService
             $timeOptions[$timeValue] = $current->format('h:i A'); // Format time as desired
             $current->add($interval);
         }
-
-        // Output the time options
-        // dd($timeOptions);
 
         return $timeOptions;
     }

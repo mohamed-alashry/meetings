@@ -38,7 +38,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="start_time">
+                                    wire:model.live="start_time">
                                     <option value="">Start time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -52,7 +52,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="end_time">
+                                    wire:model.live="end_time">
                                     <option value="">End time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -78,24 +78,6 @@
                                 @enderror
                             </div>
 
-                            {{-- <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="duration" placeholder="Duration" min="1">
-                                @error('duration')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div> --}}
-
-                            {{-- <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="person_capacity" placeholder="Person Capacity"
-                                    min="1">
-                                @error('person_capacity')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div> --}}
                         </div>
                         {{-- end filters --}}
                     </div>

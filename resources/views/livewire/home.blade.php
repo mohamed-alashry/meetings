@@ -15,7 +15,6 @@
                             <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
-
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         {{-- <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i> --}}
                         {{-- <input class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"

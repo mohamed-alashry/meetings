@@ -72,7 +72,7 @@ class Edit extends Component
         // $this->end_date = $this->meeting->end_date;
 
         $this->inviteeEmail = '';
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time, $this->meeting->room_id);
         // append current room to rooms
         // $this->rooms->prepend($this->meeting->room);
         $this->invitedUsers = $this->meeting->invitations->pluck('userable');
@@ -84,7 +84,7 @@ class Edit extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time, $this->meeting->room_id);
         // $this->rooms->prepend($this->meeting->room);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
             ->where(function ($query) {
@@ -137,6 +137,13 @@ class Edit extends Component
     public function cancelMeeting()
     {
         $this->meetingService->cancelMeeting($this->meeting);
+        session()->flash('success', 'Meeting cancelled successfully');
+        $this->redirect(route('meetings.card_view'), true);
+    }
+
+    public function cancelAllMeetings()
+    {
+        $this->meetingService->cancelAllMeetings($this->meeting);
         session()->flash('success', 'Meeting cancelled successfully');
         $this->redirect(route('meetings.card_view'), true);
     }
