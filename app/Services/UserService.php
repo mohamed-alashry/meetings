@@ -54,7 +54,7 @@ class UserService
         try {
             DB::beginTransaction();
             $user = User::find($id);
-            $user->update($data->toArray());
+            $user->update($data->only('name')->toArray());
             $permissions = array_keys(array_filter($data->permissions));
             UserPermission::where('user_id', $user->id)->whereNotIn('name', $permissions)->delete();
             foreach ($permissions as $permission) {

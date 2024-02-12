@@ -1,9 +1,9 @@
 <div class="row">
     <div class="col-12">
         @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
         @endif
     </div>
     <div class="col-lg-12 col-md-12">
@@ -13,10 +13,10 @@
                 <p class="card-text">Add or Edit Users</p>
             </span>
             @if (hasPermissionUser('create_user'))
-            <livewire-users.create :createModal key='create' />
+                <livewire-users.create :createModal key='create' />
             @endif
             @if ($updateModal && hasPermissionUser('update_user'))
-            <livewire-users.edit :user="$user" key='{{ $user->id }}' />
+                <livewire-users.edit :user="$user" key='{{ $user->id }}' />
             @endif
         </div>
     </div>
@@ -35,71 +35,71 @@
             </thead>
             <tbody class="text-center">
                 @foreach ($users as $user)
-                @if ($loop->last)
-                <tr class="end-line-tebal">
-                    <td class="align-middle border-1 border-bottom-0 border-start-0 rounded-bottom-4 rounded-end-0"
-                        scope="col">
-                        {{ $user->id }}
-                    </td>
-                    <td class="align-middle border-1 border-bottom-0" scope="col">
-                        {{ $user->name }}
-                    </td>
-                    <td class="align-middle border-1 border-bottom-0" scope="col">
-                        {{ $user->email }}
-                    </td>
-                    <td class="align-middle border-1 border-bottom-0" scope="col">
-                        {{ $user->created_at->format('d M Y') }}
-                    </td>
-                    <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
-                        scope="col">
-                        @if ($user->id != 1 && hasPermissionUser('delete_user'))
-                        <button type="button" wire:click="deleteUser({{ $user->id }})"
-                            wire:confirm="Are you sure you want to delete this user?"
-                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
-                            Delete
-                        </button>
-                        @endif
-                        @if (hasPermissionUser('update_user'))
-                        <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
-                            wire:click="editUser({{ $user->id }})">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Edit
-                        </button>
-                        @endif
-                    </td>
-                </tr>
-                @else
-                <tr>
-                    <td class="align-middle border-1 border-start-0 " scope="row">
-                        {{ $user->id }}
-                    </td>
-                    <td class="align-middle border-1" scope="col">
-                        {{ $user->name }}
-                    </td>
-                    <td class="align-middle border-1" scope="col">
-                        {{ $user->email }}
-                    </td>
-                    <td class="align-middle border-1" scope="col">
-                        {{ $user->created_at->format('d M Y') }}
-                    </td>
-                    <td class="align-middle border-1 border-end-0" scope="col">
-                        @if ($user->id != 1 && hasPermissionUser('delete_user'))
-                        <button type="button" wire:click="deleteUser({{ $user->id }})"
-                            wire:confirm="Are you sure you want to delete this user?"
-                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
-                            Delete
-                        </button>
-                        @endif
-                        @if (hasPermissionUser('update_user'))
-                        <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
-                            wire:click="editUser({{ $user->id }})">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            Edit
-                        </button>
-                        @endif
-                    </td>
-                </tr>
-                @endif
+                    @if ($loop->last)
+                        <tr class="end-line-tebal">
+                            <td class="align-middle border-1 border-bottom-0 border-start-0 rounded-bottom-4 rounded-end-0"
+                                scope="col">
+                                {{ $user->id }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $user->name }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $user->email }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0" scope="col">
+                                {{ $user->created_at->format('d M Y') }}
+                            </td>
+                            <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
+                                scope="col">
+                                @if ($user->id != 1 && hasPermissionUser('delete_user'))
+                                    <button type="button" wire:click="deleteUser({{ $user->id }})"
+                                        wire:confirm="Are you sure you want to delete this user?"
+                                        class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                                        Delete
+                                    </button>
+                                @endif
+                                @if (hasPermissionUser('update_user'))
+                                    <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
+                                        wire:click="editUser({{ $user->id }})">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        Edit
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @else
+                        <tr>
+                            <td class="align-middle border-1 border-start-0 " scope="row">
+                                {{ $user->id }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $user->name }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $user->email }}
+                            </td>
+                            <td class="align-middle border-1" scope="col">
+                                {{ $user->created_at->format('d M Y') }}
+                            </td>
+                            <td class="align-middle border-1 border-end-0" scope="col">
+                                @if ($user->id != 1 && hasPermissionUser('delete_user'))
+                                    <button type="button" wire:click="deleteUser({{ $user->id }})"
+                                        wire:confirm="Are you sure you want to delete this user?"
+                                        class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                                        Delete
+                                    </button>
+                                @endif
+                                @if (hasPermissionUser('update_user'))
+                                    <button type="button" class="btn text-white fw-bold m-1 shadow-sm btn-bg-color-2"
+                                        wire:click="editUser({{ $user->id }})">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        Edit
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
             </tbody>
         </table>

@@ -22,6 +22,9 @@ Route::get('events', 'MeetingController@events')->name('events');
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+
+    Route::get('auth/google', [AuthController::class, 'redirectToGoogle'])->name('google_login');
+    Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 });
 
 Route::group(['middleware' => ['auth']], function () {
