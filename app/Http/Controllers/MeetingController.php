@@ -28,7 +28,7 @@ class MeetingController extends Controller
             $view_days = true;
             $query->where('room_id', request()->room_id);
         }
-        $meetings = $query->get()->pluck('event_json');
+        $meetings = $query->where('user_id', auth()->id())->get()->pluck('event_json');
 
         return view('calendar_view', compact('meetings', 'view_days'));
     }
@@ -37,7 +37,7 @@ class MeetingController extends Controller
      */
     public function card_view(FilterRequest $request)
     {
-        $meetings = Meeting::upcoming()->limit(30)->get()->groupBy('type_date');
+        $meetings = Meeting::upcoming()->where('user_id', auth()->id())->limit(30)->get()->groupBy('type_date');
         return view('card_view', compact('meetings'));
     }
 
