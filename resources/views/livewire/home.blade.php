@@ -15,14 +15,9 @@
                             <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
-
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
-                        {{-- <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i> --}}
-                        {{-- <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            type="time" wire:model.live="start_time" min="{{ date('H:i') }}"> --}}
-
                         <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            wire:model="start_time">
+                            wire:model.live="start_time">
                             <option value="">Start time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>
@@ -35,12 +30,8 @@
                     </div>
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
-                        {{-- <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i> --}}
-                        {{-- <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            type="time" wire:model.live="start_time" min="{{ date('H:i') }}"> --}}
-
                         <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            wire:model="end_time">
+                            wire:model.live="end_time">
                             <option value="">End time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>

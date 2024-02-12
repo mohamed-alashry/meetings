@@ -73,7 +73,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="start_time">
+                                    wire:model.live="start_time">
                                     <option value="">Start time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -87,7 +87,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="end_time">
+                                    wire:model.live="end_time">
                                     <option value="">End time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
