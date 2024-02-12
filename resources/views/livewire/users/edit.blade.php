@@ -25,30 +25,29 @@
                                 <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
                                     <i class="fa-solid fa-envelope icon fa-lg mt-3"></i>
                                     <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                        placeholder="Type here email" type="email" wire:model="email" readonly
-                                        disabled>
+                                        placeholder="Type here email" type="email" wire:model="email">
                                     @error('email')
                                         <b class="text-danger">{{ $message }}</b>
                                     @enderror
                                 </div>
-                                {{-- <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="Type here password" type="password" wire:model="password"
-                                    autocomplete="new-password">
-                                @error('password')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div>
-                            <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
-                                <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    placeholder="password confirmation" type="password"
-                                    wire:model="password_confirmation" autocomplete="new-password">
-                                @error('password_confirmation')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div> --}}
+                                <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
+                                    <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
+                                    <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                        placeholder="Type here password" type="password" wire:model="password"
+                                        autocomplete="new-password">
+                                    @error('password')
+                                        <b class="text-danger">{{ $message }}</b>
+                                    @enderror
+                                </div>
+                                <div class="input-form-login px-lg-2 p-0 col-xl-6 col-sm-12">
+                                    <i class="fa-solid fa-lock icon fa-lg mt-3"></i>
+                                    <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                                        placeholder="password confirmation" type="password"
+                                        wire:model="password_confirmation" autocomplete="new-password">
+                                    @error('password_confirmation')
+                                        <b class="text-danger">{{ $message }}</b>
+                                    @enderror
+                                </div>
                                 <div class="input-form-login px-lg-2 p-0 col-xl-12 col-sm-12">
                                     <i class="fa-solid fa-circle-user icon fa-lg mt-3"></i>
                                     <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
