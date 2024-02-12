@@ -15,11 +15,40 @@
         font-size: 14px !important;
         text-decoration: none !important;
     }
-
-    /* .fc-day-sat {
-                                                background-color: #5E1042 !important;
-                                            } */
+    /* .fc-day-sun {
+         background-color: #5E1042 !important;
+    } */
+    .fc-day-past .fc-daygrid-day-events .fc-daygrid-event-harness .fc-daygrid-event{
+        background-color: #bbbbbb !important;
+        color: #fff !important;
+    }
+    .fc-day-today .fc-daygrid-day-events .fc-daygrid-event-harness .fc-daygrid-event{
+        background-color: #5E1042 !important;
+        color: #fff !important;
+    }
+    .fc-day-future .fc-daygrid-day-events .fc-daygrid-event-harness .fc-daygrid-event{
+        background-color: #F15A3E !important;
+        color: #fff !important;
+    }
+    .fc-daygrid-event-dot {
+        display: none !important;
+    }
 </style>
+
+@if ($view_days)
+<style>
+    .sidebarshadow{
+        display: none !important;
+    }
+    .navbar{
+        display: none !important;
+    }
+    .line-bookings{
+        display: none !important;
+    }
+</style>
+@endif
+
 @endpush
 @section('content')
 <section class="section-contct-body">
@@ -194,7 +223,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="kt_modal_view_event" tabindex="-1" data-bs-focus="false" aria-hidden="true">
+                <div class="modal fade" id="kt_modal_view_event" tabindex="-1" data-bs-focus="true" aria-hidden="false">
                     <!--begin::Modal dialog-->
                     <div class="modal-dialog modal-dialog-centered mw-650px">
                         <!--begin::Modal content-->
@@ -202,7 +231,7 @@
                             <!--begin::Modal header-->
                             <div class="modal-header border-0 justify-content-end">
                                 <!--begin::Edit-->
-                                <div class="btn btn-icon btn-sm btn-color-gray-500 btn-active-icon-primary me-2"
+                                {{-- <div class="btn btn-icon btn-sm btn-color-gray-500 btn-active-icon-primary me-2"
                                     data-bs-toggle="tooltip" data-bs-dismiss="click" title="Edit Event"
                                     id="kt_modal_view_event_edit">
                                     <i class="ki-outline ki-pencil fs-2"></i>
@@ -213,7 +242,7 @@
                                     data-bs-toggle="tooltip" data-bs-dismiss="click" title="Delete Event"
                                     id="kt_modal_view_event_delete">
                                     <i class="ki-outline ki-trash fs-2"></i>
-                                </div>
+                                </div> --}}
                                 <!--end::Edit-->
                                 <!--begin::Close-->
                                 <div class="btn btn-icon btn-sm btn-color-gray-500 btn-active-icon-primary"
@@ -228,7 +257,7 @@
                                 <!--begin::Row-->
                                 <div class="d-flex">
                                     <!--begin::Icon-->
-                                    <i class="ki-outline ki-calendar-8 fs-1 text-muted me-5"></i>
+                                    <i class="ki-outline ki-calendar-8 fs-1 text-muted me-1"></i>
                                     <!--end::Icon-->
                                     <div class="mb-9">
                                         <!--begin::Event name-->
@@ -270,7 +299,7 @@
                                 </div>
                                 <!--end::Row-->
                                 <!--begin::Row-->
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center d-none">
                                     <!--begin::Icon-->
                                     <i class="ki-outline ki-geolocation fs-1 text-muted me-5"></i>
                                     <!--end::Icon-->
@@ -300,6 +329,7 @@
 <script>
     var meetings = {!! $meetings !!};
 </script>
+<script src="{{ asset('assets') }}/js/custom/apps/calendar/calendar.js"></script>
 @if ($view_days)
 <script>
     $(document).ready(function() {
@@ -307,5 +337,4 @@
     })
 </script>
 @endif
-<script src="{{ asset('assets') }}/js/custom/apps/calendar/calendar.js"></script>
 @endpush

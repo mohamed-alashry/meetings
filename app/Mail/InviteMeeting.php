@@ -51,6 +51,9 @@ class InviteMeeting extends Mailable
      */
     public function attachments(): array
     {
+        if (!$this->meeting->send_room_attach) {
+            return [];
+        }
         return [
             Attachment::fromPath(storage_path('app/public/' . $this->meeting->room->attachment))
                 ->as('guide_room.' . explode('.', $this->meeting->room->attachment)[1]),

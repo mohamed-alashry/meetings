@@ -15,4 +15,5 @@ class UpdateDTO extends Data
     public $attachment;
     public ?array $photos;
     public ?array $features;
+    public ?array $more_features;
 }

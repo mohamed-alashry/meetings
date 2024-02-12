@@ -1,5 +1,4 @@
-{{-- View Popup --}}
-@if ($openViewModal)
+@if ($openViewModal && hasPermissionUser('read_room'))
     <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
         style="display: block;" aria-modal="true" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable ps-2 d-flex justify-content-end" style="max-width: 75%;">
@@ -91,12 +90,22 @@
                                                 Guest Wifi
                                             </span>
                                         </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Network SSID: <span class="fw-bold">OC</span>
+                                            </span>
+                                        </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Password: <span class="fw-bold">Guest2024</span>
+                                            </span>
+                                        </p>
                                     @endif
                                     @if ($feature->name == 'online_meeting' && $feature->value)
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-earth-africa"></i>
                                             <span class="text-secondary px-2">
-                                                Online meeting
+                                                Meeting System
                                             </span>
                                         </p>
                                     @endif
@@ -112,7 +121,7 @@
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-tv"></i>
                                             <span class="text-secondary px-2">
-                                                TV
+                                                Smart TV
                                             </span>
                                         </p>
                                     @endif
@@ -121,6 +130,14 @@
                                             <i class="fa-solid fa-volume-high"></i>
                                             <span class="text-secondary px-2">
                                                 Sound System
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'interactive_smart_board' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-video"></i>
+                                            <span class="text-secondary px-2">
+                                                Interactive Smart Board
                                             </span>
                                         </p>
                                     @endif
@@ -138,8 +155,7 @@
                     </div>
                     <div class="input-form-login px-3 col-12 ">
                         <i class="fa-solid fa-file-lines icon fa-lg"></i>
-                        <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4" placeholder="Type here minutes..."
-                            type="text" wire:model="minutes"></textarea>
+                        <x-input.tinymce wire:model="minutes" placeholder="Type anything you want..." />
 
                         @error('minutes')
                             <b class="text-danger">{{ $message }}</b>

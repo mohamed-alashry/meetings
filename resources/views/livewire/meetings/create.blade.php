@@ -1,5 +1,5 @@
 <div>
-    @if (!$in_home)
+    @if (!$in_home && hasPermissionUser('create_meeting'))
         <!-- Button trigger modal -->
         <button type="button" class="btn text-light fw-bold shadow-sm w-100 h-100 rounded-4"
             style="background-color: #C2203D;" wire:click="toggleCreateModal">
@@ -38,7 +38,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="start_time">
+                                    wire:model.live="start_time">
                                     <option value="">Start time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -52,7 +52,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="end_time">
+                                    wire:model.live="end_time">
                                     <option value="">End time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -78,24 +78,6 @@
                                 @enderror
                             </div>
 
-                            {{-- <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-hourglass-half fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="duration" placeholder="Duration" min="1">
-                                @error('duration')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div> --}}
-
-                            {{-- <div class="input-form-login col-lg col-md-12 col-sm-12">
-                                <i class="fa fa-users fa-lg icon mt-3 text-dark"></i>
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="number" wire:model.live="person_capacity" placeholder="Person Capacity"
-                                    min="1">
-                                @error('person_capacity')
-                                    <b class="text-danger">{{ $message }}</b>
-                                @enderror
-                            </div> --}}
                         </div>
                         {{-- end filters --}}
                     </div>
@@ -174,12 +156,22 @@
                                                 Guest Wifi
                                             </span>
                                         </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Network SSID: <span class="fw-bold">OC</span>
+                                            </span>
+                                        </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Password: <span class="fw-bold">Guest2024</span>
+                                            </span>
+                                        </p>
                                     @endif
                                     @if ($feature->name == 'online_meeting' && $feature->value)
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-earth-africa"></i>
                                             <span class="text-secondary px-2">
-                                                Online meeting
+                                                Meeting System
                                             </span>
                                         </p>
                                     @endif
@@ -195,7 +187,7 @@
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-tv"></i>
                                             <span class="text-secondary px-2">
-                                                TV
+                                                Smart TV
                                             </span>
                                         </p>
                                     @endif
@@ -204,6 +196,14 @@
                                             <i class="fa-solid fa-volume-high"></i>
                                             <span class="text-secondary px-2">
                                                 Sound System
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'interactive_smart_board' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-video"></i>
+                                            <span class="text-secondary px-2">
+                                                Interactive Smart Board
                                             </span>
                                         </p>
                                     @endif
@@ -218,31 +218,42 @@
                                 <p class="h6 fw-bold">Send Meeting Invitations</p>
                                 <p class="fs-6 m-0">To your persons by email or Name</p>
                             </span>
-                            <span class="col-lg-3 col-sm-12">
+                            {{-- <span class="col-lg-3 col-sm-12">
                                 <p class="fs-6 fw-bold text-end m-0">“You can choose from our employee
                                     or send
                                     external invitations
                                     by Email”</p>
-                            </span>
+                            </span> --}}
                         </div>
-                        <div class="input-form-login px-3 col-12 ">
+                        <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-envelope icon fa-lg"></i>
                             <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
                                 placeholder="Type here email" type="email" wire:model.live="inviteeEmail">
+
+                            @error('inviteeEmail')
+                                <b class="text-danger">{{ $message }}</b>
+                            @enderror
+
                         </div>
-                        <div class="card rounded-4 m-3 shadow border-0">
-                            <div class="card-body color-primary">
-                                @foreach ($invitees as $invitee)
-                                    <p class="card-title fw-semibold my-1" role="button"
-                                        wire:click="addInvitee({{ $invitee->id }})">
-                                        {{ $invitee->name }}
-                                        <span class="text-secondary fw-light">
-                                            ({{ $invitee->email }})
-                                        </span>
-                                    </p>
-                                @endforeach
+
+                        @if ($invitees->count() > 0 || $inviteeEmail == null)
+                            <div class="card rounded-4 m-3 shadow border-0">
+                                <div class="card-body color-primary">
+                                    @foreach ($invitees as $invitee)
+                                        <p class="card-title fw-semibold my-1" role="button"
+                                            wire:click="addInvitee({{ $invitee->id }})">
+                                            {{ $invitee->name }}
+                                            <span class="text-secondary fw-light">
+                                                ({{ $invitee->email }})
+                                            </span>
+                                        </p>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
+                        @else
+                            <button type="button" class="btn btn-success rounded-4 shadow btn-sm mx-5"
+                                wire:click="addNewInvitee"><i class="fa-solid fa-plus fa-lg"></i> Add New</button>
+                        @endif
 
                         <div class="card rounded-4 m-3 shadow border-0">
                             <div class="card-body color-primary">
@@ -286,8 +297,7 @@
                         </div>
                         <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-circle-info icon fa-lg z-1"></i>
-                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4"
-                                placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
+                            <x-input.tinymce wire:model="brief" placeholder="Type anything you want..." />
 
                             @error('brief')
                                 <b class="text-danger">{{ $message }}</b>
@@ -312,9 +322,10 @@
                                 wire:model="reminder_time">
                                 <option value="">Reminder time before</option>
                                 <option value="10">10 minutes</option>
+                                <option value="20">20 minutes</option>
                                 <option value="30">30 minutes</option>
                                 <option value="60">1 hour</option>
-                                <option value="240">4 hours</option>
+                                <option value="120">2 hours</option>
                             </select>
                             @error('reminder_time')
                                 <b class="text-danger">{{ $message }}</b>

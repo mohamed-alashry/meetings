@@ -13,5 +13,6 @@ class CreateDTO extends Data
     public int $capacity;
     public ?array $photos;
     public ?array $features;
+    public ?array $more_features;
     public $attachment;
 }

@@ -105,4 +105,14 @@ class Room extends Model
     {
         return $this->hasMany(RoomFeature::class);
     }
+
+    /**
+     * Get all of the properties for the Room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function properties(): HasMany
+    {
+        return $this->hasMany(RoomProperty::class);
+    }
 }

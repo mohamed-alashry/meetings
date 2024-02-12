@@ -1,45 +1,72 @@
 <div>
     <div class="row p-3 align-items-center">
-        <div class="col-lg-6 col-sm-12 color-primary">
+        <div class="col-lg-5 col-sm-12 color-primary">
             <p class="h6 fw-bold">Meeting Information</p>
         </div>
         <!-- Button trigger modal -->
-        <div class="col-lg-6 col-sm-12 row d-flex gap-3">
+        <div class="col-lg-7 col-sm-12 row d-flex gap-3">
             @if ($meeting->status == 1 && $meeting->start_date . ' ' . $meeting->start_time >= date('Y-m-d H:i:s'))
-                <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
-                    style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:loading
-                    wire:click="cancelMeeting" wire:confirm="Are you sure?" disabled>
-                    <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                        viewBox="0 0 24 24">
-                        <path fill="currentColor"
-                            d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
-                            <animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite"
-                                type="rotate" values="0 12 12;360 12 12" />
-                        </path>
-                    </svg>
-                    Canceling...
-                </button>
+                @if (hasPermissionUser('cancel_meeting'))
+                    <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col-4"
+                        style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:loading
+                        wire:click="cancelMeeting" wire:confirm="Are you sure?" disabled>
+                        <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                            viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
+                                <animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite"
+                                    type="rotate" values="0 12 12;360 12 12" />
+                            </path>
+                        </svg>
+                        Canceling...
+                    </button>
+                    <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col-4"
+                        style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:loading
+                        wire:click="cancelAllMeetings" wire:confirm="Are you sure?" disabled>
+                        <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                            viewBox="0 0 24 24">
+                            <path fill="currentColor"
+                                d="M10.72,19.9a8,8,0,0,1-6.5-9.79A7.77,7.77,0,0,1,10.4,4.16a8,8,0,0,1,9.49,6.52A1.54,1.54,0,0,0,21.38,12h.13a1.37,1.37,0,0,0,1.38-1.54,11,11,0,1,0-12.7,12.39A1.54,1.54,0,0,0,12,21.34h0A1.47,1.47,0,0,0,10.72,19.9Z">
+                                <animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite"
+                                    type="rotate" values="0 12 12;360 12 12" />
+                            </path>
+                        </svg>
+                        Canceling all...
+                    </button>
+                    <div class="col-8 row gap-3" wire:loading.remove>
+                        @if ($meeting->repeatable != 1)
+                            <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
+                                style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
+                                wire:click="cancelAllMeetings" wire:confirm="Are you sure?">
+                                <i class="fa fa-xmark fa-fw fa-lg"></i>
+                                Cancel all
+                            </button>
+                        @endif
+                        <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
+                            style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
+                            wire:click="cancelMeeting" wire:confirm="Are you sure?">
+                            <i class="fa fa-xmark fa-fw fa-lg"></i>
+                            Cancel meeting
+                        </button>
+                    </div>
 
-                <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
-                    style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:click="cancelMeeting"
-                    wire:confirm="Are you sure?" wire:loading.remove>
-                    <i class="fa fa-xmark fa-fw fa-lg"></i>
-                    Cancel meeting
-                </button>
+                @endif
 
 
 
-                <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
-                    style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
-                    wire:click="toggleEditModal">
-                    <i class="fa-regular fa-edit"></i>
-                    Edit meeting
-                </button>
+                @if (hasPermissionUser('update_meeting'))
+                    <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
+                        style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
+                        wire:click="toggleEditModal">
+                        <i class="fa-regular fa-edit"></i>
+                        Edit meeting
+                    </button>
+                @endif
             @endif
         </div>
     </div>
 
-    @if ($openEditModal)
+    @if ($openEditModal && hasPermissionUser('update_meeting'))
         <!-- Modal -->
         <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
             style="display: block;" aria-modal="true" role="dialog">
@@ -70,7 +97,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="start_time">
+                                    wire:model.live="start_time">
                                     <option value="">Start time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -84,7 +111,7 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    wire:model="end_time">
+                                    wire:model.live="end_time">
                                     <option value="">End time</option>
                                     @foreach ($times as $key => $time)
                                         <option value="{{ $key }}">{{ $time }}</option>
@@ -184,12 +211,22 @@
                                                 Guest Wifi
                                             </span>
                                         </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Network SSID: <span class="fw-bold">OC</span>
+                                            </span>
+                                        </p>
+                                        <p class="card-title fw-light mx-4 my-1">
+                                            <span class="px-2">
+                                                Password: <span class="fw-bold">Guest2024</span>
+                                            </span>
+                                        </p>
                                     @endif
                                     @if ($feature->name == 'online_meeting' && $feature->value)
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-earth-africa"></i>
                                             <span class="text-secondary px-2">
-                                                Online meeting
+                                                Meeting System
                                             </span>
                                         </p>
                                     @endif
@@ -205,7 +242,7 @@
                                         <p class="card-title fw-light my-1">
                                             <i class="fa-solid fa-tv"></i>
                                             <span class="text-secondary px-2">
-                                                TV
+                                                Smart TV
                                             </span>
                                         </p>
                                     @endif
@@ -214,6 +251,14 @@
                                             <i class="fa-solid fa-volume-high"></i>
                                             <span class="text-secondary px-2">
                                                 Sound System
+                                            </span>
+                                        </p>
+                                    @endif
+                                    @if ($feature->name == 'interactive_smart_board' && $feature->value)
+                                        <p class="card-title fw-light my-1">
+                                            <i class="fa-solid fa-video"></i>
+                                            <span class="text-secondary px-2">
+                                                Interactive Smart Board
                                             </span>
                                         </p>
                                     @endif
@@ -297,8 +342,7 @@
                         </div>
                         <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-circle-info icon fa-lg z-1"></i>
-                            <textarea class="input-field form-control my-3 px-5 py-3 border-0 shadow rounded-4"
-                                placeholder="Type here info or notes..." type="text" wire:model="brief"></textarea>
+                            <x-input.tinymce wire:model="brief" placeholder="Type anything you want..." />
 
                             @error('brief')
                                 <b class="text-danger">{{ $message }}</b>

@@ -39,6 +39,7 @@ class Card extends Component
     public bool $edit_minutes = false;
     public string $minutes;
     public $minutes_attach;
+    public array $selectedInvitees = [];
 
 
 
@@ -51,7 +52,7 @@ class Card extends Component
     function mount(Meeting $meeting)
     {
         $this->meeting = $meeting;
-        $this->minutes = '';
+        $this->minutes = $meeting->minutes ?? '';
     }
 
 
@@ -74,18 +75,13 @@ class Card extends Component
         ]);
     }
 
-    // public function addInvitee(Invitee $invitee)
-    // {
-    //     $this->invitedUsers->push($invitee);
-    //     $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
-    // }
-
-    // public function removeInvitee(Invitee $invitee)
-    // {
-    //     // remove the invitee from the collection
-    //     $this->invitedUsers->forget($this->invitedUsers->search($invitee));
-    //     $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
-    // }
+    public function shareMinutes()
+    {
+        $invitees = Invitee::whereIn('id', $this->selectedInvitees)->get();
+        $this->meetingService->shareMinutes($invitees, $this->meeting);
+        // redirect to meetings
+        $this->redirect(route('meetings.card_view'), true);
+    }
 
 
 

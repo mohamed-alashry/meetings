@@ -1,8 +1,9 @@
 <?php
 return [
-    'wifi'              => 'Wifi',
-    'online_meeting'    => 'Online Meeting',
+    'wifi'              => 'Guest Wifi',
+    'online_meeting'    => 'Meeting System',
     'projector'         => 'Projector',
-    'tv'                => 'TV',
+    'tv'                => 'Smart TV',
     'sound_system'      => 'Sound System',
+    'interactive_smart_board'      => 'Interactive Smart Board',
 ];

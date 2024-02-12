@@ -31,14 +31,15 @@ class CreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'              => 'required|string|max:191',
-            'location'          => 'required|string|max:191',
-            'google_location'   => 'required|string|max:191',
-            'capacity'          => 'required|numeric|gte:1',
-            'photos'            => 'required|array',
-            'photos.*'          => 'image',
-            'features'          => 'nullable|array',
-            'attachment'        => 'required|file',
+            'name'                  => 'required|string|max:191',
+            'location'              => 'required|string|max:191',
+            'google_location'       => 'required|string|max:191',
+            'capacity'              => 'required|numeric|gte:1',
+            'photos'                => 'required|array',
+            'photos.*'              => 'image',
+            'features'              => 'nullable|array',
+            'attachment'            => 'required|file',
+            'more_features'         => 'nullable|array',
             // 'status'            => 'required|in:1,2,3',
         ];
     }

@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $data['meetings'] = Meeting::upcoming()->get();
+        $data['meetings'] = Meeting::upcoming()->where('user_id', auth()->id())->get();
         return view('home', $data);
     }
 }

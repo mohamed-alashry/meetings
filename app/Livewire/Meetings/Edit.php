@@ -23,7 +23,7 @@ class Edit extends Component
     public Meeting $meeting;
     public int $room_id;
     public string $title;
-    public string $brief;
+    public ?string $brief;
     public string $description;
     public string $minutes;
     public $minutes_attach;
@@ -72,7 +72,7 @@ class Edit extends Component
         // $this->end_date = $this->meeting->end_date;
 
         $this->inviteeEmail = '';
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time, $this->meeting->room_id);
         // append current room to rooms
         // $this->rooms->prepend($this->meeting->room);
         $this->invitedUsers = $this->meeting->invitations->pluck('userable');
@@ -84,9 +84,13 @@ class Edit extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->meeting->room_id);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time, $this->meeting->room_id);
         // $this->rooms->prepend($this->meeting->room);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
@@ -112,19 +116,34 @@ class Edit extends Component
     public function addInvitee(Invitee $invitee)
     {
         $this->invitedUsers->push($invitee);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
     }
 
     public function removeInvitee(Invitee $invitee)
     {
         // remove the invitee from the collection
         $this->invitedUsers->forget($this->invitedUsers->search($invitee));
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
     }
 
     public function cancelMeeting()
     {
         $this->meetingService->cancelMeeting($this->meeting);
+        session()->flash('success', 'Meeting cancelled successfully');
+        $this->redirect(route('meetings.card_view'), true);
+    }
+
+    public function cancelAllMeetings()
+    {
+        $this->meetingService->cancelAllMeetings($this->meeting);
         session()->flash('success', 'Meeting cancelled successfully');
         $this->redirect(route('meetings.card_view'), true);
     }

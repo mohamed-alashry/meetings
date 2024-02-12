@@ -20,7 +20,7 @@ class Create extends Component
     public $attachment;
     public $features;
     public $photos = [];
-
+    public $more_features = [];
     private RoomService $roomService;
 
     public function boot(RoomService $roomService)
@@ -30,7 +30,7 @@ class Create extends Component
 
     public function mount()
     {
-
+        $this->addMoreFeatures();
         $this->features = config('features');
     }
 
@@ -51,6 +51,7 @@ class Create extends Component
     public function addRoom()
     {
         $inputs = CreateDTO::from($this->validate());
+        // dd($this->more_features);
         $this->roomService->create($inputs);
         $this->alert('success', 'Room created successfully');
         session()->flash('success', 'Room created successfully');
@@ -66,5 +67,15 @@ class Create extends Component
     {
         unset($this->photos[$index]);
         $this->alert('success', 'Photo deleted successfully');
+    }
+
+    public function deleteFeatures($id)
+    {
+        unset($this->more_features[$id]);
+    }
+
+    public function addMoreFeatures()
+    {
+        $this->more_features[] = [];
     }
 }

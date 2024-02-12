@@ -18,9 +18,9 @@
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row" style="height: 100vh;">
-            <div class="col-lg-5 col-12 p-0 d-flex align-items-start flex-column" style="background: #020B20">
+    <div class="container-fluid" style="background-image: url({{ asset(config('settings.background')) }}); background-repeat: no-repeat;background-size: cover;">
+        <div class="row "  style="height: 100vh; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(2,11,32,0.15730042016806722) 74%);">
+            <div class="col-lg-5 col-12 p-0 d-flex align-items-start flex-column ">
                 <div class="d-flex align-items-end mx-auto" style="height: -webkit-fill-available;">
                     <img class="img-fluid" src="{{ asset(config('settings.logo.original')) }}"
                         alt="Modern building architecture">
@@ -61,15 +61,7 @@
                         alt="Modern building architecture">
                 </div>
             </div>
-            <div class="col-7 d-none p-0 d-lg-flex align-items-end justify-content-end flex-column">
-                <div class="" style="position: relative; top: 4%;">
-                    <img class="img-fluid" src="{{ asset('assets') }}/img/GroupLogin.png" alt="" />
-                </div>
-                <div class="">
-                    <img class="img-fluid" src="{{ asset('assets') }}/img/Vector.png" alt="" />
-                </div>
 
-            </div>
         </div>
     </div>
 </body>

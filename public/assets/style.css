@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  font-family: Ubuntu;
 }
 
 .input-form-login i {
@@ -223,4 +224,7 @@
   background-color: transparent;
   border: none;
   border-radius: 0;
+}
+.card-title {
+    font-weight: bold;
 }

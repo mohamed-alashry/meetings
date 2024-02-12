@@ -19,7 +19,7 @@ class Create extends Component
 
     public int $room_id;
     public string $title;
-    public string $brief;
+    public ?string $brief;
     public string $description;
     public ?string $start_date;
     public ?string $start_time;
@@ -39,7 +39,7 @@ class Create extends Component
     public bool $send_room_attach = false;
     public bool $send_room_properties = false;
     public string $google_meet_link;
-    public int $reminder_time;
+    public ?int $reminder_time;
 
     public array $times = [];
 
@@ -65,7 +65,7 @@ class Create extends Component
         $this->end_time = '';
         $this->inviteeEmail = '';
         $this->repeatable = 1;
-        $this->reminder_time = 0;
+        $this->reminder_time = null;
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
         $this->invitees = collect();
         $this->invitedUsers = collect();
@@ -77,8 +77,12 @@ class Create extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time);
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
     }
 
@@ -110,7 +114,24 @@ class Create extends Component
     public function addInvitee(Invitee $invitee)
     {
         $this->invitedUsers->push($invitee);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))->get();
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
+    }
+
+    public function addNewInvitee()
+    {
+        $this->validate(['inviteeEmail' => 'required|email']);
+        $newInvitee = Invitee::create(['email' => $this->inviteeEmail, 'user_id' => auth()->id()]);
+        $this->invitedUsers->push($newInvitee);
+        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+            ->where(function ($query) {
+                $query->where('user_id', auth()->id())
+                    ->orWhere('user_id', null);
+            })->get();
+        $this->inviteeEmail = '';
     }
 
     public function removeInvitee(Invitee $invitee)

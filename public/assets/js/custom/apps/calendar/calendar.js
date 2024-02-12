@@ -52,7 +52,7 @@ var KTAppCalendar = (function () {
                           e.classList.remove("d-none");
                       }));
             }),
-                // C(E),
+                C(E),
                 D.addEventListener("click", function (o) {
                     o.preventDefault(),
                         p &&
@@ -159,7 +159,7 @@ var KTAppCalendar = (function () {
         },
         B = () => {
             var e, t, n;
-            // w.show(),
+            w.show(),
                 E.allDay
                     ? ((e = "All Day"),
                       (t = moment(E.startDate).format("Do MMM, YYYY")),

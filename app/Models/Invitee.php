@@ -28,6 +28,7 @@ class Invitee extends Model
         'email',
         'password',
         'status',
+        'user_id'
     ];
 
     /**
