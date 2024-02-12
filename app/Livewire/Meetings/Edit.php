@@ -141,6 +141,13 @@ class Edit extends Component
         $this->redirect(route('meetings.card_view'), true);
     }
 
+    public function cancelAllMeetings()
+    {
+        $this->meetingService->cancelAllMeetings($this->meeting);
+        session()->flash('success', 'Meeting cancelled successfully');
+        $this->redirect(route('meetings.card_view'), true);
+    }
+
     public function render()
     {
 
