@@ -236,12 +236,12 @@
                                 <p class="h6 fw-bold">Send Meeting Invitations</p>
                                 <p class="fs-6 m-0">To your persons by email or Name</p>
                             </span>
-                            <span class="col-lg-3 col-sm-12">
+                            {{-- <span class="col-lg-3 col-sm-12">
                                 <p class="fs-6 fw-bold text-end m-0">“You can choose from our employee
                                     or send
                                     external invitations
                                     by Email”</p>
-                            </span>
+                            </span> --}}
                         </div>
                         <div class="input-form-login px-3 col-12">
                             <i class="fa-solid fa-envelope icon fa-lg"></i>
