@@ -2,8 +2,11 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use App\Models\Meeting;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class ReminderMeeting extends Command
 {
@@ -27,17 +30,29 @@ class ReminderMeeting extends Command
     public function handle()
     {
         try {
-            $meetings = Meeting::whereDate('start_date', now())->whereTime('start_time', '>=', now()->subHour(4))->whereNull('alert_date')->get();
-            if (count($meetings) > 0) {
 
-                foreach ($meetings as $meeting) {
+            // Retrieve meetings with their reminder minutes
+            $meetings = Meeting::whereDate('start_date', Carbon::today())
+                ->whereNull('alert_date')
+                ->get();
+
+            // Send email reminders for meetings with start time within the reminder time frame
+            foreach ($meetings as $meeting) {
+                // Calculate the reminder time based on the meeting's start time and reminder minutes
+                $reminderTime = Carbon::parse($meeting->start_time)->subMinutes($meeting->reminder_time);
+
+                // Check if the current time is within the reminder time frame
+                if (Carbon::now()->gte($reminderTime)) {
+                    // Send email reminder using Laravel Mail
                     $emails = $meeting->invitations->pluck('userable.email')->toArray();
                     \Illuminate\Support\Facades\Mail::to($emails)->send(new \App\Mail\ReminderMeeting($meeting));
+
+                    // Update the alert date to prevent sending duplicate reminders
                     $meeting->update(['alert_date' => now()]);
                 }
             }
-        } catch (\Throwable $th) {
-            //throw $th;
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
         }
     }
 }

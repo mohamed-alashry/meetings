@@ -162,7 +162,8 @@ class MeetingService
             $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time, $end_time) {
                 $query->where('start_date', $start_date)
                     ->where('start_time', '<=', $start_time)
-                    ->where('end_time', '>=', $end_time);
+                    ->where('end_time', '>=', $end_time)
+                    ->where('status', 1);
             })->orWhere('id', $current_room_id);
         }
 
