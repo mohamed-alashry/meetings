@@ -106,22 +106,22 @@
                     </div>
                 </div>
                 @if ($meeting->send_room_properties)
-                <hr style="border-color: #fff;">
-                <div style="padding: 0% 5%; font-size: 75%;">
-                    <p style="font-weight: 700; margin: 0;">Meeting Room Properties</p>
-                    <p style="margin-top: 3px;">Here the meeting room properties</p>
-                    <div
-                        style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
-                        @foreach ($meeting->room->properties as $item)
-                            <p style=" font-weight: 700; margin: 0.3rem;">
-                                {{ $item->key }}:
-                                <span style="font-weight: 500;">
-                                    {{ $item->value }}
-                                </span>
-                            </p>
-                        @endforeach
+                    <hr style="border-color: #fff;">
+                    <div style="padding: 0% 5%; font-size: 75%;">
+                        <p style="font-weight: 700; margin: 0;">Meeting Room Properties</p>
+                        <p style="margin-top: 3px;">Here the meeting room properties</p>
+                        <div
+                            style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
+                            @foreach ($meeting->room->properties as $item)
+                                <p style=" font-weight: 700; margin: 0.3rem;">
+                                    {{ $item->key }}:
+                                    <span style="font-weight: 500;">
+                                        {{ $item->value }}
+                                    </span>
+                                </p>
+                            @endforeach
+                        </div>
                     </div>
-                </div>
                 @endif
                 <hr style="border-color: #fff;">
                 <div style="padding: 1rem; font-size: 14px;">
@@ -205,7 +205,7 @@
                                                 <img src="https://safavisa.sirv.com/Images/television 1.png"
                                                     alt="" srcset="">
                                                 <span style="font-weight: 700;">
-                                                    Smart Tv
+                                                    Smart TV
                                                 </span>
                                             </p>
                                         @endif

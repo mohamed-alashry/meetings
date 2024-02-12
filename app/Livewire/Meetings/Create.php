@@ -77,7 +77,7 @@ class Create extends Component
     public function updated()
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
-        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time);
+        $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time);
         $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
             ->where(function ($query) {
                 $query->where('user_id', auth()->id())

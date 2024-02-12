@@ -178,7 +178,7 @@
                                                 <img src="https://safavisa.sirv.com/Images/television 1.png"
                                                     alt="" srcset="">
                                                 <span style="font-weight: 700;">
-                                                    Smart Tv
+                                                    Smart TV
                                                 </span>
                                             </p>
                                         @endif
