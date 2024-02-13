@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('php artisan app:reminder-meeting')->everyMinute();
+        $schedule->command('app:reminder-meeting')->everyMinute();
     }
 
     /**
