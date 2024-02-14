@@ -9,15 +9,19 @@
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         {{-- <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i> --}}
-                        <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="date"
+                        <input class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm" type="date"
                             wire:model.live="start_date" min="{{ date('Y-m-d') }}">
                         @error('start_date')
                             <b class="text-danger">{{ $message }}</b>
                         @enderror
                     </div>
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
-                        <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            wire:model.live="start_time">
+                        {{-- <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i> --}}
+                        {{-- <input class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
+                            type="time" wire:model.live="start_time" min="{{ date('H:i') }}"> --}}
+
+                        <select class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
+                            wire:model="start_time">
                             <option value="">Start time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>
@@ -30,8 +34,12 @@
                     </div>
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
-                        <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                            wire:model.live="end_time">
+                        {{-- <i class="fa fa-clock fa-lg icon mt-3 text-dark"></i> --}}
+                        {{-- <input class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
+                            type="time" wire:model.live="start_time" min="{{ date('H:i') }}"> --}}
+
+                        <select class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
+                            wire:model="end_time">
                             <option value="">End time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>
@@ -45,7 +53,7 @@
 
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         {{-- <i class="fa fa-repeat fa-lg icon mt-3 text-dark"></i> --}}
-                        <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                        <select class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
                             wire:model="repeatable">
                             <option value="1">No Repeat</option>
                             <option value="2">Daily</option>
