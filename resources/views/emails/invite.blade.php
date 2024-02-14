@@ -20,12 +20,12 @@
 </head>
 
 <div>
-    <div style="font-family: Ubuntu sans-serif; background: #F6F6F6;">
+    <div style="font-family: Ubuntu sans-serif; background: #F6F6F6; width:75%; margin:0 auto;">
         <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff; ">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
                 <tr style="width: 100%;">
-                    <th style="width: 50%; text-align: start;font-size: 75%;">
+                    <th style="width: 50%; text-align: start;font-size: .8vw;">
                         <h3 style="font-weight: bold">
                             {{ $meeting->title }}
                             @if ($meeting->status == 2)
@@ -49,7 +49,7 @@
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">
-                        <img src="https://safavisa.sirv.com/Images/white-logo.svg" alt="" srcset=""
+                        <img src="https://safavisa.sirv.com/Images/white-logo.png" alt="" srcset=""
                             style="width: inherit;">
                     </th>
                 </tr>
