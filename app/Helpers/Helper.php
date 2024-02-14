@@ -22,6 +22,7 @@ if (!function_exists('hasPermissionUser')) {
      */
     function hasPermissionUser($name)
     {
+        if (auth()->id()) return true;
         return in_array($name, auth()->user()->permissions->pluck('name')->toArray());
     }
 }

@@ -11,7 +11,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $data['meetings'] = Meeting::upcoming()->where('user_id', auth()->id())->get();
+        if (auth()->id() == 1) {
+            $data['meetings'] = Meeting::upcoming()->get();
+        } else {
+            $data['meetings'] = Meeting::upcoming()->where('user_id', auth()->id())->get();
+        }
         return view('home', $data);
     }
 }
