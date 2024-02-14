@@ -74,7 +74,7 @@
                 <div style="padding: 0rem 1rem;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
                     </p>
-                    <p style="margin-top: 3px;font-size: .8vw; color: #0225378A !important">Invited persons by email or
+                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Invited persons by email or
                         Name
                     </p>
                     <div
@@ -114,14 +114,13 @@
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
                         Information
                     </p>
-                    <p style="margin-top: 3px;font-size: .8vw; color: #0225378A !important">Type here the meeting info
+                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type here the meeting info
                     </p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
                         <table style="font-weight: bold; width: 100%; padding: 0;">
                             <tr>
                                 <th style="text-align: start; vertical-align: baseline;width: 9px;">
-                                    <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt="">
                                     <p style="font-weight: 500; color:rgb(126,126,126);">
                                         {!! $meeting->brief !!}
                                     </p>
