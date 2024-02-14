@@ -132,6 +132,7 @@ class Create extends Component
                 $query->where('user_id', auth()->id())
                     ->orWhere('user_id', null);
             })->get();
+        $this->inviteeEmail = '';
     }
 
     public function addNewInvitee()

@@ -117,7 +117,7 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-regular fa-calendar-days"></i>
-                                Due, {{ $meeting->start_time ?? '' }}
+                                Due, {{ $meeting->start_time_format ?? '' }}
                             </small>
                         </p>
                         <p class="card-text m-1">
