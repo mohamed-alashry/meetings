@@ -32,9 +32,9 @@ class CreateRequest extends FormRequest
     {
         return [
             'room_id'              => 'required|exists:rooms,id',
-            'title'                => 'required|string|max:191',
-            'brief'                => 'nullable|string|max:191',
-            'description'          => 'nullable|string|max:191',
+            'title'                => 'required|string',
+            'brief'                => 'nullable|string',
+            'description'          => 'nullable|string',
             'start_date'           => 'required|date|after:yesterday',
             'start_time'           => 'required|date_format:H:i',
             'end_time'             => 'required|date_format:H:i|after:start_time',
