@@ -11,7 +11,7 @@
 </head>
 
 <div>
-    <div style="font-family: Ubuntu sans-serif; background: #F6F6F6;padding: 5% 20%;">
+    <div style="font-family: Ubuntu sans-serif; background: #F6F6F6;">
         <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff; ">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
@@ -40,7 +40,8 @@
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">
-                        <img src="https://safavisa.sirv.com/Images/white-logo.svg" alt="" srcset="">
+                        <img src="https://safavisa.sirv.com/Images/white-logo.svg" alt="" srcset=""
+                            style="width: inherit;">
                     </th>
                 </tr>
 
@@ -48,24 +49,26 @@
             <div>
                 <table style="padding: 2rem 0;background-color: #fff;  width: 100%;">
                     <tr style="width: 100%;">
-                        <th style="text-align: end; padding-top: 0.5%;">
+                        <th style="text-align: end; padding-top: 0.5%;width: 50%;">
                             <a href="{{ $meeting->google_meet_link }}"
-                                style="text-decoration: none; padding: 5% 15%; border-radius: 1rem; font-weight: 600;font-size: 75%; background-color: #fff; border: solid 1px #cccc;">
+                                style="text-decoration: none; padding: 5% 10%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
                                 <span>
-                                    <img src="https://safavisa.sirv.com/Images/meet 1.png" alt="" srcset="">
+                                    <img src="https://safavisa.sirv.com/Images/meet 1.png" alt="" srcset=""
+                                        style="max-width: 12%;">
                                 </span>
-                                <span style="vertical-align: top;">
+                                <span style="vertical-align: super;font-size: 58%;">
                                     Open in Google Meet
                                 </span>
                             </a>
                         </th>
-                        <th style="text-align: start;">
+                        <th style="text-align: start;width: 50%;">
                             <a href="{{ $meeting->add_to_calendar }}"
-                                style="text-decoration: none; padding: 5% 15%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600;font-size: 75%; color: #fff;">
+                                style="text-decoration: none; padding: 5% 10%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                 <span>
-                                    <img src="https://safavisa.sirv.com/Images/appointment 1.png" alt="" srcset="">
+                                    <img src="https://safavisa.sirv.com/Images/appointment 1.png" alt="" srcset=""
+                                        style="max-width: 12%;">
                                 </span>
-                                <span style="vertical-align: super;">
+                                <span style="vertical-align: super; font-size: 58%;">
                                     Add to your Calendar
                                 </span>
                             </a>
@@ -73,7 +76,7 @@
                     </tr>
 
                 </table>
-                <div style="padding: 0% 5%; font-size: 75%;">
+                <div style="padding: 0rem 1rem; font-size: 75%;">
                     <p style="font-weight: bold; margin: 0;">Invited Persons</p>
                     <p style="margin-top: 3px;">Invited persons by email or Name</p>
                     <div
@@ -109,7 +112,7 @@
                 </div>
                 @if ($meeting->send_room_properties)
                 <hr style="border-color: #fff;">
-                <div style="padding: 0% 5%; font-size: 75%;">
+                <div style="padding: 1rem; font-size: 75%;">
                     <p style="font-weight: bold; margin: 0;">Meeting Room Properties</p>
                     <p style="margin-top: 3px;">Here the meeting room properties</p>
                     <div
@@ -152,14 +155,14 @@
                 <div style="padding: 1rem; font-size: 14px;
                 background-image: url(https://safavisa.sirv.com/Images/Frame-end-footer.png);
                 background-repeat: no-repeat;
-                background-position: right;
+                background-position: right bottom;
                 background-size: contain;
                 border-radius: 0 0 19px ;">
                     <p style="font-weight: bold; margin: 0;">Meeting Information</p>
                     <p style="margin-top: 3px;">Type here the meeting info</p>
                     <table style="font-weight: bold; width: 100%; padding: 0;">
                         <tr>
-                            <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%;">
+                            <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 42%;">
 
                                 <div
                                     style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; width: 63%;height: fit-content; background-color: #fff; float: inline-end;">
