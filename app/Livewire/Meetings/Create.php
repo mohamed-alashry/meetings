@@ -42,6 +42,7 @@ class Create extends Component
     public ?int $reminder_time;
 
     public array $times = [];
+    public $room_media = [];
 
 
 
@@ -84,6 +85,9 @@ class Create extends Component
                     ->orWhere('user_id', null);
             })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
+        if($this->room_id){
+            $this->changeRoom($this->room_id);
+        }
     }
 
 
@@ -107,6 +111,12 @@ class Create extends Component
     public function changeRoom($room_id)
     {
         $this->room_id = $room_id;
+
+        $this->room_media = [];
+        $room = Room::find($this->room_id);
+        if($room){
+            $this->room_media = $room->media;
+        }
     }
 
 
