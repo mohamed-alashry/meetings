@@ -217,7 +217,7 @@
                                         @endforeach
                                         @foreach ($meeting->room->properties as $item)
                                             <p style=" font-weight: 500; color:rgb(126,126,126); margin: 0.3rem;">
-                                                {{ $item->key }}:
+                                                {{ $item->key }}
                                                 <span style="font-weight: 500;">
                                                     {{ $item->value }}
                                                 </span>

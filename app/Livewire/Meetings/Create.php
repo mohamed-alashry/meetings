@@ -79,13 +79,16 @@ class Create extends Component
     {
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
         $this->rooms = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time);
-        $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
-            ->where(function ($query) {
-                $query->where('user_id', auth()->id())
-                    ->orWhere('user_id', null);
-            })->get();
         $this->invitedUsers = Invitee::whereIn('id', $this->invitedUsers->pluck('id'))->get();
-        if($this->room_id){
+
+        if ($this->inviteeEmail) {
+            $this->invitees = Invitee::where('email', 'like', '%' . $this->inviteeEmail . '%')->whereNotIn('id', $this->invitedUsers->pluck('id'))
+                ->where(function ($query) {
+                    $query->where('user_id', auth()->id())
+                        ->orWhere('user_id', null);
+                })->get();
+        }
+        if ($this->room_id) {
             $this->changeRoom($this->room_id);
         }
     }
@@ -114,7 +117,7 @@ class Create extends Component
 
         $this->room_media = [];
         $room = Room::find($this->room_id);
-        if($room){
+        if ($room) {
             $this->room_media = $room->media;
         }
     }
