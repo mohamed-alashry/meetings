@@ -48,10 +48,10 @@
                             <a href="{{ $meeting->google_meet_link }}"
                                 style="text-decoration: none; padding: 5% 10%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
                                 <span>
-                                    <img src="https://safavisa.sirv.com/Images/meet 1.png" alt="" srcset=""
-                                        style="max-width: 12%;">
+                                    <img src="https://safavisa.sirv.com/Images/meet%201.png" alt=""
+                                        srcset="" style="max-width: 12%;">
                                 </span>
-                                <span style="vertical-align: super;font-size: 58%;">
+                                <span style="vertical-align: text-bottom;font-size: .8vw;">
                                     Open in Google Meet
                                 </span>
                             </a>
@@ -60,10 +60,10 @@
                             <a href="{{ $meeting->add_to_calendar }}"
                                 style="text-decoration: none; padding: 5% 10%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                 <span>
-                                    <img src="https://safavisa.sirv.com/Images/appointment 1.png" alt=""
+                                    <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
                                         srcset="" style="max-width: 12%;">
                                 </span>
-                                <span style="vertical-align: super; font-size: 58%;">
+                                <span style="vertical-align: text-bottom;font-size: .8vw;">
                                     Add to your Calendar
                                 </span>
                             </a>
@@ -121,10 +121,7 @@
                                         srcset="">
                                 </th>
                                 <th style=" text-align: start;">
-                                    <p style="font-weight: 500; margin-top: 0%;">
-                                        {{ $meeting->title }}
-                                    </p>
-                                    <p style="font-weight: 500;">
+                                    <p style="font-weight: 500; color:rgb(126,126,126);">
                                         {!! $meeting->brief !!}
                                     </p>
                                 </th>
@@ -143,7 +140,7 @@
                 border-radius: 0 0 19px ;">
                         <p style="font-weight: bold; margin: 0;">Meeting Room Specs </p>
                         <p style="margin-top: 3px;">here the meeting room info</p>
-                        <table style="font-weight: bold; width: 100%; padding: 0;">
+                        <table style="font-weight: 500; width: 100%; padding: 0;">
                             <tr>
                                 <th
                                     style="text-align: start; vertical-align: baseline; float: inline-start; width: 42%;">
@@ -155,7 +152,8 @@
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
                                                     <img src="https://safavisa.sirv.com/Images/wi-fi%201.png"
                                                         alt="" srcset="">
-                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Guest Wifi
                                                     </span>
                                                 </p>
@@ -174,7 +172,8 @@
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
                                                     <img src="https://safavisa.sirv.com/Images/online-meeting%201.png"
                                                         alt="" srcset="">
-                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Meeting System
                                                     </span>
                                                 </p>
@@ -183,7 +182,8 @@
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
                                                     <img src="https://safavisa.sirv.com/Images/television%201.png"
                                                         alt="" srcset="">
-                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Projector
                                                     </span>
                                                 </p>
@@ -192,7 +192,8 @@
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
                                                     <img src="https://safavisa.sirv.com/Images/television%201.png"
                                                         alt="" srcset="">
-                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Smart TV
                                                     </span>
                                                 </p>
