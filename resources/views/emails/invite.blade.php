@@ -3,47 +3,33 @@
 
 <head>
     <meta charset="utf-8">
-
-    <style>
-        .im {
-            color: inherit !important;
-        }
-
-        div>span.im {
-            color: inherit !important;
-        }
-
-        p>span.im {
-            color: inherit !important;
-        }
-    </style>
 </head>
 
 <div>
-    <div style="font-family: Ubuntu sans-serif; background: #F6F6F6; width:75%; margin:0 auto;">
+    <div style="background: #F6F6F6; width:65%; margin:0 auto;">
         <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff; ">
             <table
                 style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
                 <tr style="width: 100%;">
-                    <th style="width: 50%; text-align: start;font-size: .8vw;">
-                        <h3 style="font-weight: bold">
+                    <th style="width: 50%; text-align: start;">
+                        <h3 style="font-weight: bold;font-size: 1vw;">
                             {{ $meeting->title }}
                             @if ($meeting->status == 2)
                                 - (Cancelled)
                             @endif
                         </h3>
-                        <p>
-                            <img src="https://safavisa.sirv.com/Images/calendar 1.png" alt="" srcset="">
+                        <p style="font-size: .8vw; color: #fff !important">
+                            <img src="https://safavisa.sirv.com/Images/calendar%201.png" alt="" srcset="">
                             {{ $meeting->start_date_format }},
                             {{ $meeting->start_time_format }}
                         </p>
-                        <p>
+                        <p style="font-size: .8vw; color: #fff !important">
                             <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/Group.png"
                                 alt="" srcset="">
                             {{ $meeting->room->name }}
                         </p>
-                        <p>
-                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass 1.png"
+                        <p style="font-size: .8vw; color: #fff !important">
+                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass%201.png"
                                 alt="" srcset="">
                             Duration: {{ $meeting->duration }} min
                         </p>
@@ -85,9 +71,10 @@
                     </tr>
 
                 </table>
-                <div style="padding: 0rem 1rem; font-size: 75%;">
-                    <p style="font-weight: bold; margin: 0;">Invited Persons</p>
-                    <p style="margin-top: 3px;">Invited persons by email or Name</p>
+                <div style="padding: 0rem 1rem;">
+                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #000 !important">Invited Persons</p>
+                    <p style="margin-top: 3px;font-size: .8vw; color: #000 !important">Invited persons by email or Name
+                    </p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
 
@@ -122,9 +109,11 @@
                 </div>
                 @if ($meeting->send_room_properties)
                     <hr style="border-color: #fff;">
-                    <div style="padding: 1rem; font-size: 75%;">
-                        <p style="font-weight: bold; margin: 0;">Meeting Room Properties</p>
-                        <p style="margin-top: 3px;">Here the meeting room properties</p>
+                    <div style="padding: 1rem;">
+                        <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #000 !important">Meeting Room
+                            Properties</p>
+                        <p style="margin-top: 3px;font-size: .8vw; color: #000 !important">Here the meeting room
+                            properties</p>
                         <div
                             style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
                             @foreach ($meeting->room->properties as $item)
@@ -139,9 +128,10 @@
                     </div>
                 @endif
                 <hr style="border-color: #fff;">
-                <div style="padding: 1rem; font-size: 14px;">
-                    <p style="font-weight: bold; margin: 0;">Meeting Information</p>
-                    <p style="margin-top: 3px;">Type here the meeting info</p>
+                <div style="padding: 1rem;">
+                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #000 !important">Meeting Information
+                    </p>
+                    <p style="margin-top: 3px;font-size: .8vw; color: #000 !important">Type here the meeting info</p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
                         <table style="font-weight: bold; width: 100%; padding: 0;">
