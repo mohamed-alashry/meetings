@@ -299,7 +299,7 @@
                                         @forelse ($meeting->room->properties as $feature)
                                             <p class="card-title fw-light mx-2 my-1">
                                                 <span class="">
-                                                    <b class="fw-bold">{{ $feature->key }}:</b>
+                                                    <b class="fw-bold">{{ $feature->key }}</b>
                                                     <span>{{ $feature->value }}</span>
                                                 </span>
                                             </p>
