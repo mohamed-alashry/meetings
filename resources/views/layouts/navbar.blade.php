@@ -17,7 +17,7 @@
                     <a class="dropdown-toggle text-decoration-none d-flex p-1 mx-2 align-items-center" id="messages"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
                         <div class="avatar m-auto img-fluid">
-                            <span class="avatar_icon">{{ Str::ucfirst(substr(auth()->user()->name, -1, 1)) }}</span>
+                            <span class="avatar_icon">{{ Str::ucfirst(substr(auth()->user()->name, 0, 1)) }}</span>
                         </div>
                         <span class="px-2 d-none d-md-block">
                             <p class="m-0 fw-lighter text-secondary" style="font-size: 80%;">Welcome,</p>
@@ -26,7 +26,9 @@
                         <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="messages">
-                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                        <a class="dropdown-item" style="font-weight: bolder;" href="{{ route('logout') }}">
+                            Log Out
+                        </a>
                     </div>
                 </div>
             </div>
