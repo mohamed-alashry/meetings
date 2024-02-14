@@ -162,13 +162,13 @@ class MeetingService
 
         if ($start_date && $start_time && $end_time) {
             // Convert start and end times to Carbon objects for easier comparison
-            $carbonNewMeetingStartTime = Carbon::createFromFormat('Y-m-d H:i:s', "$start_date $start_time");
-            $carbonNewMeetingEndTime = Carbon::createFromFormat('Y-m-d H:i:s', "$start_date $end_time");
+            $carbonNewMeetingStartTime = Carbon::createFromFormat('Y-m-d H:i', "$start_date $start_time");
+            $carbonNewMeetingEndTime = Carbon::createFromFormat('Y-m-d H:i', "$start_date $end_time");
 
             $availableRoomsQuery->whereNotIn('id', function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
                 $query->select('room_id')
                     ->from('meetings')
-                    ->where('date', $carbonNewMeetingStartTime->toDateString())
+                    ->where('start_date', $carbonNewMeetingStartTime->toDateString())
                     ->where(function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
                         $query->whereBetween('start_time', [$carbonNewMeetingStartTime->toTimeString(), $carbonNewMeetingEndTime->toTimeString()])
                             ->orWhereBetween('end_time', [$carbonNewMeetingStartTime->toTimeString(), $carbonNewMeetingEndTime->toTimeString()])
