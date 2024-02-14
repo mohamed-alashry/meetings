@@ -46,10 +46,10 @@
                     <tr style="width: 100%;">
                         <th style="text-align: end; padding-top: 0.5%;width: 50%;">
                             <a href="{{ $meeting->google_meet_link }}"
-                                style="text-decoration: none; padding: 5% 10%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
+                                style="text-decoration: none; padding: 4% 8%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/meet%201.png" alt=""
-                                        srcset="" style="max-width: 12%;">
+                                        style="max-width: 12%;vertical-align: text-bottom;">
                                 </span>
                                 <span style="vertical-align: text-bottom;font-size: .8vw;">
                                     Open in Google Meet
@@ -58,10 +58,10 @@
                         </th>
                         <th style="text-align: start;width: 50%;">
                             <a href="{{ $meeting->add_to_calendar }}"
-                                style="text-decoration: none; padding: 5% 10%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
+                                style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
-                                        srcset="" style="max-width: 12%;">
+                                        style="max-width: 12%; width:6%;vertical-align: text-bottom;">
                                 </span>
                                 <span style="vertical-align: text-bottom;font-size: .8vw;">
                                     Add to your Calendar
@@ -72,8 +72,10 @@
 
                 </table>
                 <div style="padding: 0rem 1rem;">
-                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #000 !important">Invited Persons</p>
-                    <p style="margin-top: 3px;font-size: .8vw; color: #000 !important">Invited persons by email or Name
+                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
+                    </p>
+                    <p style="margin-top: 3px;font-size: .8vw; color: #0225378A !important">Invited persons by email or
+                        Name
                     </p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
@@ -109,9 +111,11 @@
                 </div>
                 <hr style="border-color: #fff;">
                 <div style="padding: 1rem;">
-                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #000 !important">Meeting Information
+                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
+                        Information
                     </p>
-                    <p style="margin-top: 3px;font-size: .8vw; color: #000 !important">Type here the meeting info</p>
+                    <p style="margin-top: 3px;font-size: .8vw; color: #0225378A !important">Type here the meeting info
+                    </p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
                         <table style="font-weight: bold; width: 100%; padding: 0;">
@@ -138,8 +142,10 @@
                 background-position: right bottom;
                 background-size: contain;
                 border-radius: 0 0 19px ;">
-                        <p style="font-weight: bold; margin: 0;">Meeting Room Specs </p>
-                        <p style="margin-top: 3px;">here the meeting room info</p>
+                        <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting Room
+                            Specs </p>
+                        <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">here the meeting room
+                            info</p>
                         <table style="font-weight: 500; width: 100%; padding: 0;">
                             <tr>
                                 <th
