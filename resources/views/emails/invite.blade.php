@@ -121,10 +121,7 @@
                         <table style="font-weight: bold; width: 100%; padding: 0;">
                             <tr>
                                 <th style="text-align: start; vertical-align: baseline;width: 9px;">
-                                    <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt=""
-                                        srcset="">
-                                </th>
-                                <th style=" text-align: start;">
+                                    <img src="https://safavisa.sirv.com/Images/phone_forwarded.png" alt="">
                                     <p style="font-weight: 500; color:rgb(126,126,126);">
                                         {!! $meeting->brief !!}
                                     </p>
