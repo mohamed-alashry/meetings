@@ -42,7 +42,7 @@
 
             </table>
             <div>
-                <div style="padding: 0rem 1rem;">
+                <div style="padding: 1rem 1rem;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
                     </p>
                     <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Invited persons by email or
