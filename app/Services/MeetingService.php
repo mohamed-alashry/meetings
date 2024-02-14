@@ -160,7 +160,7 @@ class MeetingService
         // Query available meeting rooms
         $availableRoomsQuery = Room::query();
 
-        if ($start_date && $start_time) {
+        if ($start_date && $start_time && $end_time) {
             // Convert start and end times to Carbon objects for easier comparison
             $carbonNewMeetingStartTime = Carbon::createFromFormat('Y-m-d H:i:s', "$start_date $start_time");
             $carbonNewMeetingEndTime = Carbon::createFromFormat('Y-m-d H:i:s', "$start_date $end_time");
