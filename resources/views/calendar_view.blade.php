@@ -247,7 +247,7 @@
                                 <!--begin::Close-->
                                 <div class="btn btn-icon btn-sm btn-color-gray-500 btn-active-icon-primary"
                                     data-bs-toggle="tooltip" title="Hide Event" data-bs-dismiss="modal">
-                                    <i class="ki-outline ki-cross fs-2x"></i>
+                                    {{-- <i class="ki-outline ki-cross fs-2x"></i> --}}
                                 </div>
                                 <!--end::Close-->
                             </div>

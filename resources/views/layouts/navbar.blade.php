@@ -26,7 +26,9 @@
                         <i class="fa-solid fa-chevron-down fa-sm color-primary "></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right rounded-0" aria-labelledby="messages">
-                        <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
+                        <a class="dropdown-item" style="font-weight: bolder;" href="{{ route('logout') }}">
+                            Log Out
+                        </a>
                     </div>
                 </div>
             </div>
