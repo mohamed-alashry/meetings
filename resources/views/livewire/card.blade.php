@@ -50,6 +50,7 @@
                             <small>
                                 <i class="fa-regular fa-calendar-days"></i>
                                 Tomorrow,
+                                {{ $meeting->start_date_format ?? '' }},
                                 {{ $meeting->start_time_format ?? '' }}
                             </small>
                         </p>
@@ -117,7 +118,9 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-regular fa-calendar-days"></i>
-                                Due, {{ $meeting->start_time_format ?? '' }}
+                                Due,
+                                {{ $meeting->start_date_format ?? '' }},
+                                {{ $meeting->start_time_format ?? '' }}
                             </small>
                         </p>
                         <p class="card-text m-1">
