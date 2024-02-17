@@ -46,9 +46,9 @@ class AuthController extends Controller
             if (!$user) {
                 $user = User::updateOrCreate([
                     'google_id' => $googleUser->id,
+                    'email' => $googleUser->email,
                 ], [
                     'name' => $googleUser->name,
-                    'email' => $googleUser->email,
                     'google_token' => $googleUser->token,
                     'google_refresh_token' => $googleUser->refreshToken,
                 ]);
@@ -57,6 +57,8 @@ class AuthController extends Controller
                     'email' => $user->email,
                     'name' => $user->name
                 ]);
+
+                $user->givePermissionTo('read_meeting');
             }
             auth()->login($user);
 
