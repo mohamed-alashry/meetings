@@ -51,7 +51,7 @@ class InviteMeeting extends Mailable
      */
     public function attachments(): array
     {
-        if (!$this->meeting->send_room_attach) {
+        if (!$this->meeting->send_room_attach || !$this->meeting->room->attachment) {
             return [];
         }
         return [

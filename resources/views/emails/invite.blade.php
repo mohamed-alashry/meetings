@@ -31,7 +31,7 @@
                         <p style="font-size: .8vw; color: #fff !important">
                             <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass%201.png"
                                 alt="" srcset="">
-                            Duration: {{ $meeting->duration }} min
+                            End Time {{ $meeting->end_time_format }}
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">

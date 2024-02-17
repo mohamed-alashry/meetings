@@ -224,7 +224,7 @@
                         <hr>
                         <div class="w-100 px-4">
                             <p class="h5">Meeting Room Specs </p>
-                            <p class="">here the meeting room info</p>
+                            <p class="">Here the meeting room info</p>
                             <div class="card rounded-4 m-3 shadow border-0">
                                 <div class="card-body color-primary">
 
@@ -322,7 +322,7 @@
                                     Update
                                 </span>
                                 <p class="h5">Meeting Minutes </p>
-                                <p class="">here the meeting Minutes info</p>
+                                <p class="">Here the meeting Minutes info</p>
                                 <div class="input-form-login px-3 col-12 ">
                                     <i class="fa-solid fa-file-lines icon fa-lg"></i>
                                     <x-input.tinymce wire:model="minutes" placeholder="Type anything you want..." />
@@ -357,7 +357,7 @@
                                     <i class="fa-solid fa-edit icon fa-lg"></i>
                                 </span>
                                 <p class="h5">Meeting Minutes </p>
-                                <p class="">here the meeting Minutes info</p>
+                                <p class="">Here the meeting Minutes info</p>
                                 <div class="card rounded-4 m-3 shadow border-0">
                                     <div class="card-body color-primary">
                                         {!! $meeting->minutes ?? '' !!}

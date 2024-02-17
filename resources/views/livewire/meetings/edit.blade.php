@@ -210,19 +210,13 @@
                                                     <div class="text-white m-auto">
                                                         <div class="image-hover-text-container">
                                                             <div class="image-hover-image">
-                                                                <img class="img-fluid rounded-5"
-                                                                    src="{{ asset($photo->file_name) }}"
-                                                                    alt="" srcset="">
-                                                            </div>
-                                                            <div class="image-hover-text ">
-                                                                <div class="image-hover-text-bubble rounded-5">
-                                                                    <span
-                                                                        wire:click="deletePhoto({{ $photo->id }})"
-                                                                        class="image-hover-text-title d-flex justify-content-center align-items-center h-100 "
-                                                                        role="button">
-                                                                        <i class="fa-regular fa-trash-can fa-lg "></i>
-                                                                    </span>
-                                                                </div>
+                                                                <a href="{{ asset($photo->file_name) }}"
+                                                                    target="_blank">
+                                                                    <img class="img-fluid rounded-5"
+                                                                        style="height: 80px;"
+                                                                        src="{{ asset($photo->file_name) }}"
+                                                                        alt="" srcset="">
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>

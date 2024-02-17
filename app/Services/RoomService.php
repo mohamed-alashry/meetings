@@ -9,6 +9,7 @@ use App\DTOs\Room\FilterDTO;
 use App\DTOs\Room\UpdateDTO;
 use App\Models\RoomFeature;
 use App\Models\RoomProperty;
+use Illuminate\Support\Arr;
 
 class RoomService
 {
@@ -99,7 +100,7 @@ class RoomService
             ]);
         }
         foreach ($data->more_features as $item) {
-            if ($item['key']) {
+            if (Arr::has($item, 'key')) {
                 RoomProperty::updateOrCreate([
                     'room_id'   => $room->id,
                     'key'       => $item['key'],
@@ -141,7 +142,7 @@ class RoomService
             $room->properties()->delete();
             // RoomProperty::where('room_id', $room->id)->delete();
             foreach ($data->more_features as $item) {
-                if ($item['key']) {
+                if (Arr::has($item, 'key')) {
                     RoomProperty::updateOrCreate([
                         'room_id'   => $room->id,
                         'key'       => $item['key'],
