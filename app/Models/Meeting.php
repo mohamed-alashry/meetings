@@ -130,7 +130,6 @@ class Meeting extends Model
         return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
 
-
     public function setMinutesAttachAttribute($file)
     {
         try {
@@ -157,6 +156,7 @@ class Meeting extends Model
             return "Cancelled";
         }
     }
+
     /**
      * Scope a query to only include upcoming meetings.
      *
@@ -181,7 +181,6 @@ class Meeting extends Model
         return $this->belongsTo(Room::class);
     }
 
-
     /**
      * Get all of the invitations for the Meeting
      *
@@ -192,6 +191,13 @@ class Meeting extends Model
         return $this->hasMany(MeetingInvitation::class);
     }
 
-    // invitations
-
+    /**
+     * Get the user that owns the Meeting
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
