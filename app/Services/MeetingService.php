@@ -162,8 +162,8 @@ class MeetingService
 
         if ($start_date && $start_time && $end_time) {
             // Convert start and end times to Carbon objects for easier comparison
-            $carbonNewMeetingStartTime = Carbon::parse("$start_date $start_time");
-            $carbonNewMeetingEndTime = Carbon::parse("$start_date $end_time");
+            $carbonNewMeetingStartTime = Carbon::parse("$start_date $start_time")->subMinute();
+            $carbonNewMeetingEndTime = Carbon::parse("$start_date $end_time")->subMinute();
 
             $availableRoomsQuery->whereNotIn('id', function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
                 $query->select('room_id')

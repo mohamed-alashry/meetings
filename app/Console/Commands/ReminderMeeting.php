@@ -34,6 +34,7 @@ class ReminderMeeting extends Command
             // Retrieve meetings with their reminder minutes
             $meetings = Meeting::whereDate('start_date', Carbon::today())
                 ->whereNull('alert_date')
+                ->where('status', 1)
                 ->get();
 
             // Send email reminders for meetings with start time within the reminder time frame
