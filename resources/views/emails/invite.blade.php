@@ -57,7 +57,7 @@
                             </a>
                         </th>
                         <th style="text-align: start;width: 50%;">
-                            <a href="{{ $meeting->add_to_calendar }}"
+                            <a href="{{ $meeting->generateGoogleCalendarLink() }}"
                                 style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                 <span>
                                     <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""

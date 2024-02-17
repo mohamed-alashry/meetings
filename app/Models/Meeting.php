@@ -131,6 +131,32 @@ class Meeting extends Model
         return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
 
+    function generateGoogleCalendarLink($eventDetails)
+    {
+        $from = \Carbon\Carbon::parse($this->start_date . ' ' . $this->start_time)->format('Ymd\THis');
+        $to = \Carbon\Carbon::parse($this->start_date . ' ' . $this->end_time)->format('Ymd\THis');
+        $title = $this->title;
+        $brief = $this->brief;
+        $location = $this->room->name;
+
+        // Base Google Calendar event URL
+        $baseUrl = 'http://www.google.com/calendar/event?action=TEMPLATE';
+
+        // Encode event details
+        $encodedParams = http_build_query([
+            'text' => $title,
+            'dates' => $from . '/' . $to,
+            'details' => $brief,
+            'location' => $location
+        ]);
+
+        // Build full URL
+        $url = $baseUrl . '&' . $encodedParams;
+
+        return $url;
+    }
+
+
     public function setMinutesAttachAttribute($file)
     {
         try {
