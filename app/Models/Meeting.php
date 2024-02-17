@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -169,6 +170,33 @@ class Meeting extends Model
             ->whereDate('start_date', '<=', now()->addWeek()->format('Y-m-d'))
             ->orderBy('start_date')
             ->orderBy('start_time');
+    }
+
+    /**
+     * Scope a query to only include guests meetings.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGuests($query)
+    {
+        return $query->where(function (Builder $query) {
+            $query->where('user_id', auth()->id())
+                ->orWhereHas('invitations.userable', function (Builder $query) {
+                    $query->where('email', auth()->user()->email);
+                });
+        });
+    }
+
+    public function isGuest()
+    {
+        if (auth()->id() == 1) {
+            return true;
+        }
+        return $this->where('user_id', auth()->id())
+            ->orWhereHas('invitations.userable', function (Builder $query) {
+                $query->where('email', auth()->user()->email);
+            })->exists();
     }
 
     /**

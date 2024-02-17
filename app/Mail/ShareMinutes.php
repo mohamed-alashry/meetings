@@ -50,6 +50,9 @@ class ShareMinutes extends Mailable
      */
     public function attachments(): array
     {
+        if (!$this->meeting->minutes_attach) {
+            return [];
+        }
         return [
             Attachment::fromPath(storage_path('app/public/' . $this->meeting->minutes_attach))
                 ->as('guide_room.' . explode('.', $this->meeting->minutes_attach)[1]),

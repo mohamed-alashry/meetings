@@ -26,15 +26,16 @@ class MeetingController extends Controller
         $query = Meeting::query();
         if (request()->filled('room_id')) {
             $view_days = true;
-            $query->where('room_id', request()->room_id);
+            $query->where('room_id', $request->room_id);
         }
         if (auth()->id() != 1) {
-            $query->where('user_id', auth()->id());
+            $query->guests();
         }
         $meetings = $query->get()->pluck('event_json');
 
         return view('calendar_view', compact('meetings', 'view_days'));
     }
+
     /**
      * Display a listing of the resource.
      */
@@ -42,12 +43,11 @@ class MeetingController extends Controller
     {
         if (auth()->id() == 1) {
             $meetings = Meeting::upcoming()->limit(30)->get()->groupBy('type_date');
-        }else{
-            $meetings = Meeting::upcoming()->where('user_id', auth()->id())->limit(30)->get()->groupBy('type_date');
+        } else {
+            $meetings = Meeting::upcoming()->guests()->limit(30)->get()->groupBy('type_date');
         }
         return view('card_view', compact('meetings'));
     }
-
 
 
     /**
