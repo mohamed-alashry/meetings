@@ -138,6 +138,7 @@ class Meeting extends Model
         $title = $this->title;
         $brief = $this->brief;
         $location = $this->room->name;
+        $attendees = $this->invitations->pluck('userable.email')->toArray();
 
         // Base Google Calendar event URL
         $baseUrl = 'http://www.google.com/calendar/event?action=TEMPLATE';
@@ -149,6 +150,11 @@ class Meeting extends Model
             'details' => $brief,
             'location' => $location
         ]);
+
+        // Add attendees' email addresses
+        foreach ($attendees as $attendee) {
+            $encodedParams .= '&add=' . urlencode($attendee);
+        }
 
         // Build full URL
         $url = $baseUrl . '&' . $encodedParams;
