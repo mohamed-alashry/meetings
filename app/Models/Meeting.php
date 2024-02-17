@@ -131,7 +131,7 @@ class Meeting extends Model
         return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
 
-    function generateGoogleCalendarLink($eventDetails)
+    function generateGoogleCalendarLink()
     {
         $from = \Carbon\Carbon::parse($this->start_date . ' ' . $this->start_time)->format('Ymd\THis');
         $to = \Carbon\Carbon::parse($this->start_date . ' ' . $this->end_time)->format('Ymd\THis');
