@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -90,17 +91,20 @@ class Meeting extends Model
 
     public function getTypeDateAttribute()
     {
-        $tomorrow = strtotime(\Carbon\Carbon::tomorrow());
-        $start = strtotime(\Carbon\Carbon::parse($this->start_date));
+        $start = Carbon::parse($this->start_date . ' ' . $this->start_time);
 
-        if ($start > $tomorrow) {
-            return 'upcoming';
-        } elseif ($start < $tomorrow && $this->start_time < now()->format('H:i:s')) {
-            return 'due';
-        } elseif ($start < $tomorrow) {
-            return 'today';
-        } else {
-            return 'tomorrow';
+        switch (true) {
+            case $start->isPast():
+                return 'due';
+
+            case $start->isToday():
+                return 'today';
+
+            case $start->isTomorrow():
+                return 'tomorrow';
+
+            default:
+                return 'upcoming';
         }
     }
 
