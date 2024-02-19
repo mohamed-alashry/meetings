@@ -52,7 +52,13 @@
                     </td>
                     <td class="align-middle border-1 border-bottom-0 border-end-0 rounded-bottom-4 rounded-start-0"
                         scope="col">
-                        @if (hasPermissionUser('read_meeting'))
+                        @if (hasPermissionUser('read_meeting') && $room->meetings->count() > 0)
+                        <a href="{{ route('meetings.card_view').'?room_id='.$room->id }}"
+                            wire:confirm="Are you sure you want to delete this rooms?"
+                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                            <i class="fa-solid fa-table-cells"></i>
+                            Cards
+                        </a>
                         <a href="{{ route('meetings.calendar_view').'?room_id='.$room->id }}"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
@@ -91,7 +97,13 @@
                         {{ $room->created_at->format('d M Y') }}
                     </td>
                     <td class="align-middle border-1 border-end-0" scope="col">
-                        @if (hasPermissionUser('read_meeting'))
+                        @if (hasPermissionUser('read_meeting') && $room->meetings->count() > 0)
+                        <a href="{{ route('meetings.card_view').'?room_id='.$room->id }}"
+                            wire:confirm="Are you sure you want to delete this rooms?"
+                            class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
+                            <i class="fa-solid fa-table-cells"></i>
+                            Cards
+                        </a>
                         <a href="{{ route('meetings.calendar_view').'?room_id='.$room->id }}"
                             wire:confirm="Are you sure you want to delete this rooms?"
                             class="btn fw-bold bg-white m-1 shadow-sm btn-color-2">
