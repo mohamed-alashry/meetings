@@ -29,7 +29,7 @@ class ShareMinutes extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Share Meeting Minutes',
+            subject: 'Share Meeting Minutes - ' . $this->meeting->title,
         );
     }
 

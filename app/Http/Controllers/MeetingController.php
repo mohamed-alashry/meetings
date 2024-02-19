@@ -41,11 +41,17 @@ class MeetingController extends Controller
      */
     public function card_view(FilterRequest $request)
     {
-        if (auth()->id() == 1) {
-            $meetings = Meeting::upcoming()->limit(30)->get()->groupBy('type_date');
-        } else {
-            $meetings = Meeting::upcoming()->guests()->limit(30)->get()->groupBy('type_date');
+        $query =  Meeting::query();
+        if (auth()->id() != 1) {
+            $query->guests();
         }
+        if (request()->filled('start_date')) {
+            $query->whereDate('start_date', request('start_date'));
+        } else {
+            $query->upcoming();
+        }
+        $meetings = $query->limit(30)->get()->groupBy('type_date');
+
         return view('card_view', compact('meetings'));
     }
 

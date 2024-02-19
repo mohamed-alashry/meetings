@@ -29,7 +29,7 @@ class CancelMeeting extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Cancel Meeting',
+            subject: 'Cancel Meeting - ' . $this->meeting->title,
         );
     }
 

@@ -6,7 +6,7 @@
         <!-- Button trigger modal -->
         <div class="col-lg-7 col-sm-12 row d-flex gap-3">
             @if ($meeting->status == 1 && $meeting->start_date . ' ' . $meeting->start_time >= date('Y-m-d H:i:s'))
-                @if (hasPermissionUser('cancel_meeting'))
+                @if (hasPermissionUser('cancel_meeting') && $meeting->isCreator())
                     <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col-4"
                         style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;" wire:loading
                         wire:click="cancelMeeting" wire:confirm="Are you sure?" disabled>
@@ -53,7 +53,7 @@
                 @endif
 
 
-                @if (hasPermissionUser('update_meeting'))
+                @if (hasPermissionUser('update_meeting') && $meeting->isCreator())
                     <button type="button" class="btn text-light fw-bold shadow-sm h-100 rounded-4 my-3 d-inline col"
                         style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
                         wire:click="toggleEditModal">

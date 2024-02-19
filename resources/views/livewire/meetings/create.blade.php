@@ -360,8 +360,8 @@
                         <div class="input-form-login px-3 col-12 ">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value="1"
-                                        wire:model="send_user_location">
+                                    <input type="checkbox" class="form-check-input"
+                                        wire:model.live="send_user_location">
                                     Send user location
                                 </label>
                             </div>
@@ -373,8 +373,8 @@
                         <div class="input-form-login px-3 col-12 ">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value="1"
-                                        wire:model="send_room_attach">
+                                    <input type="checkbox" class="form-check-input"
+                                        wire:model.live="send_room_attach">
                                     Send room attachment
                                 </label>
                             </div>
@@ -386,8 +386,8 @@
                         <div class="input-form-login px-3 col-12 ">
                             <div class="form-check">
                                 <label class="form-check-label">
-                                    <input type="checkbox" class="form-check-input" value="1"
-                                        wire:model="send_room_properties">
+                                    <input type="checkbox" class="form-check-input"
+                                        wire:model.live="send_room_properties">
                                     Send room properties
                                 </label>
                             </div>

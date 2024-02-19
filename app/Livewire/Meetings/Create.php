@@ -36,8 +36,8 @@ class Create extends Component
     public string $inviteeEmail;
     public $in_home = false;
     public $send_user_location = false;
-    public bool $send_room_attach = false;
-    public bool $send_room_properties = false;
+    public $send_room_attach = false;
+    public $send_room_properties = false;
     public string $google_meet_link;
     public ?int $reminder_time;
 

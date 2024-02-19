@@ -30,7 +30,7 @@ class ReminderMeeting extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Reminder Meeting',
+            subject: 'Reminder Meeting - ' . $this->meeting->title,
         );
     }
 
@@ -53,7 +53,7 @@ class ReminderMeeting extends Mailable
     {
         return [
             Attachment::fromPath(storage_path('app/public/' . $this->meeting->room->attachment))
-                ->as('guide_room.'.explode('.', $this->meeting->room->attachment)[1]),
+                ->as('guide_room.' . explode('.', $this->meeting->room->attachment)[1]),
         ];
     }
 }

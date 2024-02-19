@@ -200,6 +200,7 @@ class Meeting extends Model
     {
         return $query->whereDate('start_date', '>=', now()->format('Y-m-d'))
             ->whereDate('start_date', '<=', now()->addWeek()->format('Y-m-d'))
+            ->where('status', 1)
             ->orderBy('start_date')
             ->orderBy('start_time');
     }
@@ -229,6 +230,14 @@ class Meeting extends Model
             ->orWhereHas('invitations.userable', function (Builder $query) {
                 $query->where('email', auth()->user()->email);
             })->exists();
+    }
+
+    public function isCreator()
+    {
+        if (auth()->id() == 1) {
+            return true;
+        }
+        return $this->user_id == auth()->id();
     }
 
     /**
