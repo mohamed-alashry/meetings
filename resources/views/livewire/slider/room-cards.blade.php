@@ -12,11 +12,10 @@
                                 <div class="row g-0">
                                     <div class="col-md-4 col-sm-12">
                                         <img src="{{ asset($room->media->first()->file_name) }}"
-                                            style="width: -webkit-fill-available;" class="img-fluid border-img h-100"
-                                            alt="...">
+                                            class="border-img mw-100 h-100" alt="...">
                                     </div>
                                     <div class="col-md-8 col-sm-12">
-                                        <div class="card-body">
+                                        <div class="card-body mw-100" style="width: 200px;">
                                             <h5 class="card-title" style="font-size: 0.8rem;">
                                                 {{ $room->name }}</h5>
                                             <p class="card-text" style="font-size: 0.8rem;">
@@ -39,7 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-hover-text" style="height: 91%;" role="button">
+                        <div class="card-hover-text" style="height: 94.5%;" role="button">
                             <div class="card-hover-text-bubble rounded-4">
                                 <span
                                     class="card-hover-text-title d-flex justify-content-center align-items-center h-100">

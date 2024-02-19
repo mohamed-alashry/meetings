@@ -12,7 +12,7 @@
         <!-- Modal -->
         <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
             style="display: block;" aria-modal="true" role="dialog">
-            <div class="modal-dialog ps-2 d-flex justify-content-end" style="max-width: 75%;">
+            <div class="modal-dialog ps-2 d-flex justify-content-end" style="max-width: 85%;">
                 <div class="modal-content rounded-4" style="height: fit-content;">
                     <div
                         class="modal-header rounded-top-4 flex-column align-items-start justify-content-center background-primary text-white">
@@ -88,9 +88,9 @@
                         </div>
 
                         {{-- rooms --}}
-                        <div class="row px-3">
+                        <div class="row justify-content-around alert-dismissible ps-4">
                             @forelse ($rooms as $room)
-                                <div class="col-lg-3" wire:key='room-{{ $room->id }}'>
+                                <div class="col-lg-3 col-md-10 col-sm-4 p-0" wire:key='room-{{ $room->id }}'>
                                     <label class="text-white">
                                         <input type="radio" class="btn-check" value="{{ $room->id }}"
                                             wire:model.live='room_id'>
@@ -100,11 +100,10 @@
                                                     <div class="row g-0">
                                                         <div class="col-md-4 col-sm-12">
                                                             <img src="{{ asset($room->media->first()->file_name) }}"
-                                                                style="width: -webkit-fill-available;"
-                                                                class="img-fluid border-img h-100" alt="...">
+                                                                class="border-img mw-100 h-100" alt="...">
                                                         </div>
                                                         <div class="col-md-8 col-sm-12">
-                                                            <div class="card-body">
+                                                            <div class="card-body mw-100" style="width: 239px;">
                                                                 <h5 class="card-title" style="font-size: 0.8rem;">
                                                                     {{ $room->name }}</h5>
                                                                 <p class="card-text" style="font-size: 0.8rem;">

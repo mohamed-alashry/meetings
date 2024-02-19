@@ -408,7 +408,7 @@ body {
 /* Make the image round */
 .image-hover-image img {
     border-radius: 0%;
-    width: 400px;
+    width: 239px;
 }
 
 .image-hover-text {
@@ -457,9 +457,9 @@ body {
 }
 
 /* Make the card round */
-.card-hover-image img{
+.card-hover-image img {
     border-radius: 0%;
-    width: 400px;
+    width: 239px;
 }
 
 .card-hover-text {
@@ -474,7 +474,7 @@ body {
 }
 
 .card-hover-text:hover,
-.btn-check:checked + .image-hover-text-container .card-hover-text {
+.btn-check:checked+.image-hover-text-container .card-hover-text {
     opacity: 1;
 }
 
@@ -522,11 +522,11 @@ body {
 .bg-1 {
     background-color: #C2203D !important;
 }
-.avatar_icon{
+
+.avatar_icon {
     padding: 9px 13px !important;
     background: #5e1042 !important;
     color: white !important;
     border-radius: 50% !important;
     margin: 0.2rem !important;
 }
-
