@@ -23,7 +23,7 @@ class Edit extends Component
     public bool $updateModal = false;
     private RoomService $roomService;
     public $features;
-    public $more_features;
+    public $more_features = [];
     public $attachment;
 
     public function boot(RoomService $roomService)

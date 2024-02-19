@@ -40,21 +40,27 @@ class AuthController extends Controller
                 return abort(403, 'Unauthorized action.');
             }
 
-            $user = User::updateOrCreate([
-                'google_id' => $googleUser->id,
-            ], [
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'google_token' => $googleUser->token,
-                'google_refresh_token' => $googleUser->refreshToken,
-            ]);
+            // check if they're an existing user
+            $user = User::where('email', $googleUser->email)->first();
 
-            Invitee::create([
-                'email' => $user->email,
-                'name' => $user->name
-            ]);
+            if (!$user) {
+                $user = User::updateOrCreate([
+                    'google_id' => $googleUser->id,
+                    'email' => $googleUser->email,
+                ], [
+                    'name' => $googleUser->name,
+                    'google_token' => $googleUser->token,
+                    'google_refresh_token' => $googleUser->refreshToken,
+                ]);
 
-            Auth::login($user);
+                Invitee::create([
+                    'email' => $user->email,
+                    'name' => $user->name
+                ]);
+
+                $user->givePermissionTo('read_meeting');
+            }
+            auth()->login($user);
 
             return redirect()->route('home');
         } catch (\Exception $e) {

@@ -157,17 +157,31 @@ class MeetingService
 
     public function getRooms($start_date = null, $start_time = null, $end_time = null, int $current_room_id = null)
     {
-        $rooms = Room::query();
-        if ($start_date && $start_time) {
-            $rooms->whereDoesntHave('meetings', function ($query) use ($start_date, $start_time, $end_time) {
-                $query->where('start_date', $start_date)
-                    ->where('start_time', '<=', $start_time)
-                    ->where('end_time', '>=', $end_time)
-                    ->where('status', 1);
-            })->orWhere('id', $current_room_id);
+        // Query available meeting rooms
+        $availableRoomsQuery = Room::query();
+
+        if ($start_date && $start_time && $end_time) {
+            // Convert start and end times to Carbon objects for easier comparison
+            $carbonNewMeetingStartTime = Carbon::parse("$start_date $start_time")->addMinute();
+            $carbonNewMeetingEndTime = Carbon::parse("$start_date $end_time")->addMinute();
+
+            $availableRoomsQuery->whereNotIn('id', function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
+                $query->select('room_id')
+                    ->from('meetings')
+                    ->where('start_date', $carbonNewMeetingStartTime->toDateString())
+                    ->where(function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
+                        $query->whereBetween('start_time', [$carbonNewMeetingStartTime->toTimeString(), $carbonNewMeetingEndTime->toTimeString()])
+                            ->orWhereBetween('end_time', [$carbonNewMeetingStartTime->toTimeString(), $carbonNewMeetingEndTime->toTimeString()])
+                            ->orWhere(function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
+                                $query->where('start_time', '<=', $carbonNewMeetingStartTime->toTimeString())
+                                    ->where('end_time', '>=', $carbonNewMeetingEndTime->toTimeString());
+                            });
+                    });
+            })
+                ->orWhere('id', $current_room_id);
         }
 
-        return $rooms->get();
+        return $availableRoomsQuery->get();
     }
 
     public function getRoomFeatures(int $id)

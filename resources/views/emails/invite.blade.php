@@ -31,7 +31,7 @@
                         <p style="font-size: .8vw; color: #fff !important">
                             <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass%201.png"
                                 alt="" srcset="">
-                            Duration: {{ $meeting->duration }} min
+                            End Time {{ $meeting->end_time_format }}
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">
@@ -42,35 +42,36 @@
 
             </table>
             <div>
-                <table style="padding: 2rem 0;background-color: #fff;  width: 100%;">
-                    <tr style="width: 100%;">
-                        <th style="text-align: end; padding-top: 0.5%;width: 50%;">
-                            <a href="{{ $meeting->google_meet_link }}"
-                                style="text-decoration: none; padding: 4% 8%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
-                                <span>
-                                    <img src="https://safavisa.sirv.com/Images/meet%201.png" alt=""
-                                        style="max-width: 12%;vertical-align: text-bottom;">
-                                </span>
-                                <span style="vertical-align: text-bottom;font-size: .8vw;">
-                                    Open in Google Meet
-                                </span>
-                            </a>
-                        </th>
-                        <th style="text-align: start;width: 50%;">
-                            <a href="{{ $meeting->add_to_calendar }}"
-                                style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
-                                <span>
-                                    <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
-                                        style="max-width: 12%; width:6%;vertical-align: text-bottom;">
-                                </span>
-                                <span style="vertical-align: text-bottom;font-size: .8vw;">
-                                    Add to your Calendar
-                                </span>
-                            </a>
-                        </th>
-                    </tr>
-
-                </table>
+                @if ($meeting->status != 2)
+                    <table style="padding: 2rem 0;background-color: #fff;  width: 100%;">
+                        <tr style="width: 100%;">
+                            <th style="text-align: end; padding-top: 0.5%;width: 50%;">
+                                <a href="{{ $meeting->google_meet_link }}"
+                                    style="text-decoration: none; padding: 4% 8%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
+                                    <span>
+                                        <img src="https://safavisa.sirv.com/Images/meet%201.png" alt=""
+                                            style="max-width: 12%;vertical-align: text-bottom;">
+                                    </span>
+                                    <span style="vertical-align: text-bottom;font-size: .8vw;">
+                                        Open in Google Meet
+                                    </span>
+                                </a>
+                            </th>
+                            <th style="text-align: start;width: 50%;">
+                                <a href="{{ $meeting->generateGoogleCalendarLink() }}"
+                                    style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
+                                    <span>
+                                        <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
+                                            style="max-width: 12%; width:6%;vertical-align: text-bottom;">
+                                    </span>
+                                    <span style="vertical-align: text-bottom;font-size: .8vw;">
+                                        Add to your Calendar
+                                    </span>
+                                </a>
+                            </th>
+                        </tr>
+                    </table>
+                @endif
                 <div style="padding: 0rem 1rem;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
                     </p>

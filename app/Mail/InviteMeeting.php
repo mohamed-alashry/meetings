@@ -30,7 +30,7 @@ class InviteMeeting extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Invite Meeting',
+            subject: 'Invite Meeting - ' . $this->meeting->title,
         );
     }
 
@@ -51,7 +51,7 @@ class InviteMeeting extends Mailable
      */
     public function attachments(): array
     {
-        if (!$this->meeting->send_room_attach) {
+        if (!$this->meeting->send_room_attach || !$this->meeting->room->attachment) {
             return [];
         }
         return [

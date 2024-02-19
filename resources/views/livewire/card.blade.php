@@ -50,6 +50,7 @@
                             <small>
                                 <i class="fa-regular fa-calendar-days"></i>
                                 Tomorrow,
+                                {{ $meeting->start_date_format ?? '' }},
                                 {{ $meeting->start_time_format ?? '' }}
                             </small>
                         </p>
@@ -117,7 +118,9 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-regular fa-calendar-days"></i>
-                                Due, {{ $meeting->start_time ?? '' }}
+                                Due,
+                                {{ $meeting->start_date_format ?? '' }},
+                                {{ $meeting->start_time_format ?? '' }}
                             </small>
                         </p>
                         <p class="card-text m-1">
@@ -140,7 +143,7 @@
         @endswitch
     </div>
 
-    @if ($openViewModal && $meeting->user_id == auth()->id())
+    @if ($openViewModal && $meeting->isGuest())
         <div class="modal fade show bg-dark bg-opacity-50" tabindex="-1" aria-labelledby="exampleModalLabel"
             style="display: block;" aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-scrollable ps-2 d-flex justify-content-end" style="max-width: 75%;">
@@ -221,7 +224,7 @@
                         <hr>
                         <div class="w-100 px-4">
                             <p class="h5">Meeting Room Specs </p>
-                            <p class="">here the meeting room info</p>
+                            <p class="">Here the meeting room info</p>
                             <div class="card rounded-4 m-3 shadow border-0">
                                 <div class="card-body color-primary">
 
@@ -319,7 +322,7 @@
                                     Update
                                 </span>
                                 <p class="h5">Meeting Minutes </p>
-                                <p class="">here the meeting Minutes info</p>
+                                <p class="">Here the meeting Minutes info</p>
                                 <div class="input-form-login px-3 col-12 ">
                                     <i class="fa-solid fa-file-lines icon fa-lg"></i>
                                     <x-input.tinymce wire:model="minutes" placeholder="Type anything you want..." />
@@ -354,7 +357,7 @@
                                     <i class="fa-solid fa-edit icon fa-lg"></i>
                                 </span>
                                 <p class="h5">Meeting Minutes </p>
-                                <p class="">here the meeting Minutes info</p>
+                                <p class="">Here the meeting Minutes info</p>
                                 <div class="card rounded-4 m-3 shadow border-0">
                                     <div class="card-body color-primary">
                                         {!! $meeting->minutes ?? '' !!}

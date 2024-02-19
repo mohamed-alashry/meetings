@@ -38,7 +38,7 @@ class CreateRequest extends FormRequest
             'photos'                => 'required|array',
             'photos.*'              => 'image',
             'features'              => 'nullable|array',
-            'attachment'            => 'required|file',
+            'attachment'            => 'nullable|file',
             'more_features'         => 'nullable|array',
             // 'status'            => 'required|in:1,2,3',
         ];

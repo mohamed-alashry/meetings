@@ -37,8 +37,8 @@ class UpdateRequest extends FormRequest
         return [
             'name'              => 'nullable|string|max:191',
             'role_name'         => 'nullable|string|max:191',
-            // 'email'             => 'nullable|email|unique:users,email,' . $user_id,
-            // 'password'          => 'nullable|confirmed|min:6',
+            'email'             => 'nullable|email|unique:users,email,' . $user_id,
+            'password'          => 'nullable|confirmed|min:6',
             'permissions'       => 'nullable|array',
         ];
     }

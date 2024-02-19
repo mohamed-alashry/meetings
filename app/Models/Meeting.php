@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -89,17 +91,20 @@ class Meeting extends Model
 
     public function getTypeDateAttribute()
     {
-        $tomorrow = strtotime(\Carbon\Carbon::tomorrow());
-        $start = strtotime(\Carbon\Carbon::parse($this->start_date));
+        $start = Carbon::parse($this->start_date . ' ' . $this->start_time);
 
-        if ($start > $tomorrow) {
-            return 'upcoming';
-        } elseif ($start < $tomorrow && $this->start_time < now()->format('H:i:s')) {
-            return 'due';
-        } elseif ($start < $tomorrow) {
-            return 'today';
-        } else {
-            return 'tomorrow';
+        switch (true) {
+            case $start->isPast():
+                return 'due';
+
+            case $start->isToday():
+                return 'today';
+
+            case $start->isTomorrow():
+                return 'tomorrow';
+
+            default:
+                return 'upcoming';
         }
     }
 
@@ -130,6 +135,37 @@ class Meeting extends Model
         return "https://calendar.google.com/calendar/u/0/r/eventedit?dates=$from/$to&text=$title";
     }
 
+    function generateGoogleCalendarLink()
+    {
+        $from = \Carbon\Carbon::parse($this->start_date . ' ' . $this->start_time)->format('Ymd\THis');
+        $to = \Carbon\Carbon::parse($this->start_date . ' ' . $this->end_time)->format('Ymd\THis');
+        $title = $this->title;
+        $brief = $this->brief;
+        $location = $this->room->name;
+        $attendees = $this->invitations->pluck('userable.email')->toArray();
+
+        // Base Google Calendar event URL
+        $baseUrl = 'http://www.google.com/calendar/event?action=TEMPLATE';
+
+        // Encode event details
+        $encodedParams = http_build_query([
+            'text' => $title,
+            'dates' => $from . '/' . $to,
+            'details' => $brief,
+            'location' => $location
+        ]);
+
+        // Add attendees' email addresses
+        foreach ($attendees as $attendee) {
+            $encodedParams .= '&add=' . urlencode($attendee);
+        }
+
+        // Build full URL
+        $url = $baseUrl . '&' . $encodedParams;
+
+        return $url;
+    }
+
 
     public function setMinutesAttachAttribute($file)
     {
@@ -157,6 +193,7 @@ class Meeting extends Model
             return "Cancelled";
         }
     }
+
     /**
      * Scope a query to only include upcoming meetings.
      *
@@ -167,8 +204,44 @@ class Meeting extends Model
     {
         return $query->whereDate('start_date', '>=', now()->format('Y-m-d'))
             ->whereDate('start_date', '<=', now()->addWeek()->format('Y-m-d'))
+            ->where('status', 1)
             ->orderBy('start_date')
             ->orderBy('start_time');
+    }
+
+    /**
+     * Scope a query to only include guests meetings.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeGuests($query)
+    {
+        return $query->where(function (Builder $query) {
+            $query->where('user_id', auth()->id())
+                ->orWhereHas('invitations.userable', function (Builder $query) {
+                    $query->where('email', auth()->user()->email);
+                });
+        });
+    }
+
+    public function isGuest()
+    {
+        if (auth()->id() == 1) {
+            return true;
+        }
+        return $this->where('user_id', auth()->id())
+            ->orWhereHas('invitations.userable', function (Builder $query) {
+                $query->where('email', auth()->user()->email);
+            })->exists();
+    }
+
+    public function isCreator()
+    {
+        if (auth()->id() == 1) {
+            return true;
+        }
+        return $this->user_id == auth()->id();
     }
 
     /**
@@ -181,7 +254,6 @@ class Meeting extends Model
         return $this->belongsTo(Room::class);
     }
 
-
     /**
      * Get all of the invitations for the Meeting
      *
@@ -192,6 +264,13 @@ class Meeting extends Model
         return $this->hasMany(MeetingInvitation::class);
     }
 
-    // invitations
-
+    /**
+     * Get the user that owns the Meeting
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

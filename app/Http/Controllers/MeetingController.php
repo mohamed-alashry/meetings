@@ -26,33 +26,39 @@ class MeetingController extends Controller
         $query = Meeting::query();
         if (request()->filled('room_id')) {
             $view_days = true;
-            $query->where('room_id', request()->room_id);
+            $query->where('room_id', $request->room_id);
         }
         if (auth()->id() != 1) {
-            $query->where('user_id', auth()->id());
+            $query->guests();
         }
         $meetings = $query->get()->pluck('event_json');
 
         return view('calendar_view', compact('meetings', 'view_days'));
     }
+
     /**
      * Display a listing of the resource.
      */
     public function card_view(FilterRequest $request)
     {
-
         $single_room = false;
-        
         $query = Meeting::query();
-        if (auth()->id() == 1) {
-            $meetings = Meeting::upcoming()->limit(30)->get()->groupBy('type_date');
-        }else{
-
-            $meetings = Meeting::upcoming()->where('user_id', auth()->id())->limit(30)->get()->groupBy('type_date');
+        if (request()->filled('room_id')) {
+            $single_room = true;
+            $query->where('room_id', $request->room_id);
         }
-        return view('card_view', compact('meetings'));
-    }
+        if (auth()->id() != 1) {
+            $query->guests();
+        }
+        if (request()->filled('start_date')) {
+            $query->whereDate('start_date', request('start_date'));
+        } else {
+            $query->upcoming();
+        }
+        $meetings = $query->limit(30)->get()->groupBy('type_date');
 
+        return view('card_view', compact('meetings', 'single_room'));
+    }
 
 
     /**
