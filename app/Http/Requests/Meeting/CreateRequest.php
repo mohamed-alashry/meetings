@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Meeting;
 
 use App\DTOs\Meeting\CreateDTO;
+use Carbon\Carbon;
 use Spatie\LaravelData\WithData;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\ValidationException;
 
 class CreateRequest extends FormRequest
 {
@@ -36,7 +38,7 @@ class CreateRequest extends FormRequest
             'brief'                => 'nullable|string',
             'description'          => 'nullable|string',
             'start_date'           => 'required|date|after_or_equal:today',
-            'start_time'           => 'required|after:now',
+            'start_time'           => 'required',
             'end_time'             => 'required|after:start_time',
             'repeatable'           => 'nullable',
             'end_date'             => 'nullable|date|after:start_date',

@@ -38,7 +38,7 @@ class UpdateRequest extends FormRequest
             'minutes'           => 'nullable|string',
             'minutes_attach'    => 'nullable|file|max:5120',
             'start_date'        => 'required|date|after_or_equal:today',
-            'start_time'        => 'required|after:now',
+            'start_time'        => 'required',
             'end_time'          => 'required|after:start_time',
             'repeatable'        => 'required',
             'end_date'          => 'nullable',

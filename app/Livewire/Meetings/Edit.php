@@ -2,17 +2,19 @@
 
 namespace App\Livewire\Meetings;
 
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Invitee;
 use App\Models\Meeting;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\DTOs\Meeting\CreateDTO;
 use App\DTOs\Meeting\UpdateDTO;
 use App\Services\MeetingService;
 use Illuminate\Support\Collection;
 use App\Http\Requests\Meeting\CreateRequest;
 use App\Http\Requests\Meeting\UpdateRequest;
-use Livewire\WithFileUploads;
+use Illuminate\Validation\ValidationException;
 
 class Edit extends Component
 {
@@ -112,6 +114,14 @@ class Edit extends Component
     public function update($meetingId)
     {
         $validated = $this->validate();
+
+        $meetingStart = Carbon::parse("$this->start_date $this->start_time");
+        if ($meetingStart->isPast()) {
+            throw ValidationException::withMessages([
+                'start_time' => ['The start time field must be a date after now.'],
+            ]);
+        }
+
         $validated['user_id'] = auth()->id();
         $validated['update_all'] = $this->update_all;
 

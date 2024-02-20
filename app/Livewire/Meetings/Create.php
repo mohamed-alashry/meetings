@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Meetings;
 
+use Carbon\Carbon;
 use App\Models\Room;
 use App\Models\Invitee;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use App\DTOs\Meeting\CreateDTO;
 use App\Services\MeetingService;
-use Illuminate\Support\Collection;
 
+use Illuminate\Support\Collection;
 use function Laravel\Prompts\alert;
 use App\Http\Requests\Meeting\CreateRequest;
+use Illuminate\Validation\ValidationException;
 
 class Create extends Component
 {
@@ -97,8 +99,15 @@ class Create extends Component
     public function store()
     {
         $validated = $this->validate();
-        $validated['user_id'] = auth()->id();
 
+        $meetingStart = Carbon::parse("$this->start_date $this->start_time");
+        if ($meetingStart->isPast()) {
+            throw ValidationException::withMessages([
+                'start_time' => ['The start time field must be a date after now.'],
+            ]);
+        }
+
+        $validated['user_id'] = auth()->id();
         $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
 
         session()->flash('success', 'Meeting booked successfully');
