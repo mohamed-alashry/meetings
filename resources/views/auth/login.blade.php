@@ -18,8 +18,10 @@
 </head>
 
 <body>
-    <div class="container-fluid" style="background-image: url({{ asset(config('settings.background')) }}); background-repeat: no-repeat;background-size: cover;">
-        <div class="row "  style="height: 100vh; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(2,11,32,0.15730042016806722) 74%);">
+    <div class="container-fluid"
+        style="background-image: url({{ asset(config('settings.background')) }}); background-repeat: no-repeat;background-size: cover;">
+        <div class="row "
+            style="height: 100vh; background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(2,11,32,0.15730042016806722) 74%);">
             <div class="col-lg-5 col-12 p-0 d-flex align-items-start flex-column ">
                 <div class="d-flex align-items-end mx-auto" style="height: -webkit-fill-available;">
                     <img class="img-fluid" src="{{ asset(config('settings.logo.original')) }}"
@@ -32,7 +34,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here email" type="email"
                             name="email" value="{{ old('email') }}">
                         @error('email')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="input-form-login">
@@ -40,7 +42,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here password"
                             type="password" name="password">
                         @error('password')
-                            <p class="text-danger">{{ $message }}</p>
+                        <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-danger my-3 w-100" style="background: #C2203D">
