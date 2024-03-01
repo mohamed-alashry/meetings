@@ -36,9 +36,9 @@ class AuthController extends Controller
             $googleUser = Socialite::driver('google')->user();
 
             // only allow people with @company.com to login
-            // if (explode("@", $googleUser->email)[1] !== 'one1.sa') {
-            //     return abort(403, 'Unauthorized action.');
-            // }
+            if (explode("@", $googleUser->email)[1] !== 'one1.sa') {
+                return abort(403, 'Unauthorized action.');
+            }
 
             // check if they're an existing user
             $user = User::where('email', $googleUser->email)->first();
@@ -53,12 +53,25 @@ class AuthController extends Controller
                     'google_refresh_token' => $googleUser->refreshToken,
                 ]);
 
-                Invitee::create([
-                    'email' => $user->email,
-                    'name' => $user->name
-                ]);
+                Invitee::updateOrCreate(
+                    [
+                        'email' => $user->email,
+                    ],
+                    [
+                        'name' => $user->name
+                    ]
+                );
 
-                $user->givePermissionTo('read_meeting');
+                $meetingPermissions = [
+                    ['name' => 'delete_meeting'],
+                    ['name' => 'update_meeting'],
+                    ['name' => 'read_meeting'],
+                    ['name' => 'create_meeting'],
+                    ['name' => 'invite_to_meeting'],
+                    ['name' => 'cancel_meeting'],
+                ];
+
+                $user->permissions()->createMany($meetingPermissions);
             }
             auth()->login($user);
 
