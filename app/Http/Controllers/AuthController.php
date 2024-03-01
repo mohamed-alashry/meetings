@@ -36,9 +36,9 @@ class AuthController extends Controller
             $googleUser = Socialite::driver('google')->user();
 
             // only allow people with @company.com to login
-            if (explode("@", $googleUser->email)[1] !== 'one1.sa') {
-                return abort(403, 'Unauthorized action.');
-            }
+            // if (explode("@", $googleUser->email)[1] !== 'one1.sa') {
+            //     return abort(403, 'Unauthorized action.');
+            // }
 
             // check if they're an existing user
             $user = User::where('email', $googleUser->email)->first();
