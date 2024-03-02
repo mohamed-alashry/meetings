@@ -1,10 +1,10 @@
 <div>
     <div class="row p-3 align-items-center">
-        <div class="col-lg-5 col-sm-12 color-primary">
+        <div class="col-lg-3 col-sm-12 color-primary">
             <p class="h6 fw-bold">Meeting Information</p>
         </div>
         <!-- Button trigger modal -->
-        <div class="col-lg-7 col-sm-12 row d-flex gap-3">
+        <div class="col-lg-9 col-sm-12 row d-flex gap-3">
             @if ($meeting->status == 1 && $meeting->start_date . ' ' . $meeting->start_time >= date('Y-m-d H:i:s'))
                 @if (hasPermissionUser('cancel_meeting') && $meeting->isCreator())
                     <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col-4"
@@ -33,7 +33,7 @@
                         </svg>
                         Canceling all...
                     </button>
-                    <div class="col-8 row gap-3" wire:loading.remove>
+                    <div class="col-9 row gap-3" wire:loading.remove>
                         @if ($meeting->repeatable != 1)
                             <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
                                 style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
