@@ -374,7 +374,7 @@
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input"
                                         wire:model.live="send_room_attach">
-                                    Send room attachment
+                                    Send how to use
                                 </label>
                             </div>
                             @error('send_room_attach')

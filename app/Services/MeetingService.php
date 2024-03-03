@@ -252,7 +252,9 @@ class MeetingService
     public function shareMinutes($invitees, $meeting)
     {
         $emails = $invitees->pluck('email')->toArray();
-        Mail::to($emails)->send(new ShareMinutes($meeting));
+        if (!empty($emails)) {
+            Mail::to($emails)->send(new ShareMinutes($meeting));
+        }
     }
 
 
