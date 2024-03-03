@@ -49,7 +49,7 @@ class MeetingService
         return Meeting::find($id);
     }
 
-    public function create(CreateDTO $data, $invited_users): bool
+    public function create(CreateDTO $data, $invited_users)
     {
         // set end time (start time + duration in minutes)
         // $data->end_time = Carbon::parse($data->start_time)->addMinutes($data->duration);
@@ -74,16 +74,13 @@ class MeetingService
                 }
 
 
-                break;
+                return $meeting;
             case 2: // Daily
-                $this->handleRepeatable($data, '1 days', $invited_users);
-                break;
+                return $this->handleRepeatable($data, '1 days', $invited_users);
             case 3: // Weekly
-                $this->handleRepeatable($data, '1 weeks', $invited_users);
-                break;
+                return $this->handleRepeatable($data, '1 weeks', $invited_users);
             case 4: // Monthly
-                $this->handleRepeatable($data, '1 months', $invited_users);
-                break;
+                return $this->handleRepeatable($data, '1 months', $invited_users);
         }
 
         return true;
@@ -311,6 +308,7 @@ class MeetingService
         if (count($emails) > 0) {
             Mail::to($emails)->send(new InviteMeeting($meeting));
         }
+        return $meeting;
     }
 
     private function deleteRepeatable($meeting_repeats)

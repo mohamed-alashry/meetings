@@ -46,7 +46,7 @@ class Create extends Component
     public array $times = [];
     public $room_media = [];
 
-
+    public string $meeting_url;
 
 
     public function boot(MeetingService $meetingService)
@@ -95,7 +95,6 @@ class Create extends Component
         }
     }
 
-
     public function store()
     {
         $validated = $this->validate();
@@ -108,12 +107,15 @@ class Create extends Component
         }
 
         $validated['user_id'] = auth()->id();
-        $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
+        $meeting = $this->meetingService->create(CreateDTO::from($validated), $this->invitedUsers);
 
         session()->flash('success', 'Meeting booked successfully');
 
-        $this->redirect(route('meetings.card_view'), true);
+        $this->meeting_url = $meeting->generateGoogleCalendarLink();
+
+        // $this->redirect(route('meetings.card_view'), true);
     }
+
     #[On('toggleCreateModal')]
     public function toggleCreateModal()
     {
