@@ -406,7 +406,7 @@
                         </div>
                         @if ($meeting_url)
                             <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
-                                <a href="{{ $meeting_url }}"
+                                <a href="{{ $meeting_url }}" target="window"
                                     class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
                                     <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                     Add To Calender
