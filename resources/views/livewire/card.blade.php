@@ -6,6 +6,7 @@
                     <div class="card-header rounded-top-4">
                         <h5 class="card-title fw-bold">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text">{{ $meeting->room->name ?? '' }}</p>
+                        <p class="card-text">{{ $meeting->user->name ?? '' }}</p>
                         {{-- status span --}}
                         <span
                             class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
@@ -40,6 +41,7 @@
                     <div class="card-header rounded-top-4">
                         <h5 class="card-title fw-bold">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text">{{ $meeting->room->name ?? '' }}</p>
+                        <p class="card-text">{{ $meeting->user->name ?? '' }}</p>
                         {{-- status span --}}
                         <span
                             class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
@@ -75,6 +77,7 @@
                     <div class="card-header bg-body rounded-top-4">
                         <h5 class="card-title color-primary fw-bold">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text color-primary">{{ $meeting->room->name ?? '' }}</p>
+                        <p class="card-text">{{ $meeting->user->name ?? '' }}</p>
                         {{-- status span --}}
                         <span
                             class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>
@@ -109,6 +112,7 @@
                     <div class="card-header rounded-top-4 ">
                         <h5 class="card-title fw-bold ">{{ $meeting->title ?? '' }}</h5>
                         <p class="card-text ">{{ $meeting->room->name ?? '' }}</p>
+                        <p class="card-text">{{ $meeting->user->name ?? '' }}</p>
                         {{-- status span --}}
                         <span
                             class="badge rounded-pill position-absolute top-0 end-0 m-3 {{ $meeting->status == 1 ? ' bg-success' : ' bg-danger' }}">{{ $meeting->status_text }}</span>

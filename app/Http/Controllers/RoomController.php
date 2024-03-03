@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Services\RoomService;
 use App\Http\Requests\Room\CreateRequest;
-use App\Http\Requests\Room\FilterRequest;
 use App\Http\Requests\Room\UpdateRequest;
+use App\Http\Requests\Meeting\FilterRequest as FilterMeetingRequest;
+use App\Http\Requests\Room\FilterRequest as FilterRoomRequest;
 
 class RoomController extends Controller
 {
@@ -16,7 +17,7 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function monitor(FilterRequest $request)
+    public function monitor(FilterMeetingRequest $request)
     {
         if (request()->wantsJson()) {
             $data['rooms'] = $this->roomService->monitor($request->getData());
@@ -28,7 +29,7 @@ class RoomController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(FilterRequest $request)
+    public function index(FilterRoomRequest $request)
     {
         $data['rooms'] = $this->roomService->list($request->getData());
         if (request()->wantsJson()) {
