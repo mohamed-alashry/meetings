@@ -103,7 +103,7 @@
                 <hr style="border-color: #fff;">
                 <div style="padding: 1rem; font-size: 14px;">
                     <p style="font-weight: 700; margin: 0;">Meeting Information</p>
-                    <p style="margin-top: 3px;">Type here the meeting info</p>
+                    <p style="margin-top: 3px;">Type Here The Meeting Info</p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
                         <table style="font-weight: 700; width: 100%; padding: 0;">
@@ -133,7 +133,7 @@
                 background-size: contain;
                 border-radius: 0 0 19px ;">
                     <p style="font-weight: 700; margin: 0;">Meeting Information</p>
-                    <p style="margin-top: 3px;">Type here the meeting info</p>
+                    <p style="margin-top: 3px;">Type Here The Meeting Info</p>
                     <table style="font-weight: 700; width: 100%; padding: 0;">
                         <tr>
                             <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%;">

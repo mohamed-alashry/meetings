@@ -11,7 +11,7 @@
                         <div class="line-bookings row mt-3">
                             <span class="col-lg-6 col-md-6 col-sm-12">
                                 <h5 class="card-title">Upcomming Bookings</h5>
-                                <p class="card-text">Don’t miss your appointments</p>
+                                <p class="card-text">Don’t Miss Your Appointments</p>
                             </span>
                             <span class="col-lg-3 col-md-6 col-sm-12">
                                 <a href="{{ route('meetings.calendar_view') }}"

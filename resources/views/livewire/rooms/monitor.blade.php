@@ -5,7 +5,7 @@
                 <div class="line-bookings row mb-3 px-1 g-3">
                     <span class="input-form-login col-lg col-lg-6 col-md-12 col-sm-12">
                         <h5 class="card-title">My Rooms Meetings</h5>
-                        <p class="card-text">Don’t miss your appointments</p>
+                        <p class="card-text">Don’t Miss Your Appointments</p>
                     </span>
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="date"
@@ -38,7 +38,7 @@
                         <div class="line-bookings row my-3 px-1">
                             <span class="col-lg-6 col-md-6 col-sm-12">
                                 <h5 class="card-title">{{ $room->name ?? '' }}</h5>
-                                <p class="card-text">Don’t miss your appointments</p>
+                                <p class="card-text">Don’t Miss Your Appointments</p>
                             </span>
                         </div>
                         <div class="line-cards">

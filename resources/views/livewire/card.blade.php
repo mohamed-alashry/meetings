@@ -234,8 +234,7 @@
 
                                     @forelse ($meeting->room->features as $feature)
                                         @if ($feature->name == 'wifi' && $feature->value)
-                                            <p class="card-title fw-light my-1"
-                                                wire:key='feature-{{ $feature->id }}'>
+                                            <p class="card-title fw-light my-1">
                                                 <i class="fa-solid fa-wifi"></i>
                                                 <span class="text-secondary px-2">
                                                     Guest Wifi

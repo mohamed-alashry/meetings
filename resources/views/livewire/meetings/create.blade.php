@@ -84,7 +84,7 @@
                     <div class="modal-body p-0">
                         <div class="m-3 color-primary">
                             <p class="h6 fw-bold">Choose your Meeting Room</p>
-                            <p class="fs-6 m-0">Type here the meeting info</p>
+                            <p class="fs-6 m-0">Type Here The Meeting Info</p>
                         </div>
 
                         {{-- rooms --}}
@@ -306,7 +306,7 @@
                         <hr>
                         <div class="m-3 color-primary">
                             <p class="h6 fw-bold">Meeting Information</p>
-                            <p class="fs-6 m-0">Type here the meeting info</p>
+                            <p class="fs-6 m-0">Type Here The Meeting Info</p>
                         </div>
                         <div class="input-form-login px-3 col-12 ">
                             <i class="fa-solid fa-briefcase icon fa-lg"></i>

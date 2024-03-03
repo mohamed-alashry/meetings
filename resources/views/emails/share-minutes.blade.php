@@ -85,7 +85,7 @@
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
                         Information
                     </p>
-                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type here the meeting info
+                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type Here The Meeting Info
                     </p>
                     <div
                         style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
