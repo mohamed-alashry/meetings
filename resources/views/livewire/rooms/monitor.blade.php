@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    @if (hasPermissionUser('read_room'))
+    @if (hasPermissionUser('read_meeting'))
         @forelse ($rooms as $room)
             <div class="container-fluid" wire:key='room-list-{{ $room->id }}'>
                 <div class="row">

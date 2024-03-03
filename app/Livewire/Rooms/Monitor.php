@@ -38,10 +38,9 @@ class Monitor extends Component
     public function updatedRoomId($value)
     {
         $this->room_id = $value;
-        $this->inputs['id'] = $value == 'all'? null: $value;
+        $this->inputs['id'] = $value == 'all' ? null : $value;
         // $this->rooms = $this->roomService->monitor(FilterDTO::from($this->inputs));
         $this->render();
-
     }
 
     public function mount()
@@ -63,7 +62,6 @@ class Monitor extends Component
 
     public function render()
     {
-
         return view('livewire.rooms.monitor', [
             'rooms' => $this->roomService->monitor(FilterDTO::from($this->inputs))
         ]);
