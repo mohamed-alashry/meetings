@@ -46,7 +46,7 @@ class Create extends Component
     public array $times = [];
     public $room_media = [];
 
-    public string $meeting_url;
+    public string $meeting_url = null;
 
 
     public function boot(MeetingService $meetingService)
