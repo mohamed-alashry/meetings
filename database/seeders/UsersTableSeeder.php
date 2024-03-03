@@ -35,11 +35,9 @@ class UsersTableSeeder extends Seeder
                 ['user_id' => 1, 'name' => 'delete_room'],
                 ['user_id' => 1, 'name' => 'delete_user'],
                 ['user_id' => 1, 'name' => 'delete_invitee'],
-                ['user_id' => 1, 'name' => 'delete_meeting'],
                 ['user_id' => 1, 'name' => 'update_meeting'],
                 ['user_id' => 1, 'name' => 'read_meeting'],
                 ['user_id' => 1, 'name' => 'create_meeting'],
-                ['user_id' => 1, 'name' => 'invite_to_meeting'],
                 ['user_id' => 1, 'name' => 'cancel_meeting'],
             ]);
         }
