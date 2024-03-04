@@ -59,7 +59,7 @@ class Meeting extends Model
     ];
 
 
-    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'end_time_format', 'minutes_attach_path', 'add_to_calendar'];
+    public $appends = ['event_json', 'type_date', 'start_date_format', 'start_time_format', 'end_time_format', 'minutes_attach_path'];
 
     public function getEventJsonAttribute()
     {

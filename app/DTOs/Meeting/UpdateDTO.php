@@ -8,19 +8,19 @@ use Spatie\LaravelData\Optional;
 
 class UpdateDTO extends Data
 {
-    public string|Optional $title;
+    public ?string $title;
     public ?string $brief;
     public ?string $description;
-    public string|Optional $minutes;
+    public ?string $minutes;
     public $minutes_attach;
-    public string|Optional $start_date;
-    public string|Optional $start_time;
-    public string|Optional $end_time;
+    public ?string $start_date;
+    public ?string $start_time;
+    public ?string $end_time;
     public ?string $end_date;
-    public int|Optional $room_id;
-    public int|Optional $status;
-    public int|Optional $repeatable;
-    public int|Optional $parent_id;
-    public int|Optional $user_id;
-    public bool|Optional $update_all;
+    public ?int $room_id;
+    public ?int $status;
+    public ?int $repeatable;
+    public ?int $parent_id;
+    public ?int $user_id;
+    public ?bool $update_all;
 }
