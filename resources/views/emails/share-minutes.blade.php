@@ -28,10 +28,10 @@
                                 alt="" srcset="">
                             {{ $meeting->room->name }}
                         </p>
-                        <p style="font-size: .8vw; color: #fff !important">
-                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/hourglass%201.png"
-                                alt="" srcset="">
-                            Duration: {{ $meeting->duration }} min
+                        <p style="font-size: 1vw; color: #fff !important">
+                            <img style="padding-right: 3px;width: 10%;max-width: 20px;vertical-align: bottom;"
+                                src="https://safavisa.sirv.com/Images/hourglass%201.png" alt="" srcset="">
+                            End Time {{ $meeting->end_time_format }}
                         </p>
                     </th>
                     <th style="width: 50%; text-align: end;">
@@ -59,25 +59,6 @@
                                 </span>
                             </p>
                         @endforeach
-                        <table style="font-weight: bold; width: 100%; padding: 0;">
-                            <tr>
-                                <th style="width: 50%;text-align: start;">
-                                    {{-- <p style="margin-top: 0;">
-                                        mohamed@one.com.sa
-                                        <span style="font-weight: 500;">
-                                            (External Guest)
-                                        </span>
-                                    </p> --}}
-                                </th>
-                                <th style="width: 50%; text-align: end;">
-                                    <p style="margin-top: 0;">
-                                        {{ count($meeting->invitations) }} Persons
-                                        <img src="https://safavisa.sirv.com/Images/group 1.png" alt=""
-                                            srcset="">
-                                    </p>
-                                </th>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 <hr style="border-color: #fff;">

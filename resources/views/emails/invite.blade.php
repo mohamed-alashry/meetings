@@ -48,18 +48,6 @@
                 @if ($meeting->status != 2)
                     <table style="padding: 4% 0;background-color: #fff;  width: 100%;">
                         <tr style="width: 100%;">
-                            <th style="text-align: end; padding-top: 0.5%;width: 50%;">
-                                <a href="{{ $meeting->google_meet_link }}"
-                                    style="text-decoration: none; padding: 4% 8%; border-radius: 1rem; font-weight: 600; background-color: #fff; border: solid 1px #cccc;">
-                                    <span>
-                                        <img src="https://safavisa.sirv.com/Images/meet%201.png" alt=""
-                                            style="max-width: 20px;width:10%;vertical-align: middle;">
-                                    </span>
-                                    <span style="vertical-align: middle;font-size: 1vw;">
-                                        Open in Google Meet
-                                    </span>
-                                </a>
-                            </th>
                             <th style="text-align: start;width: 50%;">
                                 <a href="{{ $meeting->generateGoogleCalendarLink() }}"
                                     style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
@@ -92,47 +80,31 @@
                                 </span>
                             </p>
                         @endforeach
-                        <table style="font-weight: bold; width: 100%; padding: 0;">
-                            <tr>
-                                <th style="width: 50%;text-align: start;">
-                                    {{-- <p style="margin-top: 0;">
-                                        mohamed@one.com.sa
-                                        <span style="font-weight: 500;">
-                                            (External Guest)
-                                        </span>
-                                    </p> --}}
-                                </th>
-                                <th style="width: 50%; text-align: end;">
-                                    <p style="margin-top: 0;font-size: 1vw;">
-                                        {{ count($meeting->invitations) }} Persons
-                                        <img src="https://safavisa.sirv.com/Images/group 1.png" alt=""
-                                            srcset="" style="width: 15%;max-width: 20px;">
-                                    </p>
-                                </th>
-                            </tr>
-                        </table>
                     </div>
                 </div>
                 <hr style="border-color: #fff;">
-                <div style="padding: 1rem;">
-                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
-                        Information
-                    </p>
-                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type Here The Meeting Info
-                    </p>
-                    <div
-                        style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem; color: #022537; background-color: #fff;">
-                        <table style="font-weight: bold; width: 100%; padding: 0;">
-                            <tr>
-                                <th style="text-align: start; vertical-align: baseline;width: 9px; font-size: 1vw">
-                                    <p style="font-weight: 500; color:rgb(126,126,126);">
-                                        {!! $meeting->brief !!}
-                                    </p>
-                                </th>
-                            </tr>
-                        </table>
+                @if ($meeting->brief)
+                    <div style="padding: 1rem;">
+                        <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
+                            Information
+                        </p>
+                        <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type Here The Meeting
+                            Info
+                        </p>
+                        <div
+                            style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem; color: #022537; background-color: #fff;">
+                            <table style="font-weight: bold; width: 100%; padding: 0;">
+                                <tr>
+                                    <th style="text-align: start; vertical-align: baseline;width: 9px; font-size: 1vw">
+                                        <p style="font-weight: 500; color:rgb(126,126,126);">
+                                            {!! $meeting->brief !!}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
+                @endif
                 @if ($meeting->send_room_properties)
                     <hr style="border-color: #fff;">
                     <div
@@ -156,9 +128,6 @@
                                         @foreach ($meeting->room->features as $feature)
                                             @if ($feature->name == 'wifi' && $feature->value)
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                                    <img src="https://safavisa.sirv.com/Images/wi-fi%201.png"
-                                                        alt="" srcset=""
-                                                        style="width: 15%;max-width: 20px;">
                                                     <span
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Guest Wifi
@@ -177,9 +146,6 @@
                                             @endif
                                             @if ($feature->name == 'online_meeting' && $feature->value)
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                                    <img src="https://safavisa.sirv.com/Images/online-meeting%201.png"
-                                                        alt="" srcset=""
-                                                        style="width: 15%;max-width: 20px;">
                                                     <span
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Meeting System
@@ -188,9 +154,6 @@
                                             @endif
                                             @if ($feature->name == 'projector' && $feature->value)
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                                    <img src="https://safavisa.sirv.com/Images/television%201.png"
-                                                        alt="" srcset=""
-                                                        style="width: 15%;max-width: 20px;">
                                                     <span
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Projector
@@ -199,9 +162,6 @@
                                             @endif
                                             @if ($feature->name == 'tv' && $feature->value)
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                                    <img src="https://safavisa.sirv.com/Images/television%201.png"
-                                                        alt="" srcset=""
-                                                        style="width: 15%;max-width: 20px;">
                                                     <span
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Smart TV
@@ -238,8 +198,6 @@
                                     <div
                                         style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem 0.3rem 0; color: #022537; width: 75%;height: fit-content; background-color: #fff; float: inline-start; margin: 0 1rem 1.5rem;">
                                         <div>
-                                            <img src="https://safavisa.sirv.com/Images/notes 1.png" alt=""
-                                                srcset="" style="width: 15%;max-width: 20px;">
                                             <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
                                                 Guest ID:
                                                 <span style="font-weight: bold;color: #022537;">20213</span>
@@ -247,14 +205,11 @@
                                         </div>
                                         @if ($meeting->send_user_location)
                                             <div style="margin-top: 1rem ">
-                                                <img src="https://safavisa.sirv.com/Images/notes 1.png" alt=""
-                                                    srcset="" style="width: 15%;max-width: 20px;">
                                                 <span
                                                     style="font-weight: 500; margin: 0.1rem; color: rgb(126, 126, 126);">
                                                     Location on Maps:
                                                     <p style="margin: 0;">
-                                                        <a href="{{ $meeting->room->google_location }}"
-                                                            target="_blank"
+                                                        <a href="{{ $meeting->room->google_location }}" target="_blank"
                                                             style="font-weight: bold;color: #5E1042; margin-left: 1.6rem">
                                                             Click here
                                                         </a>
@@ -263,8 +218,6 @@
                                             </div>
                                         @endif
                                         <div>
-                                            <img src="https://safavisa.sirv.com/Images/phone_forwarded.png"
-                                                alt="" srcset="" style="width: 15%;max-width: 20px;">
                                             <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
                                                 Guide PDF:
                                                 <p style="margin: 0;">

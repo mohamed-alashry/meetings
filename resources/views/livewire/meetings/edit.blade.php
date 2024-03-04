@@ -31,7 +31,7 @@
                                     type="rotate" values="0 12 12;360 12 12" />
                             </path>
                         </svg>
-                        Canceling all...
+                        Canceling All...
                     </button>
                     <div class="col-9 row gap-3" wire:loading.remove>
                         @if ($meeting->repeatable != 1)
@@ -39,14 +39,14 @@
                                 style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
                                 wire:click="cancelAllMeetings" wire:confirm="Are you sure?">
                                 <i class="fa fa-xmark fa-fw fa-lg"></i>
-                                Cancel all
+                                Cancel All
                             </button>
                         @endif
                         <button type="button" class="btn my-3 shadow text-white rounded-4 fw-bold col"
                             style="background: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
                             wire:click="cancelMeeting" wire:confirm="Are you sure?">
                             <i class="fa fa-xmark fa-fw fa-lg"></i>
-                            Cancel this meeting
+                            Cancel This Meeting
                         </button>
                     </div>
 
@@ -58,7 +58,7 @@
                         style="background-color: #C2203D;padding-top: 0.8rem;padding-bottom: 0.8rem;"
                         wire:click="toggleEditModal">
                         <i class="fa-regular fa-edit"></i>
-                        Edit meeting
+                        Edit Meeting
                     </button>
                 @endif
             @endif
@@ -196,7 +196,7 @@
                                     </label>
                                 </div>
                             @empty
-                                <p class="h6 fw-bold">No rooms found</p>
+                                <p class="h6 fw-bold">No Rooms Found</p>
                             @endforelse
                         </div>
                         <hr>
