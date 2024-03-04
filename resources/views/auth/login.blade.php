@@ -34,7 +34,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here email" type="email"
                             name="email" value="{{ old('email') }}">
                         @error('email')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="input-form-login">
@@ -42,7 +42,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here password"
                             type="password" name="password">
                         @error('password')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-danger my-3 w-100" style="background: #C2203D">
@@ -59,7 +59,7 @@
                     </a>
                 </div>
                 <div class="d-flex align-items-end" style="height: -webkit-fill-available;">
-                    <img class="img-fluid mt-5" src="{{ asset('assets') }}/img/Frame.png"
+                    <img class="d-none d-md-block img-fluid mt-5" src="{{ asset('assets') }}/img/Frame.png"
                         alt="Modern building architecture">
                 </div>
             </div>

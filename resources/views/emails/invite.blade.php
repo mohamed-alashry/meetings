@@ -53,7 +53,7 @@
                                     style="text-decoration: none; padding: 2% 4%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                     <span>
                                         <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
-                                            style="max-width: 20px; width:8%;vertical-align: middle;">
+                                            style="max-width: 20px; width:6%;vertical-align: middle;">
                                     </span>
                                     <span style="vertical-align: middle;font-size: 1vw;">
                                         Add to your Calendar
