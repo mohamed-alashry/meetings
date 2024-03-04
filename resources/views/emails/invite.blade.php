@@ -47,8 +47,8 @@
             <div>
                 @if ($meeting->status != 2)
                     <table style="padding: 4% 0;background-color: #fff;  width: 100%;">
-                        <tr style="width: 100%;">
-                            <th style="text-align: start;width: 50%;">
+                        <tr>
+                            <th style="text-align: center;width: 50%;">
                                 <a href="{{ $meeting->generateGoogleCalendarLink() }}"
                                     style="text-decoration: none; padding: 4% 8%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                     <span>
@@ -82,8 +82,8 @@
                         @endforeach
                     </div>
                 </div>
-                <hr style="border-color: #fff;">
                 @if ($meeting->brief)
+                    <hr style="border-color: #fff;">
                     <div style="padding: 1rem;">
                         <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
                             Information
@@ -233,6 +233,15 @@
                                 </th>
                             </tr>
                         </table>
+                    </div>
+                @else
+                    <div
+                        style="padding: 1rem; font-size: 14px;
+                background-image: url(https://safavisa.sirv.com/Images/Frame-end-footer.png);
+                background-repeat: no-repeat;
+                background-position: right bottom;
+                background-size: 35vw 79%;
+                border-radius: 0 0 19px ;">
                     </div>
                 @endif
             </div>
