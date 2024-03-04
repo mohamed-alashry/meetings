@@ -22,17 +22,17 @@
                         </h3>
                         <p style="font-size: 1vw; color: #fff !important">
                             <img src="https://safavisa.sirv.com/Images/calendar%201.png" alt="" srcset=""
-                                style="padding-right: 3px;width: 10%;max-width: 20px;vertical-align: bottom;">
+                                style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;">
                             {{ $meeting->start_date_format }},
                             {{ $meeting->start_time_format }}
                         </p>
                         <p style="font-size: 1vw; color: #fff !important">
-                            <img style="padding-right: 3px;width: 10%;max-width: 20px;vertical-align: bottom;"
+                            <img style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;"
                                 src="https://safavisa.sirv.com/Images/Group.png" alt="" srcset="">
                             {{ $meeting->room->name }}
                         </p>
                         <p style="font-size: 1vw; color: #fff !important">
-                            <img style="padding-right: 3px;width: 10%;max-width: 20px;vertical-align: bottom;"
+                            <img style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;"
                                 src="https://safavisa.sirv.com/Images/hourglass%201.png" alt="" srcset="">
                             End Time {{ $meeting->end_time_format }}
                         </p>
@@ -53,7 +53,7 @@
                                     style="text-decoration: none; padding: 2% 4%; border-radius: 1rem;background-color: #5E1042; border: solid 1px #cccc; font-weight: 600; color: #fff;">
                                     <span>
                                         <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
-                                            style="max-width: 20px; width:10%;vertical-align: middle;">
+                                            style="max-width: 20px; width:8%;vertical-align: middle;">
                                     </span>
                                     <span style="vertical-align: middle;font-size: 1vw;">
                                         Add to your Calendar
@@ -235,7 +235,7 @@
                         </table>
                     </div>
                 @else
-                    <div>
+                    <div style="text-align: right">
                         <img src="https://safavisa.sirv.com/Images/Frame-end-footer.png" alt="">
                     </div>
                 @endif
