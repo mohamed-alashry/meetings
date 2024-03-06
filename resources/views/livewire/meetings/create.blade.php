@@ -29,8 +29,8 @@
 
                             <div class="input-form-login col-lg col-md-12 col-sm-12">
                                 {{-- <i class="fa fa-calendar-days fa-lg icon mt-3 text-dark"></i> --}}
-                                <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                    type="date" wire:model.live="start_date" min="{{ date('Y-m-d') }}">
+                                <x-input.date wire:model="start_date"
+                                    class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" />
                                 @error('start_date')
                                     <b class="text-danger">{{ $message }}</b>
                                 @enderror

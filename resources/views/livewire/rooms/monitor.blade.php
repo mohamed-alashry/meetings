@@ -8,9 +8,9 @@
                         <p class="card-text">Don’t Miss Your Appointments</p>
                     </span>
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
-                        <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm" type="date"
-                            wire:model.live.debounce.150ms="start_date" min="{{ date('m-d-Y') }}"
-                            wire:change="$refresh">
+                        <x-input.date wire:model="start_date"
+                            class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
+                            wire:change="$refresh" />
                     </div>
                     <div class="input-form-login col-lg col-md-12 col-sm-12">
                         <i class="fa-brands fa-buromobelexperte a-lg icon mt-3 text-dark"></i>
