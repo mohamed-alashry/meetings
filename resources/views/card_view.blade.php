@@ -39,7 +39,7 @@
                                 </span>
                                 <span class="col-lg-2 col-md-12 col-sm-12">
                                     <button type="submit"
-                                        class="btn bg-body shadow-sm color-primary fw-bold w-100 h-100 rounded-4">filter</button>
+                                        class="btn bg-body shadow-sm color-primary fw-bold w-100 h-100 rounded-4">Filter</button>
                                 </span>
 
                                 <span class="col-lg-1 col-md-12 col-sm-12">

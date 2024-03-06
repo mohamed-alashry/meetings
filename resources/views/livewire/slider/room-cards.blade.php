@@ -42,7 +42,7 @@
                             <div class="card-hover-text-bubble rounded-4">
                                 <span
                                     class="card-hover-text-title d-flex justify-content-center align-items-center h-100">
-                                    <i class="fa-regular fa-calendar-check fa-xl px-2"></i> Book room now
+                                    <i class="fa-regular fa-calendar-check fa-xl px-2"></i> Book Room Now
                                 </span>
                             </div>
                         </div>

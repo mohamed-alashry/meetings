@@ -22,7 +22,7 @@
 
                         <select class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
                             wire:model.live="start_time">
-                            <option value="">Start time</option>
+                            <option value="">Start Time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>
                             @endforeach
@@ -40,7 +40,7 @@
 
                         <select class="input-field form-control my-2 px-5 py-2 rounded-4 shadow-sm"
                             wire:model.live="end_time">
-                            <option value="">End time</option>
+                            <option value="">End Time</option>
                             @foreach ($times as $key => $time)
                                 <option value="{{ $key }}">{{ $time }}</option>
                             @endforeach

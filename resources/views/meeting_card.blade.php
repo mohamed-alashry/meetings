@@ -18,7 +18,7 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-regular fa-hourglass-half"></i>
-                                End time: {{ $meeting->end_time ?? 0 }}
+                                End Time: {{ $meeting->end_time ?? 0 }}
                             </small>
                         </p>
                         {{-- <p class="card-text m-1">
@@ -50,7 +50,7 @@
                         <p class="card-text m-1">
                             <small>
                                 <i class="fa-regular fa-hourglass-half"></i>
-                                End time: {{ $meeting->end_time ?? 0 }}
+                                End Time: {{ $meeting->end_time ?? 0 }}
                             </small>
                         </p>
                         {{-- <p class="card-text m-1">
@@ -82,7 +82,7 @@
                         <p class="card-text m-1">
                             <small class="text-body-secondary">
                                 <i class="fa-regular fa-hourglass-half"></i>
-                                End time: {{ $meeting->end_time ?? 0 }}
+                                End Time: {{ $meeting->end_time ?? 0 }}
                             </small>
                         </p>
                         {{-- <p class="card-text m-1">
@@ -114,7 +114,7 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-regular fa-hourglass-half"></i>
-                                End time: {{ $meeting->end_time ?? 0 }}
+                                End Time: {{ $meeting->end_time ?? 0 }}
                             </small>
                         </p>
                         {{-- <p class="card-text m-1">
@@ -160,7 +160,7 @@
                                 <p class="card-text m-1">
                                     <small class="">
                                         <i class="fa-regular fa-hourglass-half pe-1"></i>
-                                        End time: {{ $meeting->end_time ?? 0 }}
+                                        End Time: {{ $meeting->end_time ?? 0 }}
                                     </small>
                                 </p>
                             </div>
