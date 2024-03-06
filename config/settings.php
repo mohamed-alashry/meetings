@@ -5,5 +5,5 @@ return [
         'thumbnail' => 'assets/img/Logo.svg',
         'original'  => 'assets/img/Group 1.png',
     ],
-    'background' => 'assets/img/bg_login.svg',
+    'background' => 'assets/img/login-image.jpeg',
 ];
