@@ -48,6 +48,7 @@
                             <i class="fa fa-xmark fa-fw fa-lg"></i>
                             Cancel This Meeting
                         </button>
+                        <span></span>
                     </div>
 
                 @endif
