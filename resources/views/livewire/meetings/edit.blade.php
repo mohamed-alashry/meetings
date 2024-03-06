@@ -410,7 +410,7 @@
                                 <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                 Update
                             </button>
-                            <button type="button" disabled wire:loading
+                            <button type="button" disabled wire:loading wire:target="update({{ $meeting->id }})"
                                 class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
 
                                 <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
