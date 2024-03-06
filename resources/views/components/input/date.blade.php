@@ -2,7 +2,7 @@
     field: $refs.input,
     'format': 'dd.mm.yy',
     firstDay: 0,
-    'minDate': new Date(),
+    // 'minDate': new Date(),
     toString(date, format) {
         // you should do formatting based on the passed format,
         // but we will just return 'D/M/YYYY' for simplicity
