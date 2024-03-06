@@ -17,6 +17,7 @@
     </script>
     <script src="https://cdn.tiny.cloud/1/cv3pz31tc14936cud70wtdncog4fgn2e6fincwa77zep2a7r/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pikaday/css/pikaday.css">
 
     <style>
         .bg-warning {
@@ -55,9 +56,33 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     @stack('scripts')
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var picker = new Pikaday({
+            field: document.getElementById('datepicker'),
+            firstDay: 0,
+            toString(date, format) {
+                // you should do formatting based on the passed format,
+                // but we will just return 'D/M/YYYY' for simplicity
+                const day = ('0' + (date.getDate())).slice(-2);
+                const month = ('0' + (date.getMonth() + 1)).slice(-2);
+                const year = date.getFullYear();
+                return `${year}/${month}/${day}`;
+            },
+            parse(dateString, format) {
+                // dateString is the result of `toString` method
+                const parts = dateString.split('/');
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                return new Date(year, month, day);
+            }
+        });
+    </script>
     <x-livewire-alert::scripts />
 
 </body>

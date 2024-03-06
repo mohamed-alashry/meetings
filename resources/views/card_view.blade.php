@@ -34,10 +34,19 @@
                         <form action="{{ route('meetings.card_view') }}">
                             <div class="line-bookings row mb-3 px-1 g-3">
                                 <span class="col-lg-3 col-md-12 col-sm-12">
-                                    <input class="input-field form-control px-5 rounded-4 shadow-sm" type="date"
-                                        name="start_date" min="{{ date('m-d-Y') }}" value="{{ request('start_date') }}">
+                                    {{-- <input class="input-field form-control px-5 rounded-4 shadow-sm" type="date"
+                                        name="start_date" min="{{ date('m-d-Y') }}" value="{{ request('start_date') }}"> --}}
+                                    @php
+                                        $date = request('start_date')
+                                            ? \Carbon\Carbon::parse(request('start_date'))->format('d/m/Y')
+                                            : '';
+                                    @endphp
+                                    <input class="input-field form-control px-5 rounded-4 shadow-sm"
+                                        type="text"name="start_date" id="datepicker" value="{{ $date }}"
+                                        readonly>
                                 </span>
-                                <span class="col-lg-2 col-md-12 col-sm-12">
+                                <span class="col-lg-2
+                                        col-md-12 col-sm-12">
                                     <button type="submit"
                                         class="btn bg-body shadow-sm color-primary fw-bold w-100 h-100 rounded-4">filter</button>
                                 </span>
