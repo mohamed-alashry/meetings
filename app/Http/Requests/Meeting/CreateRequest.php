@@ -44,7 +44,6 @@ class CreateRequest extends FormRequest
             'send_user_location'   => 'nullable',
             'send_room_attach'     => 'nullable',
             'send_room_properties' => 'nullable',
-            'google_meet_link'     => 'nullable',
             'reminder_time'        => 'required|filled',
         ];
     }

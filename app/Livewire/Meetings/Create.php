@@ -40,7 +40,6 @@ class Create extends Component
     public $send_user_location = false;
     public $send_room_attach = false;
     public $send_room_properties = false;
-    public string $google_meet_link;
     public ?int $reminder_time;
 
     public array $times = [];
@@ -114,6 +113,11 @@ class Create extends Component
         $this->meeting_url = $meeting->generateGoogleCalendarLink();
 
         // $this->redirect(route('meetings.card_view'), true);
+    }
+
+    public function openGoogleCalendar()
+    {
+        $this->dispatch('openGoogleCalendar', $this->meeting_url);
     }
 
     #[On('toggleCreateModal')]

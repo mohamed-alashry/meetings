@@ -165,20 +165,20 @@
                                                                 <p class="card-text" style="font-size: 0.8rem;">
                                                                     {{ $room->location }}</p>
                                                                 <hr class="my-1">
-                                                                <p class="card-text m-0">
+                                                                {{-- <p class="card-text m-0">
                                                                     <small class="text-body-secondary"
                                                                         style="font-size: 0.8rem;">
                                                                         <i class="fa-regular fa-hourglass-half"></i>
                                                                         End at: {{ $meeting->end_at }}
                                                                     </small>
+                                                                </p> --}}
+                                                                <p class="card-text m-0">
+                                                                    <small class="text-body-secondary"
+                                                                        style="font-size: 0.7rem;">
+                                                                        <i class="fa-solid fa-users"></i>
+                                                                        Up to {{ $room->capacity }} Person
+                                                                    </small>
                                                                 </p>
-                                                                {{-- <p class="card-text m-0">
-                                                            <small class="text-body-secondary"
-                                                                style="font-size: 0.7rem;">
-                                                                <i class="fa-solid fa-users"></i>
-                                                                Up to {{ $room->capacity }} Person
-                                                            </small>
-                                                        </p> --}}
                                                             </div>
                                                         </div>
                                                     </div>

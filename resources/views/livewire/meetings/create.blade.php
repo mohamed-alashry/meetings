@@ -109,20 +109,20 @@
                                                                 <p class="card-text" style="font-size: 0.8rem;">
                                                                     {{ $room->location }}</p>
                                                                 <hr class="my-1">
-                                                                <p class="card-text m-0">
+                                                                {{-- <p class="card-text m-0">
                                                                     <small class="text-body-secondary"
                                                                         style="font-size: 0.8rem;">
                                                                         <i class="fa-regular fa-hourglass-half"></i>
                                                                         End at: {{ $end_time }}
                                                                     </small>
+                                                                </p> --}}
+                                                                <p class="card-text m-0">
+                                                                    <small class="text-body-secondary"
+                                                                        style="font-size: 0.7rem;">
+                                                                        <i class="fa-solid fa-users"></i>
+                                                                        Up to {{ $room->capacity }} Person
+                                                                    </small>
                                                                 </p>
-                                                                {{-- <p class="card-text m-0">
-                                                            <small class="text-body-secondary"
-                                                                style="font-size: 0.7rem;">
-                                                                <i class="fa-solid fa-users"></i>
-                                                                Up to {{ $room->capacity }} Person
-                                                            </small>
-                                                        </p> --}}
                                                             </div>
                                                         </div>
                                                     </div>
@@ -326,17 +326,6 @@
                             @enderror
                         </div>
 
-                        <div class="input-form-login px-3 col-12 ">
-                            <i class="fa-solid fa-video icon fa-lg"></i>
-                            <input class="input-field form-control my-3 px-5 py-3 rounded-4 shadow border-0"
-                                placeholder="Type here your google meet link" type="text"
-                                wire:model="google_meet_link">
-
-                            @error('google_meet_link')
-                                <b class="text-danger">{{ $message }}</b>
-                            @enderror
-                        </div>
-
 
                         <div class="input-form-login px-3 col-6">
                             <i class="fa fa-clock icon fa-lg"></i>
@@ -406,7 +395,7 @@
                         </div>
                         @if ($meeting_url)
                             <div class="col-xl-4 col-sm-12 px-lg-2 p-0">
-                                <a href="{{ $meeting_url }}" target="window"
+                                <a href="#" wire:click="openGoogleCalendar()"
                                     class="btn my-3 w-100 shadow text-white fs-6 rounded-4 py-3 fw-bold btn-bg-color-2">
                                     <i class="fa-solid fa-check fa-fw fa-lg"></i>
                                     Add To Calender
@@ -443,4 +432,13 @@
         </div>
     @endif
 
+    <!-- Livewire Listener -->
+    @script
+        <script>
+            $wire.on('openGoogleCalendar', function(url) {
+                window.open(url, '_blank'); // Open link in new tab
+                location.reload(); // Refresh current tab
+            });
+        </script>
+    @endscript
 </div>

@@ -26,6 +26,5 @@ class CreateDTO extends Data
     public bool $send_user_location;
     public bool $send_room_attach;
     public bool $send_room_properties;
-    public ?string $google_meet_link;
     public ?int $reminder_time;
 }

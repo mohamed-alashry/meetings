@@ -29,7 +29,6 @@ return new class extends Migration
             $table->unsignedInteger('duration')->nullable()->comment('In minutes');
             $table->unsignedInteger('person_capacity')->nullable();
             $table->boolean('send_user_location')->default(0);
-            $table->string('google_meet_link')->nullable();
 
             $table->datetime('end_date')->nullable();
             $table->datetime('alert_date')->nullable();

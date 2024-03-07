@@ -45,7 +45,6 @@ class Meeting extends Model
         'send_user_location',
         'send_room_attach',
         'send_room_properties',
-        'google_meet_link',
         'reminder_time',
     ];
 

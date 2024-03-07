@@ -29,7 +29,7 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-solid fa-users"></i>
-                                Up to {{ $meeting->person_capacity ?? 0 }} Person
+                                {{ $meeting->invitations->count() ?? 0 }} Invitations
                             </small>
                         </p>
                     </div>
@@ -63,9 +63,9 @@
                             </small>
                         </p>
                         <p class="card-text m-1">
-                            <small>
+                            <small class="">
                                 <i class="fa-solid fa-users"></i>
-                                Up to {{ $meeting->person_capacity ?? 0 }} Person
+                                {{ $meeting->invitations->count() ?? 0 }} Invitations
                             </small>
                         </p>
                     </div>
@@ -100,7 +100,7 @@
                         <p class="card-text m-1">
                             <small class="text-body-secondary">
                                 <i class="fa-solid fa-users"></i>
-                                Up to {{ $meeting->person_capacity ?? 0 }} Person
+                                {{ $meeting->invitations->count() ?? 0 }} Invitations
                             </small>
                         </p>
                     </div>
@@ -136,7 +136,7 @@
                         <p class="card-text m-1">
                             <small class="">
                                 <i class="fa-solid fa-users"></i>
-                                Up to {{ $meeting->person_capacity ?? 0 }} Person
+                                {{ $meeting->invitations->count() ?? 0 }} Invitations
                             </small>
                         </p>
                     </div>

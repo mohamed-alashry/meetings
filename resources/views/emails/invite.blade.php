@@ -236,7 +236,8 @@
                     </div>
                 @else
                     <div style="text-align: right">
-                        <img src="https://safavisa.sirv.com/Images/Frame-end-footer.png" alt="">
+                        <img src="https://safavisa.sirv.com/Images/Frame-end-footer.png" alt=""
+                            style="width: 79%">
                     </div>
                 @endif
             </div>
