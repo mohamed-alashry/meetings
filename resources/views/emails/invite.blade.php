@@ -112,7 +112,7 @@
                 background-image: url(https://safavisa.sirv.com/Images/Frame-email.png);
                 background-repeat: no-repeat;
                 background-position: right bottom;
-                background-size: 35vw 79%;
+                background-size: 30vw 50%;
                 border-radius: 0 0 19px ;">
                         <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting Room
                             Specs </p>
@@ -236,7 +236,7 @@
                     </div>
                 @else
                     <div style="text-align: right">
-                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 79%">
+                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
                     </div>
                 @endif
             </div>
