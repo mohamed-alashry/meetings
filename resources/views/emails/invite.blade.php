@@ -109,7 +109,7 @@
                     <hr style="border-color: #fff;">
                     <div
                         style="padding: 1rem; font-size: 14px;
-                background-image: url(https://safavisa.sirv.com/Images/Frame-end-footer.png);
+                background-image: url(https://safavisa.sirv.com/Images/Frame-email.png);
                 background-repeat: no-repeat;
                 background-position: right bottom;
                 background-size: 35vw 79%;
@@ -236,8 +236,7 @@
                     </div>
                 @else
                     <div style="text-align: right">
-                        <img src="https://safavisa.sirv.com/Images/Frame-end-footer.png" alt=""
-                            style="width: 79%">
+                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 79%">
                     </div>
                 @endif
             </div>
