@@ -10,8 +10,7 @@
 <div>
     <div style="background: #F6F6F6; width:75%; margin:0 auto;">
         <div style="border: solid 1px #cccc; background-color: #fff; ">
-            <table
-                style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
+            <table style="background-color: #022537; color: #fff; padding: 1%; width: 100%;">
                 <tr style="width: 100%;">
                     <th style="width: 50%; text-align: start;">
                         <h3 style="font-weight: bold;font-size: 1vw;">
