@@ -70,7 +70,7 @@ class MeetingService
 
                 $emails = $invited_users->pluck('email')->toArray();
                 if (count($emails) > 0) {
-                    Mail::to($emails)->send(new InviteMeeting($meeting));
+                    // Mail::to($emails)->send(new InviteMeeting($meeting));
                 }
 
 
@@ -306,7 +306,7 @@ class MeetingService
 
         $emails = $invited_users->pluck('email')->toArray();
         if (count($emails) > 0) {
-            Mail::to($emails)->send(new InviteMeeting($meeting));
+            // Mail::to($emails)->send(new InviteMeeting($meeting));
         }
         return $meeting;
     }

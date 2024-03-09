@@ -134,12 +134,12 @@
                                                 </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
-                                                        Network SSID: <b>OC</b>
+                                                        Network SSID: <b>One Guest</b>
                                                     </span>
                                                 </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
-                                                        Password: <b>Guest2024</b>
+                                                        Password: <b>Welcome2one1</b>
                                                     </span>
                                                 </p>
                                             @endif

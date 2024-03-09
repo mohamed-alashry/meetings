@@ -58,10 +58,10 @@ class Create extends Component
         return (new CreateRequest())->rules();
     }
 
-    function mount()
+    function mount($room_id = 1)
     {
         $this->status = 1;
-        $this->room_id = 1;
+        $this->room_id = $room_id;
         $this->start_date = '';
         $this->start_time = '';
         $this->end_time = '';
@@ -74,6 +74,9 @@ class Create extends Component
         $this->roomFeatures = $this->meetingService->getRoomFeatures($this->room_id);
 
         $this->times = $this->meetingService->getTimesArray();
+        if ($room_id) {
+            $this->changeRoom($this->room_id);
+        }
     }
 
     public function updated()
@@ -88,6 +91,8 @@ class Create extends Component
                     $query->where('user_id', auth()->id())
                         ->orWhere('user_id', null);
                 })->get();
+        } else {
+            $this->invitees = collect();
         }
         if ($this->room_id) {
             $this->changeRoom($this->room_id);

@@ -242,12 +242,12 @@
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">
                                                 <span class="px-2">
-                                                    Network SSID: <span class="fw-bold">OC</span>
+                                                    Network SSID: <span class="fw-bold">One Guest</span>
                                                 </span>
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">
                                                 <span class="px-2">
-                                                    Password: <span class="fw-bold">Guest2024</span>
+                                                    Password: <span class="fw-bold">Welcome2one1</span>
                                                 </span>
                                             </p>
                                         @endif
