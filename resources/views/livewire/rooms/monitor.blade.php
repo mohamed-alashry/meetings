@@ -49,7 +49,8 @@
                                     @if (hasPermissionUser('create_meeting'))
                                         <div class="card m-2 rounded-3">
                                             <div class="card-body p-5 m-4 m-auto">
-                                                <h4 class="card-title">Not Found Upcoming Meetings in this room</h4>
+                                                <h4 class="card-title">Not Found Upcoming Meetings In This Room
+                                                    {{ $room->id }}</h4>
                                                 <div class="col-6 m-auto mt-4">
                                                     @livewire('meetings.create', ['room_id' => $room->id], key('create-' . $room->id))
                                                 </div>

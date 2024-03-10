@@ -22,9 +22,9 @@
 </head>
 
 <div>
-    <div style="background: #F6F6F6 !important; width:75%; margin:0 auto;">
-        <div class="border-dark" style=" background-color: #fff !important; ">
-            <table class="dark-mode" style="  padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
+    <div style="background: #F6F6F6; width:75%; margin:0 auto;">
+        <div style="border: solid 1px #cccc; background-color: #fff; ">
+            <table style="background-color: #022537; color: #fff; padding: 1%; width: 100%;">
                 <tr style="width: 100%;">
                     <th style="width: 50%; text-align: start;">
                         <h3 style="font-weight: bold;font-size: 1vw;">
@@ -119,12 +119,13 @@
                 </div>
                 @endif
                 @if ($meeting->send_room_properties)
-                <hr style="border-color: #fff; !important">
-                <div style="padding: 1rem; font-size: 14px;
-                background-image: url(https://safavisa.sirv.com/Images/Frame-end-footer.png);
+                    <hr style="border-color: #fff;">
+                    <div
+                        style="padding: 1rem; font-size: 14px;
+                background-image: url(https://safavisa.sirv.com/Images/Frame-email.png);
                 background-repeat: no-repeat;
                 background-position: right bottom;
-                background-size: 35vw 79%;
+                background-size: 30vw 50%;
                 border-radius: 0 0 19px ;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting Room
                         Specs </p>
@@ -134,97 +135,72 @@
                         <tr>
                             <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 42%;">
 
-                                <div class="border-dark"
-                                    style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important; width: 63%;height: fit-content; background-color: #fff !important; float: inline-end; font-size: 1vw">
-                                    @foreach ($meeting->room->features as $feature)
-                                    @if ($feature->name == 'wifi' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span
-                                            style="font-weight: 500; color:rgb(126,126,126) !important; vertical-align: text-bottom;">
-                                            Guest Wifi
-                                        </span>
-                                    </p>
-                                    <p>
-                                        <span style="padding-left:.5rem">
-                                            Network SSID: <b>OC</b>
-                                        </span>
-                                    </p>
-                                    <p>
-                                        <span style="padding-left:.5rem">
-                                            Password: <b>Guest2024</b>
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @if ($feature->name == 'online_meeting' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span
-                                            style="font-weight: 500; color:rgb(126,126,126) !important; vertical-align: text-bottom;">
-                                            Meeting System
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @if ($feature->name == 'projector' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span
-                                            style="font-weight: 500; color:rgb(126,126,126) !important; vertical-align: text-bottom;">
-                                            Projector
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @if ($feature->name == 'tv' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span
-                                            style="font-weight: 500; color:rgb(126,126,126) !important; vertical-align: text-bottom;">
-                                            Smart TV
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @if ($feature->name == 'sound_system' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span style="font-weight: 500; color:rgb(126,126,126) !important;">
-                                            Sound System
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @if ($feature->name == 'interactive_smart_board' && $feature->value)
-                                    <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
-                                        <span style="font-weight: 500; color:rgb(126,126,126) !important;">
-                                            Interactive Smart Board
-                                        </span>
-                                    </p>
-                                    @endif
-                                    @endforeach
-                                    @foreach ($meeting->room->properties as $item)
-                                    <p style=" font-weight: 500; color:rgb(126,126,126) !important; margin: 0.3rem;">
-                                        {{ $item->key }}
-                                        <span style="font-weight: 500;">
-                                            {{ $item->value }}
-                                        </span>
-                                    </p>
-                                    @endforeach
-                                </div>
-                            </th>
-                            <th
-                                style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%; font-size: 1vw;">
-                                <div class="border-dark"
-                                    style=" border-radius: 0.8rem; padding: 0.3rem 0.3rem 0; color: #022537 !important; width: 75%;height: fit-content; background-color: #fff !important; float: inline-start; margin: 0 1rem 1.5rem;">
-                                    <div>
-                                        <span
-                                            style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126) !important;">
-                                            Guest ID:
-                                            <span style="font-weight: bold;color: #022537 !important;">20213</span>
-                                        </span>
-                                    </div>
-                                    @if ($meeting->send_user_location)
-                                    <div style="margin-top: 1rem ">
-                                        <span
-                                            style="font-weight: 500; margin: 0.1rem; color: rgb(126, 126, 126) !important;">
-                                            Location on Maps:
-                                            <p style="margin: 0;">
-                                                <a href="{{ $meeting->room->google_location }}" target="_blank"
-                                                    style="font-weight: bold;color: #5E1042 !important; margin-left: 1.6rem">
-                                                    Click here
-                                                </a>
+                                    <div
+                                        style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem; color: #022537; width: 63%;height: fit-content; background-color: #fff; float: inline-end; font-size: 1vw">
+                                        @foreach ($meeting->room->features as $feature)
+                                            @if ($feature->name == 'wifi' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
+                                                        Guest Wifi
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <span style="padding-left:.5rem">
+                                                        Network SSID: <b>One Guest</b>
+                                                    </span>
+                                                </p>
+                                                <p>
+                                                    <span style="padding-left:.5rem">
+                                                        Password: <b>Welcome2one1</b>
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if ($feature->name == 'online_meeting' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
+                                                        Meeting System
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if ($feature->name == 'projector' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
+                                                        Projector
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if ($feature->name == 'tv' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span
+                                                        style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
+                                                        Smart TV
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if ($feature->name == 'sound_system' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                        Sound System
+                                                    </span>
+                                                </p>
+                                            @endif
+                                            @if ($feature->name == 'interactive_smart_board' && $feature->value)
+                                                <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
+                                                    <span style="font-weight: 500; color:rgb(126,126,126);">
+                                                        Interactive Smart Board
+                                                    </span>
+                                                </p>
+                                            @endif
+                                        @endforeach
+                                        @foreach ($meeting->room->properties as $item)
+                                            <p style=" font-weight: 500; color:rgb(126,126,126); margin: 0.3rem;">
+                                                {{ $item->key }}
+                                                <span style="font-weight: 500;">
+                                                    {{ $item->value }}
+                                                </span>
                                             </p>
                                         </span>
                                     </div>
@@ -247,9 +223,9 @@
                     </table>
                 </div>
                 @else
-                <div style="text-align: right">
-                    <img src="https://safavisa.sirv.com/Images/Frame-end-footer.png" alt="" style="width: 79%">
-                </div>
+                    <div style="text-align: right">
+                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
+                    </div>
                 @endif
             </div>
         </div>
