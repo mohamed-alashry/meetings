@@ -6,10 +6,9 @@
 </head>
 
 <div>
-    <div style="background: #F6F6F6; width:65%; margin:0 auto;">
-        <div style="border: solid 1px #cccc; border-radius: 1.2rem; background-color: #fff; ">
-            <table
-                style="background-color: #022537; color: #fff; padding: 1%;border-radius: 1.2rem 1.2rem 0 0; width: 100%;">
+    <div style="background: #F6F6F6; width:75%; margin:0 auto;">
+        <div style="border: solid 1px #cccc; background-color: #fff; ">
+            <table style="background-color: #022537; color: #fff; padding: 1%; width: 100%;">
                 <tr style="width: 100%;">
                     <th style="width: 50%; text-align: start;">
                         <h3 style="font-weight: bold;font-size: 1vw;">
@@ -18,12 +17,12 @@
                                 - (Cancelled)
                             @endif
                         </h3>
-                        <p style="font-size: .8vw; color: #fff !important">
+                        <p style="font-size: 1vw; color: #fff !important">
                             <img src="https://safavisa.sirv.com/Images/calendar%201.png" alt="" srcset="">
                             {{ $meeting->start_date_format }},
                             {{ $meeting->start_time_format }}
                         </p>
-                        <p style="font-size: .8vw; color: #fff !important">
+                        <p style="font-size: 1vw; color: #fff !important">
                             <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/Group.png"
                                 alt="" srcset="">
                             {{ $meeting->room->name }}
@@ -42,17 +41,17 @@
 
             </table>
             <div>
-                <div style="padding: 1rem 1rem;">
+                <div style="padding: 0rem 1rem;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
                     </p>
                     <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Invited persons by email or
                         Name
                     </p>
-                    <div
-                        style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537;background-color: #fff;">
+                    <div class="border-dark"
+                        style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important;background-color: #fff !important;">
 
                         @foreach ($meeting->invitations as $invitee)
-                            <p style=" font-weight: bold; margin: 0.3rem;">
+                            <p style=" font-weight: bold; margin: 0.3rem; font-size: 1vw;">
                                 {{ $invitee->userable->name }}
                                 <span style="font-weight: 500;">
                                     ({{ $invitee->userable->email }})
@@ -66,14 +65,12 @@
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
                         Information
                     </p>
-                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type Here The Meeting Info
-                    </p>
-                    <div
-                        style="border: solid 1px #cccc; border-radius: 1.2rem; padding: 1rem; color: #022537; background-color: #fff;">
+                    <div class="border-dark"
+                        style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important; background-color: #fff !important;">
                         <table style="font-weight: bold; width: 100%; padding: 0;">
                             <tr>
-                                <th style="text-align: start; vertical-align: baseline;width: 9px;">
-                                    <p style="font-weight: 500; color:rgb(126,126,126);">
+                                <th style="text-align: start; vertical-align: baseline;width: 9px; font-size: 1vw">
+                                    <p style="font-weight: 500; color:rgb(126,126,126) !important;">
                                         {!! $meeting->minutes !!}
                                     </p>
                                 </th>

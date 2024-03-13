@@ -30,7 +30,7 @@
                         <h3 style="font-weight: bold;font-size: 1vw;">
                             {{ $meeting->title }}
                             @if ($meeting->status == 2)
-                            - (Cancelled)
+                                - (Cancelled)
                             @endif
                         </h3>
                         <p style="font-size: 1vw; color: #fff !important">
@@ -59,22 +59,22 @@
             </table>
             <div>
                 @if ($meeting->status != 2)
-                <table style="padding: 4% 0;background-color: #fff !important;  width: 100%;">
-                    <tr>
-                        <th style="text-align: center;width: 50%;">
-                            <a href="{{ $meeting->generateGoogleCalendarLink() }}" class="border-dark"
-                                style="text-decoration: none; padding: 2% 4%; border-radius: 1rem;background-color: #5E1042 !important;  font-weight: 600; color: #fff !important;">
-                                <span>
-                                    <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
-                                        style="max-width: 20px; width:6%;vertical-align: middle;">
-                                </span>
-                                <span style="vertical-align: middle;font-size: 1vw;">
-                                    Add to your Calendar
-                                </span>
-                            </a>
-                        </th>
-                    </tr>
-                </table>
+                    <table style="padding: 4% 0;background-color: #fff !important;  width: 100%;">
+                        <tr>
+                            <th style="text-align: center;width: 50%;">
+                                <a href="{{ $meeting->generateGoogleCalendarLink() }}" class="border-dark"
+                                    style="text-decoration: none; padding: 2% 4%; border-radius: 1rem;background-color: #5E1042 !important;  font-weight: 600; color: #fff !important;">
+                                    <span>
+                                        <img src="https://safavisa.sirv.com/Images/appointment%201.png" alt=""
+                                            style="max-width: 20px; width:6%;vertical-align: middle;">
+                                    </span>
+                                    <span style="vertical-align: middle;font-size: 1vw;">
+                                        Add to your Calendar
+                                    </span>
+                                </a>
+                            </th>
+                        </tr>
+                    </table>
                 @endif
                 <div style="padding: 0rem 1rem;">
                     <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Invited Persons
@@ -86,37 +86,34 @@
                         style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important;background-color: #fff !important;">
 
                         @foreach ($meeting->invitations as $invitee)
-                        <p style=" font-weight: bold; margin: 0.3rem; font-size: 1vw;">
-                            {{ $invitee->userable->name }}
-                            <span style="font-weight: 500;">
-                                ({{ $invitee->userable->email }})
-                            </span>
-                        </p>
+                            <p style=" font-weight: bold; margin: 0.3rem; font-size: 1vw;">
+                                {{ $invitee->userable->name }}
+                                <span style="font-weight: 500;">
+                                    ({{ $invitee->userable->email }})
+                                </span>
+                            </p>
                         @endforeach
                     </div>
                 </div>
                 @if ($meeting->brief)
-                <hr style="border-color: #fff !important;">
-                <div style="padding: 1rem;">
-                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
-                        Information
-                    </p>
-                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">Type Here The Meeting
-                        Info
-                    </p>
-                    <div class="border-dark"
-                        style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important; background-color: #fff !important;">
-                        <table style="font-weight: bold; width: 100%; padding: 0;">
-                            <tr>
-                                <th style="text-align: start; vertical-align: baseline;width: 9px; font-size: 1vw">
-                                    <p style="font-weight: 500; color:rgb(126,126,126) !important;">
-                                        {!! $meeting->brief !!}
-                                    </p>
-                                </th>
-                            </tr>
-                        </table>
+                    <hr style="border-color: #fff !important;">
+                    <div style="padding: 1rem;">
+                        <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting
+                            Information
+                        </p>
+                        <div class="border-dark"
+                            style=" border-radius: 0.8rem; padding: 0.3rem; color: #022537 !important; background-color: #fff !important;">
+                            <table style="font-weight: bold; width: 100%; padding: 0;">
+                                <tr>
+                                    <th style="text-align: start; vertical-align: baseline;width: 9px; font-size: 1vw">
+                                        <p style="font-weight: 500; color:rgb(126,126,126) !important;">
+                                            {!! $meeting->brief !!}
+                                        </p>
+                                    </th>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
-                </div>
                 @endif
                 @if ($meeting->send_room_properties)
                     <hr style="border-color: #fff;">
@@ -127,13 +124,14 @@
                 background-position: right bottom;
                 background-size: 30vw 50%;
                 border-radius: 0 0 19px ;">
-                    <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting Room
-                        Specs </p>
-                    <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">here the meeting room
-                        info</p>
-                    <table style="font-weight: 500; width: 100%; padding: 0;">
-                        <tr>
-                            <th style="text-align: start; vertical-align: baseline; float: inline-start; width: 42%;">
+                        <p style="font-weight: bold; margin: 0;font-size: 1vw; color: #022537 !important">Meeting Room
+                            Specs </p>
+                        <p style="margin-top: 3px;font-size: 1vw; color: #0225378A !important">here the meeting room
+                            info</p>
+                        <table style="font-weight: 500; width: 100%; padding: 0;">
+                            <tr>
+                                <th
+                                    style="text-align: start; vertical-align: baseline; float: inline-start; width: 42%;">
 
                                     <div
                                         style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem; color: #022537; width: 63%;height: fit-content; background-color: #fff; float: inline-end; font-size: 1vw">
@@ -202,34 +200,33 @@
                                                     {{ $item->value }}
                                                 </span>
                                             </p>
-                                        </span>
+                                            </span>
                                     </div>
-                                    @endif
-                                    <div>
-                                        <span
-                                            style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126) !important;">
-                                            Guide PDF:
-                                            <p style="margin: 0;">
-                                                <a href="{{ $meeting->room->attachment_path }}" download="guide_room"
-                                                    style="font-weight: bold;color: #5E1042 !important; margin-left: 1.6rem">
-                                                    Click here to download
-                                                </a>
-                                            </p>
-                                        </span>
-                                    </div>
-                                </div>
-                            </th>
-                        </tr>
-                    </table>
-                </div>
-                @else
-                    <div style="text-align: right">
-                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
-                    </div>
                 @endif
+                <div>
+                    <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126) !important;">
+                        Guide PDF:
+                        <p style="margin: 0;">
+                            <a href="{{ $meeting->room->attachment_path }}" download="guide_room"
+                                style="font-weight: bold;color: #5E1042 !important; margin-left: 1.6rem">
+                                Click here to download
+                            </a>
+                        </p>
+                    </span>
+                </div>
             </div>
+            </th>
+            </tr>
+            </table>
         </div>
+    @else
+        <div style="text-align: right">
+            <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
+        </div>
+        @endif
     </div>
+</div>
+</div>
 </div>
 
 </html>
