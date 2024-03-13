@@ -3,6 +3,22 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <style>
+        @media (prefers-color-scheme: dark) {
+            .dark-mode {
+                background: #022537 !important;
+                color: white !important;
+            }
+
+            .border-dark {
+                border-color: black !important;
+
+            }
+        }
+    </style>
+
 </head>
 
 <div>
@@ -18,17 +34,18 @@
                             @endif
                         </h3>
                         <p style="font-size: 1vw; color: #fff !important">
-                            <img src="https://safavisa.sirv.com/Images/calendar%201.png" alt="" srcset="">
+                            <img src="https://safavisa.sirv.com/Images/calendar%201.png" alt="" srcset=""
+                                style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;">
                             {{ $meeting->start_date_format }},
                             {{ $meeting->start_time_format }}
                         </p>
                         <p style="font-size: 1vw; color: #fff !important">
-                            <img style="padding-right: 3px;" src="https://safavisa.sirv.com/Images/Group.png"
-                                alt="" srcset="">
+                            <img style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;"
+                                src="https://safavisa.sirv.com/Images/Group.png" alt="" srcset="">
                             {{ $meeting->room->name }}
                         </p>
                         <p style="font-size: 1vw; color: #fff !important">
-                            <img style="padding-right: 3px;width: 10%;max-width: 20px;vertical-align: bottom;"
+                            <img style="padding-right: 3px;width: 8%;max-width: 20px;vertical-align: bottom;"
                                 src="https://safavisa.sirv.com/Images/hourglass%201.png" alt="" srcset="">
                             End Time {{ $meeting->end_time_format }}
                         </p>

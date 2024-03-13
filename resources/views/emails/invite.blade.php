@@ -118,7 +118,7 @@
                 @if ($meeting->send_room_properties)
                     <hr style="border-color: #fff;">
                     <div
-                        style="padding: 1rem; font-size: 14px;
+                        style="padding: 1rem; padding-bottom: 0rem; font-size: 14px;
                 background-image: url(https://safavisa.sirv.com/Images/Frame-email.png);
                 background-repeat: no-repeat;
                 background-position: right bottom;
@@ -200,33 +200,59 @@
                                                     {{ $item->value }}
                                                 </span>
                                             </p>
-                                            </span>
+                                        @endforeach
                                     </div>
+                                </th>
+                                <th
+                                    style="text-align: start; vertical-align: baseline; float: inline-start; width: 48%; font-size: 1vw;">
+                                    <div
+                                        style="border: solid 1px #cccc; border-radius: 0.8rem; padding: 0.3rem 0.3rem 0; color: #022537; width: 75%;height: fit-content; background-color: #fff; float: inline-start; margin: 0 1rem 1.5rem;">
+                                        <div>
+                                            <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126);">
+                                                Guest ID:
+                                                <span style="font-weight: bold;color: #022537;">20213</span>
+                                            </span>
+                                        </div>
+                                        @if ($meeting->send_user_location)
+                                            <div style="margin-top: 1rem ">
+                                                <span
+                                                    style="font-weight: 500; margin: 0.1rem; color: rgb(126, 126, 126);">
+                                                    Location on Maps:
+                                                    <p style="margin: 0;">
+                                                        <a href="{{ $meeting->room->google_location }}" target="_blank"
+                                                            style="font-weight: bold;color: #5E1042; margin-left: 1.6rem">
+                                                            Click here
+                                                        </a>
+                                                    </p>
+                                                </span>
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <span
+                                                style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126)!important;">
+                                                Guide PDF:
+                                                <p style="margin: 0;">
+                                                    <a href="{{ $meeting->room->attachment_path }}"
+                                                        download="guide_room"
+                                                        style="font-weight: bold;color: #5E1042!important; margin-left: 1.6rem">
+                                                        Click here to download
+                                                    </a>
+                                                </p>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                @else
+                    <div style="text-align: right">
+                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
+                    </div>
                 @endif
-                <div>
-                    <span style="font-weight: 500; margin: 0.2rem; color: rgb(126, 126, 126) !important;">
-                        Guide PDF:
-                        <p style="margin: 0;">
-                            <a href="{{ $meeting->room->attachment_path }}" download="guide_room"
-                                style="font-weight: bold;color: #5E1042 !important; margin-left: 1.6rem">
-                                Click here to download
-                            </a>
-                        </p>
-                    </span>
-                </div>
             </div>
-            </th>
-            </tr>
-            </table>
         </div>
-    @else
-        <div style="text-align: right">
-            <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
-        </div>
-        @endif
     </div>
-</div>
-</div>
 </div>
 
 </html>
