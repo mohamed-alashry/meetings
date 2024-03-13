@@ -134,7 +134,7 @@
                                                 </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
-                                                        Network SSID: <b>One Guest</b>
+                                                        Network SSID: <b>One1Guest</b>
                                                     </span>
                                                 </p>
                                                 <p>

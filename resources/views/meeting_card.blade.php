@@ -225,7 +225,7 @@
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">
                                                 <span class="px-2">
-                                                    Network SSID: <span class="fw-bold">One Guest</span>
+                                                    Network SSID: <span class="fw-bold">One1Guest</span>
                                                 </span>
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">

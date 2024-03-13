@@ -195,14 +195,12 @@
                         @livewire('meetings.edit', ['meeting' => $meeting])
                         <div class="card border-0 shadow m-3">
                             <div class="card-body">
-                                <div class="row flex-nowrap">
+                                <div class="row">
                                     <div class="w-auto">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </div>
-                                    <div>
-                                        <p class="card-text w-75">
-                                            {!! $meeting->brief ?? '' !!}
-                                        </p>
+                                    <div class="card-text">
+                                        {!! $meeting->brief ?? '' !!}
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +240,7 @@
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">
                                                 <span class="px-2">
-                                                    Network SSID: <span class="fw-bold">One Guest</span>
+                                                    Network SSID: <span class="fw-bold">One1Guest</span>
                                                 </span>
                                             </p>
                                             <p class="card-title fw-light mx-4 my-1">
