@@ -380,9 +380,12 @@
                                     </span>
 
                                     <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
-                                        multiple wire:model='selectedInvitees'>
+                                        multiple wire:model.live='selectedInvitees'>
+                                        <option wire:click="selectAllToShare" value="" class="text-success fw-bold" role="button">Select all</option>
                                         @foreach ($meeting->invitations as $invitee)
-                                            <option value="{{ $invitee->userable->id }}">
+                                            <option value="{{ $invitee->userable->id }}"
+                                                wire:key='invitee-{{ $invitee->userable->id }}'
+                                                @if (in_array($invitee->userable->id, $selectedInvitees)) selected @endif>
                                                 {{ $invitee->userable->email }}</option>
                                         @endforeach
                                     </select>
@@ -394,7 +397,7 @@
                                         Share
                                     </button>
 
-                                    <button type="button" disabled wire:loading
+                                    <button type="button" disabled wire:loading wire:target="shareMinutes"
                                         class="btn m-3 shadow text-white fs-6 rounded-4 py-2 px-4 fw-bold btn-bg-color-2">
 
                                         <svg class="mx-2" xmlns="http://www.w3.org/2000/svg" width="1em"
