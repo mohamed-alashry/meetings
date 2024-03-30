@@ -94,6 +94,9 @@
                             </tr>
                         </table>
                     </div>
+                    <div style="text-align: right">
+                        <img src="https://safavisa.sirv.com/Images/Frame-email.png" alt="" style="width: 50%">
+                    </div>
                 </div>
             </div>
         </div>
