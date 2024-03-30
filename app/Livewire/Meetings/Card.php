@@ -53,6 +53,7 @@ class Card extends Component
     {
         $this->meeting = $meeting;
         $this->minutes = $meeting->minutes ?? '';
+        $this->invitees = $meeting->invitations->pluck('userable');
     }
 
 
@@ -81,6 +82,11 @@ class Card extends Component
         $this->meetingService->shareMinutes($invitees, $this->meeting);
         // redirect to meetings
         $this->redirect(route('meetings.card_view'), true);
+    }
+
+    public function selectAllToShare()
+    {
+        $this->selectedInvitees = $this->invitees->pluck('id')->toArray();
     }
 
 
