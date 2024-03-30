@@ -262,7 +262,7 @@
                                 <div class="card-body color-primary">
                                     @foreach ($invitees as $invitee)
                                         <p class="card-title fw-semibold my-1" role="button"
-                                            wire:click="addInvitee({{ $invitee->id }})">
+                                            wire:click="addInvitee({{ $invitee->id }})" wire:key="invitee-{{ $invitee->id }}">
                                             {{ $invitee->name }}
                                             <span class="text-secondary fw-light">
                                                 ({{ $invitee->email }})
@@ -281,7 +281,7 @@
                             <div class="card-body color-primary">
                                 <h5 class="card-title fw-bold">Invited</h5>
                                 @forelse ($invitedUsers as $invited)
-                                    <p class="card-title fw-semibold my-1" role="button">
+                                    <p class="card-title fw-semibold my-1" role="button" wire:key="invitee-{{ $invited->id }}">
                                         {{ $invited->name }}
                                         <span class="text-secondary fw-light">
                                             ({{ $invited->email }})
@@ -344,12 +344,13 @@
                         </div>
 
 
-
                         <div class="input-form-login px-3 col-12 ">
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input"
-                                        wire:model.live="send_user_location">
+                                    wire:change="toggleSendUserLocation"
+                                        {{-- wire:model.live="send_user_location" --}}
+                                        >
                                     Send user location
                                 </label>
                             </div>
@@ -362,7 +363,9 @@
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input"
-                                        wire:model.live="send_room_attach">
+                                    wire:change="toggleSendRoomAttach"
+                                        {{-- wire:model.live="send_room_attach" --}}
+                                        >
                                     Send how to use
                                 </label>
                             </div>
@@ -375,7 +378,9 @@
                             <div class="form-check">
                                 <label class="form-check-label">
                                     <input type="checkbox" class="form-check-input"
-                                        wire:model.live="send_room_properties">
+                                    wire:change="toggleSendRoomProperties"
+                                        {{-- wire:model.live="send_room_properties" --}}
+                                        >
                                     Send room properties
                                 </label>
                             </div>

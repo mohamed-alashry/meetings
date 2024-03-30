@@ -184,6 +184,23 @@ class Create extends Component
         $this->repeatable = $repeatable;
     }
 
+    public function toggleSendUserLocation()
+    {
+        $this->send_user_location = !$this->send_user_location;
+    }
+
+    public function toggleSendRoomAttach()
+    {
+        $this->send_room_attach = !$this->send_room_attach;
+    }
+    
+    public function toggleSendRoomProperties()
+    {
+        $this->send_room_properties = !$this->send_room_properties;
+    }
+
+
+
     public function render()
     {
 
