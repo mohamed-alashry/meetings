@@ -294,7 +294,7 @@
                                 </div>
                             </div>
                         </div>
-                        @if ($meeting->room->properties)
+                        @if (!$meeting->room->properties->isEmpty())
                             <div class="w-100 px-4">
                                 <p class="h5">Meeting Room Properties:</p>
                                 <p class="">Here the meeting room properties</p>
@@ -381,7 +381,8 @@
 
                                     <select class="input-field form-control my-3 px-5 py-3 rounded-4 shadow-sm"
                                         multiple wire:model.live='selectedInvitees'>
-                                        <option wire:click="selectAllToShare" value="" class="text-success fw-bold" role="button">Select all</option>
+                                        <option wire:click="selectAllToShare" value=""
+                                            class="text-success fw-bold" role="button">Select all</option>
                                         @foreach ($meeting->invitations as $invitee)
                                             <option value="{{ $invitee->userable->id }}"
                                                 wire:key='invitee-{{ $invitee->userable->id }}'
