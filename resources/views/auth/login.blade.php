@@ -22,9 +22,9 @@
         style="background-image: url({{ asset(config('settings.background')) }}); background-repeat: no-repeat;background-size: cover; height: 100vh">
         <div class="row "
             style=" background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(2,11,32,0.15730042016806722) 74%); height: 100vh">
-            <div
-                class="col-lg-5 col-12 p-0 d-flex align-items-start flex-column gy-5 justify-content-center align-items-center">
-                <div class="d-flex align-items-end mx-auto" style="">
+            <div class="col-lg-5 col-12 p-0 d-flex align-items-start flex-column gy-5 justify-content-center align-items-center"
+                style="margin-top: 7rem;">
+                <div class="d-flex align-items-end mx-auto">
                     <img class="img-fluid w-75 mx-auto" src="{{ asset(config('settings.logo.original')) }}"
                         alt="Modern building architecture">
                 </div>
@@ -35,7 +35,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here email" type="email"
                             name="email" value="{{ old('email') }}">
                         @error('email')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="input-form-login">
@@ -43,7 +43,7 @@
                         <input class="input-field form-control my-3 px-5" placeholder="Type here password"
                             type="password" name="password">
                         @error('password')
-                        <p class="text-danger">{{ $message }}</p>
+                            <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-danger my-3 w-100" style="background: #C2203D">
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="d-flex align-items-end justify-content-center" style="">
-                    <img class="d-none d-md-block img-fluid mx-auto mt-5" src="{{ asset('assets') }}/img/Frame.png"
+                    <img class="d-none d-md-block img-fluid mx-auto mt-0" src="{{ asset('assets') }}/img/Frame.png"
                         alt="Modern building architecture">
                 </div>
             </div>
