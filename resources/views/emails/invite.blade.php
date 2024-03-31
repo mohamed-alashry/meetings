@@ -142,7 +142,6 @@
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
                                                         Guest Wifi
                                                     </span>
-                                                </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
                                                         Network SSID: One1Guest
@@ -152,6 +151,7 @@
                                                     <span style="padding-left:.5rem">
                                                         Password: Welcome2one1
                                                     </span>
+                                                </p>
                                                 </p>
                                             @endif
                                             @if ($feature->name == 'online_meeting' && $feature->value)
