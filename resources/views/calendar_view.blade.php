@@ -17,8 +17,8 @@
         }
 
         /* .fc-day-sun {
-             background-color: #5E1042 !important;
-        } */
+                         background-color: #5E1042 !important;
+                    } */
         .fc-day-past .fc-daygrid-day-events .fc-daygrid-event-harness .fc-daygrid-event {
             background-color: #bbbbbb !important;
             color: #fff !important;
@@ -286,7 +286,8 @@
                                         <!--begin::Event start date/time-->
                                         <div class="fs-6">
                                             <span class="fw-bold">Starts</span>
-                                            <span data-kt-calendar="event_start_date"></span>
+                                            <span data-kt-calendar="event_start_date"
+                                                style="text-transform: uppercase;"></span>
                                         </div>
                                         <!--end::Event start date/time-->
                                     </div>
@@ -299,7 +300,8 @@
                                         <!--begin::Event end date/time-->
                                         <div class="fs-6">
                                             <span class="fw-bold">Ends</span>
-                                            <span data-kt-calendar="event_end_date"></span>
+                                            <span data-kt-calendar="event_end_date"
+                                                style="text-transform: uppercase;"></span>
                                         </div>
                                         <!--end::Event end date/time-->
                                     </div>
