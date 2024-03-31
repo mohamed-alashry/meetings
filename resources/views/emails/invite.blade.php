@@ -145,12 +145,12 @@
                                                 </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
-                                                        Network SSID: <b>One1Guest</b>
+                                                        Network SSID: One1Guest
                                                     </span>
                                                 </p>
                                                 <p>
                                                     <span style="padding-left:.5rem">
-                                                        Password: <b>Welcome2one1</b>
+                                                        Password: Welcome2one1
                                                     </span>
                                                 </p>
                                             @endif
