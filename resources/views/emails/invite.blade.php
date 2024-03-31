@@ -140,7 +140,7 @@
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
                                                     <span
                                                         style="font-weight: 500; color:rgb(126,126,126); vertical-align: text-bottom;">
-                                                        Guest Wifi
+                                                        Guest Wifi:
                                                     </span>
                                                 </p>
                                                 <p style="font-weight: 500; margin: 0.2rem 0.2rem;">
