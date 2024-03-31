@@ -217,13 +217,12 @@ class Meeting extends Model
 
     public function isGuest()
     {
-        if (auth()->id() == 1) {
+        if (auth()->id() == 1 || $this->isCreator()) {
             return true;
         }
-        return $this->where('user_id', auth()->id())
-            ->orWhereHas('invitations.userable', function (Builder $query) {
-                $query->where('email', auth()->user()->email);
-            })->exists();
+        $this->load('invitations.userable');
+        $emails = $this->invitations->pluck('userable.email')->all();
+        return in_array(auth()->user()->email, $emails);
     }
 
     public function isCreator()
