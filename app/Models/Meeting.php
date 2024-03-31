@@ -116,13 +116,13 @@ class Meeting extends Model
     public function getStartTimeFormatAttribute()
     {
 
-        return \Carbon\Carbon::parse($this->start_time)->format('h:i a');
+        return \Carbon\Carbon::parse($this->start_time)->format('h:i A');
     }
 
     public function getEndTimeFormatAttribute()
     {
 
-        return \Carbon\Carbon::parse($this->end_time)->format('h:i a');
+        return \Carbon\Carbon::parse($this->end_time)->format('h:i A');
     }
 
     function generateGoogleCalendarLink()
