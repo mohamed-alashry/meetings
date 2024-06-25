@@ -27,6 +27,11 @@ Route::group(['middleware' => ['guest']], function () {
     Route::get('auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 });
 
+
+
+Route::get('/meetings/calendar-view', 'calendar_view')->name('meetings.calendar_view');
+Route::get('/meetings/card-view', 'card_view')->name('meetings.card_view');
+
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -45,8 +50,6 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::controller(App\Http\Controllers\MeetingController::class)->prefix('meetings')->as('meetings.')->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('/calendar-view', 'calendar_view')->name('calendar_view');
-        Route::get('/card-view', 'card_view')->name('card_view');
         Route::get('/{meeting}', 'show')->name('show');
         Route::post('', 'store')->name('store');
         Route::put('/{meeting}', 'update')->name('update');
