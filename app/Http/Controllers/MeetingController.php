@@ -28,7 +28,7 @@ class MeetingController extends Controller
             $view_days = true;
             $query->where('room_id', $request->room_id);
         }
-        if (auth()->id() != 1) {
+        if (auth()->check() && auth()->id() != 1) {
             $query->guests();
         }
         $meetings = $query->get()->pluck('event_json');
@@ -47,7 +47,7 @@ class MeetingController extends Controller
             $single_room = true;
             $query->where('room_id', $request->room_id);
         }
-        if (auth()->id() != 1) {
+        if (auth()->check() && auth()->id() != 1) {
             $query->guests();
         }
         if (request()->filled('start_date')) {
