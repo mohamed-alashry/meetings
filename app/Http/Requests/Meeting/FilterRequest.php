@@ -17,7 +17,7 @@ class FilterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        if (in_array('read_meeting', auth()->user()->permissions->pluck('name')->toArray())) {
+        if (auth()->guest() || in_array('read_meeting', auth()->user()->permissions->pluck('name')->toArray())) {
             return true;
         }
         return false;
