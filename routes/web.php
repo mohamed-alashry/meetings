@@ -29,8 +29,8 @@ Route::group(['middleware' => ['guest']], function () {
 
 
 
-Route::get('/meetings/calendar-view', 'calendar_view')->name('meetings.calendar_view');
-Route::get('/meetings/card-view', 'card_view')->name('meetings.card_view');
+Route::get('/meetings/calendar-view', [App\Http\Controllers\MeetingController::class, 'calendar_view'])->name('meetings.calendar_view');
+Route::get('/meetings/card-view', [App\Http\Controllers\MeetingController::class, 'card_view'])->name('meetings.card_view');
 
 Route::group(['middleware' => ['auth']], function () {
 
