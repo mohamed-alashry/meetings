@@ -35,7 +35,7 @@ Route::get('/meetings/card-view', [App\Http\Controllers\MeetingController::class
 Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    // Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::get('/', [HomeController::class, 'home'])->name('home');
 
