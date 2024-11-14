@@ -110,8 +110,8 @@ class Create extends Component
             ]);
         }
 
-        $occupiedRoom = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time)->pluck('id')->toArray();
-        if (in_array($this->room_id, $occupiedRoom)) {
+        $freeRoom = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time)->pluck('id')->toArray();
+        if (!in_array($this->room_id, $freeRoom)) {
             throw ValidationException::withMessages([
                 'start_time' => ['This period has meeting. please select another time.'],
             ]);

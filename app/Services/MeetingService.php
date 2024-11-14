@@ -155,16 +155,17 @@ class MeetingService
     public function getRooms($start_date = null, $start_time = null, $end_time = null, int $current_room_id = null)
     {
         // Query available meeting rooms
-        $availableRoomsQuery = Room::where('status', 1);
+        $availableRoomsQuery = Room::query();
 
         if ($start_date && $start_time && $end_time) {
             // Convert start and end times to Carbon objects for easier comparison
             $carbonNewMeetingStartTime = Carbon::parse("$start_date $start_time")->addMinute();
-            $carbonNewMeetingEndTime = Carbon::parse("$start_date $end_time")->addMinute();
+            $carbonNewMeetingEndTime = Carbon::parse("$start_date $end_time")->subMinute();
 
             $availableRoomsQuery->whereNotIn('id', function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
                 $query->select('room_id')
                     ->from('meetings')
+                    ->where('status', 1)
                     ->where('start_date', $carbonNewMeetingStartTime->toDateString())
                     ->where(function ($query) use ($carbonNewMeetingStartTime, $carbonNewMeetingEndTime) {
                         $query->whereBetween('start_time', [$carbonNewMeetingStartTime->toTimeString(), $carbonNewMeetingEndTime->toTimeString()])
