@@ -103,10 +103,17 @@ class Create extends Component
     {
         $validated = $this->validate();
 
-        $meetingStart = Carbon::parse("$this->start_date $this->start_time");
+        $meetingStart = Carbon::parse("{$this->start_date} {$this->start_time}");
         if ($meetingStart->isPast()) {
             throw ValidationException::withMessages([
                 'start_time' => ['The start time field must be a date after now.'],
+            ]);
+        }
+
+        $occupiedRoom = $this->meetingService->getRooms($this->start_date, $this->start_time, $this->end_time)->pluck('id')->toArray();
+        if (in_array($this->room_id, $occupiedRoom)) {
+            throw ValidationException::withMessages([
+                'start_time' => ['This period has meeting. please select another time.'],
             ]);
         }
 
@@ -193,7 +200,7 @@ class Create extends Component
     {
         $this->send_room_attach = !$this->send_room_attach;
     }
-    
+
     public function toggleSendRoomProperties()
     {
         $this->send_room_properties = !$this->send_room_properties;

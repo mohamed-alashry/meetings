@@ -89,9 +89,6 @@ class Card extends Component
         $this->selectedInvitees = $this->invitees->pluck('id')->toArray();
     }
 
-
-
-
     public function render()
     {
         return view('livewire.card');

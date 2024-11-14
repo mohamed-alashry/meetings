@@ -155,7 +155,7 @@ class MeetingService
     public function getRooms($start_date = null, $start_time = null, $end_time = null, int $current_room_id = null)
     {
         // Query available meeting rooms
-        $availableRoomsQuery = Room::query();
+        $availableRoomsQuery = Room::where('status', 1);
 
         if ($start_date && $start_time && $end_time) {
             // Convert start and end times to Carbon objects for easier comparison
@@ -174,8 +174,11 @@ class MeetingService
                                     ->where('end_time', '>=', $carbonNewMeetingEndTime->toTimeString());
                             });
                     });
-            })
-                ->orWhere('id', $current_room_id);
+            });
+
+            if ($current_room_id) {
+                $availableRoomsQuery->orWhere('id', $current_room_id);
+            }
         }
 
         return $availableRoomsQuery->get();
