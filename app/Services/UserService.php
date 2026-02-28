@@ -9,6 +9,7 @@ use App\DTOs\User\UpdateDTO;
 use App\Models\UserPermission;
 use Google\Service\ShoppingContent\Resource\Collections;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UserService
 {
@@ -71,10 +72,10 @@ class UserService
     public function delete(int $id): bool
     {
         try {
-            $User = User::find($id);
-            $User->delete();
-            return true;
+            $user = User::find($id);
+            return $user->delete();
         } catch (\Exception $e) {
+            Log::error("Error deleting user with id $id: " . $e->getMessage());
             return false;
         }
     }

@@ -9,9 +9,7 @@ use App\Http\Requests\User\UpdateRequest;
 
 class UserController extends Controller
 {
-    public function __construct(private readonly UserService $UserService)
-    {
-    }
+    public function __construct(private readonly UserService $UserService) {}
 
     /**
      * Display a listing of the resource.
@@ -71,7 +69,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
         $result = $this->UserService->delete($id);
         if ($result) {
