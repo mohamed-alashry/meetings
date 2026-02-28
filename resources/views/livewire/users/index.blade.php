@@ -102,8 +102,8 @@
                     @endif
                 @endforeach
             </tbody>
-        </table>
 
-        {{ $users->links() }}
+        </table>
     </div>
+    {{ $users->links() }}
 </div>
