@@ -2,17 +2,19 @@
 
 namespace App\Livewire\Users;
 
-use App\Models\User;
-use Livewire\Component;
 use App\DTOs\User\FilterDTO;
+use App\Models\User;
 use App\Services\UserService;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 class Index extends Component
 {
-    use LivewireAlert;
+    use LivewireAlert, WithPagination;
+
     public $user;
-    public int $perPage = 10;
+    public int $perPage = 1;
     public bool $createModal = false;
     public bool $updateModal = false;
     private UserService $userService;

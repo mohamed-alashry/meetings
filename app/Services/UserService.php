@@ -19,7 +19,8 @@ class UserService
         foreach ($data->toArray() as $key => $value) {
             if ($value) $query->where($key, $value);
         }
-        $users = $query->paginate($perPage);
+        $users = $query->simplePaginate($perPage);
+
         return $users;
     }
 
