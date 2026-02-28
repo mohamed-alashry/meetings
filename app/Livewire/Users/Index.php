@@ -14,7 +14,7 @@ class Index extends Component
     use LivewireAlert, WithPagination;
 
     public $user;
-    public int $perPage = 1;
+    public int $perPage = 10;
     public bool $createModal = false;
     public bool $updateModal = false;
     private UserService $userService;
