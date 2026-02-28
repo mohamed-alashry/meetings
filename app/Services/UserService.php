@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Log;
 
 class UserService
 {
+    public function __construct(
+        private MeetingService $meetingService
+    ) {}
+
+
     public function list_with_pagination(FilterDTO $data, int $perPage = 10)
     {
         $query = User::query();
@@ -74,6 +79,11 @@ class UserService
     {
         try {
             $user = User::find($id);
+
+            // Cancel meetings where the user is the creator
+            $this->meetingService->cancelCreatorMeetings($id);
+
+            // Delete the user (soft delete)
             return $user->delete();
         } catch (\Exception $e) {
             Log::error("Error deleting user with id $id: " . $e->getMessage());

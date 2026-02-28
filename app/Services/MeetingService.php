@@ -229,6 +229,11 @@ class MeetingService
         }
     }
 
+    public function cancelCreatorMeetings(int $user_id)
+    {
+        Meeting::where('user_id', $user_id)->update(['status' => 2]);
+    }
+
     public function getTimesArray()
     {
         $timeOptions = [];
